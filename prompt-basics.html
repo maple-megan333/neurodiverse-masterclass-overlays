@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Basics That Actually Work — Neurodiverse AI MasterClass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1a0a2e; color: #f1f5f9; line-height: 1.7; min-height: 100vh; }
+    a { color: #9B72CF; text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #A855F7; }
+    .page { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .nav-top { padding: 0.75rem 0; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(107, 63, 160, 0.15); }
+    .nav-top a { font-size: 0.85rem; color: #64748b; transition: color 0.2s; }
+    .nav-top a:hover { color: #c4b5fd; }
+    .page-head { margin-bottom: 1.5rem; }
+    .page-head .icon { font-size: 2.2rem; display: block; margin-bottom: 0.5rem; }
+    .page-head h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.5rem; }
+    .page-head .subtitle { font-size: 1rem; color: #94a3b8; font-style: italic; margin-bottom: 0.75rem; }
+    .skip { display: inline-block; font-size: 0.85rem; color: #c4b5fd; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 6px; padding: 0.4rem 0.9rem; margin-bottom: 1.5rem; }
+    .skip:hover { background: rgba(168,85,247,0.15); border-color: #A855F7; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+    @media (max-width: 640px) { .g2 { grid-template-columns: 1fr; } }
+    .co { border-radius: 8px; padding: 1rem 1.15rem; margin-bottom: 0.75rem; border-left: 4px solid; font-size: 0.9rem; line-height: 1.6; }
+    .co-title { font-weight: 600; margin-bottom: 0.3rem; }
+    .co p { margin-bottom: 0.5rem; max-width: 65ch; }
+    .co p:last-child { margin-bottom: 0; }
+    .co-green { background: #064e3b; border-color: #059669; }
+    .co-green .co-title { color: #34d399; }
+    .co-gray { background: #1f2937; border-color: #6b7280; }
+    .co-gray .co-title { color: #9ca3af; }
+    .co-blue { background: #1e3a5f; border-color: #2563eb; }
+    .co-blue .co-title { color: #60a5fa; }
+    .co-purple { background: #2d1b4e; border-color: #A855F7; }
+    .co-purple .co-title { color: #c4b5fd; }
+    .co-yellow { background: #451a03; border-color: #d97706; }
+    .co-yellow .co-title { color: #fbbf24; }
+    .co-red { background: #450a0a; border-color: #dc2626; }
+    .co-red .co-title { color: #f87171; }
+    h2 { font-size: 1.35rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid #6B3FA0; }
+    hr { border: none; height: 1px; background: linear-gradient(to right, transparent, #6B3FA0, transparent); margin: 2rem 0; }
+    blockquote { border-left: 3px solid #6B3FA0; padding: 0.75rem 1rem; margin: 1rem 0; color: #94a3b8; font-style: italic; background: rgba(107, 63, 160, 0.08); border-radius: 0 8px 8px 0; font-size: 0.9rem; }
+    blockquote strong { color: #f1f5f9; font-style: normal; }
+    pre { background: #0f0a1a; border: 1px solid rgba(107, 63, 160, 0.3); border-radius: 8px; padding: 1rem 1.15rem; overflow-x: auto; margin: 0.75rem 0; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.82rem; line-height: 1.65; color: #e2e8f0; }
+    code { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.85em; background: rgba(107, 63, 160, 0.2); padding: 0.1em 0.35em; border-radius: 4px; color: #9B72CF; }
+    pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+    table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.88rem; }
+    th { background: #2d1b4e; color: #c4b5fd; font-weight: 600; text-align: left; padding: 0.65rem 0.85rem; border-bottom: 2px solid #6B3FA0; }
+    td { padding: 0.6rem 0.85rem; border-bottom: 1px solid rgba(107, 63, 160, 0.12); }
+    tr:hover td { background: rgba(107, 63, 160, 0.06); }
+    ul, ol { margin: 0.5rem 0 0.75rem 1.25rem; }
+    li { margin-bottom: 0.35rem; line-height: 1.55; font-size: 0.9rem; }
+    li::marker { color: #9B72CF; }
+    details { background: #2d1b4e; border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 8px; margin: 1rem 0; overflow: hidden; }
+    summary { padding: 0.85rem 1.1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #c4b5fd; list-style: none; }
+    summary::before { content: '▸ '; display: inline-block; }
+    details[open] summary::before { content: '▾ '; }
+    summary:hover { background: #3d2b5e; }
+    details > div { padding: 0 1.1rem 1rem; }
+    .nav-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.5rem; margin-top: 2.5rem; border-top: 1px solid rgba(107, 63, 160, 0.15); }
+    .nav-btn { display: inline-flex; flex-direction: column; padding: 0.7rem 1rem; background: #2d1b4e; border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 8px; color: #f1f5f9; font-weight: 500; font-size: 0.88rem; text-decoration: none; transition: all 0.2s; }
+    .nav-btn:hover { background: #3d2b5e; border-color: rgba(168, 85, 247, 0.3); }
+    .nav-btn small { font-size: 0.72rem; color: #64748b; font-weight: 400; }
+    strong { color: #f1f5f9; }
+    @media (max-width: 640px) { .page-head h1 { font-size: 1.6rem; } .nav-bottom { flex-direction: column; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <nav class="nav-top"><a href="index.html">← MasterClass Home</a></nav>
+  <div class="page-head">
+    <span class="icon">✏️</span>
+    <h1>Prompt Basics That Actually Work</h1>
+    <p class="subtitle">3 reusable prompts you'll actually use this week — saved to your Prompt Library.</p>
+  </div>
+  <a href="choose-configure-tools.html" class="skip">Already know this? Skip to next guide →</a>
+  <div class="g2">
+    <div class="co co-blue"><div class="co-title">🧭 What you'll set up</div><p>3 reusable prompts — work, life, creative — tested with your real situations.</p></div>
+    <div class="co co-purple"><div class="co-title">⏱️ Time & Energy</div><p><strong>15 min</strong> · Any energy · You'll need: <a href="https://claude.ai">Claude.ai</a> + this page</p></div>
+  </div>
+  <blockquote><strong>Works with any AI tool.</strong> These steps say "Claude" but work in Gemini, ChatGPT, or any AI assistant.</blockquote>
+  <hr>  <h2>Step 1: The One Pattern That Matters</h2>
+  <div class="g2">
+    <div class="co co-gray"><div class="co-title">🔬 Why this works</div><p>Structured prompts consistently outperform unstructured requests (<a href="https://arxiv.org/abs/2302.11382">White et al., 2023</a>). For ND brains, the framework reduces working memory load.</p></div>
+    <div class="co co-gray"><div class="co-title">☁️ Low energy version</div><p>Build ONE prompt. Pick whichever category you'd use soonest. Fill in the template. Run it. Save it. That counts.</p></div>
+  </div>
+  <div class="co co-blue">
+    <div class="co-title">📘 The 4-Element Prompt Framework</div>
+    <table>
+      <tr><th>Element</th><th>What it does</th><th>Example</th></tr>
+      <tr><td><strong>Role</strong></td><td>Tells AI who to be</td><td>“You are a direct, warm communicator”</td></tr>
+      <tr><td><strong>Context</strong></td><td>Gives background</td><td>“I need to decline a meeting invite from my boss”</td></tr>
+      <tr><td><strong>Task</strong></td><td>What you need</td><td>“Write a response that’s firm but respectful”</td></tr>
+      <tr><td><strong>Format</strong></td><td>How to deliver</td><td>“2-3 sentences, casual professional tone”</td></tr>
+    </table>
+    <p>You don’t need all four every time. Adding even one dramatically improves results.</p>
+  </div>
+  <hr>
+  <h2>Step 2: Build Your First Prompt — Work</h2>
+  <div class="co co-green">
+    <div class="co-title">✏️ Do this now</div>
+    <p>Think of a <strong>work task</strong> you do regularly. Copy this template into Claude:</p>
+    <pre><code>You are a [ROLE — e.g., "concise professional writer"].
+
+Context: [YOUR SITUATION — e.g., "I'm a freelance designer sending weekly updates"]
+
+Task: [WHAT YOU NEED — e.g., "Write a project update email. Wireframes done, visual design next."]
+
+Format: [HOW YOU WANT IT — e.g., "3 short paragraphs, warm but professional, under 150 words"]</code></pre>
+    <p>If output is close but not right: “Make it shorter” · “Make it more casual” · “Make it sound more like me”</p>
+  </div>
+  <div class="co co-yellow"><div class="co-title">⭐ What good looks like</div><p>The output feels 70-80% right on first try. Way off? Add more context. Wrong tone? Add a format instruction.</p></div>
+  <hr>
+  <h2>Step 3: Build Two More — Life + Creative</h2>
+  <div class="g2">
+    <div class="co co-green">
+      <div class="co-title">🏠 Life prompt</div>
+      <pre><code>You are a [ROLE — e.g., "calm, practical life organizer"].
+
+Context: [YOUR SITUATION — e.g., "I have ADHD and struggle with meal planning."]
+
+Task: [WHAT YOU NEED — e.g., "Create a 5-day dinner plan using ingredients I probably have."]
+
+Format: [HOW YOU WANT IT — e.g., "List, one per day, include cook time"]</code></pre>
+    </div>
+    <div class="co co-green">
+      <div class="co-title">🎨 Creative prompt</div>
+      <pre><code>You are a [ROLE — e.g., "creative brainstorm partner"].
+
+Context: [YOUR SITUATION — e.g., "Newsletter about ND productivity"]
+
+Task: [WHAT YOU NEED — e.g., "Give me 10 topic ideas. Mix practical tips with stories."]
+
+Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3"]</code></pre>
+    </div>
+  </div>
+  <hr>
+  <h2>Step 4: Save Your Prompts</h2>
+  <div class="g2">
+    <div class="co co-blue">
+      <div class="co-title">📘 Save to Prompt Library</div>
+      <ol>
+        <li>Open the <strong>Prompt Library</strong> database</li>
+        <li>Create 3 entries — one per prompt</li>
+        <li>Paste the full prompt</li>
+        <li>Tag: Work, Life, Creative</li>
+      </ol>
+    </div>
+    <div class="co co-yellow"><div class="co-title">⭐ What good looks like</div><p>Each prompt is specific to YOUR life. “Write an email” is generic. “Write a project update for my freelance design clients, warm but professional, under 150 words” is <em>yours</em>.</p></div>
+  </div>
+  <hr>
+  <div class="g2">
+    <div class="co co-blue"><div class="co-title">🔖 You set up</div><p><strong>3 reusable prompts</strong> — work, life, creative.<br><strong>Saved in:</strong> Prompt Library</p></div>
+    <div class="co co-green"><div class="co-title">➡️ Next</div><p><a href="choose-configure-tools.html"><strong>Choose & Configure Your Tools →</strong></a></p></div>
+  </div>
+  <details>
+    <summary>📚 Research behind this lesson</summary>
+    <div>
+      <ul>
+        <li><strong>Prompt engineering</strong> — White et al. (2023). “A Prompt Pattern Catalog.” <em>arXiv:2302.11382</em></li>
+        <li><strong>Cognitive scaffolding</strong> — Kirschner et al. (2006). “Why Minimal Guidance Doesn’t Work.” <em>Ed Psych</em>, 41(2)</li>
+        <li><strong>Iterative refinement</strong> — Anthropic. “Prompt Engineering Guide.” <a href="https://docs.anthropic.com">docs.anthropic.com</a></li>
+      </ul>
+    </div>
+  </details>
+  <nav class="nav-bottom">
+    <a href="first-ai-conversation.html" class="nav-btn"><small>← Previous</small>First AI Conversation</a>
+    <a href="choose-configure-tools.html" class="nav-btn"><small>Next →</small>Choose & Configure Tools</a>
+  </nav>
+</div>
+</body>
+</html>
