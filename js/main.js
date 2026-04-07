@@ -1,6 +1,6 @@
 /* ============================================
    Neurodiverse AI MasterClass — Main JS
-   Particles, animations, scroll progress,
+   Particles, scroll progress, copy buttons,
    and interactive enhancements.
    ============================================ */
 
@@ -35,31 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       scrollProgress.style.width = progress + '%';
     }, { passive: true });
-  }
-
-  // --- Entrance animations via IntersectionObserver ---
-  const animateElements = document.querySelectorAll('.callout, details, .mermaid-container, .nav-footer, h2, .card, .gallery');
-  if (animateElements.length > 0 && 'IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-
-    animateElements.forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(12px)';
-      el.style.transition = 'opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) ' + (i % 5) * 0.06 + 's, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ' + (i % 5) * 0.06 + 's';
-      observer.observe(el);
-    });
-
-    // Add the CSS for the visible state
-    const style = document.createElement('style');
-    style.textContent = '.animate-visible { opacity: 1 !important; transform: translateY(0) !important; }';
-    document.head.appendChild(style);
   }
 
   // --- Copy buttons for code blocks ---
