@@ -52,7 +52,7 @@
     {x:0.54, y:0.68}, {x:0.51, y:0.69}, {x:0.49, y:0.71},
     // === BACK TO STEM ===
     {x:0.47, y:0.74}, {x:0.46, y:0.77}, {x:0.45, y:0.80},
-    {x:0.45, y:0.84}, {x:0.46, y:0.88}, {x:0.47, y:0.95},
+    {x:0.45, y:0.84}, {x:0.46, y:0.84}, {x:0.47, y:0.95},
   ];
 
   // Sulci (brain folds)
@@ -94,11 +94,12 @@
   }
 
   function getBrainTransform(cw, ch) {
-    const brainW = cw * 0.65;
-    const brainH = ch * 0.88;
-    const offX = (cw - brainW) / 2;
-    const offY = (ch - brainH) / 2 - ch * 0.01;
-    return { brainW, brainH, offX, offY };
+    var brainH = ch * 0.88;
+    var brainW = brainH * 1.05;
+    if (brainW > cw * 0.65) { brainW = cw * 0.65; brainH = brainW / 1.05; }
+    var offX = (cw - brainW) / 2;
+    var offY = (ch - brainH) / 2 - ch * 0.01;
+    return { brainW: brainW, brainH: brainH, offX: offX, offY: offY };
   }
 
   function isInsideBrain(px, py, cw, ch) {
