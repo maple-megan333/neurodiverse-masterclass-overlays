@@ -3,173 +3,777 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prompt Basics That Actually Work — Neurodiverse AI MasterClass</title>
+  <title>Prompt Basics That Actually Work â Neurodiverse AI MasterClass</title>
+  <link rel="stylesheet" href="css/theme.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="css/brain-header.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    /* === CSS Variables === */
+    :root {
+      --bg: #0A0A14;
+      --bg-card: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.06);
+      --text: #F8F8FC;
+      --text-mid: rgba(255,255,255,0.68);
+      --text-dim: rgba(255,255,255,0.38);
+      --accent: hsla(270, 80%, 65%, 1);
+      --accent-soft: hsla(270, 70%, 60%, 0.15);
+      --accent-glow: hsla(270, 80%, 65%, 0.25);
+      --accent2: hsla(310, 75%, 65%, 1);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* === Base === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #1a0a2e; color: #f1f5f9; line-height: 1.7; min-height: 100vh; }
-    a { color: #9B72CF; text-decoration: none; transition: color 0.2s; }
-    a:hover { color: #A855F7; }
-    .page { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-    .nav-top { padding: 0.75rem 0; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(107, 63, 160, 0.15); }
-    .nav-top a { font-size: 0.85rem; color: #64748b; transition: color 0.2s; }
-    .nav-top a:hover { color: #c4b5fd; }
-    .page-head { margin-bottom: 1.5rem; }
-    .page-head .icon { font-size: 2.2rem; display: block; margin-bottom: 0.5rem; }
-    .page-head h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.5rem; }
-    .page-head .subtitle { font-size: 1rem; color: #94a3b8; font-style: italic; margin-bottom: 0.75rem; }
-    .skip { display: inline-block; font-size: 0.85rem; color: #c4b5fd; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 6px; padding: 0.4rem 0.9rem; margin-bottom: 1.5rem; }
-    .skip:hover { background: rgba(168,85,247,0.15); border-color: #A855F7; }
-    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
-    @media (max-width: 640px) { .g2 { grid-template-columns: 1fr; } }
-    .co { border-radius: 8px; padding: 1rem 1.15rem; margin-bottom: 0.75rem; border-left: 4px solid; font-size: 0.9rem; line-height: 1.6; }
-    .co-title { font-weight: 600; margin-bottom: 0.3rem; }
-    .co p { margin-bottom: 0.5rem; max-width: 65ch; }
-    .co p:last-child { margin-bottom: 0; }
-    .co-green { background: #064e3b; border-color: #059669; }
-    .co-green .co-title { color: #34d399; }
-    .co-gray { background: #1f2937; border-color: #6b7280; }
-    .co-gray .co-title { color: #9ca3af; }
-    .co-blue { background: #1e3a5f; border-color: #2563eb; }
-    .co-blue .co-title { color: #60a5fa; }
-    .co-purple { background: #2d1b4e; border-color: #A855F7; }
-    .co-purple .co-title { color: #c4b5fd; }
-    .co-yellow { background: #451a03; border-color: #d97706; }
-    .co-yellow .co-title { color: #fbbf24; }
-    .co-red { background: #450a0a; border-color: #dc2626; }
-    .co-red .co-title { color: #f87171; }
-    h2 { font-size: 1.35rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4rem; border-bottom: 2px solid #6B3FA0; }
-    hr { border: none; height: 1px; background: linear-gradient(to right, transparent, #6B3FA0, transparent); margin: 2rem 0; }
-    blockquote { border-left: 3px solid #6B3FA0; padding: 0.75rem 1rem; margin: 1rem 0; color: #94a3b8; font-style: italic; background: rgba(107, 63, 160, 0.08); border-radius: 0 8px 8px 0; font-size: 0.9rem; }
-    blockquote strong { color: #f1f5f9; font-style: normal; }
-    pre { background: #0f0a1a; border: 1px solid rgba(107, 63, 160, 0.3); border-radius: 8px; padding: 1rem 1.15rem; overflow-x: auto; margin: 0.75rem 0; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.82rem; line-height: 1.65; color: #e2e8f0; }
-    code { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.85em; background: rgba(107, 63, 160, 0.2); padding: 0.1em 0.35em; border-radius: 4px; color: #9B72CF; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' /%3E%3C/filter%3E%3Crect width='400' height='400' fill='white' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent2); }
+
+    /* === Mesh Gradient Orbs === */
+    .mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .mesh-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0;
+      animation: orbFade 1.2s var(--ease) forwards;
+    }
+    .mesh-orb:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      top: -60px;
+      left: -60px;
+      background: hsla(280, 70%, 55%, 0.3);
+      animation-delay: 0s;
+    }
+    .mesh-orb:nth-child(2) {
+      width: 280px;
+      height: 280px;
+      top: 50%;
+      right: -40px;
+      background: hsla(260, 60%, 50%, 0.25);
+      animation-delay: 0.2s;
+    }
+    .mesh-orb:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      bottom: -50px;
+      left: 50%;
+      background: hsla(290, 65%, 60%, 0.28);
+      animation-delay: 0.4s;
+    }
+
+    /* === Particles === */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      animation: particleFloat linear infinite;
+    }
+
+    /* === Wrapper === */
+    .wrapper {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* === Header Banner === */
+    .header-banner {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .header-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent-glow), transparent);
+    }
+    .eyebrow {
+      display: block;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      animation: fadeUp 0.6s var(--ease) forwards;
+      opacity: 0;
+    }
+    .page-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      animation: fadeUp 0.6s var(--ease) 0.1s forwards;
+      opacity: 0;
+    }
+    .page-title .hl {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-sub {
+      font-size: 1.1rem;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s var(--ease) 0.2s forwards;
+      opacity: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .meta-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s var(--ease) 0.3s forwards;
+      opacity: 0;
+    }
+    .meta-pill {
+      display: inline-block;
+      font-size: 0.85rem;
+      padding: 0.45rem 0.9rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-dim);
+    }
+
+    /* === Content Body === */
+    .content-body {
+      max-width: 720px;
+      margin: 0 auto;
+      animation: fadeUp 0.6s var(--ease) 0.6s forwards;
+      opacity: 0;
+    }
+
+    /* === Navigation === */
+    .nav-top {
+      padding: 1.5rem 0 1rem;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      animation: fadeUp 0.6s var(--ease) forwards;
+      opacity: 0;
+    }
+    .nav-top a {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+    .nav-top a:hover { color: var(--accent); }
+
+    /* === Back Link === */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      transform: translateX(-4px);
+    }
+
+    /* === Callouts === */
+    .callout {
+      display: flex;
+      gap: 1rem;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .callout-icon {
+      flex-shrink: 0;
+      font-size: 1.3rem;
+      margin-top: 0.2rem;
+    }
+    .callout-content { flex: 1; }
+    .callout-title {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .callout-text { margin-bottom: 0.5rem; }
+    .callout-text:last-child { margin-bottom: 0; }
+
+    /* Callout variants */
+    .callout-green {
+      background: hsla(140, 50%, 40%, 0.08);
+      border-color: hsla(140, 50%, 40%, 0.18);
+      color: hsla(140, 50%, 60%, 1);
+    }
+    .callout-purple {
+      background: hsla(270, 50%, 50%, 0.08);
+      border-color: hsla(270, 50%, 50%, 0.15);
+      color: var(--accent);
+    }
+    .callout-blue {
+      background: hsla(210, 50%, 50%, 0.08);
+      border-color: hsla(210, 50%, 50%, 0.15);
+      color: hsla(210, 70%, 65%, 1);
+    }
+    .callout-yellow {
+      background: hsla(45, 50%, 50%, 0.08);
+      border-color: hsla(45, 50%, 50%, 0.15);
+      color: hsla(45, 90%, 65%, 1);
+    }
+    .callout-gray {
+      background: rgba(255,255,255,0.025);
+      border-color: var(--border);
+      color: var(--text-mid);
+    }
+
+    /* === Grid === */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+    @media (max-width: 768px) { .g2 { grid-template-columns: 1fr; } }
+
+    /* === Headings === */
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid;
+      border-image: linear-gradient(90deg, var(--accent-glow), transparent) 1;
+    }
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    /* === Blockquote === */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      color: var(--text-mid);
+      font-style: italic;
+      background: var(--accent-soft);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+    }
+    blockquote strong { color: var(--text); font-style: normal; }
+
+    /* === Code === */
+    pre {
+      position: relative;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: #e2e8f0;
+    }
+    .code-label {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 3.5rem;
+      padding: 0.4rem 0.75rem;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-glow);
+      border-radius: 6px;
+      color: var(--accent);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 600;
+    }
+    .copy-btn:hover {
+      background: var(--accent-glow);
+      color: var(--text);
+    }
+    code {
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 0.85em;
+      background: rgba(255,255,255,0.08);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      color: hsla(280, 85%, 75%, 1);
+    }
     pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
-    table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.88rem; }
-    th { background: #2d1b4e; color: #c4b5fd; font-weight: 600; text-align: left; padding: 0.65rem 0.85rem; border-bottom: 2px solid #6B3FA0; }
-    td { padding: 0.6rem 0.85rem; border-bottom: 1px solid rgba(107, 63, 160, 0.12); }
-    tr:hover td { background: rgba(107, 63, 160, 0.06); }
-    ul, ol { margin: 0.5rem 0 0.75rem 1.25rem; }
-    li { margin-bottom: 0.35rem; line-height: 1.55; font-size: 0.9rem; }
-    li::marker { color: #9B72CF; }
-    details { background: #2d1b4e; border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 8px; margin: 1rem 0; overflow: hidden; }
-    summary { padding: 0.85rem 1.1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #c4b5fd; list-style: none; }
-    summary::before { content: '▸ '; display: inline-block; }
-    details[open] summary::before { content: '▾ '; }
-    summary:hover { background: #3d2b5e; }
-    details > div { padding: 0 1.1rem 1rem; }
-    .nav-bottom { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1.5rem; margin-top: 2.5rem; border-top: 1px solid rgba(107, 63, 160, 0.15); }
-    .nav-btn { display: inline-flex; flex-direction: column; padding: 0.7rem 1rem; background: #2d1b4e; border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 8px; color: #f1f5f9; font-weight: 500; font-size: 0.88rem; text-decoration: none; transition: all 0.2s; }
-    .nav-btn:hover { background: #3d2b5e; border-color: rgba(168, 85, 247, 0.3); }
-    .nav-btn small { font-size: 0.72rem; color: #64748b; font-weight: 400; }
-    strong { color: #f1f5f9; }
-    @media (max-width: 640px) { .page-head h1 { font-size: 1.6rem; } .nav-bottom { flex-direction: column; } }
+
+    /* === Tables === */
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    th {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 2px solid var(--accent-glow);
+    }
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-mid);
+    }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* === Lists === */
+    ul, ol { margin: 0.75rem 0 1rem 1.5rem; }
+    li { margin-bottom: 0.5rem; line-height: 1.6; }
+    li::marker { color: var(--accent); }
+
+    /* === Toggle/Details === */
+    details {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 1.5rem 0;
+      overflow: hidden;
+    }
+    summary {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: background 0.2s;
+    }
+    summary::before {
+      content: '';
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-glow);
+      border-radius: 4px;
+      position: relative;
+      transition: transform 0.2s var(--ease);
+    }
+    summary::before {
+      content: 'â';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.7rem;
+    }
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+    summary:hover { background: rgba(255,255,255,0.03); }
+    details > div {
+      padding: 0 1.25rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    details ul { margin-top: 0.5rem; }
+
+    /* === Step Cards === */
+    .step-card {
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.3s var(--ease);
+    }
+    .step-card:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-4px);
+      border-color: var(--accent-glow);
+    }
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      flex-shrink: 0;
+      background: var(--accent-soft);
+      border: 1.5px solid var(--accent-glow);
+      border-radius: 8px;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    .step-content { flex: 1; }
+
+    /* === Dividers === */
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+      margin: 2.5rem 0;
+    }
+
+    /* === Bottom Nav === */
+    .nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent-glow);
+      transform: translateY(-2px);
+    }
+    .nav-btn-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    /* === Animations === */
+    @keyframes orbFade {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes particleFloat {
+      to {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* === Responsive === */
+    @media (max-width: 768px) {
+      .header-banner { padding: 2.5rem 1.5rem 2rem; }
+      .page-title { font-size: 2rem; }
+      .page-sub { font-size: 1rem; }
+      .meta-row { font-size: 0.8rem; }
+      h2 { font-size: 1.3rem; }
+      .g2 { gap: 0.75rem; }
+      .callout { padding: 1rem; gap: 0.75rem; }
+      pre { padding: 1rem; font-size: 0.78rem; }
+      .nav-bottom { flex-direction: column; }
+      .nav-btn { text-align: left; }
+    }
   </style>
 </head>
 <body>
-<div class="page">
-  <nav class="nav-top"><a href="index.html">← MasterClass Home</a></nav>
-  <div class="page-head">
-    <span class="icon">✏️</span>
-    <h1>Prompt Basics That Actually Work</h1>
-    <p class="subtitle">3 reusable prompts you'll actually use this week — saved to your Prompt Library.</p>
-  </div>
-  <a href="choose-configure-tools.html" class="skip">Already know this? Skip to next guide →</a>
-  <div class="g2">
-    <div class="co co-blue"><div class="co-title">🧭 What you'll set up</div><p>3 reusable prompts — work, life, creative — tested with your real situations.</p></div>
-    <div class="co co-purple"><div class="co-title">⏱️ Time & Energy</div><p><strong>15 min</strong> · Any energy · You'll need: <a href="https://claude.ai">Claude.ai</a> + this page</p></div>
-  </div>
-  <blockquote><strong>Works with any AI tool.</strong> These steps say "Claude" but work in Gemini, ChatGPT, or any AI assistant.</blockquote>
-  <hr>  <h2>Step 1: The One Pattern That Matters</h2>
-  <div class="g2">
-    <div class="co co-gray"><div class="co-title">🔬 Why this works</div><p>Structured prompts consistently outperform unstructured requests (<a href="https://arxiv.org/abs/2302.11382">White et al., 2023</a>). For ND brains, the framework reduces working memory load.</p></div>
-    <div class="co co-gray"><div class="co-title">☁️ Low energy version</div><p>Build ONE prompt. Pick whichever category you'd use soonest. Fill in the template. Run it. Save it. That counts.</p></div>
-  </div>
-  <div class="co co-blue">
-    <div class="co-title">📘 The 4-Element Prompt Framework</div>
-    <table>
-      <tr><th>Element</th><th>What it does</th><th>Example</th></tr>
-      <tr><td><strong>Role</strong></td><td>Tells AI who to be</td><td>“You are a direct, warm communicator”</td></tr>
-      <tr><td><strong>Context</strong></td><td>Gives background</td><td>“I need to decline a meeting invite from my boss”</td></tr>
-      <tr><td><strong>Task</strong></td><td>What you need</td><td>“Write a response that’s firm but respectful”</td></tr>
-      <tr><td><strong>Format</strong></td><td>How to deliver</td><td>“2-3 sentences, casual professional tone”</td></tr>
-    </table>
-    <p>You don’t need all four every time. Adding even one dramatically improves results.</p>
-  </div>
-  <hr>
-  <h2>Step 2: Build Your First Prompt — Work</h2>
-  <div class="co co-green">
-    <div class="co-title">✏️ Do this now</div>
-    <p>Think of a <strong>work task</strong> you do regularly. Copy this template into Claude:</p>
-    <pre><code>You are a [ROLE — e.g., "concise professional writer"].
-
-Context: [YOUR SITUATION — e.g., "I'm a freelance designer sending weekly updates"]
-
-Task: [WHAT YOU NEED — e.g., "Write a project update email. Wireframes done, visual design next."]
-
-Format: [HOW YOU WANT IT — e.g., "3 short paragraphs, warm but professional, under 150 words"]</code></pre>
-    <p>If output is close but not right: “Make it shorter” · “Make it more casual” · “Make it sound more like me”</p>
-  </div>
-  <div class="co co-yellow"><div class="co-title">⭐ What good looks like</div><p>The output feels 70-80% right on first try. Way off? Add more context. Wrong tone? Add a format instruction.</p></div>
-  <hr>
-  <h2>Step 3: Build Two More — Life + Creative</h2>
-  <div class="g2">
-    <div class="co co-green">
-      <div class="co-title">🏠 Life prompt</div>
-      <pre><code>You are a [ROLE — e.g., "calm, practical life organizer"].
-
-Context: [YOUR SITUATION — e.g., "I have ADHD and struggle with meal planning."]
-
-Task: [WHAT YOU NEED — e.g., "Create a 5-day dinner plan using ingredients I probably have."]
-
-Format: [HOW YOU WANT IT — e.g., "List, one per day, include cook time"]</code></pre>
-    </div>
-    <div class="co co-green">
-      <div class="co-title">🎨 Creative prompt</div>
-      <pre><code>You are a [ROLE — e.g., "creative brainstorm partner"].
-
-Context: [YOUR SITUATION — e.g., "Newsletter about ND productivity"]
-
-Task: [WHAT YOU NEED — e.g., "Give me 10 topic ideas. Mix practical tips with stories."]
-
-Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3"]</code></pre>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <h1>Prompt Basics That Actually Work</h1>
+      <p class="tagline">The 4-element prompt framework for neurodivergent brains.</p>
+      
     </div>
   </div>
-  <hr>
-  <h2>Step 4: Save Your Prompts</h2>
-  <div class="g2">
-    <div class="co co-blue">
-      <div class="co-title">📘 Save to Prompt Library</div>
-      <ol>
-        <li>Open the <strong>Prompt Library</strong> database</li>
-        <li>Create 3 entries — one per prompt</li>
-        <li>Paste the full prompt</li>
-        <li>Tag: Work, Life, Creative</li>
-      </ol>
-    </div>
-    <div class="co co-yellow"><div class="co-title">⭐ What good looks like</div><p>Each prompt is specific to YOUR life. “Write an email” is generic. “Write a project update for my freelance design clients, warm but professional, under 150 words” is <em>yours</em>.</p></div>
-  </div>
-  <hr>
-  <div class="g2">
-    <div class="co co-blue"><div class="co-title">🔖 You set up</div><p><strong>3 reusable prompts</strong> — work, life, creative.<br><strong>Saved in:</strong> Prompt Library</p></div>
-    <div class="co co-green"><div class="co-title">➡️ Next</div><p><a href="choose-configure-tools.html"><strong>Choose & Configure Your Tools →</strong></a></p></div>
-  </div>
-  <details>
-    <summary>📚 Research behind this lesson</summary>
-    <div>
-      <ul>
-        <li><strong>Prompt engineering</strong> — White et al. (2023). “A Prompt Pattern Catalog.” <em>arXiv:2302.11382</em></li>
-        <li><strong>Cognitive scaffolding</strong> — Kirschner et al. (2006). “Why Minimal Guidance Doesn’t Work.” <em>Ed Psych</em>, 41(2)</li>
-        <li><strong>Iterative refinement</strong> — Anthropic. “Prompt Engineering Guide.” <a href="https://docs.anthropic.com">docs.anthropic.com</a></li>
-      </ul>
-    </div>
-  </details>
-  <nav class="nav-bottom">
-    <a href="first-ai-conversation.html" class="nav-btn"><small>← Previous</small>First AI Conversation</a>
-    <a href="choose-configure-tools.html" class="nav-btn"><small>Next →</small>Choose & Configure Tools</a>
-  </nav>
 </div>
+
+
+      <div class="callout callout-purple">
+        <div class="callout-content">
+          <div class="callout-title">â± Time & Energy</div>
+          <div class="callout-text"><strong>15 min</strong> Â· Any energy Â· You'll need: <a href="https://claude.ai">Claude.ai</a> + this page</div>
+        </div>
+      </div>
+    </div>
+
+    <blockquote><strong>Works with any AI tool.</strong> These steps say "Claude" but work in Gemini, ChatGPT, or any AI assistant.</blockquote>
+
+    <hr>
+
+    <h2>Step 1: The One Pattern That Matters</h2>
+
+    <div class="g2">
+      <div class="callout callout-gray">
+        <div class="callout-content">
+          <div class="callout-title">ð¬ Why this works</div>
+          <div class="callout-text">Structured prompts consistently outperform unstructured requests (<a href="https://arxiv.org/abs/2302.11382">White et al., 2023</a>). For ND brains, the framework reduces working memory load.</div>
+        </div>
+      </div>
+      <div class="callout callout-gray">
+        <div class="callout-content">
+          <div class="callout-title">âï¸ Low energy version</div>
+          <div class="callout-text">Build ONE prompt. Pick whichever category you'd use soonest. Fill in the template. Run it. Save it. That counts.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <div class="callout-content">
+        <div class="callout-title">ð The 4-Element Prompt Framework</div>
+        <table>
+          <tr><th>Element</th><th>What it does</th><th>Example</th></tr>
+          <tr><td><strong>Role</strong></td><td>Tells AI who to be</td><td>"You are a direct, warm communicator"</td></tr>
+          <tr><td><strong>Context</strong></td><td>Gives background</td><td>"I need to decline a meeting invite from my boss"</td></tr>
+          <tr><td><strong>Task</strong></td><td>What you need</td><td>"Write a response that's firm but respectful"</td></tr>
+          <tr><td><strong>Format</strong></td><td>How to deliver</td><td>"2-3 sentences, casual professional tone"</td></tr>
+        </table>
+        <div class="callout-text" style="margin-top: 1rem;">You don't need all four every time. Adding even one dramatically improves results.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Step 2: Build Your First Prompt â Work</h2>
+
+    <div class="callout callout-green">
+      <div class="callout-content">
+        <div class="callout-title">âï¸ Do this now</div>
+        <div class="callout-text">Think of a <strong>work task</strong> you do regularly. Copy this template into Claude:</div>
+        <pre style="margin-top: 1rem;"><span class="code-label">Work Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>You are a [ROLE â e.g., "concise professional writer"].
+
+Context: [YOUR SITUATION â e.g., "I'm a freelance designer sending weekly updates"]
+
+Task: [WHAT YOU NEED â e.g., "Write a project update email. Wireframes done, visual design next."]
+
+Format: [HOW YOU WANT IT â e.g., "3 short paragraphs, warm but professional, under 150 words"]</code></pre>
+        <div class="callout-text" style="margin-top: 1rem;">If output is close but not right: "Make it shorter" Â· "Make it more casual" Â· "Make it sound more like me"</div>
+      </div>
+    </div>
+
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">â­ What good looks like</div>
+        <div class="callout-text">The output feels 70-80% right on first try. Way off? Add more context. Wrong tone? Add a format instruction.</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Step 3: Build Two More â Life + Creative</h2>
+
+    <div class="g2">
+      <div class="callout callout-green">
+        <div class="callout-content">
+          <div class="callout-title">ð  Life prompt</div>
+          <pre><span class="code-label">Life Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>You are a [ROLE â e.g., "calm, practical life organizer"].
+
+Context: [YOUR SITUATION â e.g., "I have ADHD and struggle with meal planning."]
+
+Task: [WHAT YOU NEED â e.g., "Create a 5-day dinner plan using ingredients I probably have."]
+
+Format: [HOW YOU WANT IT â e.g., "List, one per day, include cook time"]</code></pre>
+        </div>
+      </div>
+      <div class="callout callout-green">
+        <div class="callout-content">
+          <div class="callout-title">ð¨ Creative prompt</div>
+          <pre><span class="code-label">Creative Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>You are a [ROLE â e.g., "creative brainstorm partner"].
+
+Context: [YOUR SITUATION â e.g., "Newsletter about ND productivity"]
+
+Task: [WHAT YOU NEED â e.g., "Give me 10 topic ideas. Mix practical tips with stories."]
+
+Format: [HOW YOU WANT IT â e.g., "Numbered list, one sentence each, star top 3"]</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Step 4: Save Your Prompts</h2>
+
+    <div class="g2">
+      <div class="callout callout-blue">
+        <div class="callout-content">
+          <div class="callout-title">ð Save to Prompt Library</div>
+          <ol>
+            <li>Open the <strong>Prompt Library</strong> database</li>
+            <li>Create 3 entries â one per prompt</li>
+            <li>Paste the full prompt</li>
+            <li>Tag: Work, Life, Creative</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout callout-yellow">
+        <div class="callout-content">
+          <div class="callout-title">â­ What good looks like</div>
+          <div class="callout-text">Each prompt is specific to YOUR life. "Write an email" is generic. "Write a project update for my freelance design clients, warm but professional, under 150 words" is <em>yours</em>.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="g2">
+      <div class="callout callout-blue">
+        <div class="callout-content">
+          <div class="callout-title">ð You set up</div>
+          <div class="callout-text"><strong>3 reusable prompts</strong> â work, life, creative.<br><strong>Saved in:</strong> Prompt Library</div>
+        </div>
+      </div>
+      <div class="callout callout-green">
+        <div class="callout-content">
+          <div class="callout-title">â¡ï¸ Next</div>
+          <div class="callout-text"><a href="choose-configure-tools.html"><strong>Choose & Configure Your Tools â</strong></a></div>
+        </div>
+      </div>
+    </div>
+
+    <details>
+      <summary>ð Research behind this lesson</summary>
+      <div>
+        <ul>
+          <li><strong>Prompt engineering</strong> â White et al. (2023). "A Prompt Pattern Catalog." <em>arXiv:2302.11382</em></li>
+          <li><strong>Cognitive scaffolding</strong> â Kirschner et al. (2006). "Why Minimal Guidance Doesn't Work." <em>Ed Psych</em>, 41(2)</li>
+          <li><strong>Iterative refinement</strong> â Anthropic. "Prompt Engineering Guide." <a href="https://docs.anthropic.com">docs.anthropic.com</a></li>
+        </ul>
+      </div>
+    </details>
+
+    <nav class="nav-bottom">
+      <a href="first-ai-conversation.html" class="nav-btn">
+        <span class="nav-btn-label">â Previous</span>
+        <span>First AI Conversation</span>
+      </a>
+      <a href="choose-configure-tools.html" class="nav-btn">
+        <span class="nav-btn-label">Next â</span>
+        <span>Choose & Configure Tools</span>
+      </a>
+    </nav>
+
+  </div>
+</div>
+
+<script>
+  // === Particle System ===
+  function createParticles() {
+    const container = document.getElementById('particles');
+    const count = 20;
+    for (let i = 0; i < count; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      const duration = 8 + Math.random() * 6;
+      const delay = Math.random() * 2;
+      const opacity = 0.3 + Math.random() * 0.4;
+      particle.style.cssText = `
+        left: ${x}%;
+        top: ${y}%;
+        opacity: ${opacity};
+        animation: particleFloat ${duration}s linear ${delay}s infinite;
+      `;
+      container.appendChild(particle);
+    }
+  }
+  createParticles();
+
+  // === Copy to Clipboard ===
+  function copyCode(button) {
+    const pre = button.closest('pre');
+    const code = pre.querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      const originalText = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(() => {
+        button.textContent = originalText;
+      }, 2000);
+    });
+  }
+</script>
+
+<script src="js/brain-animation.js"></script>
 </body>
 </html>
