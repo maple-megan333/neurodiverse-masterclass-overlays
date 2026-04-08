@@ -34,7 +34,9 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     .sidebar-toggle{position:fixed;top:12px;left:12px;z-index:100;width:36px;height:36px;border-radius:8px;border:1px solid rgba(168,85,247,.2);background:var(--purple-surface);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .15s ease}
     .sidebar-toggle:hover{background:var(--purple-surface-hover)}
-    #content-area .page-wrapper,#content-area .page{padding-top:10px}
+    #content-area .page-wrapper,#content-area .page{padding-top:10px;overflow-x:hidden;max-width:100%}
+        #content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}
+        #content-area .code-wrapper{max-width:100%;overflow:hidden}
     #content-area .nav-bar,#content-area .brain-header-sticky{display:none}
     #content-area .nav-footer .nav-link{cursor:pointer}
     @media(max-width:768px){.spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}.spa-sidebar.collapsed{margin-left:-280px}.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}.sidebar-overlay.active{display:block}}
