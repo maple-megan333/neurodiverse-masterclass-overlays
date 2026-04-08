@@ -34,55 +34,53 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     .sidebar-toggle{position:fixed;top:12px;left:12px;z-index:100;width:36px;height:36px;border-radius:8px;border:1px solid rgba(168,85,247,.2);background:var(--purple-surface);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .15s ease}
     .sidebar-toggle:hover{background:var(--purple-surface-hover)}
-    #content-area .page-wrapper,#content-area .page{padding-top:10px;overflow-x:hidden;max-width:100%}
-        #content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}
-        #content-area .code-wrapper{max-width:100%;overflow:hidden}
-    #content-area .nav-bar,#content-area .brain-header-sticky{display:none}
+    #content-area .page-wrapper,#content-area .page{padding-top:10px;overflow-x:hidden;max-width:100%}#content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}#content-area .code-wrapper{max-width:100%;overflow:hidden}
+    #content-area .nav-bar{display:none}
     #content-area .nav-footer .nav-link{cursor:pointer}
     @media(max-width:768px){.spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}.spa-sidebar.collapsed{margin-left:-280px}.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}.sidebar-overlay.active{display:block}}
     h2,h3,p,.callout,details,pre,ul,ol,blockquote{opacity:1 !important;transform:none !important}
   </style>
 </head>
 <body>
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">ÃÂ¢ÃÂÃÂ°</button>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">&#x2630;</button>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="spa-shell">
     <aside class="spa-sidebar" id="sidebar">
       <div class="sidebar-header">
-        <h1>ÃÂ°ÃÂÃÂ§ÃÂ  MasterClass</h1>
+        <h1>&#x1F9E0; MasterClass</h1>
         <p>Your pace is the right pace</p>
       </div>
       <nav class="sidebar-nav" id="sidebarNav">
-        <div class="nav-section">ÃÂ°ÃÂÃÂÃÂ Start Here</div>
-        <button class="nav-item" data-page="index"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ </span><span class="nav-label">Course Home</span></button>
-        <button class="nav-item" data-page="first-ai-conversation"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ¬</span><span class="nav-label">Your First AI Conversation</span></button>
-        <button class="nav-item" data-page="quick-win-library"><span class="nav-icon">ÃÂ¢ÃÂÃÂ¡</span><span class="nav-label">Quick Win Library</span></button>
-        <div class="nav-section">ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ Set Up Your Tools</div>
-        <button class="nav-item" data-page="choose-configure-tools"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ§</span><span class="nav-label">Choose & Configure Tools</span></button>
-        <button class="nav-item" data-page="prompt-basics"><span class="nav-icon">ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ</span><span class="nav-label">Prompt Basics</span></button>
-        <button class="nav-item" data-page="memory-projects"><span class="nav-icon">ÃÂ°ÃÂÃÂ§ÃÂ </span><span class="nav-label">Memory & Custom Instructions</span></button>
-        <div class="nav-section">ÃÂ°ÃÂÃÂ§ÃÂ­ Build Your AI Profile</div>
-        <button class="nav-item" data-page="onboarding-interview"><span class="nav-icon">ÃÂ°ÃÂÃÂ§ÃÂ­</span><span class="nav-label">Onboarding Interview</span></button>
-        <button class="nav-item" data-page="ai-profile"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ¤</span><span class="nav-label">Your AI Profile</span></button>
-        <div class="nav-section">ÃÂ°ÃÂÃÂÃÂ¯ Go Deeper</div>
-        <button class="nav-item" data-page="writing-voice"><span class="nav-icon">ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ</span><span class="nav-label">AI Writing Voice</span></button>
-        <button class="nav-item" data-page="research-analysis"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span><span class="nav-label">Research & Analysis</span></button>
-        <button class="nav-item" data-page="work-productivity"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ¼</span><span class="nav-label">Work & Productivity</span></button>
-        <button class="nav-item" data-page="creative-projects"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ¨</span><span class="nav-label">Creative Projects</span></button>
-        <button class="nav-item" data-page="life-management"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ </span><span class="nav-label">Life Management</span></button>
-        <div class="nav-section">ÃÂ°ÃÂÃÂÃÂ¬ Power User</div>
-        <button class="nav-item" data-page="mcp-automation"><span class="nav-icon">ÃÂ¢ÃÂÃÂ¡</span><span class="nav-label">MCP & Automation</span></button>
-        <button class="nav-item" data-page="connect-ai"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span><span class="nav-label">Connect AI to Template</span></button>
-        <div class="nav-section">ÃÂ°ÃÂÃÂÃÂ ÃÂ¯ÃÂ¸ÃÂ Resources</div>
-        <button class="nav-item" data-page="reference-vault"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span><span class="nav-label">Reference Vault</span></button>
-        <button class="nav-item" data-page="ai-playground"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ®</span><span class="nav-label">AI Playground</span></button>
-        <button class="nav-item" data-page="skill-vault"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ¦</span><span class="nav-label">Skill Vault</span></button>
-        <div class="nav-section">ÃÂ°ÃÂÃÂ§ÃÂ° Templates</div>
-        <button class="nav-item" data-page="recipe-template"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ³</span><span class="nav-label">Recipe Template</span></button>
-        <button class="nav-item" data-page="dopamine-menu"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ°</span><span class="nav-label">Dopamine Menu</span></button>
-        <button class="nav-item" data-page="emergency-toolkit"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ¨</span><span class="nav-label">Emergency Toolkit</span></button>
-        <div class="nav-section">ÃÂ°ÃÂÃÂÃÂ Progress</div>
-        <button class="nav-item" data-page="your-progress"><span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span><span class="nav-label">Your Data & Progress</span></button>
+        <div class="nav-section">&#x1F680; Start Here</div>
+        <button class="nav-item" data-page="index"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Course Home</span></button>
+        <button class="nav-item" data-page="first-ai-conversation"><span class="nav-icon">&#x1F4AC;</span><span class="nav-label">Your First AI Conversation</span></button>
+        <button class="nav-item" data-page="quick-win-library"><span class="nav-icon">&#x26A1;</span><span class="nav-label">Quick Win Library</span></button>
+        <div class="nav-section">&#x2699;&#xFE0F; Set Up Your Tools</div>
+        <button class="nav-item" data-page="choose-configure-tools"><span class="nav-icon">&#x1F527;</span><span class="nav-label">Choose & Configure Tools</span></button>
+        <button class="nav-item" data-page="prompt-basics"><span class="nav-icon">&#x270D;&#xFE0F;</span><span class="nav-label">Prompt Basics</span></button>
+        <button class="nav-item" data-page="memory-projects"><span class="nav-icon">&#x1F9E0;</span><span class="nav-label">Memory & Custom Instructions</span></button>
+        <div class="nav-section">&#x1F9ED; Build Your AI Profile</div>
+        <button class="nav-item" data-page="onboarding-interview"><span class="nav-icon">&#x1F9ED;</span><span class="nav-label">Onboarding Interview</span></button>
+        <button class="nav-item" data-page="ai-profile"><span class="nav-icon">&#x1F464;</span><span class="nav-label">Your AI Profile</span></button>
+        <div class="nav-section">&#x1F3AF; Go Deeper</div>
+        <button class="nav-item" data-page="writing-voice"><span class="nav-icon">&#x270D;&#xFE0F;</span><span class="nav-label">AI Writing Voice</span></button>
+        <button class="nav-item" data-page="research-analysis"><span class="nav-icon">&#x1F50D;</span><span class="nav-label">Research & Analysis</span></button>
+        <button class="nav-item" data-page="work-productivity"><span class="nav-icon">&#x1F4BC;</span><span class="nav-label">Work & Productivity</span></button>
+        <button class="nav-item" data-page="creative-projects"><span class="nav-icon">&#x1F3A8;</span><span class="nav-label">Creative Projects</span></button>
+        <button class="nav-item" data-page="life-management"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Life Management</span></button>
+        <div class="nav-section">&#x1F52C; Power User</div>
+        <button class="nav-item" data-page="mcp-automation"><span class="nav-icon">&#x26A1;</span><span class="nav-label">MCP & Automation</span></button>
+        <button class="nav-item" data-page="connect-ai"><span class="nav-icon">&#x1F517;</span><span class="nav-label">Connect AI to Template</span></button>
+        <div class="nav-section">&#x1F6E0;&#xFE0F; Resources</div>
+        <button class="nav-item" data-page="reference-vault"><span class="nav-icon">&#x1F4DA;</span><span class="nav-label">Reference Vault</span></button>
+        <button class="nav-item" data-page="ai-playground"><span class="nav-icon">&#x1F3AE;</span><span class="nav-label">AI Playground</span></button>
+        <button class="nav-item" data-page="skill-vault"><span class="nav-icon">&#x1F4E6;</span><span class="nav-label">Skill Vault</span></button>
+        <div class="nav-section">&#x1F9F0; Templates</div>
+        <button class="nav-item" data-page="recipe-template"><span class="nav-icon">&#x1F373;</span><span class="nav-label">Recipe Template</span></button>
+        <button class="nav-item" data-page="dopamine-menu"><span class="nav-icon">&#x1F3B0;</span><span class="nav-label">Dopamine Menu</span></button>
+        <button class="nav-item" data-page="emergency-toolkit"><span class="nav-icon">&#x1F6A8;</span><span class="nav-label">Emergency Toolkit</span></button>
+        <div class="nav-section">&#x1F4CA; Progress</div>
+        <button class="nav-item" data-page="your-progress"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Your Data & Progress</span></button>
       </nav>
     </aside>
     <main class="spa-main" id="spaMain">
@@ -95,7 +93,7 @@
     sidebarToggle.addEventListener('click',()=>{sidebar.classList.toggle('collapsed');sidebarOverlay.classList.toggle('active')});
     sidebarOverlay.addEventListener('click',()=>{sidebar.classList.add('collapsed');sidebarOverlay.classList.remove('active')});
     document.getElementById('sidebarNav').addEventListener('click',e=>{const item=e.target.closest('.nav-item');if(!item)return;const page=item.dataset.page;if(page)navigateTo(page);if(window.innerWidth<=768){sidebar.classList.add('collapsed');sidebarOverlay.classList.remove('active')}});
-    async function navigateTo(pageName){if(pageName===currentPage)return;window.location.hash=pageName;document.querySelectorAll('.nav-item').forEach(item=>{item.classList.toggle('active',item.dataset.page===pageName)});contentArea.classList.add('loading');loader.classList.add('active');try{let html;if(pageCache[pageName]){html=pageCache[pageName]}else{const fileName=pageName==='index'?'index.html':pageName+'.html';const resp=await fetch(fileName);if(!resp.ok)throw new Error('Page not found: '+fileName);const text=await resp.text();const parser=new DOMParser();const doc=parser.parseFromString(text,'text/html');const wrapper=doc.querySelector('.page-wrapper')||doc.querySelector('.page');const styles=Array.from(doc.querySelectorAll('style')).map(s=>s.outerHTML).join('');const scripts=Array.from(doc.querySelectorAll('body script')).map(s=>s.outerHTML).join('');html=wrapper?styles+wrapper.innerHTML+scripts:'<p>Content not found.</p>';pageCache[pageName]=html}contentArea.innerHTML=html;contentArea.querySelectorAll('script').forEach(function(old){const s=document.createElement('script');s.textContent='try{'+old.textContent+'}catch(e){console.warn("Page script error:",e)}';old.parentNode.replaceChild(s,old)});spaMain.scrollTop=0;initCopyButtons();initSmoothScroll();interceptNavLinks();initMermaid();currentPage=pageName}catch(err){contentArea.innerHTML='<div style="padding:40px;text-align:center"><h2>Oops!</h2><p style="color:var(--text-secondary)">Could not load this page.</p><p style="color:var(--text-muted);font-size:.8rem">'+err.message+'</p></div>'}finally{contentArea.classList.remove('loading');loader.classList.remove('active')}}
+    async function navigateTo(pageName){if(pageName===currentPage)return;window.location.hash=pageName;document.querySelectorAll('.nav-item').forEach(item=>{item.classList.toggle('active',item.dataset.page===pageName)});contentArea.classList.add('loading');loader.classList.add('active');try{let html;if(pageCache[pageName]){html=pageCache[pageName]}else{const fileName=pageName==='index'?'index.html':pageName+'.html';const resp=await fetch(fileName);if(!resp.ok)throw new Error('Page not found: '+fileName);const text=await resp.text();const parser=new DOMParser();const doc=parser.parseFromString(text,'text/html');const styles=Array.from(doc.querySelectorAll('head style')).map(s=>s.outerHTML).join('');const body=doc.querySelector('body');html=body?styles+body.innerHTML:'<p>Content not found.</p>';pageCache[pageName]=html}contentArea.innerHTML=html;contentArea.querySelectorAll('script').forEach(function(old){var s=document.createElement('script');if(old.src){s.src=old.src}else{s.textContent='try{'+old.textContent+'}catch(e){console.warn("Page script:",e)}'}old.parentNode.replaceChild(s,old)});spaMain.scrollTop=0;spaMain.onscroll=function(){window.dispatchEvent(new Event('scroll'));Object.defineProperty(window,'scrollY',{get:function(){return spaMain.scrollTop},configurable:true})};initCopyButtons();initSmoothScroll();interceptNavLinks();initMermaid();currentPage=pageName}catch(err){contentArea.innerHTML='<div style="padding:40px;text-align:center"><h2>Oops!</h2><p style="color:var(--text-secondary)">Could not load this page.</p><p style="color:var(--text-muted);font-size:.8rem">'+err.message+'</p></div>'}finally{contentArea.classList.remove('loading');loader.classList.remove('active')}}
     function initCopyButtons(){contentArea.querySelectorAll('pre').forEach(pre=>{if(pre.parentElement.classList.contains('code-wrapper'))return;const w=document.createElement('div');w.className='code-wrapper';w.style.position='relative';pre.parentNode.insertBefore(w,pre);w.appendChild(pre);const btn=document.createElement('button');btn.className='copy-btn';btn.textContent='Copy';btn.style.cssText='position:absolute;top:8px;right:8px;background:var(--purple-surface);color:var(--text-secondary);border:1px solid rgba(168,85,247,.2);border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer';btn.addEventListener('click',()=>{const code=pre.querySelector('code')||pre;navigator.clipboard.writeText(code.textContent).then(()=>{btn.textContent='Copied!';setTimeout(()=>{btn.textContent='Copy'},2000)})});w.appendChild(btn)})}
     function initSmoothScroll(){contentArea.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();const target=contentArea.querySelector(link.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth'})})})}
     function interceptNavLinks(){contentArea.querySelectorAll('a[href]').forEach(link=>{const href=link.getAttribute('href');if(!href)return;const match=href.match(/^([a-z0-9-]+)\.html$/);if(match){link.addEventListener('click',e=>{e.preventDefault();navigateTo(match[1]==='index'?'index':match[1])})}})}
