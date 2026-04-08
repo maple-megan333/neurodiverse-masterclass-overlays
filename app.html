@@ -39,7 +39,32 @@
     #content-area .nav-footer .nav-link{cursor:pointer}
     @media(max-width:768px){.spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}.spa-sidebar.collapsed{margin-left:-280px}.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}.sidebar-overlay.active{display:block}}
     h2,h3,p,.callout,details,pre,ul,ol,blockquote{opacity:1 !important;transform:none !important}
-  #content-area .brain-header-sticky{position:fixed;top:0;left:240px;right:0;z-index:0;pointer-events:none;max-width:calc(100% - 240px)}#content-area .brain-header{width:auto;max-width:700px;margin:0 auto}#content-area .brain-header canvas{width:100%;height:auto}#content-area .brain-header-text{display:none}#content-area .brain-header-overlay{display:none}#content-area .page,.content-area .journey,#content-area .cards,#content-area h2,#content-area .section-head,#content-area .section-desc,#content-area .tiles,#content-area .callout{position:relative;z-index:2}#content-area .scroll-progress{position:fixed;top:0;left:240px;right:0;z-index:10;height:3px}</style>
+  /* Brain header: subtle background, no click blocking */
+    #content-area .brain-header-sticky{position:fixed;top:0;left:280px;right:0;z-index:0;pointer-events:none;overflow:hidden;height:300px}
+    #content-area .brain-header{width:100%;height:300px;overflow:hidden;pointer-events:none}
+    #content-area .brain-header canvas{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60%;max-width:600px;height:auto;opacity:0.35;pointer-events:none}
+    #content-area .brain-header-text{display:none!important}
+    #content-area .brain-header-overlay{display:none!important}
+    #content-area .scroll-progress{display:none}
+    /* Mesh and particles: background only */
+    #content-area .mesh{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    #content-area .particles,#content-area #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+    /* ALL content above background */
+    #content-area .page,#content-area .page-wrapper{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:1rem 1.5rem 3rem}
+    #content-area .journey{position:relative;z-index:2}
+    #content-area .cards{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem}
+    #content-area .c{position:relative;z-index:2}
+    #content-area h1,#content-area h2,#content-area h3,#content-area p,#content-area .section-head,#content-area .section-desc{position:relative;z-index:2}
+    #content-area .tiles{position:relative;z-index:2}
+    #content-area .callout,#content-area details,#content-area blockquote{position:relative;z-index:2}
+    #content-area hr{position:relative;z-index:2}
+    #content-area a{position:relative;z-index:2}
+    #content-area .lesson-nav,#content-area .page-nav{position:relative;z-index:2}
+    #content-area .prompt-block,#content-area .code-wrapper{position:relative;z-index:2}
+    /* Force visible - override fadeUp animations */
+    #content-area .c,#content-area .hero,#content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill{opacity:1!important;transform:none!important}
+    /* Responsive */
+    @media(max-width:768px){#content-area .brain-header-sticky{left:0}#content-area .cards{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}</style>
 </head>
 <body>
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">&#x2630;</button>
@@ -56,21 +81,21 @@
         <button class="nav-item" data-page="first-ai-conversation"><span class="nav-icon">&#x1F4AC;</span><span class="nav-label">Your First AI Conversation</span></button>
         <button class="nav-item" data-page="quick-win-library"><span class="nav-icon">&#x26A1;</span><span class="nav-label">Quick Win Library</span></button>
         <div class="nav-section">&#x2699;&#xFE0F; Set Up Your Tools</div>
-        <button class="nav-item" data-page="choose-configure-tools"><span class="nav-icon">&#x1F527;</span><span class="nav-label">Choose & Configure Tools</span></button>
+        <button class="nav-item" data-page="choose-configure-tools"><span class="nav-icon">&#x1F527;</span><span class="nav-label">Choose &amp; Configure Tools</span></button>
+        <button class="nav-item" data-page="connect-ai"><span class="nav-icon">&#x1F517;</span><span class="nav-label">Connect AI to Template</span></button>
         <button class="nav-item" data-page="prompt-basics"><span class="nav-icon">&#x270D;&#xFE0F;</span><span class="nav-label">Prompt Basics</span></button>
-        <button class="nav-item" data-page="memory-projects"><span class="nav-icon">&#x1F9E0;</span><span class="nav-label">Memory & Custom Instructions</span></button>
+        <button class="nav-item" data-page="memory-projects"><span class="nav-icon">&#x1F9E0;</span><span class="nav-label">Memory &amp; Custom Instructions</span></button>
         <div class="nav-section">&#x1F9ED; Build Your AI Profile</div>
         <button class="nav-item" data-page="onboarding-interview"><span class="nav-icon">&#x1F9ED;</span><span class="nav-label">Onboarding Interview</span></button>
         <button class="nav-item" data-page="ai-profile"><span class="nav-icon">&#x1F464;</span><span class="nav-label">Your AI Profile</span></button>
         <div class="nav-section">&#x1F3AF; Go Deeper</div>
         <button class="nav-item" data-page="writing-voice"><span class="nav-icon">&#x270D;&#xFE0F;</span><span class="nav-label">AI Writing Voice</span></button>
-        <button class="nav-item" data-page="research-analysis"><span class="nav-icon">&#x1F50D;</span><span class="nav-label">Research & Analysis</span></button>
-        <button class="nav-item" data-page="work-productivity"><span class="nav-icon">&#x1F4BC;</span><span class="nav-label">Work & Productivity</span></button>
+        <button class="nav-item" data-page="research-analysis"><span class="nav-icon">&#x1F50D;</span><span class="nav-label">Research &amp; Analysis</span></button>
+        <button class="nav-item" data-page="work-productivity"><span class="nav-icon">&#x1F4BC;</span><span class="nav-label">Work &amp; Productivity</span></button>
         <button class="nav-item" data-page="creative-projects"><span class="nav-icon">&#x1F3A8;</span><span class="nav-label">Creative Projects</span></button>
         <button class="nav-item" data-page="life-management"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Life Management</span></button>
         <div class="nav-section">&#x1F52C; Power User</div>
-        <button class="nav-item" data-page="mcp-automation"><span class="nav-icon">&#x26A1;</span><span class="nav-label">MCP & Automation</span></button>
-        <button class="nav-item" data-page="connect-ai"><span class="nav-icon">&#x1F517;</span><span class="nav-label">Connect AI to Template</span></button>
+        <button class="nav-item" data-page="mcp-automation"><span class="nav-icon">&#x26A1;</span><span class="nav-label">MCP &amp; Automation</span></button>
         <div class="nav-section">&#x1F6E0;&#xFE0F; Resources</div>
         <button class="nav-item" data-page="reference-vault"><span class="nav-icon">&#x1F4DA;</span><span class="nav-label">Reference Vault</span></button>
         <button class="nav-item" data-page="ai-playground"><span class="nav-icon">&#x1F3AE;</span><span class="nav-label">AI Playground</span></button>
@@ -80,7 +105,7 @@
         <button class="nav-item" data-page="dopamine-menu"><span class="nav-icon">&#x1F3B0;</span><span class="nav-label">Dopamine Menu</span></button>
         <button class="nav-item" data-page="emergency-toolkit"><span class="nav-icon">&#x1F6A8;</span><span class="nav-label">Emergency Toolkit</span></button>
         <div class="nav-section">&#x1F4CA; Progress</div>
-        <button class="nav-item" data-page="your-progress"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Your Data & Progress</span></button>
+        <button class="nav-item" data-page="your-progress"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Your Data &amp; Progress</span></button>
       </nav>
     </aside>
     <main class="spa-main" id="spaMain">
