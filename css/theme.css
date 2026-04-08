@@ -175,8 +175,7 @@ h2 {
   margin-bottom: var(--spacing-md);
   padding-bottom: var(--spacing-xs);
   border-bottom: 2px solid var(--purple-deep);
-  animation: fadeUp 0.5s var(--ease) forwards;
-}
+  }
 
 h3 {
   font-family: var(--font-heading);
@@ -677,15 +676,20 @@ li::marker {
   color: #34d399;
 }
 
-/* ---------- Entrance Animations ---------- */
-.animate-in {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-}
-.animate-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* ---------- Visibility Safety ---------- */
+/* Ensure content elements are always visible regardless of JS state */
+.page-wrapper h2,
+.page-wrapper h3,
+.page-wrapper .callout,
+.page-wrapper details,
+.page-wrapper .card,
+.page-wrapper p,
+.page-wrapper ul,
+.page-wrapper ol,
+.page-wrapper pre,
+.page-wrapper blockquote {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* ---------- Utility ---------- */
