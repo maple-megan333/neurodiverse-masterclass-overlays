@@ -388,6 +388,10 @@ pre {
   border-radius: var(--radius-sm);
   padding: var(--spacing-md);
   overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
   margin-bottom: var(--spacing-md);
   font-family: var(--font-mono);
   font-size: 0.9rem;
