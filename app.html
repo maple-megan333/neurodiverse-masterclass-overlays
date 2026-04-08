@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neurodiverse AI MasterClass</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--purple-bg);color:var(--text-primary);font-family:var(--font-body)}
+    .spa-shell{display:flex;height:100vh;width:100%}
+    .spa-sidebar{width:280px;min-width:280px;background:var(--purple-surface);border-right:1px solid rgba(168,85,247,.15);display:flex;flex-direction:column;overflow:hidden;transition:margin-left .3s ease,opacity .3s ease}
+    .spa-sidebar.collapsed{margin-left:-280px;opacity:0;pointer-events:none}
+    .sidebar-header{padding:20px 16px 12px;border-bottom:1px solid rgba(168,85,247,.1);flex-shrink:0}
+    .sidebar-header h1{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--text-primary);margin:0;display:flex;align-items:center;gap:8px}
+    .sidebar-header p{font-size:.75rem;color:var(--text-muted);margin:6px 0 0}
+    .sidebar-nav{flex:1;overflow-y:auto;padding:8px 0}
+    .sidebar-nav::-webkit-scrollbar{width:4px}
+    .sidebar-nav::-webkit-scrollbar-thumb{background:rgba(168,85,247,.2);border-radius:2px}
+    .nav-section{padding:12px 16px 4px;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple-light)}
+    .nav-item{display:flex;align-items:center;gap:8px;padding:8px 16px;font-size:.85rem;color:var(--text-secondary);text-decoration:none;cursor:pointer;transition:background .15s ease,color .15s ease;border:none;background:none;width:100%;text-align:left;font-family:inherit}
+    .nav-item:hover{background:var(--purple-surface-hover);color:var(--text-primary)}
+    .nav-item.active{background:rgba(168,85,247,.15);color:var(--purple-neon);font-weight:600}
+    .nav-item .nav-icon{font-size:1rem;width:22px;text-align:center;flex-shrink:0}
+    .nav-item .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .spa-main{flex:1;overflow-y:auto;overflow-x:hidden;position:relative}
+    .spa-main::-webkit-scrollbar{width:6px}
+    .spa-main::-webkit-scrollbar-thumb{background:rgba(168,85,247,.25);border-radius:3px}
+    #content-area{min-height:100%;opacity:1;transition:opacity .2s ease}
+    #content-area.loading{opacity:.3}
+    .spa-loader{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10}
+    .spa-loader.active{display:block}
+    .spinner{width:40px;height:40px;border:3px solid rgba(168,85,247,.15);border-top-color:var(--purple-neon);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .sidebar-toggle{position:fixed;top:12px;left:12px;z-index:100;width:36px;height:36px;border-radius:8px;border:1px solid rgba(168,85,247,.2);background:var(--purple-surface);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .15s ease}
+    .sidebar-toggle:hover{background:var(--purple-surface-hover)}
+    #content-area .page-wrapper{padding-top:10px}
+    #content-area .nav-bar{display:none}
+    #content-area .nav-footer .nav-link{cursor:pointer}
+    @media(max-width:768px){.spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}.spa-sidebar.collapsed{margin-left:-280px}.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}.sidebar-overlay.active{display:block}}
+    h2,h3,p,.callout,details,pre,ul,ol,blockquote{opacity:1 !important;transform:none !important}
+  </style>
+</head>
+<body>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="spa-shell">
+    <aside class="spa-sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h1>🧠 MasterClass</h1>
+        <p>Your pace is the right pace</p>
+      </div>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <div class="nav-section">🚀 Start Here</div>
+        <button class="nav-item" data-page="index"><span class="nav-icon">🏠</span><span class="nav-label">Course Home</span></button>
+        <button class="nav-item" data-page="first-ai-conversation"><span class="nav-icon">💬</span><span class="nav-label">Your First AI Conversation</span></button>
+        <button class="nav-item" data-page="quick-win-library"><span class="nav-icon">⚡</span><span class="nav-label">Quick Win Library</span></button>
+        <div class="nav-section">⚙️ Set Up Your Tools</div>
+        <button class="nav-item" data-page="choose-configure-tools"><span class="nav-icon">🔧</span><span class="nav-label">Choose & Configure Tools</span></button>
+        <button class="nav-item" data-page="prompt-basics"><span class="nav-icon">✍️</span><span class="nav-label">Prompt Basics</span></button>
+        <button class="nav-item" data-page="memory-projects"><span class="nav-icon">🧠</span><span class="nav-label">Memory & Custom Instructions</span></button>
+        <div class="nav-section">🧭 Build Your AI Profile</div>
+        <button class="nav-item" data-page="onboarding-interview"><span class="nav-icon">🧭</span><span class="nav-label">Onboarding Interview</span></button>
+        <button class="nav-item" data-page="ai-profile"><span class="nav-icon">👤</span><span class="nav-label">Your AI Profile</span></button>
+        <div class="nav-section">🎯 Go Deeper</div>
+        <button class="nav-item" data-page="writing-voice"><span class="nav-icon">✍️</span><span class="nav-label">AI Writing Voice</span></button>
+        <button class="nav-item" data-page="research-analysis"><span class="nav-icon">🔍</span><span class="nav-label">Research & Analysis</span></button>
+        <button class="nav-item" data-page="work-productivity"><span class="nav-icon">💼</span><span class="nav-label">Work & Productivity</span></button>
+        <button class="nav-item" data-page="creative-projects"><span class="nav-icon">🎨</span><span class="nav-label">Creative Projects</span></button>
+        <button class="nav-item" data-page="life-management"><span class="nav-icon">🏠</span><span class="nav-label">Life Management</span></button>
+        <div class="nav-section">🔬 Power User</div>
+        <button class="nav-item" data-page="mcp-automation"><span class="nav-icon">⚡</span><span class="nav-label">MCP & Automation</span></button>
+        <button class="nav-item" data-page="connect-ai"><span class="nav-icon">🔗</span><span class="nav-label">Connect AI to Template</span></button>
+        <div class="nav-section">🛠️ Resources</div>
+        <button class="nav-item" data-page="reference-vault"><span class="nav-icon">📚</span><span class="nav-label">Reference Vault</span></button>
+        <button class="nav-item" data-page="ai-playground"><span class="nav-icon">🎮</span><span class="nav-label">AI Playground</span></button>
+        <button class="nav-item" data-page="skill-vault"><span class="nav-icon">📦</span><span class="nav-label">Skill Vault</span></button>
+        <div class="nav-section">🧰 Templates</div>
+        <button class="nav-item" data-page="recipe-template"><span class="nav-icon">🍳</span><span class="nav-label">Recipe Template</span></button>
+        <button class="nav-item" data-page="dopamine-menu"><span class="nav-icon">🎰</span><span class="nav-label">Dopamine Menu</span></button>
+        <button class="nav-item" data-page="emergency-toolkit"><span class="nav-icon">🚨</span><span class="nav-label">Emergency Toolkit</span></button>
+        <div class="nav-section">📊 Progress</div>
+        <button class="nav-item" data-page="your-progress"><span class="nav-icon">📊</span><span class="nav-label">Your Data & Progress</span></button>
+      </nav>
+    </aside>
+    <main class="spa-main" id="spaMain">
+      <div class="spa-loader" id="loader"><div class="spinner"></div></div>
+      <div id="content-area"></div>
+    </main>
+  </div>
+  <script>
+    const contentArea=document.getElementById('content-area'),loader=document.getElementById('loader'),sidebar=document.getElementById('sidebar'),sidebarToggle=document.getElementById('sidebarToggle'),sidebarOverlay=document.getElementById('sidebarOverlay'),spaMain=document.getElementById('spaMain');const pageCache={};let currentPage=null;
+    sidebarToggle.addEventListener('click',()=>{sidebar.classList.toggle('collapsed');sidebarOverlay.classList.toggle('active')});
+    sidebarOverlay.addEventListener('click',()=>{sidebar.classList.add('collapsed');sidebarOverlay.classList.remove('active')});
+    document.getElementById('sidebarNav').addEventListener('click',e=>{const item=e.target.closest('.nav-item');if(!item)return;const page=item.dataset.page;if(page)navigateTo(page);if(window.innerWidth<=768){sidebar.classList.add('collapsed');sidebarOverlay.classList.remove('active')}});
+    async function navigateTo(pageName){if(pageName===currentPage)return;window.location.hash=pageName;document.querySelectorAll('.nav-item').forEach(item=>{item.classList.toggle('active',item.dataset.page===pageName)});contentArea.classList.add('loading');loader.classList.add('active');try{let html;if(pageCache[pageName]){html=pageCache[pageName]}else{const fileName=pageName==='index'?'index.html':pageName+'.html';const resp=await fetch(fileName);if(!resp.ok)throw new Error('Page not found: '+fileName);const text=await resp.text();const parser=new DOMParser();const doc=parser.parseFromString(text,'text/html');const wrapper=doc.querySelector('.page-wrapper');html=wrapper?wrapper.innerHTML:'<p>Content not found.</p>';pageCache[pageName]=html}contentArea.innerHTML=html;spaMain.scrollTop=0;initCopyButtons();initSmoothScroll();interceptNavLinks();initMermaid();currentPage=pageName}catch(err){contentArea.innerHTML='<div style="padding:40px;text-align:center"><h2>Oops!</h2><p style="color:var(--text-secondary)">Could not load this page.</p><p style="color:var(--text-muted);font-size:.8rem">'+err.message+'</p></div>'}finally{contentArea.classList.remove('loading');loader.classList.remove('active')}}
+    function initCopyButtons(){contentArea.querySelectorAll('pre').forEach(pre=>{if(pre.parentElement.classList.contains('code-wrapper'))return;const w=document.createElement('div');w.className='code-wrapper';w.style.position='relative';pre.parentNode.insertBefore(w,pre);w.appendChild(pre);const btn=document.createElement('button');btn.className='copy-btn';btn.textContent='Copy';btn.style.cssText='position:absolute;top:8px;right:8px;background:var(--purple-surface);color:var(--text-secondary);border:1px solid rgba(168,85,247,.2);border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer';btn.addEventListener('click',()=>{const code=pre.querySelector('code')||pre;navigator.clipboard.writeText(code.textContent).then(()=>{btn.textContent='Copied!';setTimeout(()=>{btn.textContent='Copy'},2000)})});w.appendChild(btn)})}
+    function initSmoothScroll(){contentArea.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();const target=contentArea.querySelector(link.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth'})})})}
+    function interceptNavLinks(){contentArea.querySelectorAll('a[href]').forEach(link=>{const href=link.getAttribute('href');if(!href)return;const match=href.match(/^([a-z0-9-]+)\.html$/);if(match){link.addEventListener('click',e=>{e.preventDefault();navigateTo(match[1]==='index'?'index':match[1])})}})}
+    function initMermaid(){if(typeof mermaid!=='undefined'){contentArea.querySelectorAll('.mermaid').forEach(el=>{el.removeAttribute('data-processed')});try{mermaid.init(undefined,contentArea.querySelectorAll('.mermaid'))}catch(e){}}}
+    function getPageFromHash(){const hash=window.location.hash.replace('#','');return hash||'index'}
+    window.addEventListener('hashchange',()=>{navigateTo(getPageFromHash())});
+    navigateTo(getPageFromHash());
+  </script>
+</body>
+</html>
