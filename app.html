@@ -56,11 +56,15 @@
     #content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}
     /* Brain header: normal flow (not sticky) — scrolls away naturally, no bleed-through */
     #content-area .brain-header-sticky{position:relative !important}
-    /* Ensure content is visible (override fadeUp animation delays from pages) */
+    /* Show brain header h1 titles (theme.css hides all h1 with display:none) */
+    #content-area .brain-header-text h1{display:block !important;opacity:1 !important;transform:none !important}
+    /* Ensure all content is visible (override fadeUp animation delays from pages) */
     #content-area h2,#content-area h3,#content-area p,#content-area .callout,
     #content-area details,#content-area pre,#content-area ul,#content-area ol,
     #content-area blockquote,#content-area .c,#content-area .hero,
-    #content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill{
+    #content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill,
+    #content-area .brain-header-text .tagline,
+    #content-area .brain-header-text .pill{
       opacity:1 !important;transform:none !important;
     }
 
