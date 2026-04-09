@@ -352,12 +352,8 @@
     var prog = document.getElementById('scrollProgress');
     if (prog && maxScroll > 0) prog.style.width = (currentScroll / maxScroll) * 100 + '%';
 
-    var header = document.getElementById('brainHeader');
-    if (header) {
-      var shrink = Math.max(0.65, 1 - currentScroll / 1000);
-      header.style.transform = 'scale(' + shrink + ')';
-      header.style.opacity = Math.max(0.35, 1 - currentScroll / 800);
-    }
+    // Brain stays visible as fixed background — no shrink/fade.
+    // Canvas opacity controlled by CSS, neurons activate via scrollRatio in animate().
 
     if (headerText) {
       if (currentScroll > 40) headerText.classList.add('hidden');
