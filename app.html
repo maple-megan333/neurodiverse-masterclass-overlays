@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Neurodiverse AI MasterClass</title>
   <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/brain-header.css">
   <style>
     *,*::before,*::after{box-sizing:border-box}
     html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--purple-bg);color:var(--text-primary);font-family:var(--font-body)}
+
+    /* === SPA Shell === */
     .spa-shell{display:flex;height:100vh;width:100%}
+
+    /* === Sidebar === */
     .spa-sidebar{width:280px;min-width:280px;background:var(--purple-surface);border-right:1px solid rgba(168,85,247,.15);display:flex;flex-direction:column;overflow:hidden;transition:margin-left .3s ease,opacity .3s ease}
     .spa-sidebar.collapsed{margin-left:-280px;opacity:0;pointer-events:none}
     .sidebar-header{padding:20px 16px 12px;border-bottom:1px solid rgba(168,85,247,.1);flex-shrink:0}
@@ -23,48 +28,136 @@
     .nav-item.active{background:rgba(168,85,247,.15);color:var(--purple-neon);font-weight:600}
     .nav-item .nav-icon{font-size:1rem;width:22px;text-align:center;flex-shrink:0}
     .nav-item .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    /* === Main Content === */
     .spa-main{flex:1;overflow-y:auto;overflow-x:hidden;position:relative}
     .spa-main::-webkit-scrollbar{width:6px}
     .spa-main::-webkit-scrollbar-thumb{background:rgba(168,85,247,.25);border-radius:3px}
     #content-area{min-height:100%;opacity:1;transition:opacity .2s ease}
     #content-area.loading{opacity:.3}
+
+    /* === Loader === */
     .spa-loader{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10}
     .spa-loader.active{display:block}
     .spinner{width:40px;height:40px;border:3px solid rgba(168,85,247,.15);border-top-color:var(--purple-neon);border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* === Sidebar Toggle === */
     .sidebar-toggle{position:fixed;top:12px;left:12px;z-index:100;width:36px;height:36px;border-radius:8px;border:1px solid rgba(168,85,247,.2);background:var(--purple-surface);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .15s ease}
     .sidebar-toggle:hover{background:var(--purple-surface-hover)}
-    #content-area .page-wrapper,#content-area .page{padding-top:10px;overflow-x:hidden;max-width:100%}#content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}#content-area .code-wrapper{max-width:100%;overflow:hidden}
+
+    /* === Content Formatting === */
+    #content-area .page-wrapper,#content-area .page{padding-top:10px;overflow-x:hidden;max-width:100%}
+    #content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}
+    #content-area .code-wrapper{max-width:100%;overflow:hidden}
     #content-area .nav-bar{display:none}
     #content-area .nav-footer .nav-link{cursor:pointer}
-    @media(max-width:768px){.spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}.spa-sidebar.collapsed{margin-left:-280px}.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}.sidebar-overlay.active{display:block}}
-    h2,h3,p,.callout,details,pre,ul,ol,blockquote{opacity:1 !important;transform:none !important}
-  /* Brain header: subtle background, no click blocking */
-    #content-area .brain-header-sticky{position:fixed;top:0;left:280px;right:0;z-index:0;pointer-events:none;overflow:hidden;height:300px}
-    #content-area .brain-header{width:100%;height:300px;overflow:hidden;pointer-events:none}
-    #content-area .brain-header canvas{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60%;max-width:600px;height:auto;opacity:0.35;pointer-events:none}
-    #content-area .brain-header-text{display:none!important}
-    #content-area .brain-header-overlay{display:none!important}
-    #content-area .scroll-progress{display:none}
-    /* Mesh and particles: background only */
+
+    /* === Brain Header — PARALLAX in SPA === */
+    #content-area .brain-header-sticky{
+      position:sticky;
+      top:0;
+      z-index:1;
+      overflow:hidden;
+    }
+    #content-area .brain-header{
+      width:100%;
+      height:420px;
+      overflow:hidden;
+      position:relative;
+      transition:transform 0.1s linear, opacity 0.1s linear;
+    }
+    #content-area .brain-header.brain-header--hub{
+      height:520px;
+    }
+    #content-area .brain-header canvas{
+      position:absolute;
+      top:0;left:0;
+      width:100%;height:100%;
+    }
+    /* Brain header text: VISIBLE, positioned over canvas */
+    #content-area .brain-header-text{
+      position:absolute;
+      bottom:40px;left:50%;
+      transform:translateX(-50%);
+      z-index:4;
+      text-align:center;
+      pointer-events:none;
+      width:90%;
+      transition:opacity 0.4s ease, transform 0.4s ease;
+    }
+    #content-area .brain-header-text.hidden{
+      opacity:0;
+      transform:translateX(-50%) translateY(-20px);
+    }
+    #content-area .brain-header-text h1{
+      display:block;
+      font-size:2rem;font-weight:800;
+      letter-spacing:-0.02em;line-height:1.15;
+      margin-bottom:0.5rem;
+      background:linear-gradient(135deg, var(--text-primary) 0%, var(--purple-neon) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    #content-area .brain-header--hub .brain-header-text h1{font-size:2.4rem}
+    #content-area .brain-header-text .tagline{
+      font-size:0.95rem;color:var(--text-secondary);
+      max-width:500px;margin:0 auto 0.75rem;
+    }
+    #content-area .brain-header-text .pill{
+      display:inline-block;
+      background:var(--accent-soft);
+      border:1px solid var(--accent-glow);
+      border-radius:100px;padding:0.5rem 1.25rem;
+      font-size:0.85rem;color:var(--purple-neon);
+    }
+    /* Fade overlay at bottom of brain header */
+    #content-area .brain-header-overlay{
+      position:absolute;bottom:0;left:0;right:0;height:120px;
+      background:linear-gradient(to top, var(--purple-bg), transparent);
+      z-index:3;pointer-events:none;
+    }
+    /* Scroll progress bar */
+    #content-area .scroll-progress{
+      position:sticky;top:0;left:0;height:3px;
+      background:linear-gradient(90deg, var(--purple-neon), hsla(310,75%,65%,1));
+      z-index:100;width:0%;
+      transition:width 0.1s linear;
+    }
+
+    /* === Mesh & Particles: background === */
     #content-area .mesh{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
     #content-area .particles,#content-area #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-    /* ALL content above background */
+
+    /* === ALL content above background === */
     #content-area .page,#content-area .page-wrapper{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:1rem 1.5rem 3rem}
     #content-area .journey{position:relative;z-index:2}
     #content-area .cards{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem}
     #content-area .c{position:relative;z-index:2}
-    #content-area h1,#content-area h2,#content-area h3,#content-area p,#content-area .section-head,#content-area .section-desc{position:relative;z-index:2}
+    #content-area h2,#content-area h3,#content-area p,#content-area .section-head,#content-area .section-desc{position:relative;z-index:2}
     #content-area .tiles{position:relative;z-index:2}
     #content-area .callout,#content-area details,#content-area blockquote{position:relative;z-index:2}
     #content-area hr{position:relative;z-index:2}
     #content-area a{position:relative;z-index:2}
     #content-area .lesson-nav,#content-area .page-nav{position:relative;z-index:2}
     #content-area .prompt-block,#content-area .code-wrapper{position:relative;z-index:2}
-    /* Force visible - override fadeUp animations */
+
+    /* Force visibility for content (override fadeUp delays) */
+    h2,h3,p,.callout,details,pre,ul,ol,blockquote{opacity:1 !important;transform:none !important}
     #content-area .c,#content-area .hero,#content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill{opacity:1!important;transform:none!important}
-    /* Responsive */
-    @media(max-width:768px){#content-area .brain-header-sticky{left:0}#content-area .cards{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}</style>
+
+    /* === Responsive === */
+    @media(max-width:768px){
+      .spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}
+      .spa-sidebar.collapsed{margin-left:-280px}
+      .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}
+      .sidebar-overlay.active{display:block}
+      #content-area .brain-header{height:320px}
+      #content-area .brain-header.brain-header--hub{height:380px}
+      #content-area .brain-header-text h1{font-size:1.6rem}
+      #content-area .brain-header--hub .brain-header-text h1{font-size:1.8rem}
+      #content-area .cards{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+    }
+  </style>
 </head>
 <body>
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">&#x2630;</button>
@@ -113,19 +206,6 @@
       <div id="content-area"></div>
     </main>
   </div>
-  <script>
-    const contentArea=document.getElementById('content-area'),loader=document.getElementById('loader'),sidebar=document.getElementById('sidebar'),sidebarToggle=document.getElementById('sidebarToggle'),sidebarOverlay=document.getElementById('sidebarOverlay'),spaMain=document.getElementById('spaMain');const pageCache={};let currentPage=null;
-    sidebarToggle.addEventListener('click',()=>{sidebar.classList.toggle('collapsed');sidebarOverlay.classList.toggle('active')});
-    sidebarOverlay.addEventListener('click',()=>{sidebar.classList.add('collapsed');sidebarOverlay.classList.remove('active')});
-    document.getElementById('sidebarNav').addEventListener('click',e=>{const item=e.target.closest('.nav-item');if(!item)return;const page=item.dataset.page;if(page)navigateTo(page);if(window.innerWidth<=768){sidebar.classList.add('collapsed');sidebarOverlay.classList.remove('active')}});
-    async function navigateTo(pageName){if(pageName===currentPage)return;window.location.hash=pageName;document.querySelectorAll('.nav-item').forEach(item=>{item.classList.toggle('active',item.dataset.page===pageName)});contentArea.classList.add('loading');loader.classList.add('active');try{let html;if(pageCache[pageName]){html=pageCache[pageName]}else{const fileName=pageName==='index'?'index.html':pageName+'.html';const resp=await fetch(fileName);if(!resp.ok)throw new Error('Page not found: '+fileName);const text=await resp.text();const parser=new DOMParser();const doc=parser.parseFromString(text,'text/html');const styles=Array.from(doc.querySelectorAll('head style')).map(s=>s.outerHTML).join('');const body=doc.querySelector('body');html=body?styles+body.innerHTML:'<p>Content not found.</p>';pageCache[pageName]=html}contentArea.innerHTML=html;contentArea.querySelectorAll('script').forEach(function(old){var s=document.createElement('script');if(old.src){s.src=old.src}else{s.textContent='try{'+old.textContent+'}catch(e){console.warn("Page script:",e)}'}old.parentNode.replaceChild(s,old)});spaMain.scrollTop=0;spaMain.onscroll=function(){window.dispatchEvent(new Event('scroll'));Object.defineProperty(window,'scrollY',{get:function(){return spaMain.scrollTop},configurable:true})};initCopyButtons();initSmoothScroll();interceptNavLinks();initMermaid();currentPage=pageName}catch(err){contentArea.innerHTML='<div style="padding:40px;text-align:center"><h2>Oops!</h2><p style="color:var(--text-secondary)">Could not load this page.</p><p style="color:var(--text-muted);font-size:.8rem">'+err.message+'</p></div>'}finally{contentArea.classList.remove('loading');loader.classList.remove('active')}}
-    function initCopyButtons(){contentArea.querySelectorAll('pre').forEach(pre=>{if(pre.parentElement.classList.contains('code-wrapper'))return;const w=document.createElement('div');w.className='code-wrapper';w.style.position='relative';pre.parentNode.insertBefore(w,pre);w.appendChild(pre);const btn=document.createElement('button');btn.className='copy-btn';btn.textContent='Copy';btn.style.cssText='position:absolute;top:8px;right:8px;background:var(--purple-surface);color:var(--text-secondary);border:1px solid rgba(168,85,247,.2);border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer';btn.addEventListener('click',()=>{const code=pre.querySelector('code')||pre;navigator.clipboard.writeText(code.textContent).then(()=>{btn.textContent='Copied!';setTimeout(()=>{btn.textContent='Copy'},2000)})});w.appendChild(btn)})}
-    function initSmoothScroll(){contentArea.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{e.preventDefault();const target=contentArea.querySelector(link.getAttribute('href'));if(target)target.scrollIntoView({behavior:'smooth'})})})}
-    function interceptNavLinks(){contentArea.querySelectorAll('a[href]').forEach(link=>{const href=link.getAttribute('href');if(!href)return;const match=href.match(/^([a-z0-9-]+)\.html$/);if(match){link.addEventListener('click',e=>{e.preventDefault();navigateTo(match[1]==='index'?'index':match[1])})}})}
-    function initMermaid(){if(typeof mermaid!=='undefined'){contentArea.querySelectorAll('.mermaid').forEach(el=>{el.removeAttribute('data-processed')});try{mermaid.init(undefined,contentArea.querySelectorAll('.mermaid'))}catch(e){}}}
-    function getPageFromHash(){const hash=window.location.hash.replace('#','');return hash||'index'}
-    window.addEventListener('hashchange',()=>{navigateTo(getPageFromHash())});
-    navigateTo(getPageFromHash());
-  </script>
+  <script src="js/spa-router.js"></script>
 </body>
 </html>

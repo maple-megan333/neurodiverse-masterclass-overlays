@@ -330,13 +330,27 @@
     brainEl.addEventListener('mouseleave', function() { mouse.x = 0; mouse.y = 0; });
   }
 
-  // Scroll handlers
+  // Scroll handlers — works in both standalone and SPA mode
+  // In the SPA, spa-router.js overrides window.scrollY to return spaMain.scrollTop
   var headerText = document.getElementById('headerText');
+  var spaMainEl = document.getElementById('spaMain');
+
+  function getScrollTop() {
+    // SPA mode: read from spaMain; standalone: read from window
+    return spaMainEl ? spaMainEl.scrollTop : window.scrollY;
+  }
+  function getScrollHeight() {
+    return spaMainEl ? spaMainEl.scrollHeight : document.body.scrollHeight;
+  }
+  function getViewportHeight() {
+    return spaMainEl ? spaMainEl.clientHeight : window.innerHeight;
+  }
+
   window.addEventListener('scroll', function() {
-    currentScroll = window.scrollY;
-    var maxScroll = document.body.scrollHeight - window.innerHeight;
+    currentScroll = getScrollTop();
+    var maxScroll = getScrollHeight() - getViewportHeight();
     var prog = document.getElementById('scrollProgress');
-    if (prog) prog.style.width = (currentScroll / maxScroll) * 100 + '%';
+    if (prog && maxScroll > 0) prog.style.width = (currentScroll / maxScroll) * 100 + '%';
 
     var header = document.getElementById('brainHeader');
     if (header) {
@@ -346,11 +360,10 @@
     }
 
     if (headerText) {
-      if (currentScroll > 80) headerText.classList.add('hidden');
+      if (currentScroll > 40) headerText.classList.add('hidden');
       else headerText.classList.remove('hidden');
     }
-
-  });
+  }, { passive: true });
 
   // Particles
   var pc = document.getElementById('particles');
