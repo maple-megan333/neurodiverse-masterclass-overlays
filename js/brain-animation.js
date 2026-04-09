@@ -5,6 +5,9 @@
    ============================================ */
 
 (function() {
+  // Cancel previous animation loop (prevents accumulation on SPA page nav)
+  if (window._brainAnimFrame) cancelAnimationFrame(window._brainAnimFrame);
+
   const canvas = document.getElementById('brainCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -313,12 +316,15 @@
       ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2); ctx.fillStyle = mgrad; ctx.fill();
     }
 
-    requestAnimationFrame(animate);
+    window._brainAnimFrame = requestAnimationFrame(animate);
   }
 
   // Init
-  resize(); createNodes(); requestAnimationFrame(animate);
-  window.addEventListener('resize', function() { resize(); createNodes(); });
+  resize(); createNodes(); window._brainAnimFrame = requestAnimationFrame(animate);
+  if (!window._brainResizeAttached) {
+    window.addEventListener('resize', function() { resize(); createNodes(); });
+    window._brainResizeAttached = true;
+  }
 
   // Mouse
   var brainEl = document.querySelector('.brain-header');

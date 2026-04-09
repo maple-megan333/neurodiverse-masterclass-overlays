@@ -6,6 +6,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Skip in SPA mode — spa-router.js handles these features
+  if (document.getElementById('spaMain')) return;
+
   // --- Generate particles ---
   const particlesContainer = document.querySelector('.particles');
   if (particlesContainer && particlesContainer.children.length === 0) {
