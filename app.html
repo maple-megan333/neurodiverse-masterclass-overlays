@@ -6,14 +6,15 @@
   <title>Neurodiverse AI MasterClass</title>
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/brain-header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    /* === SPA Shell — ONLY layout, nothing else === */
     *,*::before,*::after{box-sizing:border-box}
     html,body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--purple-bg);color:var(--text-primary);font-family:var(--font-body)}
-
-    /* === SPA Shell === */
     .spa-shell{display:flex;height:100vh;width:100%}
 
-    /* === Sidebar === */
+    /* Sidebar */
     .spa-sidebar{width:280px;min-width:280px;background:var(--purple-surface);border-right:1px solid rgba(168,85,247,.15);display:flex;flex-direction:column;overflow:hidden;transition:margin-left .3s ease,opacity .3s ease}
     .spa-sidebar.collapsed{margin-left:-280px;opacity:0;pointer-events:none}
     .sidebar-header{padding:20px 16px 12px;border-bottom:1px solid rgba(168,85,247,.1);flex-shrink:0}
@@ -29,105 +30,46 @@
     .nav-item .nav-icon{font-size:1rem;width:22px;text-align:center;flex-shrink:0}
     .nav-item .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-    /* === Main Content === */
-    .spa-main{flex:1;overflow-y:auto;overflow-x:hidden;position:relative}
+    /* Main content area — scrollable */
+    .spa-main{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;background:var(--purple-bg)}
     .spa-main::-webkit-scrollbar{width:6px}
     .spa-main::-webkit-scrollbar-thumb{background:rgba(168,85,247,.25);border-radius:3px}
-    #content-area{min-height:100%;opacity:1;transition:opacity .2s ease}
+    #content-area{min-height:100%;opacity:1;transition:opacity .2s ease;position:relative;z-index:1}
     #content-area.loading{opacity:.3}
 
-    /* === Loader === */
+    /* Loader */
     .spa-loader{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10}
     .spa-loader.active{display:block}
     .spinner{width:40px;height:40px;border:3px solid rgba(168,85,247,.15);border-top-color:var(--purple-neon);border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* === Sidebar Toggle === */
+    /* Sidebar toggle */
     .sidebar-toggle{position:fixed;top:12px;left:12px;z-index:100;width:36px;height:36px;border-radius:8px;border:1px solid rgba(168,85,247,.2);background:var(--purple-surface);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .15s ease}
     .sidebar-toggle:hover{background:var(--purple-surface-hover)}
 
-    /* === Content Formatting === */
-    #content-area .page-wrapper,#content-area .page{padding-top:10px;overflow-x:hidden;max-width:100%}
-    #content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}
-    #content-area .code-wrapper{max-width:100%;overflow:hidden}
+    /* === Minimal content fixes for SPA context === */
+    /* Hide standalone nav-bar (SPA has sidebar instead) */
     #content-area .nav-bar{display:none}
+    /* Make nav footer links clickable in SPA */
     #content-area .nav-footer .nav-link{cursor:pointer}
-
-    /* === Brain Header — FIXED BACKGROUND in SPA === */
-    /* Brain stays visible behind content as you scroll. Neurons light up on scroll. */
-    #content-area .brain-header-sticky{
-      position:fixed;
-      top:0;
-      left:280px;
-      right:0;
-      bottom:0;
-      z-index:0;
-      overflow:hidden;
-      pointer-events:none;
-    }
-    #content-area .brain-header{
-      width:100%;
-      height:100%;
-      overflow:hidden;
-      position:relative;
-    }
-    #content-area .brain-header.brain-header--hub{
-      height:100%;
-    }
-    #content-area .brain-header canvas{
-      position:absolute;
-      top:0;left:0;
-      width:100%;height:100%;
-      opacity:0.55;
-      transition:opacity 0.3s ease;
-    }
-    /* Brain header text: HIDDEN in SPA — each page has its own title in content */
-    #content-area .brain-header-text{
-      display:none !important;
-    }
-    /* Fade overlay at bottom of brain header */
-    #content-area .brain-header-overlay{
-      display:none;
-    }
-    /* Scroll progress bar */
-    #content-area .scroll-progress{
-      position:sticky;top:0;left:0;height:3px;
-      background:linear-gradient(90deg, var(--purple-neon), hsla(310,75%,65%,1));
-      z-index:100;width:0%;
-      transition:width 0.1s linear;
+    /* Prevent code overflow */
+    #content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}
+    /* Brain header: normal flow (not sticky) — scrolls away naturally, no bleed-through */
+    #content-area .brain-header-sticky{position:relative !important}
+    /* Ensure content is visible (override fadeUp animation delays from pages) */
+    #content-area h2,#content-area h3,#content-area p,#content-area .callout,
+    #content-area details,#content-area pre,#content-area ul,#content-area ol,
+    #content-area blockquote,#content-area .c,#content-area .hero,
+    #content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill{
+      opacity:1 !important;transform:none !important;
     }
 
-    /* === Mesh & Particles: background === */
-    #content-area .mesh{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-    #content-area .particles,#content-area #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
-
-    /* === ALL content above background === */
-    #content-area .page,#content-area .page-wrapper{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:1rem 1.5rem 3rem;background:var(--purple-bg)}
-    #content-area .journey{position:relative;z-index:2}
-    #content-area .cards{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem}
-    #content-area .c{position:relative;z-index:2}
-    #content-area h2,#content-area h3,#content-area p,#content-area .section-head,#content-area .section-desc{position:relative;z-index:2}
-    #content-area .tiles{position:relative;z-index:2}
-    #content-area .callout,#content-area details,#content-area blockquote{position:relative;z-index:2}
-    #content-area hr{position:relative;z-index:2}
-    #content-area a{position:relative;z-index:2}
-    #content-area .lesson-nav,#content-area .page-nav{position:relative;z-index:2}
-    #content-area .prompt-block,#content-area .code-wrapper{position:relative;z-index:2}
-
-    /* Force visibility for content (override fadeUp delays) */
-    h2,h3,p,.callout,details,pre,ul,ol,blockquote{opacity:1 !important;transform:none !important}
-    #content-area .c,#content-area .hero,#content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill{opacity:1!important;transform:none!important}
-
-    /* === Responsive === */
+    /* Responsive */
     @media(max-width:768px){
       .spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}
       .spa-sidebar.collapsed{margin-left:-280px}
       .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}
       .sidebar-overlay.active{display:block}
-      #content-area .brain-header-sticky{left:0}
-      #content-area .brain-header-text h1{font-size:1.6rem}
-      #content-area .brain-header--hub .brain-header-text h1{font-size:1.8rem}
-      #content-area .cards{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
     }
   </style>
 </head>

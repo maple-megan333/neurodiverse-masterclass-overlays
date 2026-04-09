@@ -146,6 +146,12 @@
     initMermaid();
     currentPage = pageName;
 
+    // Fix brain header: force normal flow AFTER all scripts have run
+    setTimeout(function() {
+      var brainSticky = contentArea.querySelector('.brain-header-sticky');
+      if (brainSticky) brainSticky.style.setProperty('position', 'relative', 'important');
+    }, 50);
+
     contentArea.classList.remove('loading');
     loader.classList.remove('active');
   }
