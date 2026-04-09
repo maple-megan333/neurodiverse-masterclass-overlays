@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/brain-header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script><script>mermaid.initialize({theme:"dark"});</script>
 
 </head>
 <body>
@@ -36,22 +35,17 @@
 <div><div class="callout callout-purple"><span class="callout-icon">⏱️</span><div class="callout-title">Time &amp; Energy</div><div><strong>30–45 min</strong> | <strong>Energy:</strong> Any | Claude.ai + this page</div></div></div>
 </div>
 
-<details><summary>View workshop flow diagram</summary>
-<div class="mermaid-container">
-<pre class="mermaid">
-graph LR
-    W1["✍️ Voice Preservation"] --> W2["📄 Outline-First"]
-    W2 --> W3["✂️ Editing Modes"]
-    W3 --> W4["🔄 Translation"]
-    W4 --> W5["💡 Ideation"]
-    style W1 fill:#7c3aed,stroke:#5b21b6,color:#fff
-    style W2 fill:#2563eb,stroke:#1d4ed8,color:#fff
-    style W3 fill:#059669,stroke:#047857,color:#fff
-    style W4 fill:#d97706,stroke:#b45309,color:#fff
-    style W5 fill:#dc2626,stroke:#b91c1c,color:#fff
-</pre>
+<div class="journey" style="flex-wrap:wrap;padding:1rem 0;">
+<div class="j-step"><div class="j-dot" style="background:#7c3aed;border-color:#a78bfa;font-size:0.7rem;">W1</div><div class="j-label">Voice</div></div>
+<span class="j-arrow">→</span>
+<div class="j-step"><div class="j-dot" style="background:#2563eb;border-color:#60a5fa;font-size:0.7rem;">W2</div><div class="j-label">Outline</div></div>
+<span class="j-arrow">→</span>
+<div class="j-step"><div class="j-dot" style="background:#059669;border-color:#34d399;font-size:0.7rem;">W3</div><div class="j-label">Edit</div></div>
+<span class="j-arrow">→</span>
+<div class="j-step"><div class="j-dot" style="background:#d97706;border-color:#fbbf24;font-size:0.7rem;">W4</div><div class="j-label">Translate</div></div>
+<span class="j-arrow">→</span>
+<div class="j-step"><div class="j-dot" style="background:#dc2626;border-color:#f87171;font-size:0.7rem;">W5</div><div class="j-label">Ideate</div></div>
 </div>
-</details>
 
 <div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Do just <strong>Voice Preservation</strong>. Paste one paragraph, ask for 5 adjectives. Save those. That's enough.</div></div>
 

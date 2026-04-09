@@ -204,11 +204,7 @@ h3 {
 p { margin-bottom: 1rem; max-width: 70ch; }
 strong { color: var(--text); font-weight: 600; }
 em { color: var(--text-mid); font-style: italic; }
-hr {
-  border: none; height: 1px;
-  background: linear-gradient(to right, transparent, var(--accent-glow), transparent);
-  margin: 2rem 0;
-}
+/* hr styled in Animated HR Divider section below */
 
 /* ---------- Content Cards (callouts restyled to match home page cards) ---------- */
 .callout {
@@ -419,7 +415,7 @@ details[open] summary {
   color: var(--text-accent);
   border-bottom: 1px solid rgba(168, 85, 247, 0.15);
 }
-details > :not(summary) { padding: 1rem 1.25rem 1.25rem; }
+details > :not(summary) { padding: 1.5rem 1.25rem 1.25rem; }
 
 /* ---------- Tables ---------- */
 table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.95rem; }
@@ -558,6 +554,28 @@ li::marker { color: #9B72CF; }
   .hero h1 { font-size: 1.8rem; }
   .journey { gap: 0.3rem; }
   .j-dot { width: 36px; height: 36px; font-size: 0.95rem; }
+}
+
+/* ---------- Accessibility ---------- */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Animated HR Divider ---------- */
+hr {
+  border: none; height: 2px; margin: 2.5rem 0;
+  background: linear-gradient(90deg, transparent, var(--accent-glow), var(--accent), var(--accent-glow), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 4s linear infinite;
+  border-radius: 1px;
 }
 
 /* ---------- Print ---------- */

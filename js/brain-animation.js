@@ -5,8 +5,13 @@
    ============================================ */
 
 (function() {
-  // Cancel previous animation loop (prevents accumulation on SPA page nav)
+  // Cancel previous animation loop + listeners (prevents accumulation on SPA page nav)
   if (window._brainAnimFrame) cancelAnimationFrame(window._brainAnimFrame);
+  if (window._brainScrollHandler) window.removeEventListener('scroll', window._brainScrollHandler);
+  if (window._brainMouseMove) {
+    document.removeEventListener('mousemove', window._brainMouseMove);
+    document.removeEventListener('mouseleave', window._brainMouseLeave);
+  }
 
   const canvas = document.getElementById('brainCanvas');
   if (!canvas) return;
@@ -128,7 +133,7 @@
     const cw = canvas.parentElement.offsetWidth;
     const ch = canvas.parentElement.offsetHeight;
     var placed = 0, attempts = 0;
-    while (placed < 140 && attempts < 5000) {
+    while (placed < 200 && attempts < 8000) {
       var x = Math.random() * cw;
       var y = Math.random() * ch;
       attempts++;
@@ -138,7 +143,7 @@
           x: x, y: y, baseX: x, baseY: y,
           radius: 1.0 + Math.random() * 3.0,
           brightness: 0.0,
-          maxBrightness: 0.3 + Math.random() * 0.7,
+          maxBrightness: 0.5 + Math.random() * 0.5,
           pulsePhase: Math.random() * Math.PI * 2,
           pulseSpeed: 0.3 + Math.random() * 1.2,
           layer: Math.random(),
@@ -261,8 +266,8 @@
       var minB = Math.min(a.brightness, b.brightness);
       if (minB < 0.05) return;
       ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = 'hsla(' + a.color.h + ', ' + a.color.s + '%, ' + a.color.l + '%, ' + (minB * 0.12) + ')';
-      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = 'hsla(' + a.color.h + ', ' + a.color.s + '%, ' + a.color.l + '%, ' + (minB * 0.22) + ')';
+      ctx.lineWidth = 0.7;
       ctx.stroke();
     });
 
@@ -293,12 +298,12 @@
       var c = node.color;
       var gr = r * 5;
       var glw = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, gr);
-      glw.addColorStop(0, 'hsla(' + c.h + ', ' + c.s + '%, ' + (c.l + 15) + '%, ' + (alpha * 0.5) + ')');
-      glw.addColorStop(0.4, 'hsla(' + c.h + ', ' + c.s + '%, ' + c.l + '%, ' + (alpha * 0.15) + ')');
+      glw.addColorStop(0, 'hsla(' + c.h + ', ' + c.s + '%, ' + (c.l + 20) + '%, ' + (alpha * 0.9) + ')');
+      glw.addColorStop(0.4, 'hsla(' + c.h + ', ' + c.s + '%, ' + c.l + '%, ' + (alpha * 0.25) + ')');
       glw.addColorStop(1, 'hsla(' + c.h + ', ' + c.s + '%, ' + c.l + '%, 0)');
       ctx.beginPath(); ctx.arc(node.x, node.y, gr, 0, Math.PI * 2); ctx.fillStyle = glw; ctx.fill();
       ctx.beginPath(); ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
-      ctx.fillStyle = 'hsla(' + c.h + ', ' + c.s + '%, ' + Math.min(c.l + 25, 92) + '%, ' + alpha + ')';
+      ctx.fillStyle = 'hsla(' + c.h + ', ' + c.s + '%, ' + Math.min(c.l + 35, 95) + '%, ' + Math.min(alpha * 1.5, 1) + ')';
       ctx.fill();
     });
 
@@ -326,14 +331,18 @@
     window._brainResizeAttached = true;
   }
 
-  // Mouse
+  // Mouse (store references for cleanup on SPA re-init)
   var brainEl = document.querySelector('.brain-header');
   if (brainEl) {
-    brainEl.addEventListener('mousemove', function(e) {
+    var moveHandler = function(e) {
       var rect = canvas.parentElement.getBoundingClientRect();
       mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top;
-    });
-    brainEl.addEventListener('mouseleave', function() { mouse.x = 0; mouse.y = 0; });
+    };
+    var leaveHandler = function() { mouse.x = 0; mouse.y = 0; };
+    brainEl.addEventListener('mousemove', moveHandler);
+    brainEl.addEventListener('mouseleave', leaveHandler);
+    window._brainMouseMove = moveHandler;
+    window._brainMouseLeave = leaveHandler;
   }
 
   // Scroll handlers — works in both standalone and SPA mode
@@ -352,20 +361,19 @@
     return spaMainEl ? spaMainEl.clientHeight : window.innerHeight;
   }
 
-  window.addEventListener('scroll', function() {
+  var scrollHandler = function() {
     currentScroll = getScrollTop();
     var maxScroll = getScrollHeight() - getViewportHeight();
     var prog = document.getElementById('scrollProgress');
     if (prog && maxScroll > 0) prog.style.width = (currentScroll / maxScroll) * 100 + '%';
 
-    // Brain stays visible as fixed background — no shrink/fade.
-    // Canvas opacity controlled by CSS, neurons activate via scrollRatio in animate().
-
     if (headerText) {
       if (currentScroll > 10) headerText.classList.add('hidden');
       else headerText.classList.remove('hidden');
     }
-  }, { passive: true });
+  };
+  window._brainScrollHandler = scrollHandler;
+  window.addEventListener('scroll', scrollHandler, { passive: true });
 
   // Particles
   var pc = document.getElementById('particles');
