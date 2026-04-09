@@ -20,11 +20,13 @@
     <div class="brain-header-text" id="headerText">
       <h1>Prompt Basics That Actually Work</h1>
       <p class="tagline">The 4-element prompt framework for neurodivergent brains.</p>
-      
+
     </div>
   </div>
 </div>
 
+    <div class="page-wrapper">
+        <nav class="nav-bar"><div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div></nav>
 
       <div class="callout callout-purple">
         <div class="callout-content">
@@ -32,7 +34,6 @@
           <div class="callout-text"><strong>15 min</strong> · Any energy · You'll need: <a href="https://claude.ai">Claude.ai</a> + this page</div>
         </div>
       </div>
-    </div>
 
     <blockquote><strong>Works with any AI tool.</strong> These steps say "Claude" but work in Gemini, ChatGPT, or any AI assistant.</blockquote>
 
@@ -40,7 +41,7 @@
 
     <h2>Step 1: The One Pattern That Matters</h2>
 
-    <div class="g2">
+    <div class="columns columns-2">
       <div class="callout callout-gray">
         <div class="callout-content">
           <div class="callout-title">🔬 Why this works</div>
@@ -99,7 +100,7 @@ Format: [HOW YOU WANT IT — e.g., "3 short paragraphs, warm but professional, u
 
     <h2>Step 3: Build Two More — Life + Creative</h2>
 
-    <div class="g2">
+    <div class="columns columns-2">
       <div class="callout callout-green">
         <div class="callout-content">
           <div class="callout-title">🏠 Life prompt</div>
@@ -130,7 +131,7 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
 
     <h2>Step 4: Save Your Prompts</h2>
 
-    <div class="g2">
+    <div class="columns columns-2">
       <div class="callout callout-blue">
         <div class="callout-content">
           <div class="callout-title">📘 Save to Prompt Library</div>
@@ -152,7 +153,7 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
 
     <hr>
 
-    <div class="g2">
+    <div class="columns columns-2">
       <div class="callout callout-blue">
         <div class="callout-content">
           <div class="callout-title">🔖 You set up</div>
@@ -162,7 +163,7 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
       <div class="callout callout-green">
         <div class="callout-content">
           <div class="callout-title">➡️ Next</div>
-          <div class="callout-text"><a href="choose-configure-tools.html"><strong>Choose & Configure Your Tools →</strong></a></div>
+          <div class="callout-text"><a href="connect-ai.html"><strong>Connect Your AI →</strong></a></div>
         </div>
       </div>
     </div>
@@ -178,44 +179,13 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
       </div>
     </details>
 
-    <nav class="nav-bottom">
-      <a href="connect-ai.html" class="nav-btn">
-        <span class="nav-btn-label">← Previous</span>
-        <span>Connect Your AI</span>
-      </a>
-      <a href="memory-projects.html" class="nav-btn">
-        <span class="nav-btn-label">Next →</span>
-        <span>Memory & Projects</span>
-      </a>
-    </nav>
-
-  </div>
-</div>
+        <nav class="nav-footer">
+            <a href="memory-projects.html" class="nav-link prev"><small>← Previous</small>Memory & Projects</a>
+            <a href="connect-ai.html" class="nav-link next"><small>Next →</small>Connect Your AI</a>
+        </nav>
+    </div>
 
 <script>
-  // === Particle System ===
-  function createParticles() {
-    const container = document.getElementById('particles');
-    const count = 20;
-    for (let i = 0; i < count; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      const duration = 8 + Math.random() * 6;
-      const delay = Math.random() * 2;
-      const opacity = 0.3 + Math.random() * 0.4;
-      particle.style.cssText = `
-        left: ${x}%;
-        top: ${y}%;
-        opacity: ${opacity};
-        animation: particleFloat ${duration}s linear ${delay}s infinite;
-      `;
-      container.appendChild(particle);
-    }
-  }
-  createParticles();
-
   // === Copy to Clipboard ===
   function copyCode(button) {
     const pre = button.closest('pre');
@@ -230,11 +200,6 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
   }
 </script>
 
-    <div class="nav-footer">
-      <a href="connect-ai.html" class="nav-link prev"><small>← Previous</small>Connect AI to Template</a>
-      <a href="memory-projects.html" class="nav-link"><small>Next →</small>Memory &amp; Projects</a>
-    </div>
-  </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
 </body>
