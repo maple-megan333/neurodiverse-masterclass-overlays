@@ -56,9 +56,9 @@
     /* Brain header: STICKY — pins at top, content slides over it */
     /* (position:sticky comes from brain-header.css — we do NOT override it) */
 
-    /* Content covers the sticky brain header with opaque background */
+    /* Content flows over sticky brain header — transparent so animation shows through */
     #content-area .page,
-    #content-area .page-wrapper{background:#0A0A14;position:relative;z-index:10}
+    #content-area .page-wrapper{position:relative;z-index:2}
 
     /* Show brain header h1 (design-system.css hides all h1) */
     #content-area .brain-header-text h1{display:block !important;opacity:1 !important;transform:none !important}

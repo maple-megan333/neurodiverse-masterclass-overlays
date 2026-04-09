@@ -157,8 +157,7 @@ a:hover { color: var(--accent2); }
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
   position: relative;
-  z-index: 10;
-  background: var(--bg);
+  z-index: 2;
 }
 
 /* ---------- Typography ---------- */
