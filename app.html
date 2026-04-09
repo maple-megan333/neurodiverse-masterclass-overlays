@@ -81,41 +81,9 @@
       opacity:0.55;
       transition:opacity 0.3s ease;
     }
-    /* Brain header text: visible at top, fades on scroll */
+    /* Brain header text: HIDDEN in SPA — each page has its own title in content */
     #content-area .brain-header-text{
-      position:absolute;
-      top:50%;left:50%;
-      transform:translate(-50%,-50%);
-      z-index:4;
-      text-align:center;
-      pointer-events:none;
-      width:90%;
-      transition:opacity 0.4s ease, transform 0.4s ease;
-    }
-    #content-area .brain-header-text.hidden{
-      opacity:0;
-      transform:translate(-50%,-60%);
-      visibility:hidden;
-    }
-    #content-area .brain-header-text h1{
-      display:block;
-      font-size:2rem;font-weight:800;
-      letter-spacing:-0.02em;line-height:1.15;
-      margin-bottom:0.5rem;
-      background:linear-gradient(135deg, var(--text-primary) 0%, var(--purple-neon) 100%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-    }
-    #content-area .brain-header--hub .brain-header-text h1{font-size:2.4rem}
-    #content-area .brain-header-text .tagline{
-      font-size:0.95rem;color:var(--text-secondary);
-      max-width:500px;margin:0 auto 0.75rem;
-    }
-    #content-area .brain-header-text .pill{
-      display:inline-block;
-      background:var(--accent-soft);
-      border:1px solid var(--accent-glow);
-      border-radius:100px;padding:0.5rem 1.25rem;
-      font-size:0.85rem;color:var(--purple-neon);
+      display:none !important;
     }
     /* Fade overlay at bottom of brain header */
     #content-area .brain-header-overlay{
@@ -134,7 +102,7 @@
     #content-area .particles,#content-area #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
     /* === ALL content above background === */
-    #content-area .page,#content-area .page-wrapper{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:1rem 1.5rem 3rem;background:rgba(10,10,20,0.82)}
+    #content-area .page,#content-area .page-wrapper{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:1rem 1.5rem 3rem;background:var(--purple-bg)}
     #content-area .journey{position:relative;z-index:2}
     #content-area .cards{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.75rem}
     #content-area .c{position:relative;z-index:2}
