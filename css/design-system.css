@@ -210,85 +210,34 @@ hr {
   margin: 2rem 0;
 }
 
-/* ---------- Callouts ---------- */
+/* ---------- Content Cards (callouts restyled to match home page cards) ---------- */
 .callout {
-  border-radius: var(--radius-sm);
-  padding: 1rem 1.15rem;
-  margin-bottom: 1rem;
-  border-left: 4px solid;
+  background: rgba(10, 10, 20, 0.85);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.75rem;
   position: relative;
+  transition: border-color 0.2s var(--ease);
 }
-/* NO hover lift on callouts — they're not interactive */
 .callout-icon { font-size: 1.3rem; margin-right: 0.5rem; display: inline-block; }
-.callout-title { font-weight: 600; margin-bottom: 0.25rem; }
+.callout-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
 
-/* Callout Colors — weight maps to cognitive demand */
-
-/* GREEN = Action steps ("Do this now") — heaviest weight */
-.callout-green, .callout:not([class*="callout-"]) {
-  background: rgba(5, 150, 105, 0.1);
-  border-color: var(--green);
-  border-left-width: 4px;
-  border-top: 1px solid rgba(52, 211, 153, 0.2);
-  border-right: 1px solid rgba(52, 211, 153, 0.08);
-  border-bottom: 1px solid rgba(52, 211, 153, 0.08);
-  box-shadow: 0 2px 12px rgba(5, 150, 105, 0.12), inset 0 0 0 1px rgba(52, 211, 153, 0.04);
-  padding: 1.1rem 1.25rem 1.1rem 1.35rem;
-}
-.callout-green .callout-title, .callout:not([class*="callout-"]) .callout-title {
-  color: var(--green-title); font-size: 0.8rem; font-weight: 800;
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-
-/* YELLOW = Outcomes ("What good looks like") — aspirational */
-.callout-yellow {
-  background: rgba(217, 119, 6, 0.08);
-  border-color: var(--yellow); border-left-width: 3px;
-  border-top: 1px solid rgba(251, 191, 36, 0.15);
-  border-right: 1px solid transparent; border-bottom: 1px solid transparent;
-  position: relative; overflow: hidden;
-}
-.callout-yellow .callout-title { color: var(--yellow-title); font-style: italic; font-weight: 600; }
-
-/* BLUE = Objectives ("What you'll build") — clean scope-setter */
-.callout-blue {
-  background: rgba(37, 99, 235, 0.09);
-  border-color: var(--blue); border-left-width: 3px;
-  border-top: 1px solid rgba(96, 165, 250, 0.18);
-  border-right: 1px solid transparent; border-bottom: 1px solid transparent;
-  border-radius: var(--radius-sm);
-}
-.callout-blue .callout-title { color: var(--blue-title); font-weight: 700; letter-spacing: 0.01em; }
-
-/* PURPLE = Context / metadata — supporting annotation */
-.callout-purple {
-  background: rgba(45, 27, 78, 0.7);
-  border-color: rgba(168, 85, 247, 0.4); border-left-width: 2px;
-  border-top: 1px solid rgba(196, 181, 253, 0.1);
-  border-right: 1px solid transparent; border-bottom: 1px solid transparent;
-  font-size: 0.92rem;
-}
-.callout-purple .callout-title {
-  color: var(--text-accent); font-weight: 500; font-size: 0.82rem;
-  text-transform: uppercase; letter-spacing: 0.07em; opacity: 0.85;
-}
-
-/* GRAY = Low energy / optional — genuinely quieter */
-.callout-gray {
-  background: rgba(31, 41, 55, 0.6);
-  border-color: rgba(75, 85, 99, 0.5); border-left-width: 2px;
-  border-top: 1px solid rgba(107, 114, 128, 0.1);
-  border-right: 1px solid rgba(107, 114, 128, 0.06);
-  border-bottom: 1px solid rgba(107, 114, 128, 0.06);
-  opacity: 0.85; padding: 0.75rem 1rem 0.75rem 1.1rem;
-}
-.callout-gray .callout-title { color: var(--gray-title); font-weight: 500; font-size: 0.85rem; }
-
-/* RED = Power / critical warnings */
-.callout-red { background: var(--red-bg); border-color: var(--red); }
+/* Color variants — same card shape, different left accent */
+.callout-green, .callout:not([class*="callout-"]) { border-left-color: var(--green); }
+.callout-green .callout-title, .callout:not([class*="callout-"]) .callout-title { color: var(--green-title); }
+.callout-blue { border-left-color: var(--blue); }
+.callout-blue .callout-title { color: var(--blue-title); }
+.callout-purple { border-left-color: var(--accent); }
+.callout-purple .callout-title { color: var(--text-accent); }
+.callout-yellow { border-left-color: var(--yellow); }
+.callout-yellow .callout-title { color: var(--yellow-title); }
+.callout-gray { border-left-color: var(--gray); opacity: 0.8; }
+.callout-gray .callout-title { color: var(--gray-title); }
+.callout-red { border-left-color: var(--red); }
 .callout-red .callout-title { color: var(--red-title); }
-/* ORANGE = Alert / emphasis */
-.callout-orange { background: var(--orange-bg); border-color: var(--orange); }
+.callout-orange { border-left-color: var(--orange); }
 .callout-orange .callout-title { color: var(--orange-title); }
 
 /* ---------- Cards ---------- */
