@@ -356,7 +356,7 @@
     // Canvas opacity controlled by CSS, neurons activate via scrollRatio in animate().
 
     if (headerText) {
-      if (currentScroll > 40) headerText.classList.add('hidden');
+      if (currentScroll > 10) headerText.classList.add('hidden');
       else headerText.classList.remove('hidden');
     }
   }, { passive: true });
