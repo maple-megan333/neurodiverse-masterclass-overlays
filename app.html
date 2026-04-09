@@ -57,8 +57,9 @@
     #content-area .brain-header-sticky{
       position:sticky;
       top:0;
-      z-index:1;
+      z-index:0;
       overflow:hidden;
+      pointer-events:none;
     }
     #content-area .brain-header{
       width:100%;
@@ -89,6 +90,7 @@
     #content-area .brain-header-text.hidden{
       opacity:0;
       transform:translateX(-50%) translateY(-20px);
+      visibility:hidden;
     }
     #content-area .brain-header-text h1{
       display:block;
