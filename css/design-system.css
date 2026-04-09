@@ -157,7 +157,8 @@ a:hover { color: var(--accent2); }
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
   position: relative;
-  z-index: 2;
+  z-index: 10;
+  background: var(--bg);
 }
 
 /* ---------- Typography ---------- */
@@ -442,6 +443,60 @@ li::marker { color: #9B72CF; }
 @media (max-width: 640px) {
   .cards { grid-template-columns: 1fr; }
   h2 { font-size: 1.15rem; }
+}
+
+/* ---------- Hero (Home Page) ---------- */
+.hero { text-align: center; padding: 3rem 0 1.5rem; }
+.hero-icon { font-size: 3.2rem; display: block; margin-bottom: 0.75rem; }
+.hero h1 {
+  display: block; font-size: 2.4rem; font-weight: 800;
+  letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent-soft) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-tagline {
+  font-size: 1.05rem; color: var(--text-mid);
+  max-width: 540px; margin: 0 auto 1rem; line-height: 1.6;
+}
+.hero-pill {
+  display: inline-block; background: var(--accent-soft);
+  border: 1px solid var(--accent-glow); border-radius: 100px;
+  padding: 0.5rem 1.25rem; font-size: 0.9rem; color: var(--accent);
+}
+
+/* ---------- Journey Stepper ---------- */
+.journey {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.5rem; padding: 1.75rem 0; flex-wrap: wrap;
+}
+.j-step { text-align: center; }
+.j-dot {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem; margin: 0 auto 4px; border: 2px solid;
+}
+.j-label { font-size: 0.7rem; color: var(--text-dim); font-weight: 500; }
+.j-arrow { color: var(--accent); font-size: 0.85rem; opacity: 0.6; margin: 0 0.15rem; padding-bottom: 16px; }
+
+/* ---------- Section Headers ---------- */
+.section-head { margin-top: 2.5rem; margin-bottom: 0.25rem; }
+.section-head h2 {
+  font-size: 1.3rem; font-weight: 700; color: var(--text);
+  display: flex; align-items: baseline; gap: 0.5rem;
+  border-bottom: none; margin-top: 0; padding-bottom: 0;
+}
+.section-head h2 .badge {
+  font-size: 0.7rem; font-weight: 500; color: var(--text-dim);
+  background: rgba(100, 116, 139, 0.15); border-radius: 4px;
+  padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.section-desc { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem; line-height: 1.5; }
+
+/* ---------- Responsive (Home) ---------- */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.8rem; }
+  .journey { gap: 0.3rem; }
+  .j-dot { width: 36px; height: 36px; font-size: 0.95rem; }
 }
 
 /* ---------- Print ---------- */

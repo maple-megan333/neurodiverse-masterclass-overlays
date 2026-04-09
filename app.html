@@ -47,24 +47,34 @@
     .sidebar-toggle{position:fixed;top:12px;left:12px;z-index:100;width:36px;height:36px;border-radius:8px;border:1px solid rgba(168,85,247,.2);background:var(--purple-surface);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:background .15s ease}
     .sidebar-toggle:hover{background:var(--purple-surface-hover)}
 
-    /* === Minimal content fixes for SPA context === */
-    /* Hide standalone nav-bar (SPA has sidebar instead) */
+    /* === SPA Content Fixes === */
+    /* Hide standalone nav-bar (SPA has sidebar) */
     #content-area .nav-bar{display:none}
-    /* Make nav footer links clickable in SPA */
     #content-area .nav-footer .nav-link{cursor:pointer}
-    /* Prevent code overflow */
     #content-area pre{white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;max-width:100%}
-    /* Brain header: normal flow (not sticky) — scrolls away naturally, no bleed-through */
-    #content-area .brain-header-sticky{position:relative !important}
-    /* Show brain header h1 titles (theme.css hides all h1 with display:none) */
+
+    /* Brain header: STICKY — pins at top, content slides over it */
+    /* (position:sticky comes from brain-header.css — we do NOT override it) */
+
+    /* Content covers the sticky brain header with opaque background */
+    #content-area .page,
+    #content-area .page-wrapper{background:#0A0A14;position:relative;z-index:10}
+
+    /* Show brain header h1 (design-system.css hides all h1) */
     #content-area .brain-header-text h1{display:block !important;opacity:1 !important;transform:none !important}
-    /* Ensure all content is visible (override fadeUp animation delays from pages) */
+
+    /* Brain header text: visible initially, fades when .hidden class applied on scroll */
+    #content-area .brain-header-text .tagline,
+    #content-area .brain-header-text .pill{opacity:1;transform:none}
+    #content-area .brain-header-text.hidden .tagline,
+    #content-area .brain-header-text.hidden .pill,
+    #content-area .brain-header-text.hidden h1{opacity:0 !important;transition:opacity 0.4s ease}
+
+    /* Force content visibility (override fadeUp animation delays) */
     #content-area h2,#content-area h3,#content-area p,#content-area .callout,
     #content-area details,#content-area pre,#content-area ul,#content-area ol,
     #content-area blockquote,#content-area .c,#content-area .hero,
-    #content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill,
-    #content-area .brain-header-text .tagline,
-    #content-area .brain-header-text .pill{
+    #content-area .hero-icon,#content-area .hero-tagline,#content-area .hero-pill{
       opacity:1 !important;transform:none !important;
     }
 

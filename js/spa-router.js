@@ -146,11 +146,7 @@
     initMermaid();
     currentPage = pageName;
 
-    // Fix brain header: force normal flow AFTER all scripts have run
-    setTimeout(function() {
-      var brainSticky = contentArea.querySelector('.brain-header-sticky');
-      if (brainSticky) brainSticky.style.setProperty('position', 'relative', 'important');
-    }, 50);
+    // Brain header stays sticky (from brain-header.css). Content covers it via opaque background + z-index:10.
 
     contentArea.classList.remove('loading');
     loader.classList.remove('active');
