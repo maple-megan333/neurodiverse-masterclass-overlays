@@ -82,159 +82,19 @@
 <hr>
 
 <details><summary>🟣 Option 2: Claude Projects — Give Claude Persistent Memory (5 min)</summary><div style="padding:0 1.5rem 1.5rem;">
-<p>Claude Projects let you create a workspace where Claude remembers your context across conversations. Think of it like giving Claude a folder with everything it needs to know about you.</p>
-
-<h3>What you need</h3>
-<ul>
-<li>A Claude account (free or Pro at <a href="https://claude.ai">claude.ai</a>)</li>
-</ul>
-
-<h3>Step-by-step setup</h3>
-<ol>
-<li>Go to <a href="https://claude.ai">claude.ai</a> and sign in</li>
-<li>In the left sidebar, click <strong>Projects</strong></li>
-<li>Click <strong>Create a Project</strong></li>
-<li>Name it <strong>"Neurodiverse AI MasterClass"</strong></li>
-<li>Click on your new project to open it</li>
-<li>Click <strong>Project Instructions</strong> (the gear icon) and paste this:
-<pre><code>You are my AI assistant configured for my neurodivergent brain.
-
-About me:
-- [Paste your AI Profile here — or fill this in later]
-- I prefer structured responses with clear headers
-- Break long tasks into small, numbered steps
-- Check in before making assumptions about what I want
-- If I seem overwhelmed, offer a simpler version
-
-When I ask you to save something, format it so I can paste it directly into Notion.
-When I share a prompt that works, help me refine and save it to my prompt library.</code></pre>
-</li>
-<li>You can also upload files to the project — your AI Profile doc, reference materials, anything Claude should have access to</li>
-</ol>
-
-<h3>How to use it daily</h3>
-<ul>
-<li>Always start new conversations <strong>inside the project</strong> (not from the main Claude screen)</li>
-<li>Claude will automatically have your instructions and uploaded files as context</li>
-<li>You can create multiple projects — one for work, one for personal, one for this MasterClass</li>
-</ul>
-
-<h3>Pro tips</h3>
-<ul>
-<li>Upload your AI Profile as a file so Claude can reference it</li>
-<li>Add a "Voice Card" file so Claude writes in your style (see <a href="writing-voice.html">AI Writing Voice</a>)</li>
-<li>Add frequently-used prompts as files so you can say "use the email template" instead of re-pasting</li>
-</ul>
-
-<div class="callout callout-green"><span class="callout-icon">✅</span><div class="callout-title">You're done when</div><div>You start a new chat in your project and Claude already knows who you are, how you communicate, and what you're working on — without you explaining anything.</div></div>
+<div class="callout callout-blue"><span class="callout-icon">🟣</span><div class="callout-title">Setup guide</div><div>For step-by-step Claude Projects setup (memory, projects, custom instructions), see <a href="memory-projects.html">Memory & Custom Instructions</a>.</div></div>
 </div></details>
 
 <hr>
 
 <details><summary>🟢 Option 3: ChatGPT — Custom GPTs and Memory (10 min)</summary><div style="padding:0 1.5rem 1.5rem;">
-<p>ChatGPT has two ways to personalize: Memory (free) and Custom GPTs (Plus). Both help ChatGPT remember how you work.</p>
-
-<h3>Part A: Turn on Memory (free, 2 minutes)</h3>
-<ol>
-<li>Go to <a href="https://chat.openai.com">chat.openai.com</a> and sign in</li>
-<li>Click your profile icon (bottom-left) → <strong>Settings</strong></li>
-<li>Go to <strong>Personalization</strong> → Toggle <strong>Memory</strong> to ON</li>
-<li>Go to <strong>Custom Instructions</strong> and fill in:
-  <ul>
-  <li><strong>"What would you like ChatGPT to know about you?"</strong>
-  <br>Paste: "I'm neurodivergent (ADHD/autism). I need structured responses with headers. Break tasks into small steps. Don't assume — ask. If I seem stuck, offer a low-energy version."</li>
-  <li><strong>"How would you like ChatGPT to respond?"</strong>
-  <br>Paste: "Use bullet points and numbered lists. Lead with the answer, then explain. Keep paragraphs short. Bold important terms. If something has multiple steps, number them."</li>
-  </ul>
-</li>
-<li>Click <strong>Save</strong></li>
-</ol>
-
-<h3>Part B: Create a Custom GPT (Plus only, 10 minutes)</h3>
-<ol>
-<li>Go to <a href="https://chat.openai.com/gpts/editor">chat.openai.com/gpts/editor</a></li>
-<li>Click <strong>Create</strong></li>
-<li>Switch to the <strong>Configure</strong> tab (more control than the chat-based builder)</li>
-<li>Fill in:
-  <ul>
-  <li><strong>Name:</strong> "My ND Assistant"</li>
-  <li><strong>Description:</strong> "Personal assistant configured for neurodivergent workflows"</li>
-  <li><strong>Instructions:</strong> Paste your AI Profile and the custom instructions from Part A</li>
-  <li><strong>Conversation starters:</strong> Add 3-4 prompts you use often, like:
-    <br>"Help me break down this task into steps"
-    <br>"Draft an email based on these bullet points"
-    <br>"What should I focus on today?"</li>
-  </ul>
-</li>
-<li>Under <strong>Capabilities</strong>, toggle ON:
-  <ul>
-  <li>Web Browsing (search the internet)</li>
-  <li>DALL-E Image Generation (if you want it)</li>
-  <li>Code Interpreter (runs Python, analyzes files)</li>
-  </ul>
-</li>
-<li>Under <strong>Knowledge</strong>, upload files — your AI Profile, voice card, reference docs</li>
-<li>Click <strong>Create</strong> → choose <strong>"Only me"</strong></li>
-</ol>
-
-<h3>How to use daily</h3>
-<ul>
-<li>Find your Custom GPT in the sidebar under "My GPTs"</li>
-<li>Click it to start a new conversation — it already has your context</li>
-<li>ChatGPT's memory builds over time. After a few conversations, it'll remember your preferences even in regular chats</li>
-</ul>
-
-<div class="callout callout-green"><span class="callout-icon">✅</span><div class="callout-title">You're done when</div><div>Your Custom GPT greets you by context (not by name) and responds in your preferred format without being told.</div></div>
+<div class="callout callout-blue"><span class="callout-icon">🟢</span><div class="callout-title">Setup guide</div><div>For ChatGPT memory and Custom GPT setup, see <a href="choose-configure-tools.html">Choose & Configure Tools</a>.</div></div>
 </div></details>
 
 <hr>
 
 <details><summary>🔵 Option 4: Google Gemini + Workspace (5 min)</summary><div style="padding:0 1.5rem 1.5rem;">
-<p>If you live in Google's ecosystem (Gmail, Docs, Drive, Calendar), Gemini can connect directly to all of it. No API keys, no configuration files — just toggle switches.</p>
-
-<h3>Step-by-step setup</h3>
-<ol>
-<li>Go to <a href="https://gemini.google.com">gemini.google.com</a> and sign in with your Google account</li>
-<li>Click the <strong>Settings</strong> gear icon (top-right)</li>
-<li>Click <strong>Extensions</strong></li>
-<li>Enable these:
-  <ul>
-  <li><strong>Google Workspace</strong> — Gemini can read your Gmail, Docs, Sheets, Slides, and Drive files</li>
-  <li><strong>Google Maps</strong> — ask about locations, directions, nearby places</li>
-  <li><strong>YouTube</strong> — summarize videos, find tutorials</li>
-  <li><strong>Google Flights</strong> — search flights (handy for travel)</li>
-  <li><strong>Google Hotels</strong> — search hotels</li>
-  </ul>
-</li>
-<li>Go back to Settings → <strong>Gems</strong> (Gemini's version of custom assistants)</li>
-<li>Click <strong>Create a Gem</strong></li>
-<li>Give it instructions similar to the Claude Projects setup:
-<pre><code>You are my ND-friendly assistant. I'm neurodivergent.
-- Keep responses structured with headers
-- Break tasks into small steps
-- When I reference my email or docs, search my Workspace
-- Format outputs so I can paste them into Notion</code></pre>
-</li>
-<li>Save your Gem</li>
-</ol>
-
-<h3>Things you can now do</h3>
-<ul>
-<li><strong>"@Gmail summarize my unread emails from today"</strong> — Gemini reads your inbox</li>
-<li><strong>"@Docs find my document about project planning"</strong> — searches your Drive</li>
-<li><strong>"@YouTube find a tutorial on MCP setup"</strong> — searches and summarizes videos</li>
-<li><strong>"Look at my last 5 emails from [person] and draft a reply"</strong></li>
-<li><strong>"What's on my calendar tomorrow and what should I prepare?"</strong></li>
-</ul>
-
-<h3>Limitations</h3>
-<ul>
-<li>Gemini can read Google Workspace but can't write to it yet (can't send emails or edit docs directly)</li>
-<li>It can't connect to Notion — you'll still need to copy-paste between Gemini and Notion</li>
-<li>Extensions are only available in English in supported countries</li>
-</ul>
-
-<div class="callout callout-green"><span class="callout-icon">✅</span><div class="callout-title">You're done when</div><div>You can ask Gemini "What emails did I get today?" and it actually shows you your real emails.</div></div>
+<div class="callout callout-blue"><span class="callout-icon">🔵</span><div class="callout-title">Setup guide</div><div>For Gemini + Workspace extensions setup, see <a href="choose-configure-tools.html">Choose & Configure Tools</a>.</div></div>
 </div></details>
 
 <hr>
