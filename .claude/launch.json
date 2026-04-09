@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "masterclass",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8769"],
+      "port": 8769,
+      "cwd": "C:/Users/Maple/workspace/projects/neurodiverse-masterclass-overlays"
+    }
+  ]
+}
