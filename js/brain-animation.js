@@ -102,9 +102,15 @@
   }
 
   function getBrainTransform(cw, ch) {
-    var brainH = ch * 0.88;
-    var brainW = brainH * 1.05;
-    if (brainW > cw * 0.65) { brainW = cw * 0.65; brainH = brainW / 1.05; }
+    // Use a uniform scale so 1 normalized unit = same px in both axes.
+    // Target: brain fills 85% of canvas height. Width derives from same scale.
+    // The brain outline spans ~0.77 in x and ~0.90 in y (normalized 0-1),
+    // so we need the full 0-1 range available and let the shape itself
+    // determine the visual aspect ratio via uniform scaling.
+    var scale = ch * 0.85;                       // 1 normalized unit in px
+    if (scale > cw * 0.92) { scale = cw * 0.92; } // cap if canvas is narrow
+    var brainW = scale;   // both axes use the same scale
+    var brainH = scale;
     var offX = (cw - brainW) / 2;
     var offY = (ch - brainH) / 2 - ch * 0.01;
     return { brainW: brainW, brainH: brainH, offX: offX, offY: offY };

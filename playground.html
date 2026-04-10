@@ -290,6 +290,66 @@
 
       <hr>
 
+      <!-- ==================== INTERACTIVE: PROMPT BUILDER ==================== -->
+      <h2>Build Your Own Prompt</h2>
+      <div style="background:rgba(10,10,20,0.85);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;">
+        <p style="color:var(--text-accent);font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;">Prompt Builder</p>
+        <div style="display:grid;gap:0.75rem;margin-bottom:1rem;">
+          <div>
+            <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Role</label>
+            <input type="text" id="pb-role" placeholder="e.g., You are a patient writing coach for someone with ADHD" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+          </div>
+          <div>
+            <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Context</label>
+            <input type="text" id="pb-context" placeholder="e.g., I'm working on a blog post about meal planning" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+          </div>
+          <div>
+            <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Task</label>
+            <input type="text" id="pb-task" placeholder="e.g., Help me write an outline with 5 sections" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+          </div>
+          <div>
+            <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Format</label>
+            <input type="text" id="pb-format" placeholder="e.g., Bullet points, casual tone, under 200 words" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+          </div>
+        </div>
+        <div id="pb-output" style="background:#070510;border:1px solid rgba(107,63,160,0.35);border-top:2px solid rgba(168,85,247,0.5);border-radius:var(--radius);padding:1rem;font-family:var(--font-mono);font-size:0.85rem;line-height:1.7;color:rgba(168,85,247,0.4);font-style:italic;min-height:80px;margin-bottom:0.75rem;white-space:pre-wrap;">Your prompt will appear here as you type...</div>
+        <button id="pb-copy-btn" style="width:100%;padding:0.6rem;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.35);border-radius:6px;color:var(--text-accent);font-weight:700;font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;">Copy Prompt</button>
+      </div>
+      <script>
+      (function(){
+        var fields = ['pb-role','pb-context','pb-task','pb-format'];
+        var labels = ['Role','Context','Task','Format'];
+        fields.forEach(function(id){ document.getElementById(id).addEventListener('input', buildPrompt); });
+        function buildPrompt(){
+          var parts = [];
+          fields.forEach(function(id,i){
+            var val = document.getElementById(id).value.trim();
+            if(val) parts.push(labels[i]+': '+val);
+          });
+          var output = document.getElementById('pb-output');
+          if(parts.length === 0){
+            output.textContent = 'Your prompt will appear here as you type...';
+            output.style.color = 'rgba(168,85,247,0.4)';
+            output.style.fontStyle = 'italic';
+          } else {
+            output.textContent = parts.join('\n\n');
+            output.style.color = '#e2e8f0';
+            output.style.fontStyle = 'normal';
+          }
+        }
+        document.getElementById('pb-copy-btn').addEventListener('click', function(){
+          var text = document.getElementById('pb-output').textContent;
+          if(text && text.indexOf('will appear here') === -1){
+            var btn = this;
+            navigator.clipboard.writeText(text).then(function(){
+              btn.textContent = 'Copied!';
+              setTimeout(function(){ btn.textContent = 'Copy Prompt'; }, 2000);
+            });
+          }
+        });
+      })();
+      </script>
+
       <!-- ==================== TIPS FOR BEST RESULTS ==================== -->
 
       <h2>Tips for Best Results</h2>
