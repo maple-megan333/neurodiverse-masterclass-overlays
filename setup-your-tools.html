@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -24,9 +26,10 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+            <span class="phase-indicator phase-setup" aria-label="Phase 2 of 5: Set Up Your Tools"><span class="phase-num">Phase 2</span> of 5 — Set Up</span>
         </nav>
 
 <div class="columns columns-2">
@@ -49,17 +52,17 @@
 <hr>
 <h2>Step 2: Create Your Account</h2>
 <div class="columns columns-3">
-<div><div class="callout callout-purple"><span class="callout-icon">&#x1F7E3;</span><div class="callout-title">Claude</div><div><ol><li>Go to <a href="https://claude.ai">claude.ai</a></li><li>Sign up</li><li>Verify email</li><li>Free tier works</li></ol></div></div></div>
-<div><div class="callout callout-green"><span class="callout-icon">&#x1F7E2;</span><div class="callout-title">ChatGPT</div><div><ol><li>Go to <a href="https://chat.openai.com">chat.openai.com</a></li><li>Sign up</li><li>Verify email</li><li>Free includes GPT-4o</li></ol></div></div></div>
-<div><div class="callout callout-blue"><span class="callout-icon">&#x1F535;</span><div class="callout-title">Gemini</div><div><ol><li>Go to <a href="https://gemini.google.com">gemini.google.com</a></li><li>Sign in with Google</li><li>Accept terms</li></ol></div></div></div>
+<div data-tool="claude"><div class="callout callout-purple"><span class="callout-icon">&#x1F7E3;</span><div class="callout-title">Claude</div><div><ol><li>Go to <a href="https://claude.ai">claude.ai</a></li><li>Sign up</li><li>Verify email</li><li>Free tier works</li></ol></div></div></div>
+<div data-tool="chatgpt"><div class="callout callout-green"><span class="callout-icon">&#x1F7E2;</span><div class="callout-title">ChatGPT</div><div><ol><li>Go to <a href="https://chat.openai.com">chat.openai.com</a></li><li>Sign up</li><li>Verify email</li><li>Free includes GPT-4o</li></ol></div></div></div>
+<div data-tool="gemini"><div class="callout callout-blue"><span class="callout-icon">&#x1F535;</span><div class="callout-title">Gemini</div><div><ol><li>Go to <a href="https://gemini.google.com">gemini.google.com</a></li><li>Sign in with Google</li><li>Accept terms</li></ol></div></div></div>
 </div>
 
 <hr>
 <h2>Step 3: Key Settings</h2>
 <div class="columns columns-3">
-<div><div class="callout callout-purple"><span class="callout-icon">&#x1F7E3;</span><div class="callout-title">Claude</div><div><ul><li>Memory &rarr; ON</li><li>Feature Preview &rarr; ON</li><li>Create a Project</li></ul></div></div></div>
-<div><div class="callout callout-green"><span class="callout-icon">&#x1F7E2;</span><div class="callout-title">ChatGPT</div><div><ul><li>Memory &rarr; ON</li><li>Custom instructions</li><li>Web browsing ON</li></ul></div></div></div>
-<div><div class="callout callout-blue"><span class="callout-icon">&#x1F535;</span><div class="callout-title">Gemini</div><div><ul><li>Extensions ON</li><li>Custom instructions</li><li>Connect Workspace</li></ul></div></div></div>
+<div data-tool="claude"><div class="callout callout-purple"><span class="callout-icon">&#x1F7E3;</span><div class="callout-title">Claude</div><div><ul><li>Memory &rarr; ON</li><li>Feature Preview &rarr; ON</li><li>Create a Project</li></ul></div></div></div>
+<div data-tool="chatgpt"><div class="callout callout-green"><span class="callout-icon">&#x1F7E2;</span><div class="callout-title">ChatGPT</div><div><ul><li>Memory &rarr; ON</li><li>Custom instructions</li><li>Web browsing ON</li></ul></div></div></div>
+<div data-tool="gemini"><div class="callout callout-blue"><span class="callout-icon">&#x1F535;</span><div class="callout-title">Gemini</div><div><ul><li>Extensions ON</li><li>Custom instructions</li><li>Connect Workspace</li></ul></div></div></div>
 </div>
 
 <hr>
@@ -67,21 +70,21 @@
 <div class="callout callout-yellow"><span class="callout-icon">&#x1F9E0;</span><div class="callout-title">Why this matters for ND brains</div><div>Re-explaining your context every conversation is a cognitive tax. Memory eliminates that.</div></div>
 
 <div class="columns columns-3">
-<div><div class="callout callout-purple"><span class="callout-icon">&#x1F7E3;</span><div class="callout-title">Claude</div><div><strong>Settings &rarr; Memory &rarr; ON</strong><br>Say "Remember that I prefer direct communication"</div></div></div>
-<div><div class="callout callout-green"><span class="callout-icon">&#x1F7E2;</span><div class="callout-title">ChatGPT</div><div><strong>Profile &rarr; Personalization &rarr; Memory &rarr; ON</strong><br>Say "What do you remember?" to check</div></div></div>
-<div><div class="callout callout-blue"><span class="callout-icon">&#x1F535;</span><div class="callout-title">Gemini</div><div><strong>No persistent memory yet.</strong> Use Custom Instructions instead.</div></div></div>
+<div data-tool="claude"><div class="callout callout-purple"><span class="callout-icon">&#x1F7E3;</span><div class="callout-title">Claude</div><div><strong>Settings &rarr; Memory &rarr; ON</strong><br>Say "Remember that I prefer direct communication"</div></div></div>
+<div data-tool="chatgpt"><div class="callout callout-green"><span class="callout-icon">&#x1F7E2;</span><div class="callout-title">ChatGPT</div><div><strong>Profile &rarr; Personalization &rarr; Memory &rarr; ON</strong><br>Say "What do you remember?" to check</div></div></div>
+<div data-tool="gemini"><div class="callout callout-blue"><span class="callout-icon">&#x1F535;</span><div class="callout-title">Gemini</div><div><strong>No persistent memory yet.</strong> Use Custom Instructions instead.</div></div></div>
 </div>
 
 <hr>
 <h2>Step 5: Create Your First Project</h2>
-<div class="callout callout-green"><span class="callout-icon">&#x270F;&#xFE0F;</span><div class="callout-title">Do this now (Claude)</div><div>
+<div class="callout callout-green"><span class="callout-icon">&#x270F;&#xFE0F;</span><div class="callout-title">Try this when you're ready (Claude)</div><div>
 <ol><li>Click <strong>Projects</strong> in sidebar</li><li>Click <strong>New Project</strong></li><li>Name it: "My AI Setup"</li><li>Add instructions: "This project tracks my AI learning journey."</li></ol>
 </div></div>
 
 <hr>
 <h2>Step 6: Write Custom Instructions</h2>
 <div class="callout callout-purple"><span class="callout-icon">&#x1F4A1;</span><div class="callout-title">Better with onboarding data</div><div>For best results, complete the <a href="onboarding-interview.html">Onboarding Interview</a> first, then return here to generate custom instructions with your real data.</div></div>
-<div class="callout callout-green"><span class="callout-icon">&#x270F;&#xFE0F;</span><div class="callout-title">Do this now</div><div>
+<div class="callout callout-green"><span class="callout-icon">&#x270F;&#xFE0F;</span><div class="callout-title">Try this when you're ready</div><div>
 <pre><code>Based on what you know about me, draft custom instructions for my AI settings. Include:
 1. Communication style (how I like to receive information)
 2. My context (role, priorities, what I use AI for)
@@ -94,7 +97,7 @@ Keep it under 500 words. Make it sound like ME.</code></pre>
 <hr>
 <div class="callout callout-gray"><span class="callout-icon">&#x2601;&#xFE0F;</span><div class="callout-title">Low energy version</div><div>Pick Claude. Go to claude.ai. Create account. Turn on memory. Say: "Remember I prefer direct, concise responses and I have ADHD." Done.</div></div>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="playground.html" class="nav-link prev"><small>&larr; Previous</small>AI Playground</a>
             <a href="prompt-basics.html" class="nav-link next"><small>Next &rarr;</small>Prompt Basics</a>
         </nav>

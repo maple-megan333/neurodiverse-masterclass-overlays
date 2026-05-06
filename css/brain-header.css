@@ -1,38 +1,49 @@
 /* ============================================
-   Brain Header â Animated Neural Network
+   Brain Header — Scroll-Driven Image Crossfade
    ============================================ */
 
 /* === Keyframes === */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 @keyframes orbFade {
   from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1); }
 }
 @keyframes particleFloat {
-  0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
-  10% { opacity: var(--op); }
-  50% { transform: translateY(calc(var(--drift) * -1)) scale(1.5); }
-  90% { opacity: var(--op); }
+  0%,  100% { opacity: 0; transform: translateY(0) scale(1); }
+  10%        { opacity: var(--op); }
+  50%        { transform: translateY(calc(var(--drift) * -1)) scale(1.5); }
+  90%        { opacity: var(--op); }
 }
 @keyframes hintPulse {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
+  50%      { transform: translateX(-50%) translateY(6px); }
 }
 
-/* === Brain Header Variables === */
+/* Slow bioluminescent breathing — lit brain brightness oscillates like deep-ocean fauna.
+   4 s cycle, gentle, never harsh. */
+@keyframes brainBreathe {
+  0%,  100% { filter: brightness(1) saturate(1); }
+  40%        { filter: brightness(1.12) saturate(1.08); }
+  70%        { filter: brightness(0.96) saturate(0.97); }
+}
+
+/* === Design Tokens === */
 :root {
-  --bh-bg: #0A0A14;
-  --bh-text: #F8F8FC;
-  --bh-text-mid: rgba(255,255,255,0.68);
-  --bh-text-dim: rgba(255,255,255,0.38);
-  --bh-accent: hsla(270, 80%, 65%, 1);
-  --bh-accent-soft: hsla(270, 70%, 60%, 0.15);
-  --bh-accent-glow: hsla(270, 80%, 65%, 0.25);
-  --bh-accent2: hsla(310, 75%, 65%, 1);
-  --bh-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bh-bg:           #0A0A14;
+  --bh-text:         #F8F8FC;
+  --bh-text-mid:     rgba(255,255,255,0.68);
+  --bh-text-dim:     rgba(255,255,255,0.38);
+  --bh-accent:       hsla(270, 80%, 65%, 1);
+  --bh-accent-soft:  hsla(270, 70%, 60%, 0.15);
+  --bh-accent-glow:  hsla(270, 80%, 65%, 0.25);
+  --bh-accent2:      hsla(310, 75%, 65%, 1);
+  --bh-ease:         cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* JS writes this property on scroll — used as crossfade fallback */
+  --scroll-progress: 0;
 }
 
 /* === Mesh Background === */
@@ -77,7 +88,7 @@
   animation: particleFloat linear infinite;
 }
 
-/* === Scroll Progress === */
+/* === Scroll Progress Bar === */
 .scroll-progress {
   position: fixed; top: 0; left: 0; height: 3px;
   background: linear-gradient(90deg, var(--bh-accent), var(--bh-accent2));
@@ -85,21 +96,58 @@
   transition: width 0.1s linear;
 }
 
-/* === Brain Header === */
+/* === Brain Header Shell === */
 .brain-header-sticky {
   position: sticky; top: 0; z-index: 0; pointer-events: none;
 }
 .brain-header {
   position: relative; width: 100%; height: 420px;
   z-index: 2; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
 }
 .brain-header.brain-header--hub {
   height: 520px;
 }
-.brain-header canvas {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+
+/* === Canvas Overlay (neural activation effects) === */
+.brain-canvas-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 3; /* above images, below header text */
   pointer-events: none;
 }
+
+/* === Radial Glow — disabled, strands are the only light source === */
+.brain-glow {
+  display: none !important;
+}
+
+/* === Brain Images === */
+.brain-img {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%; height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  z-index: 2;
+}
+
+/* Dim brain: always-on base layer, full opacity. */
+.brain-img-dim {
+  opacity: 1;
+}
+
+/* Lit brain: HIDDEN as <img> — the canvas draws it selectively via pathway mask.
+   The <img> exists only as a preload hint; the canvas uses its own Image() load. */
+.brain-img-lit {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* === Fade-over Gradient (bottom of brain section into page) === */
 .brain-header-overlay {
   position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
   background: linear-gradient(to top, var(--bh-bg), transparent);
@@ -113,17 +161,20 @@
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 .brain-header-text.hidden {
-  opacity: 0; transform: translateX(-50%) translateY(-20px); pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px);
+  pointer-events: none;
 }
 .brain-header-text h1 {
-  font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;
+  font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+  font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--bh-text) 0%, var(--bh-accent) 100%);
+  background: linear-gradient(135deg, var(--bh-text) 0%, #F5C542 50%, var(--bh-accent) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: fadeUp 0.8s var(--bh-ease) 0.3s forwards; opacity: 0;
 }
 .brain-header--hub .brain-header-text h1 {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
 }
 .brain-header-text .tagline {
   font-size: 0.95rem; color: var(--bh-text-mid);
@@ -139,17 +190,36 @@
   animation: fadeUp 0.8s var(--bh-ease) 0.7s forwards; opacity: 0;
 }
 
-
-
 /* === Responsive === */
 @media (max-width: 640px) {
-  .brain-header { height: 320px; }
+  .brain-header          { height: 320px; }
   .brain-header.brain-header--hub { height: 380px; }
-  .brain-header-text h1 { font-size: 1.6rem; }
+  .brain-header-text h1  { font-size: 1.6rem; }
   .brain-header--hub .brain-header-text h1 { font-size: 1.8rem; }
+  .brain-img             { max-width: 90%; }
+  .brain-glow            { width: 90%; }
 }
 
 /* === Print === */
 @media print {
   .brain-header-sticky, .mesh, .particles, .scroll-progress, .scroll-hint { display: none; }
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .brain-img, .brain-canvas-overlay {
+    animation: none !important;
+    filter: brightness(1) saturate(1) !important;
+  }
+  .brain-header-text h1,
+  .brain-header-text .tagline,
+  .brain-header-text .pill,
+  .mesh-orb {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .brain-header-text {
+    transition: none !important;
+  }
 }

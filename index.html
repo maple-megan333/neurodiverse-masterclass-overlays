@@ -12,6 +12,8 @@
 </head>
 <!-- REMOVED: 423 lines of inline CSS now in design-system.css -->
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -30,7 +32,7 @@
 </div>
 
 <!-- Main Content -->
-<div class="page">
+<div class="page" id="main-content">
 
   <!-- Journey -->
   <div class="journey">
@@ -90,7 +92,7 @@
     </a>
     <a href="connect-ai.html" class="c p-green">
       <span class="c-icon">🔗</span>
-      <div><div class="c-title">Connect Your AI to This Template</div><div class="c-desc">Make AI read/write to your databases live. Do this now so everything auto-saves.</div><div class="c-meta">5–20 min · Choose your level</div></div>
+      <div><div class="c-title">Connect Your AI to This Template</div><div class="c-desc">Make AI read/write to your databases live, so everything auto-saves.</div><div class="c-meta">5–20 min · Choose your level</div></div>
     </a>
   </div>
 
@@ -162,9 +164,11 @@
 <script src="js/brain-animation.js"></script>
 <!-- JavaScript -->
 <script>
-  // Generate particles
+  // Generate particles — skip when reduced motion is requested
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const particlesContainer = document.querySelector('.particles');
-  for (let i = 0; i < 25; i++) {
+  const particleCount = reducedMotion ? 0 : 25;
+  for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
     particle.className = 'particle';
 

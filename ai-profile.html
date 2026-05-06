@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="css/brain-header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -23,36 +23,84 @@
       <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">WORKSHOP</span>
       <h1>Your AI Profile</h1>
       <p class="tagline">Your living AI operating manual.</p>
-      
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator phase-onboarding" aria-label="Phase 3 of 5: Onboarding"><span class="phase-num">Phase 3</span> of 5 — Onboarding</span>
         </nav>
-<div class="callout callout-purple"><span class="callout-icon">🧠</span><div class="callout-title">How this works</div><div>Each section links to the guide that builds it. By the end, it's a Custom Instructions block unique to your brain.</div></div>
+
+<div class="callout callout-purple"><span class="callout-icon">🧠</span><div class="callout-title">How this works</div><div>Each section links to the guide that builds it. As you complete onboarding and connect your AI, your real answers replace the example below. By the end, this page is a Custom Instructions block unique to your brain.</div></div>
+
+<div class="callout callout-yellow"><span class="callout-icon">👀</span><div class="callout-title">What you're seeing right now</div><div>The boxes below show <strong>an example profile</strong> so you can see what yours will look like. Once you complete the <a href="onboarding-interview.html">Onboarding Interview</a> and <a href="connect-ai.html">connect your AI to Notion</a>, your own answers replace the example automatically.</div></div>
 
 <hr>
 <h2>About Me</h2>
-<div class="callout callout-blue"><span class="callout-icon">📝</span><div class="callout-title">How I learn best</div><div><em>From <a href="onboarding-interview.html">Onboarding Phase 1</a></em><div style="border:1px dashed #6B3FA0;padding:1rem;border-radius:8px;color:#64748b;margin-top:0.5rem;">Open your AI Profile in Notion to see this content. The overlay shows structure — Notion holds your personalized data.</div></div></div>
-<div class="callout callout-blue"><span class="callout-icon">🎯</span><div class="callout-title">AI priorities</div><div><em>From <a href="onboarding-interview.html">Phase 2</a></em><div style="border:1px dashed #6B3FA0;padding:1rem;border-radius:8px;color:#64748b;margin-top:0.5rem;">Open your AI Profile in Notion to see this content. The overlay shows structure — Notion holds your personalized data.</div></div></div>
-<div class="callout callout-blue"><span class="callout-icon">💼</span><div class="callout-title">Role & work</div><div><em>From <a href="onboarding-interview.html">Phase 5</a></em><div style="border:1px dashed #6B3FA0;padding:1rem;border-radius:8px;color:#64748b;margin-top:0.5rem;">Open your AI Profile in Notion to see this content. The overlay shows structure — Notion holds your personalized data.</div></div></div>
+<div class="callout callout-blue"><span class="callout-icon">📝</span><div class="callout-title">How I learn best</div><div><em>From <a href="onboarding-interview.html">Onboarding Phase 1</a></em>
+<div data-notion-section="learn" style="border:1px dashed var(--purple-deep);padding:1rem;border-radius:8px;margin-top:0.5rem;background:var(--bg-card);">
+<p style="margin:0 0 0.5rem;color:var(--text-mid);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">Example — yours fills in here</p>
+<p style="margin:0;">I learn by doing, not by reading first. Mornings are my best focus window (8–11am). I can hold attention for 25–40 minutes before I need a break or to switch contexts. I prefer big-picture framing first, then details. When I'm overwhelmed, my brain freezes — what helps is one tiny next action, not a plan.</p>
+</div></div></div>
+
+<div class="callout callout-blue"><span class="callout-icon">🎯</span><div class="callout-title">AI priorities</div><div><em>From <a href="onboarding-interview.html">Phase 2</a></em>
+<div data-notion-section="priorities" style="border:1px dashed var(--purple-deep);padding:1rem;border-radius:8px;margin-top:0.5rem;background:var(--bg-card);">
+<p style="margin:0 0 0.5rem;color:var(--text-mid);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">Example — yours fills in here</p>
+<ol style="margin:0;padding-left:1.25rem;">
+<li><strong>Writing</strong> — drafts, edits, voice-matching</li>
+<li><strong>Life management</strong> — decisions, routines, household admin</li>
+<li><strong>Research</strong> — synthesis from multiple sources</li>
+</ol>
+</div></div></div>
+
+<div class="callout callout-blue"><span class="callout-icon">💼</span><div class="callout-title">Role &amp; work</div><div><em>From <a href="onboarding-interview.html">Phase 5</a></em>
+<div data-notion-section="role" style="border:1px dashed var(--purple-deep);padding:1rem;border-radius:8px;margin-top:0.5rem;background:var(--bg-card);">
+<p style="margin:0 0 0.5rem;color:var(--text-mid);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">Example — yours fills in here</p>
+<p style="margin:0 0 0.5rem;"><strong>Role:</strong> Independent designer + small-team consultant</p>
+<p style="margin:0 0 0.5rem;"><strong>Industry:</strong> Brand &amp; product strategy</p>
+<p style="margin:0;"><strong>Top weekly tasks:</strong> client emails, strategy docs, design reviews, content drafts</p>
+</div></div></div>
 
 <hr>
 <h2>Voice Profile</h2>
 <div class="callout callout-purple"><span class="callout-icon">✍️</span><div class="callout-title">Your Voice Card</div><div><em>From <a href="writing-voice.html">Writing Voice W1</a></em>
-<p><strong>Tone:</strong> <span style="color:#64748b">[5 adjectives]</span></p>
-<p><strong>Never say:</strong> <span style="color:#64748b">[your list]</span></p>
-<p><strong>Writing rhythm:</strong> <span style="color:#64748b">[description]</span></p>
-</div></div>
+<div style="border:1px dashed var(--purple-deep);padding:1rem;border-radius:8px;margin-top:0.5rem;background:var(--bg-card);">
+<p style="margin:0 0 0.5rem;color:var(--text-mid);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">Example — yours fills in here</p>
+<p style="margin:0 0 0.4rem;"><strong>Tone:</strong> direct, warm, observational, dry-humored, unhurried</p>
+<p style="margin:0 0 0.4rem;"><strong>Never say:</strong> "synergy", "leverage", "circle back", "just", "should"</p>
+<p style="margin:0;"><strong>Writing rhythm:</strong> short sentences for emphasis. Then a longer one that earns the reader's attention. Em dashes — yes. Lists, sparingly.</p>
+</div></div></div>
 
 <hr>
 <h2>Custom Instructions</h2>
-<div class="callout callout-green"><span class="callout-icon">📋</span><div class="callout-title">Generated block</div><div><div style="border:1px dashed #6B3FA0;padding:1rem;border-radius:8px;color:#64748b;">Open your AI Profile in Notion to see this content. The overlay shows structure — Notion holds your personalized data.</div></div></div>
-<div class="callout callout-blue"><span class="callout-icon">📋</span><div class="callout-title">Generate yours</div><div>Use the prompt in <a href="setup-your-tools.html">Set Up Your AI Tools</a> Step 3 to generate your custom instructions block.</div></div>
+<div class="callout callout-green"><span class="callout-icon">📋</span><div class="callout-title">Generated block — copy this into Claude/ChatGPT/Gemini</div><div>
+<div style="border:1px dashed var(--purple-deep);padding:1rem;border-radius:8px;margin-top:0.5rem;background:var(--bg-card);">
+<p style="margin:0 0 0.5rem;color:var(--text-mid);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">Example output — yours fills in here</p>
+<pre style="margin:0;white-space:pre-wrap;font-family:var(--font-mono);font-size:0.85rem;"><code>I'm a neurodivergent (ADHD) designer/consultant. I learn by doing, not reading.
+My focus window is 8–11am. I can hold attention 25–40 min before needing a break.
 
-        <nav class="nav-footer">
+When you respond:
+- Lead with the one most-important action, bolded
+- Cap lists at 5 items
+- Skip filler ("In today's...", "Let's dive in", "It's important to note")
+- Match my voice: direct, warm, dry-humored, em-dashes, short-then-long sentences
+- Never use "should", "just", "easy", "simple", "obviously"
+- If a request is large, ask which slice I want first instead of dumping all of it
+
+When my message is short or I say "low energy" / "drained":
+- Cut output by half
+- One concrete next step, no plan
+- Skip explanation unless I ask
+
+When I'm in shame or stuck mode:
+- Stop productivity-talk
+- Acknowledge briefly, then offer ONE small action</code></pre>
+</div></div></div>
+
+<div class="callout callout-blue"><span class="callout-icon">🛠️</span><div class="callout-title">Generate yours</div><div>Use the prompt in <a href="setup-your-tools.html">Set Up Your AI Tools</a> Step 3 to generate your custom instructions block from your real onboarding answers.</div></div>
+
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="onboarding-interview.html" class="nav-link prev"><small>← Previous</small>Onboarding Interview</a>
             <a href="writing-voice.html" class="nav-link next"><small>Next →</small>Writing Voice</a>
         </nav>

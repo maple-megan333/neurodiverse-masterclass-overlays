@@ -12,6 +12,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -27,16 +29,17 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator phase-deeper" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 4</span> of 5 — Go Deeper</span>
         </nav>
 <div class="columns columns-2">
 <div><div class="callout callout-blue"><span class="callout-icon">🧭</span><div class="callout-title">What you'll build</div><div>Real workflows for life management system — saved to your databases.</div></div></div>
 <div><div class="callout callout-purple"><span class="callout-icon">⏱️</span><div class="callout-title">Time & Energy</div><div><strong>30–45 min</strong> | <strong>Energy:</strong> Any | <a href="https://claude.ai">Claude.ai</a> + this page</div></div></div>
 </div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. Do just that one. That's enough.</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. That one is enough.</div></div>
 
 <hr>
 
@@ -44,7 +47,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Get everything out of your head into a system.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>My brain is full. Here's everything on my mind: [BRAIN DUMP]
 
 Sort into:
@@ -57,7 +60,7 @@ Be ruthless. 3 things max for today.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>"Pick the ONE thing I should do first today: [list]"</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>"Pick the ONE thing to do first today: [list]"</div></div>
 
 </div></details>
 
@@ -65,7 +68,7 @@ Be ruthless. 3 things max for today.</code></pre></div></div>
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Build routines that work with your energy.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I want a [morning/evening/weekly] routine. My energy: [DESCRIBE]. Include: [LIST]. Build it respecting my energy. Keep each block under 15 minutes.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
@@ -78,7 +81,7 @@ Be ruthless. 3 things max for today.</code></pre></div></div>
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Eliminate daily micro-decisions.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I waste energy on these decisions: [LIST]. For each, give me a simple default system that eliminates the decision.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
@@ -91,7 +94,7 @@ Be ruthless. 3 things max for today.</code></pre></div></div>
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Turn 'I want to learn X' into a plan.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I want to learn [TOPIC]. I have [TIME/WEEK]. Build a 4-week plan: Foundation → Practice → Build → Teach. Sessions under 25 min.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
@@ -104,12 +107,12 @@ Be ruthless. 3 things max for today.</code></pre></div></div>
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Reduce the invisible labor.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>Help me manage [AREA]. Current system: [DESCRIBE]. Build something that reduces decisions, works when I forget, can be delegated, takes under 5 min/week.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>"Make me a grocery list for the week. Simple meals."</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>"Make me a grocery list for the week. Quick meals."</div></div>
 
 </div></details>
 
@@ -123,7 +126,7 @@ Be ruthless. 3 things max for today.</code></pre></div></div>
 <ul><li>Reducing micro-decisions preserves executive function.</li><li>Externalized systems reduce working memory reliance.</li><li>Risko & Gilbert (2016) — Cognitive offloading improves performance.</li></ul>
 </div></details>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="creative-projects.html" class="nav-link prev"><small>← Previous</small>Creative Projects</a>
             <a href="mcp-automation.html" class="nav-link next"><small>Next →</small>MCP & Automation</a>
         </nav>

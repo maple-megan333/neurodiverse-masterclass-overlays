@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -26,8 +28,8 @@
   </div>
 </div>
 
-    <div class="page-wrapper">
-        <nav class="nav-bar"><div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div></nav>
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation"><div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div><span class="phase-indicator phase-setup" aria-label="Phase 2 of 5: Set Up Your Tools"><span class="phase-num">Phase 2</span> of 5 — Set Up</span></nav>
 
       <div class="callout callout-purple">
         <div class="callout-content">
@@ -77,7 +79,7 @@
 
     <div class="callout callout-green">
       <div class="callout-content">
-        <div class="callout-title">✏️ Do this now</div>
+        <div class="callout-title">✏️ Try this when you're ready</div>
         <div class="callout-text">Think of a <strong>work task</strong> you do regularly. Copy this template into Claude:</div>
         <pre style="margin-top: 1rem;"><span class="code-label">Work Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>You are a [ROLE — e.g., "concise professional writer"].
 
@@ -180,7 +182,7 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
       </div>
     </details>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="setup-your-tools.html" class="nav-link prev"><small>← Previous</small>Set Up Your Tools</a>
             <a href="connect-ai.html" class="nav-link next"><small>Next →</small>Connect Your AI</a>
         </nav>

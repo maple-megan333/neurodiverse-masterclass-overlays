@@ -86,4 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } catch(e) { /* sessionStorage not available */ }
   });
+
+  // --- Scroll Reveal Observer ---
+  // Elements with .reveal or .reveal-stagger fade in when they enter the viewport
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  if (revealEls.length > 0 && 'IntersectionObserver' in window) {
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+  }
 });

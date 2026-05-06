@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/brain-header.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     /* === SPA Shell — ONLY layout, nothing else === */
     *,*::before,*::after{box-sizing:border-box}
-    html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#0A0A14;color:#F8F8FC;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+    html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#0A0A14;color:#F8F8FC;font-family:'Source Sans 3','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
     .spa-shell{display:flex;height:100vh;height:100dvh;width:100%}
 
     /* Sidebar */
@@ -92,8 +93,10 @@
   </style>
 </head>
 <body>
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">&#x2630;</button>
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <a href="#content-area" class="skip-link">Skip to main content</a>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation menu" aria-expanded="true" aria-controls="sidebar">&#x2630;</button>
+  <button class="motion-toggle" id="motionToggle" aria-label="Pause animations" title="Pause animations" aria-pressed="false">⏸</button>
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
   <div class="spa-shell">
     <aside class="spa-sidebar" id="sidebar">
       <div class="sidebar-header">
@@ -134,6 +137,24 @@
       <div id="content-area"></div>
     </main>
   </div>
+  <script src="js/notion-client.js"></script>
+  <script src="js/interactive-elements.js"></script>
   <script src="js/spa-router.js"></script>
+  <script>
+    // Motion toggle — user can pause all animations regardless of OS preference
+    (function() {
+      var btn = document.getElementById('motionToggle');
+      if (!btn) return;
+      var saved = localStorage.getItem('motion-paused') === 'true';
+      if (saved) { document.body.classList.add('motion-paused'); btn.textContent = '▶'; btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', 'Resume animations'); }
+      btn.addEventListener('click', function() {
+        var paused = document.body.classList.toggle('motion-paused');
+        btn.textContent = paused ? '▶' : '⏸';
+        btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        btn.setAttribute('aria-label', paused ? 'Resume animations' : 'Pause animations');
+        localStorage.setItem('motion-paused', paused ? 'true' : 'false');
+      });
+    })();
+  </script>
 </body>
 </html>

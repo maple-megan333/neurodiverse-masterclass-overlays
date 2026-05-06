@@ -11,6 +11,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -26,9 +28,10 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator phase-onboarding" aria-label="Phase 3 of 5: Onboarding"><span class="phase-num">Phase 3</span> of 5 — Onboarding</span>
         </nav>
 
 <div class="columns columns-2">
@@ -56,7 +59,7 @@
 
 <hr>
 <h2>🧠 Phase 1: How Do You Learn Best?</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>
 <pre><code>I'm setting up my AI tools and want to understand how my brain works best. Ask me 5 quick questions (one at a time) about:
 - Whether I learn better by reading, listening, watching, or doing
 - What time of day my brain works best
@@ -70,7 +73,7 @@ After my answers, give me a 3-4 sentence summary labeled "Learning Style &amp; E
 
 <hr>
 <h2>🎯 Phase 2: What Do You Want AI to Help With?</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>
 <pre><code>Rate each category 1-5 (1 = not interested, 5 = exactly what I need):
 - Writing, Research, Work tasks, Creative projects, Life management, Learning, Automation
 
@@ -80,25 +83,25 @@ Give me my top 3 as a short list for my AI profile.</code></pre>
 <hr>
 <h2>🔧 Phase 3: Your Tools & Setup</h2>
 <div class="columns columns-4">
-<div><div class="callout callout-purple"><span class="callout-icon">🟣</span><div class="callout-title">Claude</div><div><div class="checkbox-item"><input type="checkbox"> Free</div><div class="checkbox-item"><input type="checkbox"> Pro</div></div></div></div>
-<div><div class="callout callout-green"><span class="callout-icon">🟢</span><div class="callout-title">ChatGPT</div><div><div class="checkbox-item"><input type="checkbox"> Free</div><div class="checkbox-item"><input type="checkbox"> Plus</div></div></div></div>
-<div><div class="callout callout-blue"><span class="callout-icon">🔵</span><div class="callout-title">Google</div><div><div class="checkbox-item"><input type="checkbox"> Gemini</div><div class="checkbox-item"><input type="checkbox"> Advanced</div></div></div></div>
-<div><div class="callout callout-yellow"><span class="callout-icon">📓</span><div class="callout-title">Other</div><div><div class="checkbox-item"><input type="checkbox"> NotebookLM</div><div class="checkbox-item"><input type="checkbox"> Notion</div></div></div></div>
+<div><div class="callout callout-purple"><span class="callout-icon">🟣</span><div class="callout-title">Claude</div><div><div class="checkbox-item"><input type="checkbox" id="claude-free"> <label for="claude-free">Free</label></div><div class="checkbox-item"><input type="checkbox" id="claude-pro"> <label for="claude-pro">Pro</label></div></div></div></div>
+<div><div class="callout callout-green"><span class="callout-icon">🟢</span><div class="callout-title">ChatGPT</div><div><div class="checkbox-item"><input type="checkbox" id="chatgpt-free"> <label for="chatgpt-free">Free</label></div><div class="checkbox-item"><input type="checkbox" id="chatgpt-plus"> <label for="chatgpt-plus">Plus</label></div></div></div></div>
+<div><div class="callout callout-blue"><span class="callout-icon">🔵</span><div class="callout-title">Google</div><div><div class="checkbox-item"><input type="checkbox" id="gemini-basic"> <label for="gemini-basic">Gemini</label></div><div class="checkbox-item"><input type="checkbox" id="gemini-advanced"> <label for="gemini-advanced">Advanced</label></div></div></div></div>
+<div><div class="callout callout-yellow"><span class="callout-icon">📓</span><div class="callout-title">Other</div><div><div class="checkbox-item"><input type="checkbox" id="other-notebooklm"> <label for="other-notebooklm">NotebookLM</label></div><div class="checkbox-item"><input type="checkbox" id="other-notion"> <label for="other-notion">Notion</label></div></div></div></div>
 </div>
 
 <hr>
 <h2>📊 Phase 4: Experience Level</h2>
 <div class="callout callout-purple"><span class="callout-icon">💭</span><div class="callout-title">Pick the closest one</div><div>
-<div class="checkbox-item"><input type="checkbox"> <strong>Never tried it</strong></div>
-<div class="checkbox-item"><input type="checkbox"> <strong>Dabbled a little</strong></div>
-<div class="checkbox-item"><input type="checkbox"> <strong>Use it sometimes</strong></div>
-<div class="checkbox-item"><input type="checkbox"> <strong>Regular user</strong></div>
-<div class="checkbox-item"><input type="checkbox"> <strong>Power user</strong></div>
+<div class="checkbox-item"><input type="checkbox" id="exp-never"> <label for="exp-never"><strong>Never tried it</strong></label></div>
+<div class="checkbox-item"><input type="checkbox" id="exp-dabbled"> <label for="exp-dabbled"><strong>Dabbled a little</strong></label></div>
+<div class="checkbox-item"><input type="checkbox" id="exp-sometimes"> <label for="exp-sometimes"><strong>Use it sometimes</strong></label></div>
+<div class="checkbox-item"><input type="checkbox" id="exp-regular"> <label for="exp-regular"><strong>Regular user</strong></label></div>
+<div class="checkbox-item"><input type="checkbox" id="exp-power"> <label for="exp-power"><strong>Power user</strong></label></div>
 </div></div>
 
 <hr>
 <h2>💼 Phase 5: Your Work</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>
 <pre><code>Ask me one at a time:
 1. Job title or main role?
 2. Industry or field?
@@ -109,7 +112,7 @@ Then give me a "Role &amp; Work Context" summary.</code></pre>
 
 <hr>
 <h2>🏠 Phase 6: Your Life</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>
 <pre><code>Rate these 1-5 for where AI can help in personal life:
 Morning routines, Decisions, Household admin, Learning, Social communication, Financial tracking, Health &amp; wellness
 Give me my top 2-3 life areas.</code></pre>
@@ -128,12 +131,13 @@ Give me my top 2-3 life areas.</code></pre>
 <ul><li>Flavell (1979) — Metacognition</li><li>Schraw & Dennison (1994) — Self-regulated learning</li><li>Singer (1998) — Neurodiversity paradigm</li><li>NNG — Progressive disclosure</li><li>W3C COGA — Cognitive accessibility</li></ul>
 </div></details>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="connect-ai.html" class="nav-link prev"><small>← Previous</small>Connect Your AI</a>
             <a href="ai-profile.html" class="nav-link next"><small>Next →</small>AI Profile</a>
         </nav>
     </div>
     <script src="js/main.js"></script>
     <script src="js/brain-animation.js"></script>
+    <script src="js/onboarding-state.js"></script>
 </body>
 </html>

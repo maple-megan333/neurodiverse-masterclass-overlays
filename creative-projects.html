@@ -12,6 +12,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -27,16 +29,17 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator phase-deeper" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 4</span> of 5 — Go Deeper</span>
         </nav>
 <div class="columns columns-2">
 <div><div class="callout callout-blue"><span class="callout-icon">🧭</span><div class="callout-title">What you'll build</div><div>Real workflows for creative project workflows — saved to your databases.</div></div></div>
 <div><div class="callout callout-purple"><span class="callout-icon">⏱️</span><div class="callout-title">Time & Energy</div><div><strong>30–45 min</strong> | <strong>Energy:</strong> Any | <a href="https://claude.ai">Claude.ai</a> + this page</div></div></div>
 </div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. Do just that one. That's enough.</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. That one is enough.</div></div>
 
 <hr>
 
@@ -44,7 +47,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Generate genuinely novel ideas.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I'm brainstorming about [CHALLENGE]. Give me 10 completely different approaches. After #10, add 3 more combining your most unusual ideas.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
@@ -57,7 +60,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Vague impulse → clear project brief.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I have a creative idea: [DESCRIBE]. Help me turn this into a brief by asking 5 questions about audience, tone, format, constraints, and success. Then write a 1-page brief.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
@@ -70,7 +73,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Get past the blank page fast.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I need to write [WHAT]. Don't write it for me. Give me:
 1. 5 possible opening lines
 2. 3 structural approaches
@@ -88,7 +91,7 @@ Help me START, not finish.</code></pre></div></div>
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Vague feedback → actionable direction.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I got this feedback on my [PROJECT]: [PASTE]
 
 Translate into specific changes. For each:
@@ -98,7 +101,7 @@ Translate into specific changes. For each:
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>Paste feedback → "What's the one thing I should change?"</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>Paste feedback → "What's the one thing to change first?"</div></div>
 
 </div></details>
 
@@ -112,7 +115,7 @@ Translate into specific changes. For each:
 <ul><li>Structured ideation produces more novel ideas than unstructured brainstorming.</li><li>Starting is hardest — structured first-draft techniques reduce initiation barriers.</li><li>Creative constraints often improve output.</li></ul>
 </div></details>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="work-productivity.html" class="nav-link prev"><small>← Previous</small>Work & Productivity</a>
             <a href="life-management.html" class="nav-link next"><small>Next →</small>Life Management</a>
         </nav>

@@ -11,6 +11,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -26,9 +28,10 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator phase-deeper" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 4</span> of 5 — Go Deeper</span>
         </nav>
 
 <div class="columns columns-2">
@@ -48,7 +51,7 @@
 <div class="j-step"><div class="j-dot" style="background:#dc2626;border-color:#f87171;font-size:0.7rem;">W5</div><div class="j-label">Ideate</div></div>
 </div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Do just <strong>Voice Preservation</strong>. Paste one paragraph, ask for 5 adjectives. Save those. That's enough.</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>One option: <strong>Voice Preservation</strong> only. Paste one paragraph, ask for 5 adjectives. Save those. That's enough.</div></div>
 
 <hr>
 
@@ -67,6 +70,8 @@ Never say: [your list]
 Signature phrases: [from analysis]
 Writing rhythm: [short? long? mix?]</code></pre></div></div>
 </div></details>
+
+<div data-voice-demo></div>
 
 <details><summary>📄 Outline-First — Beat Blank Page Paralysis</summary><div style="padding:0 1.5rem 1.5rem;">
 <div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Get 3 Outlines</div><div>
@@ -98,7 +103,7 @@ Writing rhythm: [short? long? mix?]</code></pre></div></div>
 <li>Risko & Gilbert (2016) — Cognitive offloading</li></ul>
 </div></details>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="ai-profile.html" class="nav-link prev"><small>← Previous</small>Your AI Profile</a>
             <a href="research-analysis.html" class="nav-link next"><small>Next →</small>Research &amp; Analysis</a>
         </nav>

@@ -1,8 +1,11 @@
 /* ============================================
    Neurodiverse AI MasterClass — Design System
    Single source of truth for ALL pages.
-   Extracted from index.html + unified with theme.css
+   Bioluminescent sanctuary aesthetic.
    ============================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* ---------- CSS Variables ---------- */
 :root {
@@ -24,6 +27,9 @@
   --accent-soft: hsla(270, 70%, 60%, 0.15);
   --accent-glow: hsla(270, 80%, 65%, 0.25);
   --accent2: hsla(310, 75%, 65%, 1);
+  --gold: #F5C542;
+  --gold-bg: rgba(245, 197, 66, 0.08);
+  --gold-glow: rgba(245, 197, 66, 0.25);
 
   /* Functional Colors */
   --green: #059669;
@@ -54,22 +60,20 @@
   --radius: 10px;
   --radius-sm: 8px;
 
-  /* Fonts */
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Fonts — Outfit for headings (geometric warmth), Source Sans 3 for body (UI readability) */
+  --font: 'Source Sans 3', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 
   /* === Backwards Compatibility Aliases === */
-  /* theme.css used these names — child pages reference them in inline styles */
-  /* Using literal values (not var() references) for browser compatibility */
   --purple-bg: #0A0A14;
   --purple-neon: hsla(270, 80%, 65%, 1);
   --purple-light: #9B72CF;
   --text-primary: #F8F8FC;
   --text-secondary: rgba(255,255,255,0.68);
   --text-muted: rgba(255,255,255,0.45);
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  /* Functional color aliases */
+  --font-heading: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Source Sans 3', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --green-action: #059669;
   --green-action-bg: #064e3b;
   --green-action-border: #059669;
@@ -162,10 +166,10 @@ a:hover { color: var(--accent2); }
 }
 
 /* ---------- Typography ---------- */
-h1 { display: none; } /* Hidden except in brain-header (overridden there) */
+h1 { display: none; font-family: var(--font-display); } /* Hidden except in brain-header */
 h2 {
-  font-family: var(--font);
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-accent);
   margin-top: 3rem;
@@ -179,11 +183,13 @@ h2 {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  letter-spacing: -0.01em;
 }
 h2::before {
   content: counter(lesson-step, decimal-leading-zero);
-  font-size: 0.7rem;
-  font-weight: 800;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--accent);
   background: rgba(168, 85, 247, 0.12);
@@ -194,19 +200,20 @@ h2::before {
   font-variant-numeric: tabular-nums;
 }
 h3 {
-  font-family: var(--font);
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-accent);
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 p { margin-bottom: 1rem; max-width: 70ch; }
 strong { color: var(--text); font-weight: 600; }
 em { color: var(--text-mid); font-style: italic; }
 /* hr styled in Animated HR Divider section below */
 
-/* ---------- Content Cards (callouts restyled to match home page cards) ---------- */
+/* ---------- Content Cards (Callouts) — Differentiated by purpose ---------- */
 .callout {
   background: rgba(10, 10, 20, 0.85);
   border: 1px solid var(--border);
@@ -215,25 +222,148 @@ em { color: var(--text-mid); font-style: italic; }
   padding: 1rem 1.2rem;
   margin-bottom: 0.75rem;
   position: relative;
-  transition: border-color 0.2s var(--ease);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.callout:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .callout-icon { font-size: 1.3rem; margin-right: 0.5rem; display: inline-block; }
-.callout-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+.callout-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
 
-/* Color variants — same card shape, different left accent */
-.callout-green, .callout:not([class*="callout-"]) { border-left-color: var(--green); }
+/* --- GREEN: Action steps — "DO THIS" — most prominent --- */
+.callout-green, .callout:not([class*="callout-"]) {
+  border-left-color: var(--green);
+  border-top: 2px solid rgba(5, 150, 105, 0.4);
+  background: rgba(5, 150, 105, 0.04);
+}
+.callout-green .callout-title::before, .callout:not([class*="callout-"]) .callout-title::before {
+  content: 'DO THIS';
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  background: rgba(5, 150, 105, 0.12);
+  border: 1px solid rgba(5, 150, 105, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
 .callout-green .callout-title, .callout:not([class*="callout-"]) .callout-title { color: var(--green-title); }
+
+/* --- BLUE: Context/info --- */
 .callout-blue { border-left-color: var(--blue); }
+.callout-blue .callout-title::before {
+  content: 'CONTEXT';
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
 .callout-blue .callout-title { color: var(--blue-title); }
+
+/* --- PURPLE: Learning/profile --- */
 .callout-purple { border-left-color: var(--accent); }
+.callout-purple .callout-title::before {
+  content: 'LEARN';
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
 .callout-purple .callout-title { color: var(--text-accent); }
-.callout-yellow { border-left-color: var(--yellow); }
+
+/* --- YELLOW: Insight/tip --- */
+.callout-yellow {
+  border-left-color: var(--yellow);
+  background: rgba(217, 119, 6, 0.03);
+}
+.callout-yellow .callout-title::before {
+  content: 'INSIGHT';
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--yellow);
+  background: rgba(217, 119, 6, 0.12);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
 .callout-yellow .callout-title { color: var(--yellow-title); }
-.callout-gray { border-left-color: var(--gray); opacity: 0.8; }
+.callout-yellow:hover { border-left-color: var(--gold); }
+
+/* --- GRAY: Low energy version — lighter, optional feel --- */
+.callout-gray {
+  border-left-color: var(--gray);
+  border-left-style: dashed;
+  opacity: 0.85;
+}
+.callout-gray .callout-title::before {
+  content: 'LOW ENERGY';
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  background: rgba(75, 85, 99, 0.15);
+  border: 1px dashed rgba(75, 85, 99, 0.4);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
 .callout-gray .callout-title { color: var(--gray-title); }
-.callout-red { border-left-color: var(--red); }
+
+/* --- RED: Advanced/power user --- */
+.callout-red {
+  border-left-color: var(--red);
+  background: rgba(220, 38, 38, 0.03);
+}
+.callout-red .callout-title::before {
+  content: 'ADVANCED';
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  background: rgba(220, 38, 38, 0.12);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
 .callout-red .callout-title { color: var(--red-title); }
+
+/* --- ORANGE: Warning/heads up --- */
 .callout-orange { border-left-color: var(--orange); }
+.callout-orange .callout-title::before {
+  content: 'HEADS UP';
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+  background: rgba(234, 88, 12, 0.12);
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
 .callout-orange .callout-title { color: var(--orange-title); }
 
 /* ---------- Cards ---------- */
@@ -339,14 +469,30 @@ pre {
   font-size: 0.88rem; line-height: 1.7; color: #e2e8f0;
   box-shadow: inset 0 1px 0 rgba(168, 85, 247, 0.1), 0 4px 16px rgba(0, 0, 0, 0.4);
   position: relative;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.2s var(--ease);
+}
+pre:hover {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: inset 0 1px 0 rgba(168, 85, 247, 0.15), 0 4px 24px rgba(168, 85, 247, 0.15), 0 0 0 1px rgba(168, 85, 247, 0.08);
+  transform: translateY(-1px);
 }
 pre::before {
-  content: 'PROMPT';
-  display: block; font-family: var(--font);
-  font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em;
-  color: rgba(168, 85, 247, 0.6);
-  margin-bottom: 0.75rem; padding-bottom: 0.6rem;
+  content: 'READY TO USE';
+  display: inline-block; font-family: var(--font-display);
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em;
+  color: var(--green-title);
+  background: rgba(5, 150, 105, 0.12);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin-bottom: 0.75rem;
+}
+pre::after {
+  content: '';
+  display: block; margin-top: -0.15rem;
+  padding-bottom: 0.6rem;
   border-bottom: 1px solid rgba(107, 63, 160, 0.25);
+  margin-bottom: 0.4rem;
 }
 code {
   font-family: var(--font-mono); font-size: 0.9em;
@@ -357,15 +503,16 @@ pre code { background: none; padding: 0; color: inherit; }
 .code-wrapper { position: relative; }
 .copy-btn {
   position: absolute; top: 0.75rem; right: 0.75rem;
-  background: rgba(168, 85, 247, 0.15);
-  border: 1px solid rgba(168, 85, 247, 0.35);
-  color: var(--text-accent); padding: 5px 14px; border-radius: 4px;
+  background: rgba(5, 150, 105, 0.15);
+  border: 1px solid rgba(5, 150, 105, 0.35);
+  color: var(--green-title); padding: 5px 14px; border-radius: 4px;
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
   cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+  font-family: var(--font-display);
 }
 .copy-btn:hover {
-  background: rgba(168, 85, 247, 0.28); color: var(--text);
-  border-color: var(--accent); box-shadow: 0 2px 8px rgba(168, 85, 247, 0.25);
+  background: rgba(5, 150, 105, 0.28); color: var(--text);
+  border-color: var(--green); box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
 }
 
 /* ---------- Blockquotes ---------- */
@@ -506,19 +653,21 @@ li::marker { color: #9B72CF; }
 .hero { text-align: center; padding: 3rem 0 1.5rem; }
 .hero-icon { font-size: 3.2rem; display: block; margin-bottom: 0.75rem; }
 .hero h1 {
-  display: block; font-size: 2.4rem; font-weight: 800;
-  letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, var(--text) 0%, var(--accent-soft) 100%);
+  display: block; font-family: var(--font-display); font-size: 2.4rem; font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, var(--text) 0%, var(--gold) 60%, var(--accent) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .hero-tagline {
   font-size: 1.05rem; color: var(--text-mid);
   max-width: 540px; margin: 0 auto 1rem; line-height: 1.6;
+  font-family: var(--font);
 }
 .hero-pill {
-  display: inline-block; background: var(--accent-soft);
-  border: 1px solid var(--accent-glow); border-radius: 100px;
-  padding: 0.5rem 1.25rem; font-size: 0.9rem; color: var(--accent);
+  display: inline-block; background: var(--gold-bg);
+  border: 1px solid var(--gold-glow); border-radius: 100px;
+  padding: 0.5rem 1.25rem; font-size: 0.85rem; color: var(--gold);
+  font-family: var(--font-display); font-weight: 600; letter-spacing: 0.02em;
 }
 
 /* ---------- Journey Stepper ---------- */
@@ -538,9 +687,11 @@ li::marker { color: #9B72CF; }
 /* ---------- Section Headers ---------- */
 .section-head { margin-top: 2.5rem; margin-bottom: 0.25rem; }
 .section-head h2 {
+  font-family: var(--font-display);
   font-size: 1.3rem; font-weight: 700; color: var(--text);
   display: flex; align-items: baseline; gap: 0.5rem;
   border-bottom: none; margin-top: 0; padding-bottom: 0;
+  letter-spacing: -0.02em;
 }
 .section-head h2 .badge {
   font-size: 0.7rem; font-weight: 500; color: var(--text-dim);
@@ -610,6 +761,25 @@ li::marker { color: #9B72CF; }
 .progress-dot.active { background: var(--accent); box-shadow: 0 0 6px rgba(168, 85, 247, 0.5); }
 .progress-dot.done { background: var(--green); }
 
+/* ---------- Scroll Reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger children */
+.reveal-stagger > * { opacity: 0; transform: translateY(12px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 60ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 120ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 180ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(5) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(n+6) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
+
 /* ---------- Animated HR Divider ---------- */
 hr {
   border: none; height: 2px; margin: 2.5rem 0;
@@ -626,4 +796,128 @@ hr {
   .mesh, .particles, .nav-bar, .nav-footer { display: none; }
   .callout { border-left-width: 3px; background: #f8f8f8 !important; }
   a { color: #333; text-decoration: underline; }
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   Disable all non-essential animation when the
+   user has set prefers-reduced-motion: reduce.
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .particles, .mesh-orb { display: none !important; }
+  .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+  .c, .callout, .nav-link, .tile { transform: none !important; }
+  hr { background: var(--accent-glow); animation: none !important; }
+}
+
+/* ============================================
+   Accessibility: Visible Focus Indicators
+   WCAG 2.4.7 — every interactive element must
+   show a visible focus ring for keyboard users.
+   ============================================ */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+button:focus-visible, a:focus-visible, .nav-item:focus-visible,
+.copy-btn:focus-visible, .sidebar-toggle:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* ============================================
+   Accessibility: Skip Link
+   Hidden until focused, then visible at top.
+   ============================================ */
+.skip-link {
+  position: absolute;
+  top: -40px; left: 8px;
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  z-index: 1000;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 8px;
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Accessibility: High Contrast Mode
+   ============================================ */
+@media (prefers-contrast: more) {
+  :root {
+    --bg: #000;
+    --text: #fff;
+    --text-mid: #fff;
+    --border: rgba(255,255,255,0.4);
+    --accent: hsla(270, 100%, 75%, 1);
+  }
+  .callout { border-width: 2px; }
+  a { text-decoration: underline; }
+}
+
+/* ============================================
+   Accessibility: Phase Indicator
+   Persistent "you are in Phase X of 5" pill on
+   inner pages — Trunk Test orientation.
+   ============================================ */
+.phase-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-glow);
+  color: var(--text-accent);
+  margin-left: 0.75rem;
+  white-space: nowrap;
+}
+.phase-indicator .phase-num { color: var(--accent); }
+.phase-indicator.phase-intro { background: rgba(75,85,99,0.15); border-color: rgba(75,85,99,0.4); color: var(--gray-title); }
+.phase-indicator.phase-setup { background: rgba(5,150,105,0.15); border-color: rgba(5,150,105,0.4); color: var(--green-title); }
+.phase-indicator.phase-onboarding { background: var(--accent-soft); border-color: var(--accent-glow); color: var(--text-accent); }
+.phase-indicator.phase-deeper { background: rgba(217,119,6,0.15); border-color: rgba(217,119,6,0.4); color: var(--yellow-title); }
+.phase-indicator.phase-power { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.4); color: var(--red-title); }
+
+/* Pause-motion control (visible top-right when not in reduced-motion mode) */
+.motion-toggle {
+  position: fixed;
+  top: 8px; right: 8px;
+  z-index: 100;
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-glow);
+  background: var(--bg);
+  color: var(--text-accent);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+.motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; }
+@media (max-width: 600px) { .motion-toggle { display: none; } }
+body.motion-paused .particles,
+body.motion-paused .mesh-orb { display: none !important; }
+body.motion-paused *, body.motion-paused *::before, body.motion-paused *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
 }

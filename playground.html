@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -18,23 +20,24 @@
     <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">REFERENCE</span>
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">EXPLORE</span>
       <h1>AI Playground</h1>
       <p class="tagline">Prompts, tools, experiments. No setup required.</p>
     </div>
   </div>
 </div>
-  <div class="page-wrapper">
+  <div class="page-wrapper" id="main-content">
     <!-- Navigation Bar -->
-    <div class="nav-bar">
+    <nav class="nav-bar" aria-label="Page navigation">
       <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
-    </div>
+      <span class="phase-indicator phase-intro" aria-label="Phase 1 of 5: First Conversations"><span class="phase-num">Phase 1</span> of 5 — First Conversations</span>
+    </nav>
 
 <div class="callout callout-blue"><span class="callout-icon">⚡</span><div class="callout-title">What this is</div><div>Copy-paste prompts, AI tool discovery, and fun experiments. Pick anything. No setup needed.</div></div>
 
     <hr>
 
-    <main id="main-content">
+    <main>
 
       <!-- ==================== QUICK WIN PROMPTS ==================== -->
 
@@ -369,7 +372,7 @@
     </main>
 
     <!-- Navigation Footer -->
-    <nav class="nav-footer">
+    <nav class="nav-footer" aria-label="Workshop navigation">
       <a href="first-ai-conversation.html" class="nav-link prev">
         <small>← Previous</small>
         First AI Conversation

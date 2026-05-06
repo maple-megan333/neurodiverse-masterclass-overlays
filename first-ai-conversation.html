@@ -11,6 +11,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -25,13 +27,14 @@
     </div>
   </div>
 </div>
-  <div class="page-wrapper">
+  <div class="page-wrapper" id="main-content">
     <!-- Navigation Bar -->
-    <div class="nav-bar">
+    <nav class="nav-bar" aria-label="Page navigation">
       <div class="nav-breadcrumb">
         <a href="index.html">← MasterClass Home</a>
       </div>
-    </div>
+      <span class="phase-indicator phase-intro" aria-label="Phase 1 of 5: First Conversations"><span class="phase-num">Phase 1</span> of 5 — First Conversations</span>
+    </nav>
 
 <div class="columns columns-2">
 <div><div class="callout callout-blue"><span class="callout-icon">🧭</span><div class="callout-title">What you'll set up</div><div>Your first real AI conversation — and an understanding of what AI actually does.</div></div></div>
@@ -52,7 +55,7 @@
 
     <hr>
 
-    <main id="main-content">
+    <main>
       <!-- Step 1 -->
       <h2>Step 1: Open Claude and Say Hello</h2>
 
@@ -72,7 +75,7 @@
 
       <div class="callout callout-green">
         <div class="callout-title">
-          <span class="callout-icon">✅</span>Do this now
+          <span class="callout-icon">✅</span>Try this when you're ready
         </div>
         <ol>
           <li>Open <a href="https://claude.ai" target="_blank">claude.ai</a></li>
@@ -174,7 +177,7 @@
 
       <div class="callout callout-gray">
         <div class="callout-title">
-          <span class="callout-icon">⚡</span>Just the essentials
+          <span class="callout-icon">⚡</span>The essentials only
         </div>
         <p>Open <a href="https://claude.ai" target="_blank">Claude</a>. Ask it <strong>one real question</strong> you actually have. Notice whether the answer is helpful.</p>
         <p>That's the whole lesson.</p>
@@ -209,7 +212,7 @@
     </main>
 
     <!-- Navigation Footer -->
-    <nav class="nav-footer">
+    <nav class="nav-footer" aria-label="Workshop navigation">
       <a href="index.html" class="nav-link prev">
         <small>← Previous</small>
         MasterClass Home

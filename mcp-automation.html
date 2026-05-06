@@ -12,6 +12,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -27,16 +29,17 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator phase-power" aria-label="Phase 5 of 5: Power User"><span class="phase-num">Phase 5</span> of 5 — Power User</span>
         </nav>
 <div class="columns columns-2">
 <div><div class="callout callout-blue"><span class="callout-icon">🧭</span><div class="callout-title">What you'll build</div><div>Real workflows for mcp, claude code & automation — saved to your databases.</div></div></div>
 <div><div class="callout callout-purple"><span class="callout-icon">⏱️</span><div class="callout-title">Time & Energy</div><div><strong>30–45 min</strong> | <strong>Energy:</strong> Any | <a href="https://claude.ai">Claude.ai</a> + this page</div></div></div>
 </div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. Do just that one. That's enough.</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. That one is enough.</div></div>
 
 <hr>
 
@@ -46,7 +49,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Connect Claude to your tools — files, databases, calendars.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>Walk me through MCP setup:
 1. What MCP is
 2. Install Claude Desktop
@@ -65,7 +68,7 @@ Assume I'm technical but new to MCP.</code></pre></div></div>
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Get multiple expert perspectives on any problem.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I need expert perspectives on [CHALLENGE]. Simulate 3 experts:
 1. A pragmatic [TYPE]
 2. A cautious analyst
@@ -83,7 +86,7 @@ Have each give their take. Then: where do they agree/disagree?</code></pre></div
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>AI coding assistant in your terminal.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>Walk me through Claude Code:
 1. Install (npm install -g @anthropic-ai/claude-code)
 2. Auth
@@ -102,7 +105,7 @@ Productivity in 15 min.</code></pre></div></div>
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Connect AI to automated workflows.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I want to automate [WORKFLOW]. Design a pipeline:
 1. Trigger
 2. AI step
@@ -119,7 +122,7 @@ Buildable in under an hour.</code></pre></div></div>
 
 <details><summary>🖥️ Cowork Mode — Desktop AI Without Terminal</summary>
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Use Claude's desktop Cowork mode to manage files, run code, and connect apps without a terminal.</div></div>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Open Claude desktop, start a Cowork session, select a project folder, and ask:<pre><code>Read the files in this folder and give me a summary of what's here. Then suggest three improvements.</code></pre></div></div>
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Open Claude desktop, start a Cowork session, select a project folder, and ask:<pre><code>Read the files in this folder and give me a summary of what's here. Then suggest three improvements.</code></pre></div></div>
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>Claude reads your actual files and gives specific, actionable suggestions based on what it finds.</div></div>
 <div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>Open Cowork and ask "What connectors are available?" to see what's possible.</div></div>
 </details>
@@ -127,7 +130,7 @@ Buildable in under an hour.</code></pre></div></div>
 <details><summary>🖱️ Computer Use — AI Controls Your Screen</summary>
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Let AI see and interact with your screen to automate tasks you'd normally do manually.</div></div>
 <div class="callout callout-red"><span class="callout-icon">⚠️</span><div class="callout-title">Power user feature</div><div>Computer Use is an advanced API feature. It requires an Anthropic API key and technical setup. Dispatch is a managed service that simplifies this.</div></div>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:<pre><code>Explain Computer Use (Anthropic) and Dispatch:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:<pre><code>Explain Computer Use (Anthropic) and Dispatch:
 1. What each does
 2. When to use which
 3. Security considerations
@@ -143,10 +146,10 @@ Assume I'm comfortable with AI but new to screen control.</code></pre></div></di
 </div>
 
 <details><summary>📚 Research behind this track</summary>
-<ul><li>MCP — Anthropic's open standard for connecting AI to tools.</li><li>Simple, reliable automations outperform complex ones.</li><li>Best tools solve one problem well before expanding.</li></ul>
+<ul><li>MCP — Anthropic's open standard for connecting AI to tools.</li><li>Focused automations that do one thing outperform complex ones.</li><li>Best tools solve one problem well before expanding.</li></ul>
 </details>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="life-management.html" class="nav-link prev"><small>← Previous</small>Life Management</a>
             <a href="reference-library.html" class="nav-link next"><small>Next →</small>Reference Library</a>
         </nav>

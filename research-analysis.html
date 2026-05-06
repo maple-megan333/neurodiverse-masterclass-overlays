@@ -12,6 +12,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -27,16 +29,17 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator phase-deeper" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 4</span> of 5 — Go Deeper</span>
         </nav>
 <div class="columns columns-2">
 <div><div class="callout callout-blue"><span class="callout-icon">🧭</span><div class="callout-title">What you'll build</div><div>Real workflows for research &amp; analysis — saved to your databases.</div></div></div>
 <div><div class="callout callout-purple"><span class="callout-icon">⏱️</span><div class="callout-title">Time & Energy</div><div><strong>30–45 min</strong> | <strong>Energy:</strong> Any | <a href="https://claude.ai">Claude.ai</a> + this page</div></div></div>
 </div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. Do just that one. That's enough.</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Pick the ONE workshop that would help most right now. That one is enough.</div></div>
 
 <hr>
 
@@ -44,12 +47,12 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>A reusable competitive analysis workflow.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I need to analyze [COMPETITOR/TOPIC]. Act as a research analyst. Ask me 3 questions about what I'm comparing. Then build a structured comparison framework.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
 
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>Ask Claude: "Compare [A] vs [B] in a simple table."</div></div>
+<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low Energy</div><div>Ask Claude: "Compare [A] vs [B] in a clear table."</div></div>
 
 </div></details>
 
@@ -57,7 +60,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Filter signal from noise in your field.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I work in [FIELD]. I'm overwhelmed by information. Help me build a weekly research routine:
 1. What 3-5 sources should I follow?
 2. What questions to ask when I see new info?
@@ -73,7 +76,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Synthesize insights across multiple sources.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I have [NUMBER] sources about [TOPIC]. Find: 1) Where all agree 2) Where they disagree 3) Gaps 4) The one insight that changes my thinking
 
 [PASTE SOURCES]</code></pre></div></div>
@@ -88,7 +91,7 @@
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Stress-test ideas.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>Here's my thinking on [TOPIC]: [POSITION]
 
 Be my devil's advocate. Find the 3 weakest points. Then tell me which original points are actually strong.</code></pre></div></div>
@@ -103,7 +106,7 @@ Be my devil's advocate. Find the 3 weakest points. Then tell me which original p
 
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">What you'll build</div><div>Break complex decisions into components.</div></div>
 
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Do this now</div><div>Paste into Claude:
+<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Try this when you're ready</div><div>Paste into Claude:
 <pre><code>I'm deciding between [A] and [B]. Ask me 5 questions one at a time. Then give me a clear recommendation. Don't hedge — pick one.</code></pre></div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">⭐</span><div class="callout-title">What good looks like</div><div>The output addresses YOUR specific situation. If it feels generic, add more context.</div></div>
@@ -122,7 +125,7 @@ Be my devil's advocate. Find the 3 weakest points. Then tell me which original p
 <ul><li>Structured frameworks reduce cognitive load in complex analysis.</li><li>Systematic approaches outperform ad hoc research.</li><li>Breaking decisions into components improves outcomes.</li></ul>
 </div></details>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="writing-voice.html" class="nav-link prev"><small>← Previous</small>Writing Voice</a>
             <a href="work-productivity.html" class="nav-link next"><small>Next →</small>Work & Productivity</a>
         </nav>

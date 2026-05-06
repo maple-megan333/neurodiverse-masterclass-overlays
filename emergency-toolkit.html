@@ -12,6 +12,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -27,9 +29,10 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator" aria-label="Resources"><span class="phase-num">Resources</span></span>
         </nav>
 <div class="callout callout-red"><span class="callout-icon">🚨</span><div class="callout-title">When to use this</div><div>When you can't think clearly, can't decide, can't start, or can't stop spiraling. These work even when your brain doesn't.</div></div>
 
@@ -45,6 +48,7 @@
 </div>
 
 <hr>
+<div data-breathing></div>
 <div id="task-paralysis"></div>
 <h2>🧊 Task Paralysis</h2>
 <p><em>You know what to do but can't start.</em></p>
@@ -119,7 +123,7 @@ Be honest but kind.</code></pre></div></div>
 3. One small thing I can do differently next time.
 Keep it compassionate. No lectures.</code></pre></div></div>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="life-templates.html" class="nav-link prev"><small>← Previous</small>Life Templates</a>
             <a href="your-progress.html" class="nav-link next"><small>Next →</small>Your Progress</a>
         </nav>

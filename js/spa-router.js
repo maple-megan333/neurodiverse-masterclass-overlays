@@ -144,6 +144,9 @@
     initSmoothScroll();
     interceptNavLinks();
     initMermaid();
+    initScrollReveal();
+    initInteractiveElements(pageName);
+    initNotionEnhancements(pageName);
     currentPage = pageName;
 
     // Brain header stays sticky (from brain-header.css). Content covers it via opaque background + z-index:10.
@@ -209,6 +212,40 @@
         el.removeAttribute('data-processed');
       });
       try { mermaid.init(undefined, contentArea.querySelectorAll('.mermaid')); } catch (e) {}
+    }
+  }
+
+  // === Scroll Reveal Observer ===
+  function initScrollReveal() {
+    var els = contentArea.querySelectorAll('.reveal, .reveal-stagger');
+    if (els.length === 0 || !('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px', root: spaMain });
+    els.forEach(function(el) { obs.observe(el); });
+  }
+
+  // === Interactive Elements Loader ===
+  // Calls the global initInteractiveForPage(pageName) function if it exists
+  // (defined in js/interactive-elements.js, loaded via <script> in app.html)
+  function initInteractiveElements(pageName) {
+    if (typeof window.initInteractiveForPage === 'function') {
+      try { window.initInteractiveForPage(pageName); }
+      catch(e) { console.warn('Interactive elements init error:', e); }
+    }
+  }
+
+  // === Notion Enhancements ===
+  // Calls NotionClient.enhancePage if authenticated
+  function initNotionEnhancements(pageName) {
+    if (typeof window.NotionClient === 'object' && window.NotionClient.isAuthenticated) {
+      try { window.NotionClient.enhancePage(pageName, contentArea); }
+      catch(e) { console.warn('Notion enhancement error:', e); }
     }
   }
 

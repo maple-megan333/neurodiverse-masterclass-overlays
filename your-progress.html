@@ -12,6 +12,8 @@
 
 </head>
 <body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
@@ -27,12 +29,16 @@
     </div>
   </div>
 </div>
-    <div class="page-wrapper">
-        <nav class="nav-bar">
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
+            <span class="phase-indicator" aria-label="Resources"><span class="phase-num">Resources</span></span>
         </nav>
 <div class="callout callout-purple"><span class="callout-icon">📊</span><div class="callout-title">What this is</div><div>Your personal dashboard for everything you build in this MasterClass. Five databases track your journey — lessons completed, prompts saved, tools configured, things you've made, and workflows you can repeat.</div></div>
 
+<div class="callout callout-yellow"><span class="callout-icon">👀</span><div class="callout-title">What you're seeing right now</div><div>The dashboard below shows the <strong>structure</strong> of your progress system. Once you <a href="connect-ai.html">connect your AI to Notion</a>, your real data populates here automatically — lessons completed, prompts saved, tools configured.</div></div>
+
+<div data-notion-progress></div>
 <h2>Your 5 Databases</h2>
 <div class="columns columns-5">
 <div><div class="callout callout-green"><span class="callout-icon">📚</span><div class="callout-title">Lessons</div><div>Track module progress</div></div></div>
@@ -54,7 +60,7 @@
 
 <div class="callout callout-yellow"><span class="callout-icon">🏆</span><div class="callout-title">What counts as done?</div><div>A lesson is "done" when you've used the thing it taught you at least once in real life. Not when you've read it. Not when you've saved the prompt. When you've actually done the thing.</div></div>
 
-        <nav class="nav-footer">
+        <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="emergency-toolkit.html" class="nav-link prev"><small>← Previous</small>Emergency Toolkit</a>
             <span></span>
         </nav>
