@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "neurodiverse-masterclass",
+  "version": "1.0.0",
+  "description": "Neurodiverse AI MasterClass — interactive workshop with Notion integration",
+  "dependencies": {
+    "@notionhq/client": "^2.2.0",
+    "cookie": "^0.6.0"
+  }
+}
