@@ -214,21 +214,17 @@
 <h3>Want more connections? Add these MCP servers</h3>
 <p>You can add more servers to the config file. Here are popular ones — just add them inside the <code>"mcpServers"</code> object, separated by commas:</p>
 
-<p><strong>Google Calendar:</strong></p>
-<pre><code>"google-calendar": {
+<p><strong>Filesystem (read/write local files):</strong></p>
+<pre><code>"filesystem": {
   "command": "npx",
-  "args": ["-y", "@anthropic-ai/mcp-server-google-calendar"]
+  "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/folder"]
 }</code></pre>
+<p>Replace <code>/path/to/folder</code> with the folder you want Claude to access. Most-installed MCP server in the ecosystem.</p>
 
-<p><strong>Web Search (Brave):</strong></p>
-<pre><code>"brave-search": {
-  "command": "npx",
-  "args": ["-y", "@anthropic-ai/mcp-server-brave-search"],
-  "env": {
-    "BRAVE_API_KEY": "YOUR_BRAVE_KEY"
-  }
-}</code></pre>
-<p>(Get a free Brave Search API key at <a href="https://brave.com/search/api/">brave.com/search/api</a>)</p>
+<p><strong>Web Search (via Exa, the recommended plugin):</strong></p>
+<p>Easiest path — install as a plugin instead of editing the config:</p>
+<pre><code>/plugin install exa@claude-plugins-official</code></pre>
+<p>(In Claude Code, type <code>/plugin install exa@claude-plugins-official</code> — OAuth setup is handled automatically.)</p>
 
 <p><strong>GitHub:</strong></p>
 <pre><code>"github": {
