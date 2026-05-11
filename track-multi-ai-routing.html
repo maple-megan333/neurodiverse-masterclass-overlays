@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switching Strategy + Voice Routing — Track A — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.step-list {
+  counter-reset: step-counter;
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+}
+.step-list > li {
+  counter-increment: step-counter;
+  position: relative;
+  padding: 0.6rem 0 0.6rem 2.4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.step-list > li:last-child { border-bottom: none; }
+.step-list > li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0; top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 50%;
+  width: 1.7rem; height: 1.7rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-list .step-tool {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--green-title);
+  margin-right: 0.5rem;
+}
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+}
+.compare-card h3 { margin-top: 0; }
+.compare-card ul { margin-top: 0.4rem; margin-bottom: 0.2rem; }
+.compare-card .head-row {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.5rem; margin-bottom: 0.5rem;
+}
+.compare-card .price-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+.day-block {
+  border-left: 3px solid var(--accent);
+  padding: 0.4rem 0 0.4rem 1rem;
+  margin-bottom: 0.9rem;
+}
+.day-block .day-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  margin-bottom: 0.2rem;
+  display: block;
+}
+.day-block.low { border-left-color: var(--green); }
+.day-block.low .day-label { color: var(--green-title); }
+.day-block.med { border-left-color: var(--blue); }
+.day-block.med .day-label { color: var(--blue-title); }
+.day-block.high { border-left-color: var(--red); }
+.day-block.high .day-label { color: var(--red-title); }
+.context-hl {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: rgba(168,85,247,0.10);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 3px;
+  padding: 1px 6px;
+  color: var(--text-accent);
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">DEEP DIVE 2</span>
+      <h1>Switching Strategy + Voice Routing</h1>
+      <p class="tagline">Move work between tools without losing context. Use voice when typing is the blocker.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track A</span> Multi-AI Mastery
+  </span>
+</nav>
+
+<h2>The Triple Stack workflow</h2>
+<p>The dominant pattern in 2026 is a three-stage chain: gather facts with citations, synthesize with a long-context model, shape the output. The trick is the handoff &mdash; pasting clean context between tools so you keep momentum and skip re-explaining yourself.</p>
+
+<div class="callout callout-purple">
+  <span class="callout-icon">&#128221;</span>
+  <div class="callout-title">Example: a competitor brief for a Monday meeting</div>
+  <ol class="step-list">
+    <li><span class="step-tool">Perplexity Pro</span>Ask: "What did [Competitor X] ship in the last 90 days? Include source links." Copy the citation list.</li>
+    <li><span class="step-tool">Claude Sonnet 4.6</span>Open a Project. Paste the Perplexity output plus past meeting notes. Ask: "Synthesize into a one-page brief in my voice with the three biggest roadmap implications." 1M context handles it in one shot.</li>
+    <li><span class="step-tool">ChatGPT (GPT-5.5)</span>Paste the Claude brief. Ask: "Turn this into a 5-slide outline with one image prompt per slide." Hand the prompts to GPT Image 2 or Midjourney V8.</li>
+  </ol>
+  <p style="margin-top: 0.8rem;">Total elapsed: ~25 minutes. Each tool spent its strength on the slice it does best.</p>
+</div>
+
+<div class="callout callout-yellow">
+  <span class="callout-icon">&#128279;</span>
+  <div class="callout-title">Context-passing tactic</div>
+  <div>Paste with a one-line header: <span class="context-hl">--- From Perplexity, 2026-05-05 ---</span>. Labeled context is treated more reliably than raw paste, and you can scroll back later to find where a claim came from.</div>
+</div>
+
+<h2>Voice routing for low-energy days</h2>
+<p>The hardest moments aren't the hard tasks &mdash; they're the days when typing itself is the wall. Voice mode is the workaround: you keep moving, the AI types. Two strong options as of mid-2026.</p>
+
+<div class="compare-grid">
+  <div class="compare-card">
+    <div class="head-row">
+      <h3 style="margin-bottom:0;">ChatGPT Advanced Voice</h3>
+      <span class="price-tag">Plus $20/mo</span>
+    </div>
+    <p style="font-size:0.9rem; color: var(--text-mid);">Real-time, interruptible voice with camera vision. Best for dictating a draft or asking it to "look at this" on your phone screen.</p>
+    <ul>
+      <li>Live, interruptible mid-sentence</li>
+      <li>Camera input lets it see what you're working on</li>
+      <li>Memory persists across sessions (review settings)</li>
+      <li>Best when you want real-time reactivity</li>
+    </ul>
+  </div>
+  <div class="compare-card">
+    <div class="head-row">
+      <h3 style="margin-bottom:0;">Claude Voice (beta)</h3>
+      <span class="price-tag">Free on all plans</span>
+    </div>
+    <p style="font-size:0.9rem; color: var(--text-mid);">Voice layer over Claude's longer reasoning. Continues a typed chat by voice or talks through a complex document already in context.</p>
+    <ul>
+      <li>Free on every plan, including no-cost accounts</li>
+      <li>Picks up existing chats &mdash; no re-explaining context</li>
+      <li>Better at long-form thinking out loud</li>
+      <li>Best when the task needs depth, not banter</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout callout-gray">
+  <span class="callout-icon">&#127911;</span>
+  <div class="callout-title">Lower-spoon option</div>
+  <div>If voice still feels like work, hand sources to NotebookLM and request an Audio Overview &mdash; a 12-minute conversational podcast instead of a 40-page PDF. That's matching the medium to your capacity, not procrastination.</div>
+</div>
+
+<h2>Long context = no prep tax</h2>
+<p>Before 1M-token context windows, working with a long document meant a chore-list before the real work: split the PDF, summarize chapters, paste the chunks. For ND brains, that prep often killed the task &mdash; 30-45 minutes of executive function spent before any thinking began.</p>
+
+<p>Gemini 2.5 Pro and Claude Opus 4.7 both handle 1M tokens. Gemini holds <strong>99.7% recall</strong> across the full window. Practical implication: load the whole research corpus, contract, or board pack in one paste and ask your real question first.</p>
+
+<div class="callout callout-purple">
+  <span class="callout-icon">&#127919;</span>
+  <div class="callout-title">The ND-specific win</div>
+  <div>The hidden cost of "summarize then think" workflows isn't time &mdash; it's the activation energy of the summarization step. Long context removes it. The task you'd avoided for two weeks becomes a 90-second paste. That shift &mdash; from "I need a clear afternoon" to "I can do this now" &mdash; is the single biggest unlock in the 2026 tool stack.</div>
+</div>
+
+<h2>Decision fatigue mitigation</h2>
+<p>Multi-AI mastery without guardrails can flip into the opposite problem: ten open tabs, three half-finished prompts, and no completed work. The research is clear on the cap.</p>
+
+<ul>
+  <li><strong>Cap daily tool switching at three.</strong> The Triple Stack covers ~90% of professional workflows. Past three tools per day, interface-switching overhead compounds and marginal value drops fast.</li>
+  <li><strong>Goblin Tools (free) before a big AI session.</strong> Magic ToDo breaks a vague intent into ND-readable subtasks. 60 seconds there and the prompt you arrive with is dramatically cleaner.</li>
+  <li><strong>Automation as cognitive load reduction.</strong> An n8n or Zapier workflow that auto-routes "inbox &rarr; Notion" or "research alert &rarr; Perplexity &rarr; Claude" eliminates the recurring "when do I do this?" decision. One afternoon of setup, months of unmade decisions.</li>
+  <li><strong>Pre-decide your defaults.</strong> Write down "When I need X, I open Y." Tape it to your monitor. Skip the meta-decision on days when picking the tool is the hardest part.</li>
+</ul>
+
+<h2>Putting it all together &mdash; a sample week</h2>
+<p>One week of routing the Triple Stack against energy state. Capacity rarely runs flat across five days; the tool stack can track that.</p>
+
+<div class="day-block high">
+  <span class="day-label">Monday &middot; High energy</span>
+  <p style="font-size:0.92rem; margin-bottom:0.2rem;">Triple Stack on a new initiative. Build the n8n workflow you've been putting off. Spend the setup energy that compounds later in the week.</p>
+</div>
+
+<div class="day-block med">
+  <span class="day-label">Tuesday &middot; Medium energy</span>
+  <p style="font-size:0.92rem; margin-bottom:0.2rem;">Email and short-form in ChatGPT. One Cursor 3 session for small code tasks. Skip new tool exploration today.</p>
+</div>
+
+<div class="day-block low">
+  <span class="day-label">Wednesday &middot; Low energy</span>
+  <p style="font-size:0.92rem; margin-bottom:0.2rem;">Claude Voice for the document you've been avoiding. NotebookLM Audio Overview during a walk for unread research. Output is real even when typing isn't.</p>
+</div>
+
+<div class="day-block med">
+  <span class="day-label">Thursday &middot; Medium energy</span>
+  <p style="font-size:0.92rem; margin-bottom:0.2rem;">Gemini 2.5 Pro on the long PDF you couldn't face Monday &mdash; ask the real question first, no chunking. One ChatGPT pass for output polish.</p>
+</div>
+
+<div class="day-block high">
+  <span class="day-label">Friday &middot; High or low (swap accordingly)</span>
+  <p style="font-size:0.92rem; margin-bottom:0.2rem;">Triple Stack on the week's biggest deliverable. Or, if Friday is your crash day, Claude Voice plus a 10-minute "next week's defaults" pre-decide session.</p>
+</div>
+
+<div class="callout">
+  <span class="callout-icon">&#128640;</span>
+  <div class="callout-title">One small move</div>
+  <div>Pick one low-energy task. Open Claude Voice or ChatGPT Advanced Voice. Talk for five minutes. Voice routing turns "can't" into "started" without spending the typing budget you don't have today.</div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-multi-ai-matrix.html" class="nav-link prev"><small>&larr; Previous</small>Tool Matrix &mdash; 21 Tasks</a>
+  <a href="track-plugins.html" class="nav-link next"><small>Next &rarr;</small>Track B &mdash; Plugins &amp; MCP</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plugins, MCP &amp; Agents — Track B — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.vocab-table th { background: rgba(168,85,247,0.08); color: var(--text-accent); }
+.vocab-table td { vertical-align: top; }
+.vocab-table td:first-child { white-space: nowrap; }
+.vocab-name {
+  font-family: var(--font-display); font-weight: 700;
+  color: var(--text);
+}
+.workflow-flow {
+  display: grid; grid-template-columns: 1fr; gap: 0.5rem;
+  margin: 1rem 0;
+}
+.flow-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.92rem;
+}
+.flow-step .role {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-accent);
+  text-transform: uppercase;
+}
+.flow-arrow {
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+.pattern-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.9rem;
+}
+.pattern-block h3 {
+  margin-top: 0; margin-bottom: 0.4rem;
+  font-size: 1rem;
+  display: flex; align-items: baseline; gap: 0.5rem;
+}
+.pattern-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.08em;
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.3);
+  color: var(--text-accent);
+  padding: 1px 7px; border-radius: 3px;
+}
+.pattern-block .when { font-size: 0.82rem; color: var(--text-dim); margin-top: 0.5rem; font-style: italic; }
+.starter-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+}
+.starter-card h3 { margin-top: 0; font-size: 1rem; }
+.starter-card .why { font-size: 0.85rem; color: var(--text-mid); margin: 0.4rem 0 0.5rem; }
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK B &middot; PLUGINS &amp; MCP</span>
+      <h1>Plugins, MCP &amp; Agents</h1>
+      <p class="tagline">Skills teach. MCP connects. Agents execute. Plugins distribute.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track B</span> Plugins, MCP &amp; Agents
+  </span>
+</nav>
+
+<h2>What this track teaches</h2>
+<div class="callout callout-purple">
+  <span class="callout-icon">&#129504;</span>
+  <div class="callout-title">The premise</div>
+  <div>Four small words run the whole Claude Code ecosystem &mdash; <strong>Skills</strong>, <strong>Plugins</strong>, <strong>MCP servers</strong>, <strong>Subagents</strong>. They sound similar, they get used interchangeably online, and most people pick the wrong one for the job. This track gives you a clean mental model, a curated short-list of what to install first, and a five-pattern guide for building your own when nothing off-the-shelf fits.</div>
+</div>
+
+<h2>The 4-term vocabulary</h2>
+<p>Memorize this table once, then never confuse the four again. Each one has a specific job; you pick the one that matches the job, not whichever name sounds coolest.</p>
+
+<table class="vocab-table">
+<caption>The 4 Terms &mdash; What Each One Actually Is</caption>
+<tr><th>Term</th><th>What it is</th><th>Where it lives</th><th>How it loads</th></tr>
+<tr>
+  <td><span class="vocab-name">Skill</span></td>
+  <td>A folder with <code>SKILL.md</code> + frontmatter. Encodes procedural knowledge &mdash; how to handle a class of task.</td>
+  <td><code>~/.claude/skills/</code> or project <code>.claude/skills/</code></td>
+  <td>30&ndash;50 tokens of metadata sit in context until the frontmatter <code>description</code> matches the request.</td>
+</tr>
+<tr>
+  <td><span class="vocab-name">Plugin</span></td>
+  <td>The distribution format. One plugin can bundle multiple skills, MCP servers, agents, and hooks.</td>
+  <td><code>claude-plugins-official</code> marketplace plus community sources</td>
+  <td><code>/plugin install name@source</code></td>
+</tr>
+<tr>
+  <td><span class="vocab-name">MCP server</span></td>
+  <td>External connectivity &mdash; live access to GitHub, Postgres, Notion, a browser, etc.</td>
+  <td><code>~/.mcp.json</code> or project <code>.mcp.json</code></td>
+  <td>Separate process. Its tool schemas load into context when the server is registered.</td>
+</tr>
+<tr>
+  <td><span class="vocab-name">Subagent</span></td>
+  <td>An isolated context window with a custom system prompt and a scoped tools list.</td>
+  <td><code>~/.claude/agents/</code></td>
+  <td>Spawned via the Task tool. Can route to a cheaper model.</td>
+</tr>
+</table>
+
+<div class="callout callout-blue">
+  <span class="callout-icon">&#128161;</span>
+  <div class="callout-title">One-sentence relationship</div>
+  <div>Plugins <strong>distribute</strong> Skills. Skills <strong>add expertise</strong>. MCP servers <strong>add access</strong>. Subagents <strong>add execution capacity</strong> without polluting the main context.</div>
+</div>
+
+<h2>Real workflow example</h2>
+<p>"Research competitor pricing and update the Notion database with what I find." That one request quietly uses every term in the table:</p>
+
+<div class="workflow-flow">
+  <div class="flow-step"><span class="role">Skill</span><br><strong>deep-research</strong> &mdash; the methodology: parallel search, source triangulation, citation verification.</div>
+  <div class="flow-arrow">&darr;</div>
+  <div class="flow-step"><span class="role">MCP server</span><br><strong>@notionhq/notion-mcp-server</strong> &mdash; live write access to your Notion workspace.</div>
+  <div class="flow-arrow">&darr;</div>
+  <div class="flow-step"><span class="role">Subagent</span><br><strong>research-analyst</strong> &mdash; isolates the long research context so your main session stays clean.</div>
+  <div class="flow-arrow">&darr;</div>
+  <div class="flow-step"><span class="role">Plugin</span><br><strong>Notion@claude-plugins-official</strong> &mdash; the one-line install that brings the MCP server and several Notion skills along together.</div>
+</div>
+
+<p>You don't have to name any of this when you ask. Claude picks up the skill from the description match, the MCP server is registered once and stays available, and the subagent only spawns when the task is long enough to need it. The vocabulary helps you build, not chat.</p>
+
+<h2>5 install patterns</h2>
+<p>Every install method you'll see in the wild reduces to one of these five. Read the SKILL.md before you run any of them &mdash; treat skills like VS Code extensions, not magic.</p>
+
+<div class="pattern-block">
+<h3><span class="pattern-num">01</span> Official marketplace (canonical)</h3>
+<pre><code>/plugin install Notion@claude-plugins-official</code></pre>
+<div class="when">Use when: the plugin exists in Anthropic's official marketplace. Lowest review burden.</div>
+</div>
+
+<div class="pattern-block">
+<h3><span class="pattern-num">02</span> Git clone (community skills)</h3>
+<pre><code>git clone https://github.com/user/repo ~/.claude/skills/name</code></pre>
+<div class="when">Use when: it's a community skill not yet in any marketplace. Open the repo. Read SKILL.md first.</div>
+</div>
+
+<div class="pattern-block">
+<h3><span class="pattern-num">03</span> openskills (cross-agent)</h3>
+<pre><code>npx openskills install anthropics/skills</code></pre>
+<div class="when">Use when: you want the same skill to work in Claude Code, Cursor, and Codex.</div>
+</div>
+
+<div class="pattern-block">
+<h3><span class="pattern-num">04</span> CCPM (third-party marketplace)</h3>
+<pre><code>npx @daymade/ccpm install &lt;skill-name&gt;</code></pre>
+<div class="when">Use when: browsing the 232+ skill CCPM directory for something specific.</div>
+</div>
+
+<div class="pattern-block">
+<h3><span class="pattern-num">05</span> ccpi (largest registry)</h3>
+<pre><code>npx ccpi install &lt;plugin&gt;</code></pre>
+<div class="when">Use when: you've already vetted a plugin from the 425-plugin / 2810-skill ccpi index. Variable quality &mdash; review carefully.</div>
+</div>
+
+<p>MCP server registration is separate from any of the above &mdash; it edits <code>~/.mcp.json</code>:</p>
+
+<pre><code>{ "mcpServers": { "github": { "command": "npx", "args": ["-y", "@github/mcp-server"] } } }</code></pre>
+
+<h2>Security baseline</h2>
+<div class="callout callout-red">
+  <span class="callout-icon">&#128737;</span>
+  <div class="callout-title">Read this before installing anything</div>
+  <div>
+    <p>Skills run with your shell permissions. MCP servers run as long-lived processes with whatever credentials you hand them. Cato Networks 2025 research confirmed that malicious skills can ship through these channels disguised as productivity tools.</p>
+    <ul>
+      <li>Open <code>SKILL.md</code> on GitHub before cloning. Read it. Look for "unrestricted," "<code>--dangerously</code>," "sudo," or "automatically execute."</li>
+      <li>Inspect any <code>scripts/</code> directory. Never run a script you haven't read.</li>
+      <li>53% of MCP servers in 2026 use static API keys with no rotation. Treat MCP credentials like database passwords.</li>
+      <li>Three CVEs were filed against Anthropic's own Git MCP server in January 2026 (path traversal + file deletion). Official does not mean immune &mdash; only better-monitored.</li>
+      <li>When uncertain, run the <code>security-reviewer</code> skill against the candidate &mdash; it exists for exactly this.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>What to install first</h2>
+<p>Three starters that pay back immediately. Skip the rest until you have a real need.</p>
+
+<div class="columns columns-3">
+  <div class="starter-card">
+    <h3>1. The Notion plugin</h3>
+    <div class="why">Live read/write to your second brain. Pairs with <code>notion-knowledge-capture</code> and <code>notion-spec-to-implementation</code> for a complete workflow.</div>
+    <pre><code>/plugin install Notion@claude-plugins-official</code></pre>
+  </div>
+  <div class="starter-card">
+    <h3>2. The Filesystem MCP</h3>
+    <div class="why">Path-restricted local file access for Claude Code &mdash; safer than running everything through Bash. Most-installed MCP server of 2026.</div>
+    <pre><code>npx -y @modelcontextprotocol/server-filesystem ~/workspace</code></pre>
+  </div>
+  <div class="starter-card">
+    <h3>3. The superpowers plugin</h3>
+    <div class="why">Brainstorming, plan writing, TDD, verification &mdash; the most-installed Claude skills framework. Forces structure before output.</div>
+    <pre><code>/plugin install superpowers@claude-plugins-official</code></pre>
+  </div>
+</div>
+
+<h2>Where to go next</h2>
+<div class="columns columns-2">
+  <div class="starter-card" style="border-left-color: var(--blue);">
+    <span class="strength" style="color:var(--blue-title);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;">Deep Dive 1</span>
+    <h3><a href="track-plugins-best.html" style="color:var(--text);">Best in Class &mdash; 20 MCP Servers &amp; 15 Plugins &rarr;</a></h3>
+    <div class="why">The curated short-list, organized by use case. Filesystem, databases, code, web, communication, monitoring. Plus auth patterns and the gaps in most setups.</div>
+  </div>
+  <div class="starter-card" style="border-left-color: var(--gold);">
+    <span class="strength" style="color:var(--gold);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;">Deep Dive 2</span>
+    <h3><a href="track-plugins-build.html" style="color:var(--text);">Build Your Own + Wire In Local Ollama &rarr;</a></h3>
+    <div class="why">Five build patterns from a 30-minute skill to a standalone Agent SDK process. Plus when to wire a local Ollama model into the loop for cost and privacy.</div>
+  </div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-multi-ai-routing.html" class="nav-link prev"><small>&larr; Previous</small>Multi-AI Routing</a>
+  <a href="track-plugins-best.html" class="nav-link next"><small>Next &rarr;</small>Best in Class &mdash; Deep Dive 1</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

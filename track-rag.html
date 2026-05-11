@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track C — RAG &amp; Knowledge — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.layer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+@media (max-width: 800px) { .layer-grid { grid-template-columns: 1fr; } }
+.layer-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  position: relative;
+}
+.layer-card.l1 { border-top: 3px solid var(--green-title); }
+.layer-card.l2 { border-top: 3px solid var(--blue-title); }
+.layer-card.l3 { border-top: 3px solid var(--accent); }
+.layer-badge {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.15rem 0.55rem; border-radius: 100px;
+  margin-bottom: 0.5rem;
+}
+.layer-card.l1 .layer-badge { background: rgba(52,211,153,0.15); color: var(--green-title); }
+.layer-card.l2 .layer-badge { background: rgba(96,165,250,0.15); color: var(--blue-title); }
+.layer-card.l3 .layer-badge { background: rgba(168,85,247,0.15); color: var(--text-accent); }
+.layer-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 700;
+  margin: 0 0 0.4rem; color: var(--text);
+}
+.layer-card p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.55; margin: 0 0 0.5rem; }
+.layer-card ul { font-size: 0.85rem; color: var(--text-mid); padding-left: 1.1rem; margin: 0; line-height: 1.55; }
+.tree {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  color: var(--text-mid);
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+}
+.tree .branch { color: var(--text-accent); }
+.tree .ans { color: var(--green-title); font-weight: 600; }
+.start-list {
+  display: grid; gap: 0.6rem; margin: 1rem 0 1.25rem;
+}
+.start-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.7rem 0.95rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+@media (max-width: 600px) { .start-row { grid-template-columns: 1fr; gap: 0.25rem; } }
+.start-row .who { color: var(--text-mid); font-size: 0.92rem; }
+.start-row .pick { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+.start-row .pick .why { display: block; font-weight: 400; color: var(--text-dim); font-size: 0.82rem; margin-top: 0.15rem; }
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK C · RAG &amp; KNOWLEDGE</span>
+      <h1>RAG &amp; Knowledge</h1>
+      <p class="tagline">Make AI answer from YOUR documents, not just the internet.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+  <span class="phase-indicator phase-power" aria-label="Track C"><span class="phase-num">Track C · RAG &amp; Knowledge</span></span>
+</nav>
+
+<div class="callout callout-purple"><span class="callout-icon">🧠</span><div class="callout-title">What RAG is, in plain language</div><div>
+<p>Every AI tool you've used was trained on a snapshot of the internet. It knows nothing about <strong>your</strong> meeting notes, <strong>your</strong> Notion pages, <strong>your</strong> bookmarked PDFs, <strong>your</strong> medical records.</p>
+<p>RAG — Retrieval-Augmented Generation — fixes that. The AI searches <em>your</em> documents first, pulls the relevant passages, then answers from <em>those</em>. Same conversation interface, grounded in your actual life.</p>
+<p>The shorthand: <strong>"AI that answers from a folder you point it at."</strong></p>
+</div></div>
+
+<h2>The 3-layer model</h2>
+<p>Almost every RAG question collapses to: "How much building am I willing to do?" Three layers, each a real ceiling. Pick the lowest one that solves your problem.</p>
+
+<div class="layer-grid">
+  <div class="layer-card l1">
+    <span class="layer-badge">Layer 1 · no-code</span>
+    <h4>Drop docs into a chat tool</h4>
+    <p>Upload files into a Claude Project, NotebookLM, ChatGPT Project, Gemini Gem, or Perplexity Space. Tool handles everything else.</p>
+    <ul>
+      <li>Setup time: 5 minutes</li>
+      <li>Cost: $0–$25/mo</li>
+      <li>Fits: ~85% of personal use</li>
+    </ul>
+  </div>
+  <div class="layer-card l2">
+    <span class="layer-badge">Layer 2 · low-code</span>
+    <h4>Personal knowledge base</h4>
+    <p>Obsidian + Smart Connections, AnythingLLM + Ollama, Notion AI Q&amp;A, or Mem.ai. You manage a vault; the tool indexes it.</p>
+    <ul>
+      <li>Setup time: 1–2 hours</li>
+      <li>Cost: $0–$15/mo</li>
+      <li>Fits: 200+ docs, existing vault, privacy</li>
+    </ul>
+  </div>
+  <div class="layer-card l3">
+    <span class="layer-badge">Layer 3 · production</span>
+    <h4>Build your own pipeline</h4>
+    <p>Vector database (Chroma, Qdrant, pgvector, Pinecone) + embedding model + framework (LlamaIndex, LangChain). Code required.</p>
+    <ul>
+      <li>Setup time: days to weeks</li>
+      <li>Cost: $10–$2,000+/mo</li>
+      <li>Fits: building <em>for other people</em></li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout callout-yellow"><span class="callout-icon">⚠️</span><div class="callout-title">Most people who think they need Layer 3 actually need Layer 1 or 2</div><div>
+<p>Layer 3 is what tutorials, agency pitch decks, and breathless YouTube videos love to talk about. It's the most expensive option, the slowest to set up, and — for personal knowledge — almost always overkill.</p>
+<p>Layer 3 is correct when you're <strong>shipping a product that has to retrieve from your data for other people.</strong> If you're managing your own notes, files, or research, Layer 1 or 2 will outperform a homemade pipeline on cost, reliability, and time-to-first-useful-answer.</p>
+<p>Permission to start at Layer 1. You're not behind. You're being efficient.</p>
+</div></div>
+
+<h2>Decision tree</h2>
+<p>Follow it top-down. It takes about 30 seconds.</p>
+
+<pre class="tree"><code>Who uses this RAG system?
+├── <span class="branch">A team / other people</span>
+│   ├── Public app or product  &rarr; <span class="ans">Layer 3</span> (Qdrant + LlamaIndex)
+│   └── Internal team research  &rarr; <span class="ans">Perplexity Spaces</span> (Layer 1)
+│
+└── <span class="branch">Just me</span>
+    │
+    ├── How many docs?
+    │   │
+    │   ├── Fewer than ~200 documents
+    │   │   ├── Privacy critical (medical/legal/therapy)?
+    │   │   │   ├── Yes  &rarr; <span class="ans">AnythingLLM + Ollama</span> (local, Layer 2)
+    │   │   │   └── No   &rarr; <span class="ans">Claude Projects</span> (Layer 1 default)
+    │   │   │           or <span class="ans">NotebookLM</span> if you're an audio learner
+    │   │   │
+    │   │   └── Most beginners land here
+    │   │
+    │   └── 200+ documents OR existing vault
+    │       │
+    │       ├── Notes already in Obsidian   &rarr; <span class="ans">Obsidian + Smart Connections</span>
+    │       ├── Notes already in Notion     &rarr; <span class="ans">Notion AI Q&amp;A</span>
+    │       ├── Notes scattered as files    &rarr; <span class="ans">AnythingLLM + Ollama</span>
+    │       └── Notes in Google Drive       &rarr; <span class="ans">Gemini Gems</span> (live Drive sync)</code></pre>
+
+<h2>"Start here" defaults</h2>
+<p>If the tree felt like too many forks, here are five pre-decided answers. Pick the row that sounds most like you, install that tool, ignore the others for now.</p>
+
+<div class="start-list">
+  <div class="start-row">
+    <div class="who">Beginner, no strong preference yet</div>
+    <div class="pick">Claude Projects <span class="why">200K context, reasons across docs, custom instructions stick session-to-session</span></div>
+  </div>
+  <div class="start-row">
+    <div class="who">Auditory learner — reading PDFs is exhausting</div>
+    <div class="pick">NotebookLM <span class="why">Free. Audio Overviews turn your sources into a podcast you can walk to</span></div>
+  </div>
+  <div class="start-row">
+    <div class="who">Large note vault (200+) and privacy matters</div>
+    <div class="pick">Obsidian + Smart Connections <span class="why">786k+ downloads, on-device embeddings, nothing leaves your machine</span></div>
+  </div>
+  <div class="start-row">
+    <div class="who">Team doing research that needs the live web too</div>
+    <div class="pick">Perplexity Spaces <span class="why">Only tool combining private docs + web search natively</span></div>
+  </div>
+  <div class="start-row">
+    <div class="who">Sensitive material that absolutely must stay local</div>
+    <div class="pick">AnythingLLM + Ollama <span class="why">Network-isolatable, zero ongoing API cost, mixed-format support</span></div>
+  </div>
+</div>
+
+<h2>Privacy is the foundation</h2>
+
+<div class="callout callout-gray"><span class="callout-icon">🛡️</span><div class="callout-title">When local-only is non-negotiable</div><div>
+<p>Some content shouldn't touch a cloud provider's servers, full stop. The four big categories:</p>
+<ul>
+  <li><strong>Medical</strong> — diagnoses, lab results, therapy notes, prescription histories</li>
+  <li><strong>Legal</strong> — case files, contracts under negotiation, discovery materials, anything privileged</li>
+  <li><strong>Therapy / mental health</strong> — your own journal, processing notes, crisis-period writing</li>
+  <li><strong>Financial</strong> — tax records, investment specifics, anything with an account number</li>
+</ul>
+<p>For any of those, choose a tool from the local-only column:</p>
+<ul>
+  <li><strong>Obsidian + Smart Connections</strong> — on-device BGE-micro embeddings, no API key, no network call</li>
+  <li><strong>AnythingLLM + Ollama</strong> — desktop app, fully air-gappable, Rust-based audio transcription stays local</li>
+  <li><strong>Self-hosted Qdrant + local embedding model</strong> — Layer 3 option for technical users</li>
+</ul>
+<p>If a tool isn't on this list, assume the documents you upload may be used to train future models unless the vendor explicitly says otherwise in writing.</p>
+</div></div>
+
+<div class="callout callout-teal"><span class="callout-icon">💾</span><div class="callout-title">Save point</div><div>That's the map. The next two pages zoom in on each layer with concrete tool cards, comparison tables, and the spot-check method that tells you whether your RAG is actually working.</div></div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-plugins-build.html" class="nav-link prev"><small>← Previous</small>Track B: Plugins &amp; Build</a>
+  <a href="track-rag-projects.html" class="nav-link next"><small>Next →</small>Deep Dive: Layer 1 Tools</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best in Class &mdash; Plugins &amp; MCP &mdash; Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Reuses the skill-card pattern from skills-catalog.html */
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 0.9rem;
+  transition: border-color 0.2s var(--ease);
+}
+.skill-card:hover, .skill-card:focus-within { border-color: var(--border-hover); }
+.skill-card-head {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 0.5rem; margin-bottom: 0.35rem;
+}
+.skill-card-name {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.02rem;
+  color: var(--text); margin-right: 0.4rem;
+}
+.skill-tag {
+  font-size: 0.65rem; font-weight: 700;
+  padding: 0.15rem 0.55rem; border-radius: 100px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.tag-official { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
+.tag-community{ background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
+.tag-paid     { background: rgba(245,197,66,0.15); color: var(--gold); border: 1px solid rgba(245,197,66,0.3); }
+.tag-risk     { background: rgba(248,113,113,0.12); color: var(--red-title); border: 1px solid rgba(248,113,113,0.3); }
+.skill-desc { color: var(--text-mid); font-size: 0.92rem; line-height: 1.5; margin: 0.25rem 0 0.4rem; }
+.skill-install {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+  color: var(--text-mid);
+  display: block;
+  word-break: break-all;
+}
+.skill-install::before { content: '$ '; color: var(--text-accent); }
+.security-note {
+  font-size: 0.8rem;
+  color: var(--yellow-title);
+  margin-top: 0.4rem;
+  padding: 0.4rem 0.55rem;
+  background: rgba(217,119,6,0.06);
+  border-left: 2px solid var(--yellow-title);
+  border-radius: 2px;
+}
+.category-jump {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  padding: 0.5rem 0 1rem;
+}
+.category-jump a {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-accent);
+  padding: 0.4rem 0.85rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.15s var(--ease);
+}
+.category-jump a:hover, .category-jump a:focus-visible {
+  background: var(--accent-soft);
+  border-color: var(--accent-glow);
+}
+details.category {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  background: rgba(255,255,255,0.015);
+}
+details.category[open] { border-color: var(--border-hover); }
+details.category > summary {
+  padding: 0.85rem 1.2rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex; align-items: center; gap: 0.6rem;
+  list-style: none;
+}
+details.category > summary::-webkit-details-marker { display: none; }
+details.category > summary::after {
+  content: '+'; margin-left: auto;
+  color: var(--text-accent);
+  font-size: 1.4rem; line-height: 1;
+}
+details.category[open] > summary::after { content: '\2212'; }
+details.category > div { padding: 0 1.2rem 1.1rem; }
+.cat-count {
+  font-size: 0.7rem; font-weight: 600;
+  background: var(--accent-soft);
+  color: var(--text-accent);
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+}
+.auth-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  background: rgba(255,255,255,0.015);
+}
+.auth-pill {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+  background: rgba(168,85,247,0.15);
+  border: 1px solid rgba(168,85,247,0.3);
+  color: var(--text-accent);
+  white-space: nowrap;
+}
+.auth-row .body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.5; }
+.plugin-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.plugin-card h4 {
+  margin: 0 0 0.2rem;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  color: var(--text);
+}
+.plugin-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.45;
+}
+@media (max-width: 600px) {
+  .skill-card-head { flex-direction: column; align-items: flex-start; }
+  .auth-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK B &middot; PLUGINS &amp; MCP</span>
+      <h1>Best in Class</h1>
+      <p class="tagline">20 production-ready MCP servers + 15 plugins, organized by use case.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="track-plugins.html">&larr; Track B Overview</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track B</span> Plugins, MCP &amp; Agents
+  </span>
+</nav>
+
+<h2>How to read this</h2>
+<div class="callout callout-purple">
+  <span class="callout-icon">&#128218;</span>
+  <div class="callout-title">Curated, not exhaustive</div>
+  <div>The full registries hold thousands of options. This page is the short-list &mdash; servers and plugins that are actively maintained in 2026, have a real production track record, and pair well with the workflows in this MasterClass. <strong style="color:var(--green-title)">OFFICIAL</strong> means Anthropic-managed in <code>claude-plugins-official</code>. <strong style="color:var(--blue-title)">COMMUNITY</strong> means a vetted GitHub project. <strong style="color:var(--gold)">PAID</strong> flags servers that need a paid backing service. Read the security note on any card before installing.</div>
+</div>
+
+<h2>Top 20 MCP Servers</h2>
+<nav class="category-jump" aria-label="MCP categories">
+  <a href="#cat-fs">&#128193; Filesystem &amp; Local</a>
+  <a href="#cat-db">&#128202; Databases</a>
+  <a href="#cat-code">&#128187; Code &amp; Version Control</a>
+  <a href="#cat-web">&#127760; Web &amp; Search</a>
+  <a href="#cat-browser">&#129518; Browser</a>
+  <a href="#cat-comms">&#128172; Communication</a>
+  <a href="#cat-monitor">&#128200; Monitoring</a>
+  <a href="#cat-cloud">&#9729; Cloud</a>
+</nav>
+
+<details class="category" id="cat-fs" open>
+<summary>&#128193; Filesystem &amp; Local <span class="cat-count">2 servers</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">@modelcontextprotocol/server-filesystem</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">The most-installed MCP server of 2026. Gives Claude path-restricted read and write access to specific directories &mdash; safer than running everything through the Bash tool.</div>
+<code class="skill-install">npx -y @modelcontextprotocol/server-filesystem ~/workspace</code>
+<div class="security-note"><strong>Note:</strong> Args restrict access to the listed paths. Never pass the system root (<code>/</code>) or your home directory blindly.</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">desktop-commander</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-risk">&#9888; Higher risk</span>
+</div>
+<div class="skill-desc">Terminal access plus process management. Useful for system-level automation, but it can do anything your shell can.</div>
+<code class="skill-install">/plugin install desktop-commander@claude-plugins-official</code>
+<div class="security-note"><strong>Note:</strong> Run only on machines where you accept the same risk you'd accept giving an SSH session to a teammate. Not a starter install.</div>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-db">
+<summary>&#128202; Databases <span class="cat-count">4 servers</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">@modelcontextprotocol/server-postgres</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Natural-language SQL against a live Postgres database. Excellent for ad-hoc analysis without writing queries by hand.</div>
+<code class="skill-install">npx -y @modelcontextprotocol/server-postgres "postgresql://readonly:pw@host/db"</code>
+<div class="security-note"><strong>Rule:</strong> read-only connection string in production. Always. A typo in a generated query can wipe a table.</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">@notionhq/notion-mcp-server</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Full CRUD on the Notion API &mdash; pages, databases, comments, properties. The keystone of any second-brain workflow with Claude.</div>
+<code class="skill-install">/plugin install Notion@claude-plugins-official</code>
+<div class="security-note"><strong>Auth:</strong> Bearer token in an environment variable. Rotate the integration key if it ever ends up in a commit.</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">firebase</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Firestore document operations, Auth user management, and Cloud Function invocation. Pairs cleanly with the <code>app-prototyper</code> skill.</div>
+<code class="skill-install">/plugin install firebase@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">clickhouse</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">High-throughput analytics queries on ClickHouse. Use when you outgrow Postgres for event/log workloads.</div>
+<code class="skill-install">/plugin install clickhouse@claude-plugins-official</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-code">
+<summary>&#128187; Code &amp; Version Control <span class="cat-count">3 servers</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">github</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Issues, pull requests, Actions, repo metadata, code search. The single biggest productivity unlock for any codebase that lives on GitHub.</div>
+<code class="skill-install">/plugin install github@claude-plugins-official</code>
+<div class="security-note"><strong>Auth:</strong> OAuth flow handled by the plugin. Avoid passing a personal access token unless the org requires it.</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">gitlab</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">GitLab equivalent &mdash; issues, MRs, CI pipelines. Same surface area as the GitHub plugin for self-hosted or GitLab.com workflows.</div>
+<code class="skill-install">/plugin install gitlab@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">greptile</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">AI-powered codebase search optimized for large repos. Answers "where is this function called?" across hundreds of thousands of lines in seconds.</div>
+<code class="skill-install">/plugin install greptile@claude-plugins-official</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-web">
+<summary>&#127760; Web &amp; Search <span class="cat-count">3 servers</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">exa</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">AI-native web search with structured results &mdash; designed for LLMs to consume, not humans to skim. Pairs with the <code>deep-research</code> skill for citation-backed reports.</div>
+<code class="skill-install">/plugin install exa@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">firecrawl</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">Crawls a URL and returns clean Markdown or structured data. Handles JS-rendered pages and avoids the failure modes of raw Puppeteer scripts.</div>
+<code class="skill-install">/plugin install firecrawl@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">brightdata-plugin</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">Paid Google Search API with anti-bot defenses. The fallback when free APIs return rate-limited or stale data.</div>
+<code class="skill-install">/plugin install brightdata-plugin@claude-plugins-official</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-browser">
+<summary>&#129518; Browser Automation <span class="cat-count">1 server</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">playwright</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Browser automation done right: navigation, clicks, form fills, network capture, screenshots. Replaces the deprecated Puppeteer MCP, which collected two path-traversal CVEs in January 2026.</div>
+<code class="skill-install">/plugin install playwright@claude-plugins-official</code>
+<div class="security-note"><strong>Note:</strong> The newer Playwright MCP runs the browser in a sandboxed context by default. Prefer this over the legacy Puppeteer server.</div>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-comms">
+<summary>&#128172; Communication &amp; Productivity <span class="cat-count">3 servers</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">slack</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Channel and message API &mdash; post updates, search history, summarize threads. Pairs with the <code>slack:standup</code> command for async updates.</div>
+<code class="skill-install">/plugin install slack@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">circleback</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">Meeting transcripts, calendar context, and action items piped back into Claude. Useful when you'd rather not retell your own meetings.</div>
+<code class="skill-install">/plugin install circleback@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">discord</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Discord bridge with channel-level access control. Useful for community moderation or routing announcements from a workflow.</div>
+<code class="skill-install">/plugin install discord@claude-plugins-official</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-monitor">
+<summary>&#128200; Monitoring &amp; Analytics <span class="cat-count">2 servers</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">datadog</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">Logs, metrics, traces queried in natural language. Helpful for triaging incidents without context-switching to the Datadog UI.</div>
+<code class="skill-install">/plugin install datadog@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">amplitude</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">Product analytics &mdash; funnels, retention, segment behavior &mdash; queried conversationally. Saves a chart-building session per question.</div>
+<code class="skill-install">/plugin install amplitude@claude-plugins-official</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-cloud">
+<summary>&#9729; Cloud &amp; Specialty <span class="cat-count">2 servers</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">cloudflare</span>
+<span class="skill-tag tag-official">&#9989; Official</span>
+</div>
+<div class="skill-desc">Workers, Durable Objects, the Agents SDK. The fastest path from "I have a Claude workflow" to "I have a Claude workflow running on a global edge."</div>
+<code class="skill-install">/plugin install cloudflare@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">pixellab</span>
+<span class="skill-tag tag-community">&#127760; Community</span>
+<span class="skill-tag tag-paid">&#128176; Paid</span>
+</div>
+<div class="skill-desc">HTTP MCP for pixel art generation &mdash; character sprites, terrain tiles, animation frames. Useful for game and template projects.</div>
+<code class="skill-install"># Register HTTP MCP with Bearer token in headers (see PixelLab docs)</code>
+<div class="security-note"><strong>Auth:</strong> Bearer token managed by PixelLab itself. Treat the token like an API key &mdash; never commit it.</div>
+</div>
+
+</div>
+</details>
+
+<h2>Auth patterns</h2>
+<p>Three auth methods cover ~99% of the MCP servers in production. Knowing which one a server uses tells you what kind of secret to budget for.</p>
+
+<div class="auth-row">
+  <div><span class="auth-pill">Env var</span></div>
+  <div class="body"><strong>Used by ~79% of current servers.</strong> Stdio servers and most local servers. Set a secret in your shell, reference it as <code>${env:VAR}</code> in <code>.mcp.json</code>. Lowest setup cost; rotate manually when needed.</div>
+</div>
+
+<div class="auth-row">
+  <div><span class="auth-pill">OAuth 2.1</span></div>
+  <div class="body"><strong>Mandated by the 2026 MCP spec for remote servers.</strong> The plugin install flow handles the OAuth dance for you &mdash; you click "Allow," tokens land in the plugin's secure store, refresh happens silently. Best UX, but only available for HTTP / remote MCP.</div>
+</div>
+
+<div class="auth-row">
+  <div><span class="auth-pill">Bearer token</span></div>
+  <div class="body"><strong>Used by services that manage their own tokens.</strong> PixelLab, some custom internal MCPs. Token goes in the <code>Authorization</code> header. Treat like an API key &mdash; never commit, rotate on any leak.</div>
+</div>
+
+<h2>Top 15 Plugins for ND Work + Life</h2>
+<p>Plugins are easier to install than individual MCP servers and they bundle related skills. These are the ones that earn their place after a month of regular use.</p>
+
+<h3>&#129504; Focus &amp; Structure</h3>
+<div class="plugin-card">
+  <h4>feature-dev</h4>
+  <p>Guided feature development that anchors you in codebase context before generating code. Resists premature implementation.</p>
+</div>
+<div class="plugin-card">
+  <h4>code-review</h4>
+  <p>Specialized agents for PR review. Catches the things you'd miss at 4pm on a Friday.</p>
+</div>
+<div class="plugin-card">
+  <h4>claude-md-management</h4>
+  <p>Audits and improves <code>CLAUDE.md</code> files. Keeps the project memory file from drifting into stale instructions.</p>
+</div>
+
+<h3>&#127912; Creative</h3>
+<div class="plugin-card">
+  <h4>frontend-design</h4>
+  <p>Generates distinctive, production-grade frontend interfaces. Avoids the generic AI aesthetic that screams "vibe-coded."</p>
+</div>
+<div class="plugin-card">
+  <h4>figma</h4>
+  <p>Read and update Figma files from a conversation. Cuts the back-and-forth between design tool and code editor.</p>
+</div>
+<div class="plugin-card">
+  <h4>adobe-for-creativity</h4>
+  <p>Adobe Creative Cloud bridge &mdash; useful for asset workflows that still live in Adobe land.</p>
+</div>
+
+<h3>&#128218; Research</h3>
+<div class="plugin-card">
+  <h4>context7</h4>
+  <p>Fetches up-to-date library documentation on demand. Stops Claude from inventing API signatures from old training data.</p>
+</div>
+<div class="plugin-card">
+  <h4>exa</h4>
+  <p>Bundles the Exa MCP plus research-tuned skills. The full research stack in one install.</p>
+</div>
+<div class="plugin-card">
+  <h4>explanatory-output-style</h4>
+  <p>Forces Claude to explain its reasoning at each step. Excellent for teaching sessions or when you need to learn alongside the output.</p>
+</div>
+
+<h3>&#9881; Automation</h3>
+<div class="plugin-card">
+  <h4>agent-sdk-dev</h4>
+  <p>Scaffolds a new Agent SDK application end-to-end. The fastest way into standalone agent work.</p>
+</div>
+<div class="plugin-card">
+  <h4>playwright</h4>
+  <p>Bundles the Playwright MCP plus prompts for common automation tasks &mdash; smoke tests, scraping, visual diff.</p>
+</div>
+<div class="plugin-card">
+  <h4>hookify</h4>
+  <p>Build pre-tool, post-tool, and stop hooks from natural language. Easier than editing <code>settings.json</code> by hand.</p>
+</div>
+
+<h3>&#128172; Communication</h3>
+<div class="plugin-card">
+  <h4>slack</h4>
+  <p>Slack MCP plus four slash commands: <code>summarize-channel</code>, <code>find-discussions</code>, <code>standup</code>, <code>channel-digest</code>.</p>
+</div>
+<div class="plugin-card">
+  <h4>circleback</h4>
+  <p>Meeting intelligence into your conversation. Turns "what did we decide?" into a one-line answer.</p>
+</div>
+
+<h3>&#128640; Deployment</h3>
+<div class="plugin-card">
+  <h4>firebase</h4>
+  <p>Spin up a Firestore-backed app, manage hosting, deploy Functions &mdash; without leaving Claude Code.</p>
+</div>
+
+<h2>Gaps worth filling</h2>
+<div class="callout callout-yellow">
+  <span class="callout-icon">&#128269;</span>
+  <div class="callout-title">If you don't have these yet, consider them</div>
+  <div>
+    <ul>
+      <li><strong>GitHub MCP</strong> &mdash; most code workflows leak time on tab-switching to the GitHub UI. <code>github@claude-plugins-official</code> closes that loop.</li>
+      <li><strong>Exa</strong> &mdash; if you do research-heavy work and currently rely on raw WebFetch, Exa pays for itself in cleaner results within a week.</li>
+      <li><strong>Figma</strong> &mdash; for anyone whose work crosses into design files, the round-trip cost without a Figma plugin is real.</li>
+      <li><strong>explanatory-output-style</strong> &mdash; if it's installed but disabled in <code>settings.json</code>, re-enabling it for teaching or self-learning sessions is a free upgrade.</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Where to go next</h2>
+<div class="columns columns-2">
+  <div class="plugin-card" style="border-left-color: var(--gold);">
+    <h4 style="color:var(--gold);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-bottom:0.3rem;">Deep Dive 2</h4>
+    <p style="font-size:0.95rem;"><a href="track-plugins-build.html" style="color:var(--text);font-weight:600;">Build Your Own + Wire In Local Ollama &rarr;</a></p>
+    <p>Five build patterns from a 30-minute skill to a full Agent SDK process. Plus when wiring a local model into the loop actually saves money.</p>
+  </div>
+  <div class="plugin-card" style="border-left-color: var(--accent);">
+    <h4 style="color:var(--text-accent);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-bottom:0.3rem;">Companion</h4>
+    <p style="font-size:0.95rem;"><a href="skills-catalog.html" style="color:var(--text);font-weight:600;">Skills Catalog &rarr;</a></p>
+    <p>The wider library of skills curated for ND work and life. Energy-tagged, safety-reviewed, install-ready.</p>
+  </div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-plugins.html" class="nav-link prev"><small>&larr; Previous</small>Track B Overview</a>
+  <a href="track-plugins-build.html" class="nav-link next"><small>Next &rarr;</small>Build Your Own &mdash; Deep Dive 2</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

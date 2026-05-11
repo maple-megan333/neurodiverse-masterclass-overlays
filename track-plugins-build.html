@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Own &mdash; Plugins &amp; MCP &mdash; Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.pattern-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.pattern-card h3 {
+  margin-top: 0;
+  display: flex; align-items: baseline; gap: 0.55rem;
+  font-size: 1.08rem;
+}
+.pattern-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.08em;
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.3);
+  color: var(--text-accent);
+  padding: 1px 7px; border-radius: 3px;
+}
+.pattern-meta {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  font-size: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+.pattern-meta span {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 0.15rem 0.55rem;
+  color: var(--text-mid);
+}
+.pattern-card .summary {
+  color: var(--text-mid);
+  font-size: 0.93rem;
+  line-height: 1.55;
+  margin-bottom: 0.6rem;
+}
+.cost-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 110px;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  background: rgba(255,255,255,0.015);
+}
+.cost-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  text-align: center;
+}
+.tier-local  { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
+.tier-haiku  { background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
+.tier-sonnet { background: rgba(168,85,247,0.15); color: var(--text-accent); border: 1px solid rgba(168,85,247,0.3); }
+.tier-opus   { background: rgba(245,197,66,0.15); color: var(--gold); border: 1px solid rgba(245,197,66,0.3); }
+.cost-row .body { font-size: 0.9rem; color: var(--text-mid); line-height: 1.45; }
+.cost-row .price {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-align: right;
+}
+.example-card {
+  background: linear-gradient(135deg, rgba(168,85,247,0.06), rgba(245,197,66,0.04));
+  border: 1px solid var(--accent-glow);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  margin: 1rem 0;
+}
+.example-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+.example-stat {
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.9rem;
+}
+.example-stat .label {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.example-stat .val {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 0.2rem;
+}
+.example-stat .val.savings { color: var(--green-title); }
+.decision-table th { background: rgba(168,85,247,0.08); color: var(--text-accent); }
+.decision-table td:first-child { font-weight: 600; color: var(--text); }
+@media (max-width: 600px) {
+  .cost-row { grid-template-columns: 1fr; }
+  .cost-row .price { text-align: left; }
+  .example-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK B &middot; PLUGINS &amp; MCP</span>
+      <h1>Build Your Own</h1>
+      <p class="tagline">Five build patterns, simple to advanced &mdash; plus when to wire local Ollama in.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="track-plugins-best.html">&larr; Best in Class</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track B</span> Plugins, MCP &amp; Agents
+  </span>
+</nav>
+
+<h2>When to build vs install</h2>
+<div class="callout callout-purple">
+  <span class="callout-icon">&#128736;</span>
+  <div class="callout-title">The decision rule</div>
+  <div>Search the marketplaces first. If a vetted skill or plugin covers 80% of what you need, install it and adapt with a small <code>CLAUDE.md</code> instruction rather than building from scratch. Build your own when (a) the work involves private domain knowledge, (b) no community option exists or the quality is too uneven to trust, or (c) the workflow is yours and yours alone and you want one source of truth on disk. Building is faster than people think for Patterns 1 and 2, and dramatically slower for Pattern 5 &mdash; budget accordingly.</div>
+</div>
+
+<h2>Pattern 1: Simple Skill <span style="font-size:0.85rem;color:var(--text-dim);">(~30 min)</span></h2>
+<div class="pattern-card">
+  <h3><span class="pattern-num">01</span> Folder + SKILL.md with YAML frontmatter</h3>
+  <div class="pattern-meta"><span>No scripting</span><span>Auto-loads on description match</span><span>Easiest to share</span></div>
+  <div class="summary">The smallest unit of expertise. Claude reads the frontmatter <code>description</code>, decides whether to load the body, and applies the instructions when relevant. The whole "skill" is a Markdown file with a header &mdash; nothing else required.</div>
+<pre><code>---
+name: notion-content-brief
+description: Use when creating content for social posts, Substack, or template copy.
+---
+# Content Brief
+
+## Brand Voice Rules
+- Never use hollow affirmations
+- Lead with a specific insight or data point
+- Code blocks for any user-facing copy
+- ND-aware framing: energy levels, not pressure
+
+## Output Format
+1. One-line hook
+2. Three bullets of insight
+3. Single concrete next step
+</code></pre>
+</div>
+
+<h2>Pattern 2: Skill with Scripts</h2>
+<div class="pattern-card">
+  <h3><span class="pattern-num">02</span> SKILL.md + a scripts/ subdirectory</h3>
+  <div class="pattern-meta"><span>Local automation</span><span>Inherits shell permissions</span><span>Scope with allowed-tools</span></div>
+  <div class="summary">When the skill needs to actually run something &mdash; build a report, scrape a file, format an output &mdash; you drop scripts into a <code>scripts/</code> subdirectory and reference them from the body of <code>SKILL.md</code>. Scripts run with Claude Code's Bash permissions, which is the security caveat.</div>
+<pre><code>my-skill/
+├── SKILL.md           # references scripts/ by relative path
+└── scripts/
+    ├── fetch_data.py
+    └── format_report.sh</code></pre>
+<div class="callout callout-yellow" style="margin-top:0.7rem;">
+  <span class="callout-icon">&#9888;</span>
+  <div class="callout-title">Security caveat</div>
+  <div>Scripts execute with whatever permissions your shell has. When sharing the skill, scope it with <code>allowed-tools</code> in the frontmatter so collaborators don't accidentally hand it write access it doesn't need.</div>
+</div>
+</div>
+
+<h2>Pattern 3: Custom Subagent</h2>
+<div class="pattern-card">
+  <h3><span class="pattern-num">03</span> A file in ~/.claude/agents/</h3>
+  <div class="pattern-meta"><span>Isolated context</span><span>Cheaper model routing</span><span>Spawned via Task tool</span></div>
+  <div class="summary">A subagent runs in its own context window with its own system prompt and tools list. Useful for long-running specialist tasks where you don't want to pollute the main session. Routing to Haiku for routine work cuts costs significantly.</div>
+<pre><code>---
+name: template-qa-agent
+description: Runs QA on Notion templates before publishing.
+model: claude-haiku-4-5
+allowed-tools: Bash, Read, WebFetch
+---
+You are a quality assurance specialist for Notion templates.
+
+For each template:
+1. Verify all internal links resolve
+2. Check that callouts are color-consistent
+3. Validate that view filters return expected rows
+4. Flag any AI-tells in the user-facing copy
+5. Return a structured pass/fail report with line-level findings
+</code></pre>
+<p style="font-size:0.88rem;color:var(--text-mid);margin-top:0.7rem;">For inspiration, the <code>VoltAgent/awesome-claude-code-subagents</code> repo has 100+ specialized agents you can copy and adapt &mdash; reviewers, planners, debuggers, domain specialists.</p>
+</div>
+
+<h2>Pattern 4: Multi-Skill Plugin</h2>
+<div class="pattern-card">
+  <h3><span class="pattern-num">04</span> Plugin directory with skills, agents, and an MCP</h3>
+  <div class="pattern-meta"><span>Distribution format</span><span>Bundle anything</span><span>Publishable to marketplace</span></div>
+  <div class="summary">Once you have multiple skills that work together &mdash; plus maybe a custom agent and an MCP server &mdash; a plugin is the distribution wrapper. The structure is opinionated:</div>
+<pre><code>my-plugin/
+├── .claude-plugin/
+│   └── plugin.json          # name, version, components
+├── skills/
+│   ├── content-brief/SKILL.md
+│   └── template-qa/SKILL.md
+├── agents/
+│   └── reviewer.md
+└── mcp/
+    └── server.js            # optional inline MCP server
+</code></pre>
+<p style="font-size:0.88rem;color:var(--text-mid);margin-top:0.7rem;">Publish by opening a PR to <code>anthropics/claude-plugins-official</code>, or self-host as a Git URL plugin source for private use.</p>
+</div>
+
+<h2>Pattern 5: Standalone Agent (Agent SDK)</h2>
+<div class="pattern-card">
+  <h3><span class="pattern-num">05</span> Headless Claude Code loop in Python or TS</h3>
+  <div class="pattern-meta"><span>Production automation</span><span>Cron / monitor / pipeline</span><span>Highest setup cost</span></div>
+  <div class="summary">When you need an agent running on a schedule, in a CI pipeline, or as a background process, the Agent SDK gives you the same agent loop Claude Code itself uses &mdash; minus the interactive terminal. Outputs stream, tools work, you handle the orchestration.</div>
+<pre><code>import anthropic
+
+client = anthropic.Anthropic()
+
+with client.beta.claude_code.sessions.stream(
+    model="claude-opus-4-7",
+    system_prompt="You are a market research agent. Each morning you fetch the top "
+                  "competitor pricing changes, score them, and update the Notion DB.",
+    tools=[
+        {"type": "mcp", "server": "notion"},
+        {"type": "mcp", "server": "exa"},
+    ],
+) as stream:
+    for event in stream:
+        print(event)
+</code></pre>
+<p style="font-size:0.88rem;color:var(--text-mid);margin-top:0.7rem;">This is the same loop the Claude Code CLI runs &mdash; you drive it programmatically instead. Schedule with launchd, cron, or APScheduler depending on platform.</p>
+</div>
+
+<h2>Decision rules</h2>
+<table class="decision-table">
+<caption>Pick the right primitive for the situation</caption>
+<tr><th>Situation</th><th>Use</th><th>Why</th></tr>
+<tr><td>Teach a methodology or workflow</td><td>Skill</td><td>Procedural knowledge that loads on description match. Lowest token cost until invoked.</td></tr>
+<tr><td>Live access to an external service</td><td>MCP server</td><td>Real-time tool calls. Auth handled per server.</td></tr>
+<tr><td>Long task that would pollute main context</td><td>Subagent</td><td>Isolated context window. Routes to cheaper model.</td></tr>
+<tr><td>Autonomous background process</td><td>Agent SDK</td><td>Runs headless on a schedule. Owns its own loop.</td></tr>
+<tr><td>Distribute multiple skills + MCP together</td><td>Plugin</td><td>One install, everything wired up.</td></tr>
+<tr><td>Need expertise fast, no time to build</td><td>Marketplace plugin</td><td>Someone has likely solved it. Read the SKILL.md.</td></tr>
+</table>
+
+<div class="callout callout-blue">
+  <span class="callout-icon">&#128221;</span>
+  <div class="callout-title">Anthropic's official framing</div>
+  <div>"Skills add expertise any agent can apply; subagents run independently with context isolation." If you internalize that one line you'll pick correctly nearly every time.</div>
+</div>
+
+<hr>
+
+<h2>Hybrid Local + Cloud</h2>
+<p>The other half of "build your own" is deciding which model runs each piece. By mid-2026, the gap between local 7&ndash;14B models and cloud Sonnet has narrowed enough that routing the right work to a local Ollama instance is the single largest cost lever most heavy users have.</p>
+
+<h2>The 70/30 economic argument</h2>
+<p>Roughly 70&ndash;80% of production LLM queries don't actually need a frontier cloud model &mdash; classification, short-answer Q&amp;A, structured extraction, code completion, summarization. A well-routed hybrid offloads that majority to a local model at near-zero marginal cost and reserves cloud spend for the work that genuinely needs Sonnet or Opus.</p>
+
+<h3>Cost ladder</h3>
+
+<div class="cost-row">
+  <div><span class="cost-pill tier-local">Local</span></div>
+  <div class="body"><strong>Qwen3 8B / Llama 4 / gpt-oss-20b</strong> &mdash; classification, structured extraction, code completion, summarization, format conversion. Most tasks the average power user runs all day.</div>
+  <div class="price">$0 / token</div>
+</div>
+
+<div class="cost-row">
+  <div><span class="cost-pill tier-haiku">Haiku</span></div>
+  <div class="body"><strong>Claude Haiku 4.5</strong> &mdash; routine subagent work that needs strong instruction-following but not deep reasoning. Cheap enough to run at scale.</div>
+  <div class="price">$0.80 / $4 per M</div>
+</div>
+
+<div class="cost-row">
+  <div><span class="cost-pill tier-sonnet">Sonnet</span></div>
+  <div class="body"><strong>Claude Sonnet 4.6</strong> &mdash; the default workhorse for substantive coding, document work, and most agentic tasks. 200K+ context window.</div>
+  <div class="price">$3 / $15 per M</div>
+</div>
+
+<div class="cost-row">
+  <div><span class="cost-pill tier-opus">Opus</span></div>
+  <div class="body"><strong>Claude Opus 4.7</strong> &mdash; reserved for hard reasoning, architecture decisions, deep synthesis. Worth the spend when stakes justify it.</div>
+  <div class="price">$15 / $75 per M</div>
+</div>
+
+<h2>Cost comparison</h2>
+<div class="example-card">
+  <strong style="color:var(--text-accent);">Scenario:</strong> 1,000 messages/day power user.
+  <div class="example-row">
+    <div class="example-stat">
+      <div class="label">Pure Sonnet</div>
+      <div class="val">$234<span style="font-size:0.85rem;font-weight:400;color:var(--text-dim);">/mo</span></div>
+    </div>
+    <div class="example-stat">
+      <div class="label">70% local + 30% Sonnet</div>
+      <div class="val savings">$70<span style="font-size:0.85rem;font-weight:400;color:var(--text-dim);">/mo</span></div>
+    </div>
+  </div>
+  <p style="margin-top:0.7rem;font-size:0.9rem;color:var(--text-mid);">Adding Haiku-tier routing for the cloud half plus the batch-API discount drops the bill further to roughly <strong style="color:var(--green-title);">$25&ndash;$40/mo</strong>. Break-even versus pure Sonnet hits around 50M tokens/month of usage.</p>
+</div>
+
+<h2>Top local models in 2026</h2>
+<table>
+<caption>Best Local Models &mdash; Mid 2026</caption>
+<tr><th>Model</th><th>Best for</th><th>RAM</th><th>License</th></tr>
+<tr><td><strong>Qwen3 8B</strong></td><td>Coding, classification &mdash; starter recommendation</td><td>8 GB</td><td>Apache 2.0</td></tr>
+<tr><td><strong>Llama 4 Scout</strong> (MoE 17B/109B)</td><td>General reasoning at higher quality</td><td>24 GB+</td><td>Meta custom</td></tr>
+<tr><td><strong>gpt-oss 20b / 120b</strong></td><td>Reasoning, similar quality to o3-mini</td><td>16 GB / 80 GB GPU</td><td>Apache 2.0</td></tr>
+<tr><td><strong>DeepSeek V3.2 distills</strong> (7B/14B/32B)</td><td>Long-chain reasoning, math</td><td>8&ndash;32 GB</td><td>Open</td></tr>
+<tr><td><strong>Mistral NeMo 12B</strong></td><td>Long context (128K), European languages</td><td>16 GB GPU</td><td>Apache 2.0</td></tr>
+</table>
+
+<p style="font-size:0.9rem;color:var(--text-mid);">On Apple Silicon with 16 GB unified RAM you'll see 40&ndash;80 tokens/second on 7&ndash;8B models. M4 Pro with 24 GB pushes 35&ndash;55 tokens/second on 14&ndash;35B models. Memory bandwidth matters more than raw compute for LLM inference, which is why unified-memory Macs punch above their spec sheet here.</p>
+
+<h2>Wire Ollama into Claude Code</h2>
+<p>Two MCP servers connect Claude Code to a local Ollama runtime. Pick one based on what you want to do.</p>
+
+<h3>Option A: OllamaClaude (recommended for coding tasks)</h3>
+<p>String-based tools (<code>generate</code>, <code>explain</code>, <code>review</code>, <code>refactor</code>) plus file-aware variants that read files server-side. The vendor claims up to a 98.75% token reduction on file-heavy workflows, because Claude sends a path instead of the file contents.</p>
+
+<pre><code># Clone and install
+git clone https://github.com/Jadael/OllamaClaude
+cd OllamaClaude
+npm install
+
+# Pull a starter local model
+ollama pull qwen3:8b</code></pre>
+
+<p>Then add it to your Claude Code MCP config (<code>~/.claude.json</code>):</p>
+
+<pre><code>{
+  "mcpServers": {
+    "ollama": {
+      "command": "node",
+      "args": ["C:/full/path/to/OllamaClaude/index.js"]
+    }
+  }
+}</code></pre>
+
+<h3>Option B: rawveg/ollama-mcp</h3>
+<p>Exposes the full Ollama SDK as 14 MCP tools &mdash; pull models, list models, generate, embed, stream, manage. Better when you're building pipelines that need to manage Ollama itself, not only call it.</p>
+
+<pre><code># OpenAI-compatible API is already running at localhost:11434
+# No API key needed for local use
+curl http://localhost:11434/api/tags</code></pre>
+
+<p>The Ollama API is OpenAI-compatible, so if you're writing your own agent code you can swap <code>base_url</code> in the OpenAI SDK and aim it at localhost:</p>
+
+<pre><code>from openai import OpenAI
+
+local = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
+response = local.chat.completions.create(
+    model="qwen3:8b",
+    messages=[{"role": "user", "content": "Summarize this in 3 bullets..."}],
+)</code></pre>
+
+<h2>When NOT to bother</h2>
+<div class="callout callout-red">
+  <span class="callout-icon">&#129325;</span>
+  <div class="callout-title">Honest caveats</div>
+  <div>
+    <p>Local-cloud hybrid is genuinely worth it for the right user. It's a waste of time for the wrong one. Skip the setup when:</p>
+    <ul>
+      <li><strong>You run fewer than ~50 messages a day.</strong> The savings won't cover the hardware time and maintenance attention.</li>
+      <li><strong>You don't have spare hardware.</strong> Running a local model on the same machine you're working on burns power and adds latency to everything else. A dedicated Mac Mini or workstation changes the calculus.</li>
+      <li><strong>Your work is reasoning-heavy.</strong> Architecture decisions, deep synthesis, complex agentic tasks &mdash; Qwen3 8B's HumanEval score is 76 versus Sonnet's high-80s-to-90s. The capability ceiling is real.</li>
+      <li><strong>You'd be swapping for a nano-tier model anyway.</strong> Cloud nano tiers (~$0.20 per million tokens) almost never break even against the hardware-time cost of running locally.</li>
+      <li><strong>You haven't audited which tasks would actually route local.</strong> Build the cost model first. Many people assume their cloud spend is wasteful and discover most of it was already going to genuinely Sonnet-worthy work.</li>
+    </ul>
+    <p>Privacy and offline capability are the strongest non-cost arguments. If GDPR or HIPAA structure matters to your workflow, or you spend real time on airplanes and hotel wifi, local is worth setting up even when the dollar math is close.</p>
+  </div>
+</div>
+
+<h2>You finished Track B</h2>
+<div class="callout callout-green">
+  <span class="callout-icon">&#127881;</span>
+  <div class="callout-title">What you have now</div>
+  <div>A clean mental model of the four primitives, a curated short-list of what to install first, five patterns for building your own, and the math on when to wire in a local model. The next track moves into Retrieval-Augmented Generation &mdash; how to ground any of this in your own documents and data.</div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-plugins-best.html" class="nav-link prev"><small>&larr; Previous</small>Best in Class &mdash; Deep Dive 1</a>
+  <a href="track-rag.html" class="nav-link next"><small>Next &rarr;</small>Track C &mdash; RAG &amp; Knowledge</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

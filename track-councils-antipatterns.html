@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anti-Patterns &amp; When Single-Agent Wins — Track D — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.anti-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 0.9rem;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.anti-card:hover { border-color: rgba(248,113,113,0.5); transform: translateY(-1px); }
+.anti-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.55rem;
+  margin-bottom: 0.45rem;
+}
+.anti-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--red-title);
+  background: rgba(220,38,38,0.12);
+  border: 1px solid rgba(220,38,38,0.3);
+  border-radius: 3px;
+  padding: 2px 6px;
+}
+.anti-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.anti-card .body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.6; }
+.anti-card .body strong { color: var(--text); }
+.anti-card .tell {
+  margin-top: 0.5rem;
+  font-size: 0.83rem; color: var(--text-dim);
+  border-top: 1px dashed rgba(248,113,113,0.18);
+  padding-top: 0.5rem;
+}
+.anti-card .tell::before {
+  content: 'TELL: ';
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--red-title);
+}
+.win-row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.6rem;
+  background: rgba(5, 150, 105, 0.04);
+}
+.win-num {
+  font-family: var(--font-mono);
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--green-title);
+  text-align: center;
+  line-height: 1;
+  align-self: start;
+  padding-top: 0.15rem;
+}
+.win-row .body { font-size: 0.93rem; color: var(--text-mid); line-height: 1.55; }
+.win-row .body strong { color: var(--text); display: block; margin-bottom: 0.1rem; font-family: var(--font-display); font-size: 0.98rem; }
+.recap-card {
+  background: rgba(168, 85, 247, 0.05);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  margin: 1rem 0;
+}
+.recap-card h3 {
+  font-family: var(--font-display);
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-accent); margin-top: 0.35rem; margin-bottom: 0.4rem;
+}
+.recap-card .recap-block {
+  margin-bottom: 0.7rem;
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--accent);
+}
+.recap-card .recap-block.single-agent {
+  border-left-color: var(--green);
+}
+.recap-card .recap-block .body { font-size: 0.93rem; color: var(--text-mid); line-height: 1.55; }
+.recap-card .recap-block .body strong { color: var(--text); }
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK D &middot; COUNCILS &amp; MULTI-AGENT</span>
+      <h1>Anti-Patterns &amp; When Single-Agent Wins</h1>
+      <p class="tagline">When multi-agent hurts. When a single agent wins. The ND-specific decision rule.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="track-councils-patterns.html">&larr; 6 Patterns</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track D</span> Councils &amp; Multi-Agent
+  </span>
+</nav>
+
+<h2>The core anti-pattern</h2>
+<div class="callout callout-red">
+  <span class="callout-icon">&#9888;&#65039;</span>
+  <div class="callout-title">The trap that catches everyone</div>
+  <div><strong>Treating architectural complexity as evidence of intellectual seriousness.</strong> More agents do not equal more thoroughness. More agents equal more token overhead, more coordination failure surface, more information degradation across handoffs, and more places for the synthesis step to silently drop signal. If your council is impressive to <em>describe</em> but the output is no better than one good prompt, you've built a status object, not a tool.</div>
+</div>
+
+<p>The six anti-patterns below are the concrete shapes this trap takes. If you spot one in your own setup, the fix is usually deletion, not refinement.</p>
+
+<h2>Six specific anti-patterns</h2>
+
+<article class="anti-card">
+  <div class="anti-head"><span class="anti-num">ANTI 01</span><span class="anti-name">Sequential pipelines mislabeled as parallel agents</span></div>
+  <div class="body"><strong>The shape.</strong> Five "agents" arranged so each waits for the previous one's output. The diagram looks like a swim-lane chart. The execution is sequential. You're paying multi-agent overhead for single-agent throughput because there is no parallelism to exploit.</div>
+  <div class="tell">The output of step 2 references the output of step 1. If B reads A, you have a workflow, not a council.</div>
+</article>
+
+<article class="anti-card">
+  <div class="anti-head"><span class="anti-num">ANTI 02</span><span class="anti-name">Coordinator agent that does nothing but route</span></div>
+  <div class="body"><strong>The shape.</strong> A "coordinator" agent that reads a request, picks one of three branches, and dispatches. The routing logic is a five-line <code>if/else</code>. You pay for an LLM call (and ~20K tokens of context-loading overhead) to do what one line of code could do deterministically.</div>
+  <div class="tell">The coordinator's prompt is a list of rules. If the rules are deterministic, the coordinator should be code.</div>
+</article>
+
+<article class="anti-card">
+  <div class="anti-head"><span class="anti-num">ANTI 03</span><span class="anti-name">Tiny tasks given to specialized agents</span></div>
+  <div class="body"><strong>The shape.</strong> Spinning up the accessibility-tester subagent to check one CSS rule. Spinning up the legal-advisor to read one sentence. The setup cost (system prompt, tool definitions, context window) dwarfs the actual work. It's hiring a consultant to check whether your front door is locked.</div>
+  <div class="tell">The agent's setup cost (in tokens) is more than 2&times; the work itself.</div>
+</article>
+
+<article class="anti-card">
+  <div class="anti-head"><span class="anti-num">ANTI 04</span><span class="anti-name">"Throw 10 agents at it" sprawl</span></div>
+  <div class="body"><strong>The shape.</strong> Enterprise deployments now average around 12 agents per workflow, and roughly half operate in isolation &mdash; firing off, returning output nobody synthesizes, and burning tokens in the background. Gartner projects <strong>more than 40% of agentic AI projects will be cancelled by 2027</strong>, largely because the costs outran the demonstrable value. ND users with high-energy enthusiasm are especially prone to this &mdash; designing the org chart is more dopaminergic than running it.</div>
+  <div class="tell">You can name your agents but you can't name what each one's last output changed.</div>
+</article>
+
+<article class="anti-card">
+  <div class="anti-head"><span class="anti-num">ANTI 05</span><span class="anti-name">AutoGPT-style infinite loops</span></div>
+  <div class="body"><strong>The shape.</strong> An agent given a goal but no explicit termination condition. It loops &mdash; plan, act, observe, plan, act, observe &mdash; chasing a vague success criterion forever, racking up tokens until you notice the bill. Every loop needs <strong>three</strong> explicit exits: a success state, a failure state, and a max-iterations cap. Missing any one of them turns an agent into a money pump.</div>
+  <div class="tell">You can't articulate, in one sentence, the condition that makes the agent stop.</div>
+</article>
+
+<article class="anti-card">
+  <div class="anti-head"><span class="anti-num">ANTI 06</span><span class="anti-name">Telephone-game pipelines</span></div>
+  <div class="body"><strong>The shape.</strong> Five or more sequential handoffs where each agent summarizes the previous output for the next. By step five the nuance is gone, the qualifiers are gone, the specific examples are gone, and the final agent is working from a sanitized blur. A single well-prompted agent reading the original source outperforms the entire chain.</div>
+  <div class="tell">When you read the final output, it doesn't reference any specific from the original input.</div>
+</article>
+
+<h2>When single-agent wins</h2>
+<div class="callout callout-blue">
+  <span class="callout-icon">&#127919;</span>
+  <div class="callout-title">Five conditions where one agent reliably beats a council</div>
+  <div>These are not edge cases. For an estimated 70% of real workloads, one of these conditions applies &mdash; which is why a single well-prompted agent delivers 90-95% of multi-agent outcomes at 30-40% of the cost.</div>
+</div>
+
+<div class="win-row">
+  <div class="win-num">01</div>
+  <div class="body"><strong>Sequential reasoning tasks</strong>Stanford research finds that single agents with adequate thinking budget match or outperform multi-agent setups on complex reasoning. When the work is "think hard about one thing," one chain-of-thought beats five summaries of five chains-of-thought.</div>
+</div>
+<div class="win-row">
+  <div class="win-num">02</div>
+  <div class="body"><strong>Exploratory, undefined problems</strong>You can only decompose what you understand. If the subtasks aren't yet clear, multi-agent has nothing to dispatch. Explore with one agent first, decompose later if the problem turns out to need it.</div>
+</div>
+<div class="win-row">
+  <div class="win-num">03</div>
+  <div class="body"><strong>Tasks under ~30 minutes of single-agent work</strong>Coordination overhead on a multi-agent setup is roughly fixed. On a short task, the overhead consumes the time saved &mdash; you end up slower than just doing the task with one agent.</div>
+</div>
+<div class="win-row">
+  <div class="win-num">04</div>
+  <div class="body"><strong>When auditability matters</strong>Multi-agent introduces opacity &mdash; you can read each agent's output but not why the synthesis weighted them the way it did. One agent's chain-of-thought is fully traceable. For decisions you may need to defend later, traceability beats parallelism.</div>
+</div>
+<div class="win-row">
+  <div class="win-num">05</div>
+  <div class="body"><strong>When you have no synthesis plan</strong>A multi-agent system is only as good as the step that combines the outputs. If you don't know how you'll synthesize before you dispatch, you're going to get five answers and choose the first one that looks confident &mdash; which is worse than asking one good question.</div>
+</div>
+
+<h2>The ND-specific decision rule</h2>
+<div class="callout callout-yellow">
+  <span class="callout-icon">&#129504;</span>
+  <div class="callout-title">Match agent complexity to decision stakes, NOT to task excitement</div>
+  <div>ADHD hyperfocus is biased toward whatever feels engaging to <em>design</em>, not whatever delivers the best output. Elaborate multi-agent setups feel engaging to design. The correct check is two diagnostic questions:
+    <ol style="margin-top:0.5rem;">
+      <li><strong>Does the output quality genuinely require this architecture?</strong> Would the result be measurably worse with one well-prompted agent?</li>
+      <li><strong>Would I recognize a good 3-agent output vs. a good single-agent output on this specific task?</strong> If you can't tell the difference, you don't need the complexity &mdash; you're paying for invisible work.</li>
+    </ol>
+    If either answer is "no" or "I'm not sure," the right move is a single agent with a sharper system prompt. The architecture excitement is a tell &mdash; not a signal.</div>
+</div>
+
+<h2>The recap</h2>
+<div class="recap-card">
+  <div class="recap-block">
+    <h3>Reach for a council when&hellip;</h3>
+    <div class="body"><strong>Disagreement catches blind spots.</strong> You need adversarial review of a decision where you can't trust your own perspective &mdash; that's pattern 2 (Devil's Advocate) or pattern 3 (Pre-Mortem Council).<br><br><strong>Parallelism saves real time.</strong> You have four or more genuinely independent questions and decomposing them is cheaper than running them in sequence &mdash; that's pattern 4 (Parallel Research Dispatch).<br><br><strong>Deep specialization genuinely differs.</strong> Two domains would frame the same question incompatibly, and you need both frames &mdash; that's pattern 1 (Specialist Consultation), and occasionally pattern 5 (Review Board).</div>
+  </div>
+  <div class="recap-block single-agent">
+    <h3>Reach for a single agent for&hellip;</h3>
+    <div class="body"><strong>Everything else.</strong> With a strong system prompt, a clear output format, and a single named role, one agent handles the 70% of work that doesn't structurally need a council. The remaining 30% is where Track D earns its keep &mdash; and that's plenty.</div>
+  </div>
+</div>
+
+<div class="callout callout-purple">
+  <span class="callout-icon">&#128218;</span>
+  <div class="callout-title">If you take one thing from this track</div>
+  <div>Anthropic's primary design principle &mdash; <em>"prefer simplicity first"</em> &mdash; is the most important sentence in the entire multi-agent literature. The pattern that wins most often is the pattern with the fewest moving parts. The skill being practiced in Track D is restraint, not architecture.</div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-councils-patterns.html" class="nav-link prev"><small>&larr; Previous</small>6 Patterns &mdash; Deep Dive 1</a>
+  <a href="reference-library.html" class="nav-link next"><small>Next &rarr;</small>Reference Library</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Catalog — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Catalog-specific styles */
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s var(--ease);
+}
+.skill-card:hover, .skill-card:focus-within { border-color: var(--border-hover); }
+.skill-card-head {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 0.5rem; margin-bottom: 0.4rem;
+}
+.skill-card-name {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.05rem;
+  color: var(--text); margin-right: 0.5rem;
+}
+.skill-tag {
+  font-size: 0.65rem; font-weight: 700;
+  padding: 0.15rem 0.55rem; border-radius: 100px;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.tag-local    { background: rgba(168,85,247,0.15); color: var(--text-accent); border: 1px solid rgba(168,85,247,0.3); }
+.tag-community{ background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
+.tag-official { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
+.tag-bundled  { background: rgba(245,197,66,0.15); color: var(--gold); border: 1px solid rgba(245,197,66,0.3); }
+.tag-energy-low    { background: rgba(52,211,153,0.12); color: var(--green-title); }
+.tag-energy-medium { background: rgba(96,165,250,0.12); color: var(--blue-title); }
+.tag-energy-high   { background: rgba(248,113,113,0.12); color: var(--red-title); }
+.tag-nd { background: rgba(168,85,247,0.12); color: var(--text-accent); }
+.skill-desc { color: var(--text-mid); font-size: 0.92rem; line-height: 1.5; margin: 0.3rem 0 0.5rem; }
+.skill-trigger {
+  font-size: 0.8rem; color: var(--text-dim);
+  font-style: italic; margin-bottom: 0.5rem;
+}
+.skill-trigger::before { content: 'Use when: '; font-weight: 600; font-style: normal; color: var(--text-accent); }
+.skill-install {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+  color: var(--text-mid);
+  display: block;
+  word-break: break-all;
+  margin-top: 0.4rem;
+}
+.skill-install::before { content: '$ '; color: var(--text-accent); }
+.skill-link { color: var(--text-accent); text-decoration: none; font-size: 0.85rem; }
+.skill-link:hover { text-decoration: underline; }
+.category-jump {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  padding: 1rem 0; margin-bottom: 1rem;
+}
+.category-jump a {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-accent);
+  padding: 0.4rem 0.85rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.15s var(--ease);
+}
+.category-jump a:hover, .category-jump a:focus-visible {
+  background: var(--accent-soft);
+  border-color: var(--accent-glow);
+}
+details.category {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 1.25rem;
+  background: rgba(255,255,255,0.015);
+}
+details.category[open] { border-color: var(--border-hover); }
+details.category > summary {
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex; align-items: center; gap: 0.6rem;
+  list-style: none;
+}
+details.category > summary::-webkit-details-marker { display: none; }
+details.category > summary::after {
+  content: '+'; margin-left: auto;
+  color: var(--text-accent);
+  font-size: 1.4rem; line-height: 1;
+  transition: transform 0.2s var(--ease);
+}
+details.category[open] > summary::after { content: '−'; }
+details.category > div { padding: 0 1.25rem 1.25rem; }
+.cat-count {
+  font-size: 0.7rem; font-weight: 600;
+  background: var(--accent-soft);
+  color: var(--text-accent);
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+}
+@media (max-width: 600px) {
+  .skill-card-head { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">CATALOG</span>
+      <h1>Skills Catalog</h1>
+      <p class="tagline">A curated library of the best Claude skills for life and work.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="reference-library.html">&larr; Reference Library</a></div>
+  <span class="phase-indicator" aria-label="Resources"><span class="phase-num">Resources</span></span>
+</nav>
+
+<div class="callout callout-purple"><span class="callout-icon">🧠</span><div class="callout-title">What this is</div><div>A curated catalog of skills for Claude Code — pulled from your local library + the broader community, vetted for quality and security. Each entry shows what it does, when to reach for it, and how to install it.</div></div>
+
+<div class="callout callout-yellow"><span class="callout-icon">🏷️</span><div class="callout-title">Reading the tags</div><div>
+<strong style="color:var(--text-accent)">🏠 LOCAL</strong> — already installed on the user's machine (the workshop creator's library; you can copy any of these from the source path).<br>
+<strong style="color:var(--blue-title)">🌐 COMMUNITY</strong> — public GitHub skill, vetted and recommended.<br>
+<strong style="color:var(--green-title)">✅ OFFICIAL</strong> — Anthropic-maintained, security-reviewed.<br>
+<strong style="color:var(--gold)">📦 BUNDLED</strong> — shipped with this workshop, downloadable from the Reference Library.<br>
+<strong>🌱</strong> ND-friendly — energy-aware, scope-bounded, shame-language-free.<br>
+<strong style="color:var(--green-title)">Low</strong> / <strong style="color:var(--blue-title)">Medium</strong> / <strong style="color:var(--red-title)">High</strong> — energy needed to actually use the skill productively.
+</div></div>
+
+<div class="callout callout-purple"><span class="callout-icon">🚀</span><div class="callout-title">Looking for deeper context?</div><div>Skills are the atomic unit. For the full picture of how skills fit with plugins, MCP servers, and agents — and how to use multi-AI / RAG / councils — see the four <strong>Advanced Tracks</strong>:
+<ul style="margin:0.5rem 0 0 1rem;">
+<li><a href="track-multi-ai.html">Track A · Multi-AI Mastery</a> — when to use Claude vs ChatGPT vs Gemini vs others</li>
+<li><a href="track-plugins.html">Track B · Plugins, MCP &amp; Agents</a> — the 4-term vocabulary, top servers, build your own</li>
+<li><a href="track-rag.html">Track C · RAG &amp; Knowledge</a> — make AI answer from YOUR documents</li>
+<li><a href="track-councils.html">Track D · Councils &amp; Multi-Agent</a> — when multi-agent helps vs hurts</li>
+</ul>
+</div></div>
+
+<h2>Jump to a category</h2>
+<nav class="category-jump" aria-label="Skill categories">
+  <a href="#cat-life">🌿 Life Management</a>
+  <a href="#cat-work">💼 Work &amp; Productivity</a>
+  <a href="#cat-writing">✍️ Writing &amp; Content</a>
+  <a href="#cat-creative">🎨 Creative &amp; Design</a>
+  <a href="#cat-learning">🧠 Learning &amp; Research</a>
+  <a href="#cat-mental">💜 Mental Health &amp; ND</a>
+  <a href="#cat-comms">🤝 Communication</a>
+  <a href="#cat-privacy">🛡️ Privacy &amp; Security</a>
+  <a href="#cat-marketplaces">🏪 Marketplaces</a>
+  <a href="#cat-avoid">🚫 Skills to Avoid</a>
+</nav>
+
+<hr>
+
+<details class="category" id="cat-life" open>
+<summary>🌿 Life Management <span class="cat-count">10 skills</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">know-me</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Builds and maintains a persistent profile — your work style, values, goals, preferences — so every session gets more personalized over time. Conversational, never a form, asks 2-3 questions at a time.</div>
+<div class="skill-trigger">"Get to know me" / "Remember my preferences" / "What do you know about me?"</div>
+<code class="skill-install">~/.claude/skills/know-me/SKILL.md  &nbsp;# auto-loaded by Claude Code</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">collaborative-workspace</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Activates co-pilot mode — assembles relevant experts, maintains context, suggests help across any domain. Explains every decision so you stay in control.</div>
+<div class="skill-trigger">"Let's work on this together" / "I want collaborative support"</div>
+<code class="skill-install">~/.claude/skills/collaborative-workspace/SKILL.md  &nbsp;# invoke by name at session start</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">interior-design</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Room layout planning, color palettes, furniture sourcing, renovation planning — treats home design as a system with scoped decisions. Breaks overwhelming home decisions into manageable tasks.</div>
+<div class="skill-trigger">"Help me plan this room" / "What color palette works here?" / "I'm renovating my kitchen"</div>
+<code class="skill-install">~/.claude/skills/interior-design/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">notion-knowledge-capture</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Converts conversations or decisions into structured Notion pages — captures insights while context is fresh, formats appropriately, saves to the right location. Defeats the "I'll remember this later" trap.</div>
+<div class="skill-trigger">"Save this to Notion" / "Document what we just decided"</div>
+<code class="skill-install">~/.claude/skills/notion-knowledge-capture/SKILL.md  &nbsp;# requires Notion MCP</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">xlsx</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Creates, edits, and analyzes spreadsheets — budgets, trackers, financial models, data cleaning — with proper formulas and zero errors. You describe what you need; it handles the technical complexity.</div>
+<div class="skill-trigger">"Create a budget spreadsheet" / "Clean up this data" / "Build me a tracker for X"</div>
+<code class="skill-install">pip install openpyxl pandas  &nbsp;# then ~/.claude/skills/xlsx/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">pdf</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Creates PDFs, OCR text extraction, fills forms, converts documents — for applications, contracts, medical forms, household admin. Demystifies bureaucratic doc formats.</div>
+<div class="skill-trigger">"Create a PDF of" / "Extract text from this PDF" / "Fill out this form"</div>
+<code class="skill-install">pip install markitdown  &nbsp;# then ~/.claude/skills/pdf/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">financial-analyst</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Financial ratio analysis, budget variance, forecasting, plain-language explanation of numbers for personal or business decisions. Translates jargon, prevents overwhelm.</div>
+<div class="skill-trigger">"Analyze my budget" / "Build a financial forecast" / "Explain these numbers to me"</div>
+<code class="skill-install">~/.claude/skills/finance/financial-analyst/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">invoice-organizer</span>
+<a href="https://github.com/ComposioHQ/awesome-claude-skills/blob/master/invoice-organizer/SKILL.md" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Reads invoices and receipts, extracts data, renames files consistently for tax prep, categorizes by vendor/date/amount. Removes the cognitive load of manual file organization during tax season.</div>
+<div class="skill-trigger">"Organize my invoices" / "Tag these receipts" / "Help me prep for taxes"</div>
+<code class="skill-install">git clone https://github.com/ComposioHQ/awesome-claude-skills && cp -r awesome-claude-skills/invoice-organizer ~/.claude/skills/</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">ravila4/claude-adhd-skills</span>
+<a href="https://github.com/ravila4/claude-adhd-skills" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Conversational daily journal that asks about your day instead of generating reports, writes entries to Obsidian, and fires time-based nudge reminders ("+30m" or "23:00" syntax). Built specifically for ND time blindness.</div>
+<div class="skill-trigger">"Start my journal" / "Set a nudge in 30 minutes" / "What did I do today?"</div>
+<code class="skill-install">git clone https://github.com/ravila4/claude-adhd-skills ~/.claude/skills/claude-adhd-skills</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">openclaw — adhd-daily-planner</span>
+<a href="https://github.com/openclaw/skills" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">ADHD-specific daily planning with time-blind-friendly blocks, executive function scaffolding, dopamine-aware task design, emergency brain-dump protocol, and priority winnowing. Bridges "I have tasks" → "I can start tasks."</div>
+<div class="skill-trigger">"Plan my day" / "I'm overwhelmed, help me brain-dump" / "What's the one next thing?"</div>
+<code class="skill-install">npx playbooks add skill openclaw/skills --skill adhd-daily-planner</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-work">
+<summary>💼 Work &amp; Productivity <span class="cat-count">12 skills</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">product-manager-toolkit</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">RICE prioritization, customer interview synthesis, PRD templates, discovery frameworks. Externalizes prioritization decisions so they don't require mental gymnastics.</div>
+<div class="skill-trigger">"Help me prioritize these tasks" / "Write a PRD" / "Analyze customer interviews"</div>
+<code class="skill-install">~/.claude/skills/product-team/product-manager-toolkit/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">senior-pm</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Risk matrices, capacity planning, RACI charts, executive reports, portfolio health scoring. Visible structure beats holding it all in working memory.</div>
+<div class="skill-trigger">"Help me manage this project" / "Build a risk matrix" / "Create a status report"</div>
+<code class="skill-install">~/.claude/skills/project-management/senior-pm/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">notion-spec-to-implementation</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Takes a spec or plan and breaks it into a structured Notion task database with proper properties, views, and prioritization. Closes the gap between "I have a plan" and "I have actionable steps."</div>
+<div class="skill-trigger">"Turn this plan into Notion tasks" / "Break down this spec for me"</div>
+<code class="skill-install">~/.claude/skills/notion-spec-to-implementation/SKILL.md  &nbsp;# requires Notion MCP</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">notion-meeting-intelligence</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Pulls Notion context, enriches with research, creates internal pre-read + external agenda for upcoming meetings. Arrive with structure, not scrambling.</div>
+<div class="skill-trigger">"Prep me for this meeting" / "Create a meeting agenda for X tomorrow"</div>
+<code class="skill-install">~/.claude/skills/notion-meeting-intelligence/SKILL.md  &nbsp;# requires Notion MCP</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">pptx</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Creates and edits PowerPoint presentations with professional design, color palettes, visual QA, design anti-pattern enforcement. Kills blank-slide paralysis.</div>
+<div class="skill-trigger">"Create a presentation about" / "Edit this slide deck" / "Turn this content into slides"</div>
+<code class="skill-install">npm install -g pptxgenjs  &nbsp;# requires LibreOffice</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">docx</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Creates and edits Word documents with proper formatting, styles, redlining, and structure for reports, proposals, and formal communications.</div>
+<div class="skill-trigger">"Write this as a Word document" / "Format this report properly"</div>
+<code class="skill-install">pip install markitdown  &nbsp;# requires LibreOffice</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">data-analyst (agent)</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Extracts business insights from data, builds dashboards, translates complex metrics into plain-language recommendations. No SQL or BI tool knowledge required.</div>
+<div class="skill-trigger">"Analyze this data for me" / "What does this spreadsheet tell me?"</div>
+<code class="skill-install">~/.claude/agents/data-analyst.md  &nbsp;# auto-invoked when task matches</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">scrum-master</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Sprint planning, retrospective facilitation, velocity tracking, team health scoring. Externalizes sprint tracking into visible artifacts.</div>
+<div class="skill-trigger">"Run a retrospective with me" / "Help me plan this sprint"</div>
+<code class="skill-install">~/.claude/skills/project-management/scrum-master/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">contract-and-proposal-writer</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Generates freelance contracts, proposals, SOWs, NDAs, and MSAs — jurisdiction-aware for US, EU, UK, and DACH regions. Not legal advice, but removes the "I don't know the right words" barrier.</div>
+<div class="skill-trigger">"Write a contract for this project" / "Create a proposal for a client" / "Draft an NDA"</div>
+<code class="skill-install">~/.claude/skills/business-growth/contract-and-proposal-writer/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">superpowers (brainstorming)</span>
+<a href="https://github.com/obra/superpowers" class="skill-link">↗ GitHub (181k★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">The most-installed Claude skills framework. The <code>/brainstorming</code> skill uses Socratic design refinement — asks clarifying questions before generating anything. Forces structured ideation before execution.</div>
+<div class="skill-trigger">"Help me brainstorm" / "I want to design X but I'm not sure what I want yet"</div>
+<code class="skill-install">/plugin install superpowers@claude-plugins-official</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">internal-comms (Anthropic)</span>
+<a href="https://github.com/anthropics/skills/tree/main/skills/internal-comms" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-official">✅ Official</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+</div>
+<div class="skill-desc">Drafts internal updates, status reports, 3P updates, all-hands emails, change notifications, incident reports, FAQs, and leadership briefings. Adapts format to audience. Anthropic-maintained.</div>
+<div class="skill-trigger">"Draft an all-hands update about X" / "Write a status report" / "I need a change notification"</div>
+<code class="skill-install">/plugin marketplace add anthropics/skills && /plugin install internal-comms</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">ResumeSkills</span>
+<a href="https://github.com/Paramchoudhary/ResumeSkills" class="skill-link">↗ GitHub (422★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">20 skills covering ATS optimization, achievement bullet transformation, cover letter generation, LinkedIn synchronization, job posting analysis, career transition translation, and executive-level formatting. ND professionals are disproportionately underemployed — this translates real capabilities into resume language.</div>
+<div class="skill-trigger">"Optimize my resume for this job" / "Write a cover letter for X" / "Help me explain a career change"</div>
+<code class="skill-install">npx skills add Paramchoudhary/ResumeSkills -g -y</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-writing">
+<summary>✍️ Writing &amp; Content <span class="cat-count">8 skills</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">humanize-writing</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">8-pass editing process strips AI patterns (significance inflation, hedging, robotic rhythm, formulaic structure) and restores genuine voice. Catches hollow affirmations and productivity-speak.</div>
+<div class="skill-trigger">"This sounds like AI" / "Make this more human" / "De-robot this text"</div>
+<code class="skill-install">~/.claude/skills/humanize-writing/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">avoid-ai-writing</span>
+<a href="https://github.com/conorbronsdon/avoid-ai-writing" class="skill-link">↗ GitHub (1.4k★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Audits and rewrites content to remove AI writing patterns. 109-entry word replacement table, 36 detected pattern categories, two-pass detection. Detect mode flags only; rewrite mode fixes automatically. More thorough than any installed humanizer.</div>
+<div class="skill-trigger">"Audit this for AI patterns" / "Score this writing for AI tells" / "Rewrite this to sound human"</div>
+<code class="skill-install">git clone https://github.com/conorbronsdon/avoid-ai-writing ~/.claude/skills/avoid-ai-writing</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">content-creator (marketing)</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">SEO-optimized content with brand voice analysis, social media templates, content calendar planning across platforms. Handles cross-platform format complexity that creates decision fatigue.</div>
+<div class="skill-trigger">"Write a blog post about" / "Plan my content calendar" / "Analyze my brand voice"</div>
+<code class="skill-install">~/.claude/skills/marketing/content-creator/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">content-research-writer</span>
+<a href="https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+</div>
+<div class="skill-desc">Research-backed content writing: conducts web research, adds citations, improves hooks, gives section-by-section feedback, iterates on outlines. Designed for long-form content with evidence requirements.</div>
+<div class="skill-trigger">"Write a researched article about X" / "Help me build an evidence-backed essay"</div>
+<code class="skill-install">git clone https://github.com/ComposioHQ/awesome-claude-skills && cp -r awesome-claude-skills/content-research-writer ~/.claude/skills/</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">prompt-engineer-toolkit</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Designs, tests, and optimizes LLM prompts. Demystifies AI interaction; reduces the "why won't it do what I want?" frustration loop.</div>
+<div class="skill-trigger">"Help me write a better prompt" / "Why isn't this prompt working?" / "Optimize this prompt"</div>
+<code class="skill-install">~/.claude/skills/marketing/prompt-engineer-toolkit/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">template-publisher</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Full QA + listing workflow for Notion templates — content QA, listing copy, Gumroad/Lemon Squeezy publishing guidance. Creates a clear done-bar that prevents perfectionism loops.</div>
+<div class="skill-trigger">"QA this template" / "Write listing copy for" / "Help me publish this template"</div>
+<code class="skill-install">~/.claude/skills/template-publisher/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">social-media-analyzer</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Calculates engagement rates, platform benchmarks, and campaign ROI across Instagram, TikTok, LinkedIn, Facebook. Replaces manual spreadsheet math with formatted outputs.</div>
+<div class="skill-trigger">"Calculate my engagement rate" / "How is my Instagram performing?"</div>
+<code class="skill-install">~/.claude/skills/marketing/social-media-analyzer/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">doc-coauthoring (Anthropic)</span>
+<a href="https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-official">✅ Official</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">3-stage structured workflow: context gathering, iterative section drafting, "reader testing" with a fresh AI to catch blind spots before sharing. Breaks blank-page paralysis into stages — you control pace, can skip any stage.</div>
+<div class="skill-trigger">"Help me write this document" / "Co-author this with me" / "I need to write a proposal"</div>
+<code class="skill-install">/plugin install doc-coauthoring</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-creative">
+<summary>🎨 Creative &amp; Design <span class="cat-count">5 skills</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">canvas-design</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Creates original static visual art (.png, .pdf) — posters, social graphics, design pieces. Philosophy-first approach with 25+ bundled fonts. Removes "where do I start?" paralysis.</div>
+<div class="skill-trigger">"Design a poster for" / "Create a visual for" / "Make a graphic about"</div>
+<code class="skill-install">~/.claude/skills/canvas-design/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">theme-factory</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-official">✅ Also Official</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">10 pre-built visual themes (color + font pairings) instantly applicable to slides, docs, reports, or HTML pages. Eliminates aesthetic decision-making — pick a vibe and apply it.</div>
+<div class="skill-trigger">"Apply a theme to this" / "Make this look more professional"</div>
+<code class="skill-install">~/.claude/skills/theme-factory/SKILL.md  &nbsp;# or /plugin install theme-factory</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">algorithmic-art</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Generates p5.js generative art — animated, procedural, interactive visual pieces in any browser. Creative outlet with zero supplies overhead; outputs a single HTML file.</div>
+<div class="skill-trigger">"Create generative art" / "Make an animated visual" / "Build a p5.js sketch"</div>
+<code class="skill-install">~/.claude/skills/algorithmic-art/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">ui-design-system</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-high">High energy</span>
+</div>
+<div class="skill-desc">Generates design tokens, color systems, component architecture, and developer handoff specs for any digital product or brand. Most useful when building a digital product with multiple touchpoints.</div>
+<div class="skill-trigger">"Create a design system for" / "Generate color tokens for" / "Build a component library spec"</div>
+<code class="skill-install">~/.claude/skills/product-team/ui-design-system/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">ux-researcher-designer</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Creates data-driven user personas, customer journey maps, usability test plans, and research synthesis for any product or service. Structures the messy "who is my user?" question.</div>
+<div class="skill-trigger">"Create user personas for" / "Map the customer journey for" / "Plan a usability test"</div>
+<code class="skill-install">~/.claude/skills/product-team/ux-researcher-designer/SKILL.md</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-learning">
+<summary>🧠 Learning &amp; Research <span class="cat-count">7 skills</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">deep-research</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-high">High energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">8-phase research pipeline: parallel search, source triangulation, citation verification, McKinsey-style HTML reports with full bibliography. Handles "too much to read" overwhelm by synthesizing for you.</div>
+<div class="skill-trigger">"Deep research on" / "Comprehensive analysis of" / "Compare X vs Y comprehensively"</div>
+<code class="skill-install">~/.claude/skills/deep-research/SKILL.md  &nbsp;# Python stdlib only</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">notebooklm-integration</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Step-by-step guide for Google NotebookLM: research synthesis, audio podcast generation (4 formats), Data Tables for competitive analysis, Notion integration workflow. Turns dense sources into conversational audio.</div>
+<div class="skill-trigger">"How do I use NotebookLM?" / "Generate an audio overview of" / "Research synthesis with my docs"</div>
+<code class="skill-install">~/.claude/skills/notebooklm-integration/SKILL.md  &nbsp;# NotebookLM is free</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">panel-of-experts</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Assembles domain-specific expert personas (from 70 available) for any question — routes topics to relevant specialists simultaneously for multi-perspective analysis. Replaces "who do I ask?" with structured perspectives.</div>
+<div class="skill-trigger">"Assemble experts for this" / "Get expert opinions on" / "Who should I consult about X?"</div>
+<code class="skill-install">~/.claude/skills/panel-of-experts/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">competitive-teardown</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Pricing pages + reviews + job postings + SEO signals → feature matrices, SWOT, positioning maps. Replaces hours of tab-switching with a single structured output.</div>
+<div class="skill-trigger">"Analyze my competitor" / "Teardown this product" / "Compare me to X"</div>
+<code class="skill-install">~/.claude/skills/product-team/competitive-teardown/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">decision-toolkit</span>
+<a href="https://github.com/glebis/claude-skills/tree/main/decision-toolkit" class="skill-link">↗ GitHub (163★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">7 structured decision frameworks: First Principles, 10-10-10, Pre-Mortem, Regret Minimization, Inversion, Second-Order Thinking, WRAP. Generates interactive HTML decision wizards. Removes the activation energy of choosing how to decide.</div>
+<div class="skill-trigger">"Help me decide between X and Y" / "I'm stuck on a decision" / "Run a pre-mortem on this"</div>
+<code class="skill-install">npx skills add glebis/claude-skills --skill decision-toolkit</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">thinking-patterns</span>
+<a href="https://github.com/glebis/claude-skills" class="skill-link">↗ GitHub (163★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Longitudinal cognitive analysis across recorded conversations — identifies 12 evidence-based cognitive dimensions, detects blind spots, synthesizes cross-session patterns. Unique in the ecosystem.</div>
+<div class="skill-trigger">"Analyze my thinking patterns" / "What cognitive blind spots do I have?"</div>
+<code class="skill-install">npx skills add glebis/claude-skills --skill thinking-patterns</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">meeting-insights-analyzer</span>
+<a href="https://github.com/ComposioHQ/awesome-claude-skills/tree/master/meeting-insights-analyzer" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Transforms meeting transcripts into communication pattern insights: speaking ratios, conflict avoidance signals, filler word patterns, leadership style indicators. Useful for ND professionals who miss real-time social dynamics.</div>
+<div class="skill-trigger">"Analyze this meeting transcript" / "What patterns do you see in how I communicated?"</div>
+<code class="skill-install">cp -r awesome-claude-skills/meeting-insights-analyzer ~/.claude/skills/</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-mental">
+<summary>💜 Mental Health &amp; ND-Specific <span class="cat-count">5 skills</span></summary>
+<div>
+
+<div class="callout callout-yellow"><span class="callout-icon">⚠️</span><div class="callout-title">Important note</div><div>These skills are <strong>not a replacement for professional mental health support</strong>. They're useful as supplements — for journaling, decision support, and structured self-reflection. If you're in crisis, contact a professional or crisis line (in the US: 988 / Suicide &amp; Crisis Lifeline).</div></div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">the-fool</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Structured critical thinking across 5 modes (pre-mortem, devil's advocate, red team, evidence audit, Socratic questioning) to stress-test any idea or decision. Turns "am I missing something?" anxiety into a process with a clear end state.</div>
+<div class="skill-trigger">"Poke holes in this" / "What could go wrong?" / "Play devil's advocate"</div>
+<code class="skill-install">~/.claude/skills/the-fool/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">cognitive-toolkit (CBT/DBT)</span>
+<a href="https://github.com/glebis/claude-skills" class="skill-link">↗ GitHub (163★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Evidence-based CBT and DBT interventions: thought records, opposite action, DEAR MAN roleplay practice, crisis skills with HRV biofeedback guidance. Therapeutic structure without requiring a session.</div>
+<div class="skill-trigger">"Help me work through this thought" / "Roleplay a difficult conversation with me" / "Walk me through a thought record"</div>
+<code class="skill-install">npx skills add glebis/claude-skills --skill cognitive-toolkit</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">neurodivergent-founder</span>
+<a href="https://github.com/assafkip/founder-skills" class="skill-link">↗ GitHub (11★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Rewrites Claude's interaction style — eliminates pressure language, replaces overwhelming lists with energy-level categories (Quick Win / Deep Focus / People / Admin). Maps directly to ADHD task management.</div>
+<div class="skill-trigger">"Use ND mode" / "Reorganize this by energy level" / "Make this less overwhelming"</div>
+<code class="skill-install">git clone https://github.com/assafkip/founder-skills && cp -r founder-skills/skills/* ~/.claude/skills/</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">cbt-llm-kit</span>
+<a href="https://github.com/arktnld/cbt-llm-kit" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Guided CBT thought records using the Beck/Burns model — 12-step structured flow, daily check-ins, local JSON storage (no external data). Privacy-first design.</div>
+<div class="skill-trigger">"Walk me through a thought record" / "Help me reframe this thought"</div>
+<code class="skill-install">git clone https://github.com/arktnld/cbt-llm-kit ~/.claude/skills/cbt-llm-kit  &nbsp;# review SKILL.md first</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">founder-debrief</span>
+<a href="https://github.com/assafkip/founder-skills" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">8-question structured post-call insight extraction. Captures call insights without manual note-taking. Especially valuable for ND professionals who often miss social dynamics in real-time and need a structured debrief afterward.</div>
+<div class="skill-trigger">"Debrief that meeting" / "Extract insights from that call"</div>
+<code class="skill-install">cp -r founder-skills/skills/founder-debrief ~/.claude/skills/  &nbsp;# from same clone as above</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-comms">
+<summary>🤝 Communication <span class="cat-count">2 skills</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">doc-coauthoring (custom)</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">3-stage structured workflow for writing any document: context gathering, iterative section drafting, and "reader testing" with a fresh AI instance to catch blind spots. Works in both Claude Code and claude.ai.</div>
+<div class="skill-trigger">"Help me write this document" / "Co-author this with me" / "I need to write a proposal"</div>
+<code class="skill-install">~/.claude/skills/doc-coauthoring/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">campaign-analytics</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+</div>
+<div class="skill-desc">Multi-touch attribution, funnel conversion analysis, ROI calculation for any marketing or outreach campaign. Best with marketing context.</div>
+<div class="skill-trigger">"Analyze my campaign performance" / "Calculate the ROI of this" / "Why isn't my campaign converting?"</div>
+<code class="skill-install">~/.claude/skills/marketing/campaign-analytics/SKILL.md</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-privacy">
+<summary>🛡️ Privacy &amp; Security <span class="cat-count">2 skills</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">security-reviewer</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-medium">Medium energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Security audits on code, tools, scripts, and configurations — translates findings into plain risk language for non-developers evaluating software before installing or trusting it.</div>
+<div class="skill-trigger">"Review this for security" / "Is this tool safe to use?" / "Audit this script before I run it"</div>
+<code class="skill-install">~/.claude/skills/security-reviewer/SKILL.md</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">cost-reducer</span>
+<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-energy-low">Low energy</span>
+<span class="skill-tag tag-nd">🌱 ND-friendly</span>
+</div>
+<div class="skill-desc">Analyzes Claude Code usage patterns and recommends specific tactics to cut API costs. Concrete numbers + concrete actions, removing the "am I wasting money?" anxiety.</div>
+<div class="skill-trigger">"How can I reduce my Claude costs?" / "Why is my usage so high?" / "Optimize my AI spending"</div>
+<code class="skill-install">~/.claude/skills/cost-reducer/SKILL.md</code>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-marketplaces">
+<summary>🏪 Where to Discover More <span class="cat-count">5 marketplaces</span></summary>
+<div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">Anthropic Official Marketplace</span>
+<a href="https://github.com/anthropics/skills" class="skill-link">↗ GitHub</a>
+<span class="skill-tag tag-official">✅ Official</span>
+</div>
+<div class="skill-desc">17 official Anthropic-maintained skills. Most trustworthy source in the ecosystem — security-reviewed, actively maintained.</div>
+<code class="skill-install">/plugin marketplace add anthropics/skills</code>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">playbooks.com</span>
+<a href="https://playbooks.com/skills" class="skill-link">↗ playbooks.com</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+</div>
+<div class="skill-desc">Curated directory of skills across community repos. Clean install via <code>npx playbooks add</code>. Browses the openclaw registry (13,729+ skills). No account required.</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">SkillHub</span>
+<a href="https://www.skillhub.club/" class="skill-link">↗ skillhub.club</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+</div>
+<div class="skill-desc">7,000+ skills with 5-dimension LLM quality evaluation scores and install counts. Best for filtering before installing — the only marketplace with transparent quality ranking.</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">awesome-claude-skills</span>
+<a href="https://github.com/ComposioHQ/awesome-claude-skills" class="skill-link">↗ GitHub (58k★)</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+</div>
+<div class="skill-desc">58,300-star curated list. Individual skill folders you clone directly. Many life/work/productivity skills. No CLI required — manual git clone install.</div>
+</div>
+
+<div class="skill-card">
+<div class="skill-card-head">
+<span class="skill-card-name">LobeHub Skills Marketplace</span>
+<a href="https://lobehub.com/skills" class="skill-link">↗ lobehub.com</a>
+<span class="skill-tag tag-community">🌐 Community</span>
+</div>
+<div class="skill-desc">Cross-agent skill browser compatible with Claude Code, Codex, and Gemini CLI. Star counts, compatibility flags, skill descriptions. Good for browsing across ecosystems.</div>
+</div>
+
+</div>
+</details>
+
+<details class="category" id="cat-avoid">
+<summary>🚫 Skills to Avoid <span class="cat-count">4 anti-recommendations</span></summary>
+<div>
+
+<div class="callout callout-red"><span class="callout-icon">⚠️</span><div class="callout-title">Why this list exists</div><div>The Claude skill ecosystem has thousands of options. Star count is not a security signal. These skills are popular but have real risks — install them only if you fully understand the trade-offs.</div></div>
+
+<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card-head">
+<span class="skill-card-name">asklokesh/loki-mode</span>
+<a href="https://github.com/asklokesh/loki-mode" class="skill-link">↗ GitHub</a>
+</div>
+<div class="skill-desc"><strong style="color:var(--red-title)">Avoid.</strong> Requires <code>--dangerously-skip-permissions</code>. 37 autonomous agents with unrestricted file write, code execution, and network access. The same security pattern that caused 2 skills to be deleted from this catalog's source library — at 37× the blast radius.</div>
+</div>
+
+<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card-head">
+<span class="skill-card-name">prshahbs/healthcare-claude-skills</span>
+<a href="https://github.com/prshahbs/healthcare-claude-skills" class="skill-link">↗ GitHub</a>
+</div>
+<div class="skill-desc"><strong style="color:var(--red-title)">Avoid.</strong> Quality score 62/100 with documented data validation failures (invalid ICD codes accepted, extreme vital sign readings passing as valid). Healthcare misinformation from a low-quality source is a genuine harm category.</div>
+</div>
+
+<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card-head">
+<span class="skill-card-name">Any "curl … | bash" install pattern</span>
+</div>
+<div class="skill-desc"><strong style="color:var(--red-title)">Avoid.</strong> Cato Networks 2025 research confirmed Claude skills can be weaponized as malware delivery via this exact pattern — a "productivity" skill with a hidden payload in the install script. Always read the SKILL.md content directly on GitHub before cloning. Never pipe to bash blindly.</div>
+</div>
+
+<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card-head">
+<span class="skill-card-name">hesreallyhim/awesome-claude-code</span>
+<a href="https://github.com/hesreallyhim/awesome-claude-code" class="skill-link">↗ GitHub (42.8k★)</a>
+</div>
+<div class="skill-desc"><strong style="color:var(--yellow-title)">Avoid for now.</strong> 42,800 stars but currently under reconstruction — README explicitly says "Update in progress" and the Table of Contents is marked "TODO." Not usable as a skills discovery source right now. Check back later in 2026.</div>
+</div>
+
+</div>
+</details>
+
+<hr>
+
+<h2>How to install any skill</h2>
+
+<div class="callout callout-blue"><span class="callout-icon">📦</span><div class="callout-title">Three install patterns</div><div>
+<p><strong>1. Built-in / already on disk</strong> (the 🏠 Local tags above):<br>
+The skill file lives in <code>~/.claude/skills/[skill-name]/SKILL.md</code>. Claude Code auto-loads it when trigger phrases match, or you can invoke explicitly: <em>"Use the [skill-name] skill to..."</em></p>
+
+<p><strong>2. Plugin marketplace</strong> (the ✅ Official tags):<br>
+Inside Claude Code, run <code>/plugin marketplace add anthropics/skills</code> once, then <code>/plugin install [skill-name]</code> for each skill you want.</p>
+
+<p><strong>3. Manual git clone</strong> (the 🌐 Community tags):<br>
+<code>git clone https://github.com/[author]/[repo] ~/.claude/skills/[skill-name]</code> — restart Claude Code afterward. Read the <code>SKILL.md</code> file first to confirm what it does and what permissions it asks for.</p>
+</div></div>
+
+<div class="callout callout-yellow"><span class="callout-icon">🛡️</span><div class="callout-title">Safety check before installing any community skill</div><div>
+<ol>
+<li>Open the skill's <code>SKILL.md</code> on GitHub. Read it.</li>
+<li>Check the description for words like <em>"unrestricted"</em>, <em>"--dangerously"</em>, <em>"sudo"</em>, <em>"automatically execute"</em>. If you see any of these, stop and audit further.</li>
+<li>Check the install script (if any). Never run a script you haven't read.</li>
+<li>If unsure, run the security-reviewer skill on it first — it's literally designed for this.</li>
+</ol>
+</div></div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="reference-library.html" class="nav-link prev"><small>← Previous</small>Reference Library</a>
+  <a href="life-templates.html" class="nav-link next"><small>Next →</small>Life Templates</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6 Patterns You Can Use — Track D — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.pattern-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.3rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.pattern-card:hover { border-color: var(--border-hover); transform: translateY(-1px); }
+.pattern-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+.pattern-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--accent);
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 3px;
+  padding: 2px 6px;
+}
+.pattern-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--text); letter-spacing: -0.01em;
+}
+.cost-pill {
+  display: inline-block; font-family: var(--font-mono);
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+  padding: 0.15rem 0.55rem; border-radius: 100px;
+  white-space: nowrap;
+}
+.cost-low  { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
+.cost-mid  { background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
+.cost-high { background: rgba(248,113,113,0.15); color: var(--red-title); border: 1px solid rgba(248,113,113,0.3); }
+.cost-var  { background: rgba(245,197,66,0.15); color: var(--gold); border: 1px solid rgba(245,197,66,0.3); }
+.pattern-card .block {
+  margin-top: 0.7rem;
+}
+.pattern-card .block-label {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-accent);
+  margin-bottom: 0.25rem; display: block;
+}
+.pattern-card .nd-block { border-left: 2px solid var(--purple-deep); padding-left: 0.75rem; background: rgba(107, 63, 160, 0.06); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding-top: 0.4rem; padding-bottom: 0.4rem; }
+.pattern-card .nd-block .block-label { color: var(--text-accent); }
+.pattern-card pre { margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.82rem; }
+.output-format {
+  font-size: 0.85rem; color: var(--text-mid); line-height: 1.55;
+}
+.pattern-card .body { font-size: 0.93rem; color: var(--text-mid); line-height: 1.6; }
+.pattern-card .body strong { color: var(--text); }
+.toc {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem; margin: 0.5rem 0 1.5rem;
+}
+.toc a {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-accent);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.15s var(--ease);
+}
+.toc a:hover, .toc a:focus-visible {
+  background: var(--accent-soft); border-color: var(--accent-glow);
+}
+.toc a .toc-cost {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK D &middot; COUNCILS &amp; MULTI-AGENT</span>
+      <h1>6 Patterns You Can Actually Use</h1>
+      <p class="tagline">Ordered simplest to most complex. Master pattern 1 before reaching for pattern 3.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="track-councils.html">&larr; Track D Overview</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track D</span> Councils &amp; Multi-Agent
+  </span>
+</nav>
+
+<h2>How to read this page</h2>
+<div class="callout callout-purple">
+  <span class="callout-icon">&#128279;</span>
+  <div class="callout-title">Six patterns, ordered by cost &amp; complexity</div>
+  <div>Each pattern has a name, a token cost indicator, and a prompt template you can paste right now. Patterns 1, 2, and 6 are <em>single-agent</em> techniques that just <em>look</em> like multi-agent &mdash; they're the cheapest moves and where most ND professionals get the best ROI. Patterns 3, 4, and 5 are real multi-agent and earn their cost only when the structural conditions from the <a href="track-councils.html">overview</a> apply. If you've installed the <a href="skills-catalog.html#cat-learning">panel-of-experts</a> skill, it automates patterns 3 and 4.</div>
+</div>
+
+<nav class="toc" aria-label="Pattern list">
+  <a href="#p1">1. Specialist Consultation <span class="toc-cost">~1&times;</span></a>
+  <a href="#p2">2. Devil's Advocate Solo <span class="toc-cost">~1&times;</span></a>
+  <a href="#p3">3. Pre-Mortem Council <span class="toc-cost">3-5&times;</span></a>
+  <a href="#p4">4. Parallel Research Dispatch <span class="toc-cost">N&times;</span></a>
+  <a href="#p5">5. Review Board <span class="toc-cost">~3&times;</span></a>
+  <a href="#p6">6. Self-Debate <span class="toc-cost">~1&times;</span></a>
+</nav>
+
+<hr>
+
+<article class="pattern-card" id="p1">
+  <div class="pattern-head">
+    <span class="pattern-num">PATTERN 01</span>
+    <span class="pattern-name">Specialist Consultation</span>
+    <span class="cost-pill cost-low">~1&times; tokens</span>
+  </div>
+  <div class="body"><strong>What it is.</strong> One domain question, one expert agent, one answer. No orchestration, no synthesis, no second opinion. The agent has a specialist system prompt and that's the entire architecture.</div>
+  <div class="block">
+    <span class="block-label">When to use</span>
+    <div class="body">When the question is bounded and the domain is clear. "Does this CSS rule meet WCAG AA contrast?" goes to an accessibility-tester. "Is this clause problematic for a US freelancer?" goes to a legal-advisor. If you can name the one specialist who would answer it in real life, you can name the one agent.</div>
+  </div>
+  <div class="block nd-block">
+    <span class="block-label">ND value</span>
+    <div class="body">Lowest cognitive overhead in the catalog. One question in, one answer out. Matches the ADHD pattern of resolving uncertainty and moving on &mdash; no waiting for a panel to synthesize, no parsing competing perspectives.</div>
+  </div>
+  <div class="block">
+    <span class="block-label">How to invoke</span>
+<pre><code>Ask the [agent-name] agent: [your specific question with context]</code></pre>
+  </div>
+  <div class="block">
+    <span class="block-label">Expected output</span>
+    <div class="output-format">Direct answer in the specialist's voice, citing the specific rule or framework that governs the call. One pass, no back-and-forth.</div>
+  </div>
+</article>
+
+<article class="pattern-card" id="p2">
+  <div class="pattern-head">
+    <span class="pattern-num">PATTERN 02</span>
+    <span class="pattern-name">Devil's Advocate Solo</span>
+    <span class="cost-pill cost-low">~1&times; tokens &middot; prompting technique</span>
+  </div>
+  <div class="body"><strong>What it is.</strong> A single agent placed in explicit adversarial mode. This is <em>not</em> multi-agent &mdash; it's one agent with a different role. The cost is the same as any single-agent call.</div>
+  <div class="block">
+    <span class="block-label">When to use</span>
+    <div class="body">Before any significant commitment: shipping a template, choosing an architecture, publishing a piece. Default-helpful agents unconsciously optimize for agreement. You have to explicitly ask for the opposite.</div>
+  </div>
+  <div class="block nd-block">
+    <span class="block-label">ND value</span>
+    <div class="body">ADHD hyperfocus makes you vulnerable to overcommitment &mdash; once you're in love with an idea, you stop seeing its flaws. A scheduled adversarial pass is a forcing function for reconsideration that doesn't require willpower in the moment.</div>
+  </div>
+  <div class="block">
+    <span class="block-label">How to invoke</span>
+<pre><code>You are a skeptical critic. Your job is finding every reason this
+plan will fail. Be specific. Don't soften the critique to be kind.
+For each failure mode, name the concrete mechanism that causes it.
+
+Plan: [paste your plan]</code></pre>
+  </div>
+  <div class="block">
+    <span class="block-label">Expected output</span>
+    <div class="output-format">A numbered list of 5-10 specific failure modes, each with the concrete mechanism that causes it. If the output is vague hedging, your prompt isn't sharp enough.</div>
+  </div>
+</article>
+
+<article class="pattern-card" id="p3">
+  <div class="pattern-head">
+    <span class="pattern-num">PATTERN 03</span>
+    <span class="pattern-name">Pre-Mortem Council</span>
+    <span class="cost-pill cost-high">3-5&times; tokens &middot; war room</span>
+  </div>
+  <div class="body"><strong>What it is.</strong> Three to five domain experts run in parallel. Each independently identifies the most likely failure modes from their angle. An orchestrator (you, or the panel-of-experts skill) synthesizes consensus and conflicts. This is a real multi-agent move.</div>
+  <div class="block">
+    <span class="block-label">When to use</span>
+    <div class="body">Major decisions where the cost of being wrong is high: product launches, architecture choices, pricing, public commitments. Reach for this when the answer needs to survive review by someone smarter than you tomorrow.</div>
+  </div>
+  <div class="block nd-block">
+    <span class="block-label">ND value</span>
+    <div class="body">Converts the open-ended "what might go wrong?" (which produces ADHD analysis paralysis) into the bounded "we already failed &mdash; what went wrong?" frame. Concrete is always easier than abstract. The council also externalizes perspectives you'd otherwise try to hold in working memory all at once.</div>
+  </div>
+  <div class="block">
+    <span class="block-label">How to invoke</span>
+<pre><code>Run a war room pre-mortem on [decision]. Assemble [3-5 experts].
+Each expert independently:
+  1. Names their 3 most likely failure modes from their domain
+  2. Rates likelihood and severity (1-5)
+  3. Proposes one mitigation per mode
+
+Then synthesize: consensus failures, contested failures, and
+the top 3 mitigations ordered by leverage.</code></pre>
+  </div>
+  <div class="block">
+    <span class="block-label">Expected output</span>
+    <div class="output-format">Per-expert failure lists, a synthesis section showing overlap and disagreement, and a prioritized mitigation plan. If the panel agrees on everything, your panel isn't diverse enough.</div>
+  </div>
+</article>
+
+<article class="pattern-card" id="p4">
+  <div class="pattern-head">
+    <span class="pattern-num">PATTERN 04</span>
+    <span class="pattern-name">Parallel Research Dispatch</span>
+    <span class="cost-pill cost-var">N&times; tokens (N = subagents)</span>
+  </div>
+  <div class="body"><strong>What it is.</strong> Multiple agents investigate independent questions simultaneously. This is the pattern Anthropic uses in production for their own research system &mdash; orchestrator dispatches, subagents research, orchestrator synthesizes.</div>
+  <div class="block">
+    <span class="block-label">When to use</span>
+    <div class="body">Four or more independent questions that would otherwise take 4&times; longer in sequence. <strong>Independence is the test.</strong> If question B depends on the answer to A, the work is sequential and multi-agent buys zero speedup &mdash; only overhead.</div>
+  </div>
+  <div class="block nd-block">
+    <span class="block-label">ND value</span>
+    <div class="body">Matches the natural mode of ADHD hyperfocus &mdash; "throw everything at the problem at once." Forcing yourself to decompose into truly independent subquestions <em>before</em> dispatch is the external scaffolding. The decomposition is the value, the parallelism is the bonus.</div>
+  </div>
+  <div class="block">
+    <span class="block-label">How to invoke</span>
+<pre><code># In Claude Code, dispatch multiple Task tool calls in a single
+# message — they execute in parallel.
+
+I need parallel research on [topic]. Dispatch these independent
+investigations simultaneously:
+  Subagent A: [specific question 1]
+  Subagent B: [specific question 2]
+  Subagent C: [specific question 3]
+  Subagent D: [specific question 4]
+
+When all return, synthesize into a single report with a
+"contested findings" section.</code></pre>
+  </div>
+  <div class="block">
+    <span class="block-label">Expected output</span>
+    <div class="output-format">N parallel reports plus one synthesis. Time-to-answer roughly equals the slowest subagent, not the sum. If subagents end up calling each other, you decomposed wrong &mdash; the questions weren't actually independent.</div>
+  </div>
+</article>
+
+<article class="pattern-card" id="p5">
+  <div class="pattern-head">
+    <span class="pattern-num">PATTERN 05</span>
+    <span class="pattern-name">Review Board</span>
+    <span class="cost-pill cost-mid">~3&times; tokens &middot; sequential</span>
+  </div>
+  <div class="body"><strong>What it is.</strong> A drafts, B critiques A's draft, C revises based on B's critique. Sequential, not parallel. This is the generator-verifier pattern with an explicit synthesis step.</div>
+  <div class="block">
+    <span class="block-label">When to use</span>
+    <div class="body">Quality-critical deliverables that go out the door publicly: templates for sale, LinkedIn posts, course content, customer-facing copy. Anywhere the editing step is the part you reliably skip when running solo.</div>
+  </div>
+  <div class="block nd-block">
+    <span class="block-label">ND value</span>
+    <div class="body">Externalizes the editing step. Editing is notoriously hard for ADHD brains &mdash; the hyperfocus that makes drafting feel good evaporates the moment the draft exists, and you lose objectivity in revision. A separate critique agent restores the missing perspective without requiring you to manufacture it.</div>
+  </div>
+  <div class="block">
+    <span class="block-label">How to invoke</span>
+<pre><code># Three sequential agent calls with explicit roles.
+
+Call 1 (Drafter):
+  Role: [domain] writer.
+  Task: Draft [deliverable] for [audience] meeting [criteria].
+
+Call 2 (Critic):
+  Role: skeptical reviewer specializing in [angle].
+  Task: Find 5-10 specific weaknesses in this draft. Cite passages.
+  Input: [Call 1 output]
+
+Call 3 (Reviser):
+  Role: original drafter, now revising.
+  Task: Address each critique. If you reject a critique, say why.
+  Inputs: [Call 1 output] + [Call 2 output]</code></pre>
+  </div>
+  <div class="block">
+    <span class="block-label">Expected output</span>
+    <div class="output-format">Three artifacts: draft, critique, revised draft. Keep the critique &mdash; it's where the learning is, and you can reuse the same critic prompt next time.</div>
+  </div>
+</article>
+
+<article class="pattern-card" id="p6">
+  <div class="pattern-head">
+    <span class="pattern-num">PATTERN 06</span>
+    <span class="pattern-name">Self-Debate</span>
+    <span class="cost-pill cost-low">~1&times; tokens &middot; prompting technique</span>
+  </div>
+  <div class="body"><strong>What it is.</strong> One agent constructs the strongest case for both sides of a binary decision, then renders an explicit verdict naming the deciding factor. Single-agent throughout &mdash; the "debate" is structural, not architectural.</div>
+  <div class="block">
+    <span class="block-label">When to use</span>
+    <div class="body">Binary decisions with genuine uncertainty. "Firebase or Neon?" "Free tier or paid at launch?" "Ship today or wait one more week?" Anywhere the decision is small enough to be one call but large enough that you've been turning it over for days.</div>
+  </div>
+  <div class="block nd-block">
+    <span class="block-label">ND value</span>
+    <div class="body">Externalizes the weighing process that ADHD working memory struggles to hold &mdash; you can't compare two arguments fairly when you can only remember one at a time. Putting both on the page in their strongest form removes the recency-bias that makes whichever option you thought about last feel right.</div>
+  </div>
+  <div class="block">
+    <span class="block-label">How to invoke</span>
+<pre><code>Decision: [X vs Y]
+
+Step 1: Argue FOR option X specifically. Best case. Steel-man it.
+        Cite the strongest evidence.
+Step 2: Argue FOR option Y specifically. Best case. Steel-man it.
+        Cite the strongest evidence.
+Step 3: Render a verdict. Name the single factor that decided it.
+        Note what would flip the verdict.</code></pre>
+  </div>
+  <div class="block">
+    <span class="block-label">Expected output</span>
+    <div class="output-format">Two steel-manned arguments and a verdict with one named deciding factor. If the verdict is "it depends," your prompt didn't force commitment &mdash; reframe the decision so commitment is possible.</div>
+  </div>
+</article>
+
+<hr>
+
+<h2>The ordering matters</h2>
+<div class="callout callout-yellow">
+  <span class="callout-icon">&#129518;</span>
+  <div class="callout-title">Master pattern 1 before reaching for pattern 3</div>
+  <div>The temptation, especially on a high-energy day, is to leap to the war room because designing a council feels more interesting than asking one good question. Resist. Most of what councils give you, a sharp specialist consultation already gives you at a fifth the cost. Patterns 1, 2, and 6 cost the same as a normal Claude call &mdash; they're free to practice and they handle the majority of real work. Patterns 3, 4, and 5 are the right move only when the question structurally needs them.</div>
+</div>
+
+<p>The next page covers the inverse: the six anti-patterns where councils <em>hurt</em>, and the five conditions where a single agent reliably wins.</p>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-councils.html" class="nav-link prev"><small>&larr; Previous</small>Track D Overview</a>
+  <a href="track-councils-antipatterns.html" class="nav-link next"><small>Next &rarr;</small>Anti-Patterns &mdash; Deep Dive 2</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

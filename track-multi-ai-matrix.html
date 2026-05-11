@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tool Matrix — 21 Tasks, Mapped — Track A — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+table caption {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--text-accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+.task-group {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(168,85,247,0.10);
+  border-bottom: 1px solid rgba(168,85,247,0.25);
+  padding: 0.5rem 0.75rem !important;
+}
+td.best {
+  font-weight: 600;
+  color: var(--green-title);
+}
+td.runner-up {
+  color: var(--text-mid);
+  font-size: 0.88rem;
+}
+td.task-name {
+  font-weight: 500;
+  color: var(--text);
+}
+td.why {
+  font-size: 0.86rem;
+  color: var(--text-mid);
+  font-style: italic;
+}
+.tool-pill {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  background: rgba(52,211,153,0.12);
+  color: var(--green-title);
+  border: 1px solid rgba(52,211,153,0.3);
+}
+.scroll-table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+}
+.scroll-table table { min-width: 640px; }
+.scroll-table th, .scroll-table td { font-size: 0.88rem; padding: 0.65rem 0.75rem; }
+.privacy-yes { color: var(--red-title); font-weight: 600; }
+.privacy-no { color: var(--green-title); font-weight: 600; }
+.callout-tip-inline {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: rgba(168,85,247,0.10);
+  border: 1px solid rgba(168,85,247,0.25);
+  border-radius: 3px;
+  padding: 1px 6px;
+  margin-left: 0.3rem;
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">DEEP DIVE 1</span>
+      <h1>Tool Matrix &mdash; 21 Tasks, Mapped</h1>
+      <p class="tagline">Best tool by task type, with current pricing.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track A</span> Multi-AI Mastery
+  </span>
+</nav>
+
+<h2>How to use this matrix</h2>
+<div class="callout callout-blue">
+  <span class="callout-icon">&#128270;</span>
+  <div class="callout-title">Read the matrix as a starting point, not a verdict</div>
+  <div>The "best" column is the strongest fit in mid-2026 based on benchmark data and practitioner usage. The runner-up column is a working substitute — the kind of swap you'd reach for if your primary is rate-limited, your account is paused, or you want a second-opinion pass. Pricing and benchmarks shift quickly; verify before subscribing to a paid tier. One option: bookmark this page and revisit each quarter.</div>
+</div>
+
+<h2>The 21-task matrix</h2>
+
+<div class="scroll-table">
+<table>
+<caption>Task &rarr; best-fit AI tool, mid-2026</caption>
+<thead>
+<tr>
+  <th scope="col">Task</th>
+  <th scope="col">Best</th>
+  <th scope="col">Runner-up</th>
+  <th scope="col">Why</th>
+</tr>
+</thead>
+<tbody>
+
+<tr><td class="task-group" colspan="4">Writing &amp; communication</td></tr>
+<tr>
+  <td class="task-name">Long-form writing</td>
+  <td class="best"><span class="tool-pill">Claude Sonnet 4.6</span></td>
+  <td class="runner-up">GPT-5.5</td>
+  <td class="why">1M context holds an entire research corpus in one session.</td>
+</tr>
+<tr>
+  <td class="task-name">Voice matching / style transfer</td>
+  <td class="best"><span class="tool-pill">Claude Sonnet 4.6</span></td>
+  <td class="runner-up">GPT-5.5</td>
+  <td class="why">Pass 5-10 samples via Project system prompt; tone holds well.</td>
+</tr>
+<tr>
+  <td class="task-name">Email &amp; short comms</td>
+  <td class="best"><span class="tool-pill">GPT-5.5</span></td>
+  <td class="runner-up">Claude Haiku 4.5</td>
+  <td class="why">Fast turnaround; M365 users get Copilot agentic mode in Outlook.</td>
+</tr>
+<tr>
+  <td class="task-name">Brainstorming / ideation</td>
+  <td class="best"><span class="tool-pill">Claude Sonnet 4.6</span></td>
+  <td class="runner-up">GPT-5.5</td>
+  <td class="why">Sustains a 30-60min ideation arc without resetting tone.</td>
+</tr>
+
+<tr><td class="task-group" colspan="4">Research &amp; analysis</td></tr>
+<tr>
+  <td class="task-name">Quick citation lookup</td>
+  <td class="best"><span class="tool-pill">Perplexity Pro</span></td>
+  <td class="runner-up">GPT-5.5 + Search</td>
+  <td class="why">92% factual accuracy; inline source links you can click.</td>
+</tr>
+<tr>
+  <td class="task-name">Research synthesis (multiple sources)</td>
+  <td class="best"><span class="tool-pill">NotebookLM</span></td>
+  <td class="runner-up">Claude Projects</td>
+  <td class="why">4-stage pipeline trims time-to-outline by ~78%.</td>
+</tr>
+<tr>
+  <td class="task-name">Long PDF analysis</td>
+  <td class="best"><span class="tool-pill">Gemini 2.5 Pro</span></td>
+  <td class="runner-up">Claude Opus/Sonnet 4.6</td>
+  <td class="why">1M context @ 99.7% recall &mdash; no doc-splitting prep tax.</td>
+</tr>
+<tr>
+  <td class="task-name">Spreadsheet analysis</td>
+  <td class="best"><span class="tool-pill">ChatGPT Plus ADA</span></td>
+  <td class="runner-up">Copilot in Excel</td>
+  <td class="why">Python sandbox + natural-language manipulation.</td>
+</tr>
+<tr>
+  <td class="task-name">Decision support</td>
+  <td class="best"><span class="tool-pill">Claude Opus 4.7</span></td>
+  <td class="runner-up">ChatGPT o3</td>
+  <td class="why">Extended thinking; o3 wins when the question is quantitative.</td>
+</tr>
+<tr>
+  <td class="task-name">Mathematical reasoning</td>
+  <td class="best"><span class="tool-pill">ChatGPT o3</span></td>
+  <td class="runner-up">Gemini 2.5 Pro Deep Think</td>
+  <td class="why">~3&times; accuracy vs o1 on ARC-AGI; the math/science specialist.</td>
+</tr>
+
+<tr><td class="task-group" colspan="4">Code &amp; engineering</td></tr>
+<tr>
+  <td class="task-name">Code generation</td>
+  <td class="best"><span class="tool-pill">Cursor 3</span></td>
+  <td class="runner-up">Claude Code (Sonnet 4.6)</td>
+  <td class="why">70% reduction in PR review comments with a clean .cursorrules.</td>
+</tr>
+<tr>
+  <td class="task-name">Code review</td>
+  <td class="best"><span class="tool-pill">Claude Opus 4.7</span></td>
+  <td class="runner-up">Cursor 3 (inline)</td>
+  <td class="why">Catches subtle logic and architectural issues other models miss.</td>
+</tr>
+<tr>
+  <td class="task-name">Autonomous coding agent</td>
+  <td class="best"><span class="tool-pill">Cursor 3 Agents</span></td>
+  <td class="runner-up">Replit Agent</td>
+  <td class="why">Cloud-to-local handoff so the agent can finish what it starts.</td>
+</tr>
+
+<tr><td class="task-group" colspan="4">Visuals, audio &amp; video</td></tr>
+<tr>
+  <td class="task-name">Presentation creation</td>
+  <td class="best"><span class="tool-pill">Gamma</span></td>
+  <td class="runner-up">Beautiful.ai</td>
+  <td class="why">Polished deck in under 60 seconds; $8-15/mo.</td>
+</tr>
+<tr>
+  <td class="task-name">Image gen (aesthetic)</td>
+  <td class="best"><span class="tool-pill">Midjourney V8</span></td>
+  <td class="runner-up">&mdash;</td>
+  <td class="why">Best aesthetic sense; social and brand visuals.</td>
+</tr>
+<tr>
+  <td class="task-name">Image gen (text + complex scenes)</td>
+  <td class="best"><span class="tool-pill">GPT Image 2</span></td>
+  <td class="runner-up">Flux 2</td>
+  <td class="why">Strongest in-image text rendering and multi-element layouts.</td>
+</tr>
+<tr>
+  <td class="task-name">Image gen (photoreal / dev)</td>
+  <td class="best"><span class="tool-pill">Flux 2</span></td>
+  <td class="runner-up">&mdash;</td>
+  <td class="why">Camera-accurate optics; permissive license for product work.</td>
+</tr>
+<tr>
+  <td class="task-name">Image editing</td>
+  <td class="best"><span class="tool-pill">ChatGPT Images 2.0</span></td>
+  <td class="runner-up">Adobe Firefly</td>
+  <td class="why">Natural-language targeted edits without manual masking.</td>
+</tr>
+<tr>
+  <td class="task-name">Video generation</td>
+  <td class="best"><span class="tool-pill">Google Veo 3.1</span></td>
+  <td class="runner-up">Runway Gen-4.5</td>
+  <td class="why">Veo $0.75/sec, Runway $0.15/sec. Sora shut down 2026-03-25.</td>
+</tr>
+<tr>
+  <td class="task-name">Music generation</td>
+  <td class="best"><span class="tool-pill">Suno V5</span></td>
+  <td class="runner-up">Udio</td>
+  <td class="why">Most listenable output; Udio is cleaner legally post-UMG settlement.</td>
+</tr>
+<tr>
+  <td class="task-name">Voice conversation</td>
+  <td class="best"><span class="tool-pill">ChatGPT Advanced Voice</span></td>
+  <td class="runner-up">Claude Voice (beta)</td>
+  <td class="why">Real-time camera vision in ChatGPT; Claude Voice is free on all plans.</td>
+</tr>
+
+<tr><td class="task-group" colspan="4">Automation &amp; orchestration</td></tr>
+<tr>
+  <td class="task-name">Workflow automation</td>
+  <td class="best"><span class="tool-pill">n8n (self-host)</span></td>
+  <td class="runner-up">Zapier</td>
+  <td class="why">HIPAA/GDPR-clear, ~70 AI nodes, free when self-hosted.</td>
+</tr>
+<tr>
+  <td class="task-name">Multi-agent orchestration</td>
+  <td class="best"><span class="tool-pill">LangGraph</span></td>
+  <td class="runner-up">CrewAI</td>
+  <td class="why">Passed CrewAI in stars in early 2026; better graph control.</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<h2>Pricing summary &mdash; top 5 tools</h2>
+<table>
+<caption>Free tier &middot; entry paid &middot; power tier (mid-2026)</caption>
+<thead>
+<tr>
+  <th scope="col">Tool</th>
+  <th scope="col">Free tier</th>
+  <th scope="col">Entry paid</th>
+  <th scope="col">Power tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Claude</strong></td>
+  <td>Sonnet 4.6 (limited)</td>
+  <td>Pro $20/mo</td>
+  <td>API: $3 / $15 per 1M (Sonnet) &middot; $5 / $25 per 1M (Opus 4.7)</td>
+</tr>
+<tr>
+  <td><strong>ChatGPT</strong></td>
+  <td>GPT-5.3 with ads</td>
+  <td>Go $8/mo &middot; Plus $20/mo</td>
+  <td>Pro $100/mo (top model since 5.5 launch)</td>
+</tr>
+<tr>
+  <td><strong>Gemini 2.5 Pro</strong></td>
+  <td>Yes (rate-limited)</td>
+  <td>Advanced $19.99/mo</td>
+  <td>API: $1.25 / $10 per 1M (&le;200K) &middot; $2.50 / $20 (1M)</td>
+</tr>
+<tr>
+  <td><strong>Perplexity</strong></td>
+  <td>5 Pro queries/day</td>
+  <td>Pro $20/mo</td>
+  <td>Max $200/user/mo (Deep Research on Opus 4.6)</td>
+</tr>
+<tr>
+  <td><strong>Cursor</strong></td>
+  <td>Limited completions</td>
+  <td>Pro $20/mo</td>
+  <td>Business $40/user (Composer 2 @ 200+ tok/sec)</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Privacy posture</h2>
+
+<div class="callout callout-orange">
+  <span class="callout-icon">&#9888;&#65039;</span>
+  <div class="callout-title">Default training policies are not the same across vendors</div>
+  <div>If the content you paste in is sensitive — client work, medical, financial, legal, kids' info — read the row carefully. "Trains by default" means the free or entry-paid tier may use your conversations to improve future models unless you opt out in settings.</div>
+</div>
+
+<table>
+<caption>Default training behavior &middot; safer tier &middot; notes</caption>
+<thead>
+<tr>
+  <th scope="col">Tool</th>
+  <th scope="col">Trains on your data by default?</th>
+  <th scope="col">Safer tier</th>
+  <th scope="col">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>ChatGPT Free / Plus</strong></td>
+  <td class="privacy-yes">Yes</td>
+  <td>Team ($30/user) or Enterprise</td>
+  <td>Toggle "Improve model for everyone" off in Data Controls.</td>
+</tr>
+<tr>
+  <td><strong>Claude Free / Pro</strong></td>
+  <td class="privacy-no">No</td>
+  <td>Team ($25/user)</td>
+  <td>30-day purge by default. Policy change in 2025 defaulted non-responding users into 5-year retention &mdash; review settings actively.</td>
+</tr>
+<tr>
+  <td><strong>Gemini consumer</strong></td>
+  <td class="privacy-yes">Yes</td>
+  <td>Vertex AI (paid GCP)</td>
+  <td>Human review of samples is possible per Google policy. Treat consumer Gemini as non-private.</td>
+</tr>
+<tr>
+  <td><strong>Microsoft M365 Copilot</strong></td>
+  <td class="privacy-no">No (contractual)</td>
+  <td>Default M365 Copilot</td>
+  <td>Training is contractually off; tenant boundary holds.</td>
+</tr>
+<tr>
+  <td><strong>Perplexity Pro</strong></td>
+  <td class="privacy-no">No on Pro</td>
+  <td>Pro / Enterprise</td>
+  <td>Free tier behavior shifts often; verify in account settings.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>When tool data is suspicious</h2>
+<div class="callout callout-red">
+  <span class="callout-icon">&#128737;&#65039;</span>
+  <div class="callout-title">Run a second-opinion pass before trusting a critical number</div>
+  <div>
+    <p>Every tool in this matrix hallucinates sometimes. The Perplexity citation may point at a real URL that says something different. The Claude long-PDF summary may miss a clause buried in section 14. The ChatGPT data analysis may quietly drop a row.</p>
+    <p>When a number, citation, or claim is going to drive a real decision &mdash; a contract, a financial move, a healthcare choice &mdash; run it through a second model in the matrix and check the source directly. If the answer crosses a money, medical, or legal threshold, also point the <a href="skills-catalog.html#cat-privacy">security-reviewer</a> skill at the output for a structured red-team pass.</p>
+  </div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-multi-ai.html" class="nav-link prev"><small>&larr; Previous</small>Multi-AI Mastery Overview</a>
+  <a href="track-multi-ai-routing.html" class="nav-link next"><small>Next &rarr;</small>Switching Strategy + Voice Routing</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

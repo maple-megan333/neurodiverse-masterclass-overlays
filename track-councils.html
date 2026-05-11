@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Councils &amp; Multi-Agent — Track D — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.stack-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  transition: border-color 0.2s var(--ease);
+}
+.stack-card:hover { border-color: var(--border-hover); }
+.stack-card h3 { margin-top: 0.4rem; margin-bottom: 0.35rem; font-size: 1.05rem; }
+.stack-card .strength {
+  font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--green-title); font-weight: 700; margin-bottom: 0.5rem; display: block;
+}
+.cost-pill {
+  display: inline-block; font-family: var(--font-mono);
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
+  padding: 0.18rem 0.55rem; border-radius: 100px; margin-left: 0.4rem;
+  background: rgba(96,165,250,0.12); color: var(--blue-title);
+  border: 1px solid rgba(96,165,250,0.3); white-space: nowrap;
+}
+.cost-pill.cost-high { background: rgba(248,113,113,0.12); color: var(--red-title); border-color: rgba(248,113,113,0.3); }
+.cost-pill.cost-low  { background: rgba(52,211,153,0.12); color: var(--green-title); border-color: rgba(52,211,153,0.3); }
+table.def-table th:first-child, table.def-table td:first-child { width: 22%; }
+@media (max-width: 600px) { table.def-table th:first-child, table.def-table td:first-child { width: auto; } }
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK D &middot; COUNCILS &amp; MULTI-AGENT</span>
+      <h1>Councils &amp; Multi-Agent</h1>
+      <p class="tagline">When multiple agents help. When they hurt. Anthropic's answer: prefer simplicity first.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track D</span> Councils &amp; Multi-Agent
+  </span>
+</nav>
+
+<h2>What this track teaches</h2>
+<div class="callout callout-purple">
+  <span class="callout-icon">&#129504;</span>
+  <div class="callout-title">The premise</div>
+  <div>Multi-agent is not better. It is <em>different</em> — and most of the time it costs 3-5&times; more tokens for outcomes a single well-prompted agent could match. This track gives you the vocabulary to talk about councils precisely, the six patterns ND professionals can actually use, and the anti-patterns that quietly burn money and attention. We end where Anthropic begins: <strong>prefer simplicity first</strong>.</div>
+</div>
+
+<h2>The precise vocabulary</h2>
+<p>People use these words interchangeably. They aren't. Mixing them up is how you end up with a "council" that's really a pipeline, or a "subagent" that's really a long prompt. Get the labels right and the rest of the track lands cleanly.</p>
+
+<table class="def-table">
+  <thead><tr><th>Term</th><th>What it actually means</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Agent</strong></td><td>An LLM running an <em>agentic loop</em>: plan &rarr; act &rarr; observe &rarr; plan again. The loop is what distinguishes an agent from a chatbot.</td></tr>
+    <tr><td><strong>Subagent</strong></td><td>An agent spawned by another agent. It runs in a separate Claude conversation with its own system prompt, its own tool allowlist, and a fresh context window. It does <strong>not</strong> share the parent's context.</td></tr>
+    <tr><td><strong>Council / Panel</strong></td><td>Multiple agents or personas reviewing one problem from different angles. Maps to Anthropic's orchestrator-workers and agent-teams patterns.</td></tr>
+    <tr><td><strong>War Room</strong></td><td>Parallel multi-expert analysis: 3-5 agents running simultaneously, each from a distinct domain.</td></tr>
+    <tr><td><strong>Review Board</strong></td><td>Sequential: A drafts, B critiques, C synthesizes. This is the generator-verifier pattern with a synthesis step on top.</td></tr>
+    <tr><td><strong>Pipeline</strong></td><td>An assembly line where one output feeds the next input. This is a <strong>workflow</strong>, not multi-agent. It suffers telephone-game degradation.</td></tr>
+    <tr><td><strong>Agentic Loop</strong></td><td>The plan-act-observe cycle inside any agent. A loop without an explicit termination condition (success, failure, or max iterations) is an anti-pattern, not an agent.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-yellow">
+  <span class="callout-icon">&#9888;&#65039;</span>
+  <div class="callout-title">"Pipeline" is the most misused word</div>
+  <div>If your "multi-agent system" is really five steps where each one waits for the previous one, you have a workflow. That's fine. But labeling it "multi-agent" buys you the cost overhead without the speedup — because there <em>is</em> no speedup when the work is sequential.</div>
+</div>
+
+<h2>Anthropic's foundational position</h2>
+<p>The clearest writing on this comes from Anthropic's own engineering team. Their <a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener">Building Effective Agents</a> (December 2024) is the canonical reference. The primary design principle is short enough to tape to your monitor.</p>
+
+<blockquote>
+"Prefer simplicity first. When a workflow with a single agent works, use it. Add complexity only when the task structurally requires it." &mdash; Anthropic, <em>Building Effective Agents</em>
+</blockquote>
+
+<div class="callout callout-blue">
+  <span class="callout-icon">&#128218;</span>
+  <div class="callout-title">The three structural conditions that justify multi-agent</div>
+  <div>Anthropic names three. If your task does not fit one of these, a single agent is the better tool:
+    <ol style="margin-top:0.5rem;">
+      <li><strong>Tasks too long for a single context window</strong> — research over thousands of pages, codebases that won't fit, document collections that exceed even Claude's million-token window.</li>
+      <li><strong>Tasks that benefit from independent agents checking each other's work</strong> — when verification by a fresh perspective genuinely catches errors a single chain-of-thought misses.</li>
+      <li><strong>Parallel independent workstreams</strong> — multiple questions that don't depend on each other and would take N times longer in sequence.</li>
+    </ol>
+    Anthropic's own production research system uses orchestrator-worker for condition #3 — simultaneous independent investigation of distinct subtopics.</div>
+</div>
+
+<h2>The 5 official coordination patterns</h2>
+<p>From Anthropic's <a href="https://claude.com/blog/multi-agent-coordination-patterns" target="_blank" rel="noopener">multi-agent coordination patterns</a> guide. These are the named structures — every multi-agent design you'll see in the wild is a version of one of these.</p>
+
+<table>
+  <thead><tr><th>Pattern</th><th>Use when</th><th>Don't use when</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Generator-Verifier</strong></td><td>Quality is critical and the verification criteria are explicit and inspectable</td><td>Verification criteria are vague or subjective &mdash; verifier just becomes a yes-machine</td></tr>
+    <tr><td><strong>Orchestrator-Subagent</strong></td><td><em>Start here.</em> Widest range of tasks, least coordination overhead. Anthropic's default recommendation</td><td>Subagents need to share intermediate findings with each other mid-task</td></tr>
+    <tr><td><strong>Agent Teams</strong></td><td>Sustained multi-step work that genuinely needs deep, separate domain expertise</td><td>Agents must share real-time discoveries &mdash; teams can't gossip mid-flight</td></tr>
+    <tr><td><strong>Message Bus</strong></td><td>Event-driven workloads &mdash; security alerts, triage queues, asynchronous handoffs</td><td>You need transparent, debuggable, linear behavior</td></tr>
+    <tr><td><strong>Shared State</strong></td><td>Genuinely collaborative findings build cumulatively in one place</td><td>You don't have a robust termination condition &mdash; shared state without an exit is a stuck loop</td></tr>
+  </tbody>
+</table>
+
+<h2>The real cost numbers</h2>
+<p>This is the part most "multi-agent is the future" posts skip. The numbers are from production data and they are not subtle.</p>
+
+<ul>
+  <li><strong>Subagent-heavy workflows cost 200-500% more tokens</strong> than the same work done by a single agent.</li>
+  <li><strong>~20,000 tokens of context-loading overhead per subagent</strong> before any actual work happens &mdash; that's the system prompt, tool definitions, and task framing every spawn pays for.</li>
+  <li><strong>Agent teams in plan mode use roughly 7&times; more tokens</strong> than a standard single-agent session.</li>
+  <li><strong>For an estimated 70% of workloads, single agents deliver 90-95% of multi-agent outcomes</strong> at 30-40% of the cost.</li>
+</ul>
+
+<div class="callout callout-red">
+  <span class="callout-icon">&#128176;</span>
+  <div class="callout-title">The one cost lever worth knowing</div>
+  <div>The <code>CLAUDE_CODE_SUBAGENT_MODEL</code> environment variable lets you run the orchestrator on Opus and subagents on Sonnet or Haiku. This is the single highest-leverage cost reduction you can make without changing your architecture &mdash; most subagent work is mechanical retrieval and summarization that doesn't need Opus-level reasoning.</div>
+</div>
+
+<h2>Why this track lives last</h2>
+<p>Every other track in this MasterClass &mdash; multi-AI routing, prompting, RAG &mdash; teaches you to get more out of a <em>single</em> agent. This one teaches you when to add a second. The order is deliberate.</p>
+
+<div class="callout callout-yellow">
+  <span class="callout-icon">&#127919;</span>
+  <div class="callout-title">The ND-specific trap</div>
+  <div>Designing a five-agent council is more dopamine-engaging than writing one good system prompt. ADHD brains reach for elaborate architectures because the architecture <em>itself</em> is the interesting puzzle. The output rarely justifies it. Master the single-agent skills in Tracks A-C first &mdash; you'll need them anyway, and you'll know when a council is genuinely earning its keep.</div>
+</div>
+
+<h2>Where to go next</h2>
+<div class="cards">
+  <div class="stack-card">
+    <span class="strength">Deep Dive 1</span>
+    <h3><a href="track-councils-patterns.html" style="color:var(--text);">The 6 Patterns You Can Actually Use &rarr;</a></h3>
+    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Ordered simplest to most complex. Specialist Consultation, Devil's Advocate Solo, Pre-Mortem Council, Parallel Research, Review Board, Self-Debate. Each with a prompt template, cost indicator, and the specific ND value.</div>
+  </div>
+  <div class="stack-card" style="border-left-color: var(--gold);">
+    <span class="strength" style="color:var(--gold);">Deep Dive 2</span>
+    <h3><a href="track-councils-antipatterns.html" style="color:var(--text);">Anti-Patterns + When Single-Agent Wins &rarr;</a></h3>
+    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Six concrete anti-patterns, five conditions where a single agent beats a council, and the ND-specific decision rule that keeps you from over-architecting tasks that don't need it.</div>
+  </div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-rag-personal-prod.html" class="nav-link prev"><small>&larr; Previous</small>RAG &amp; Personal Production</a>
+  <a href="track-councils-patterns.html" class="nav-link next"><small>Next &rarr;</small>6 Patterns &mdash; Deep Dive 1</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

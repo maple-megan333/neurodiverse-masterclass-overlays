@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-AI Mastery — Track A — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.stack-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  transition: border-color 0.2s var(--ease);
+}
+.stack-card:hover { border-color: var(--border-hover); }
+.stack-card-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: rgba(168,85,247,0.12);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 3px;
+  padding: 1px 6px;
+  margin-right: 0.5rem;
+}
+.stack-card h3 { margin-top: 0.4rem; margin-bottom: 0.35rem; font-size: 1.05rem; }
+.stack-card .strength {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green-title);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.stack-card .price {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  display: block;
+  margin-top: 0.45rem;
+}
+.arrow {
+  text-align: center;
+  font-family: var(--font-mono);
+  color: var(--text-accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  margin: 0.25rem 0;
+}
+.energy-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.6rem;
+  background: rgba(255,255,255,0.015);
+}
+.energy-pill {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.energy-high { background: rgba(248,113,113,0.15); color: var(--red-title); border: 1px solid rgba(248,113,113,0.3); }
+.energy-med  { background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
+.energy-low  { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
+.energy-row .body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.5; }
+.energy-row .body strong { color: var(--text); }
+@media (max-width: 600px) {
+  .energy-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK A &middot; MULTI-AI</span>
+      <h1>Multi-AI Mastery</h1>
+      <p class="tagline">Use the right AI for the moment, not a favorite for everything.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+  <span class="phase-indicator phase-power" aria-label="Advanced Track">
+    <span class="phase-num">Track A</span> Multi-AI Mastery
+  </span>
+</nav>
+
+<h2>What this track teaches</h2>
+<div class="callout callout-purple">
+  <span class="callout-icon">&#129504;</span>
+  <div class="callout-title">The premise</div>
+  <div>No single AI wins every task. Each tool has a real specialty — and forcing one to do everything wastes time, energy, and money. This track maps 21 common task types to the best-fit tool, shows the dominant "Triple Stack" practitioner pattern, and pairs each move to an energy state so a low-spoon day still gets useful work done.</div>
+</div>
+
+<h2>The Triple Stack</h2>
+<p>Most working professionals in 2026 settle into a three-tool rhythm. Each tool handles the slice it actually does best, and you move between them in a predictable order.</p>
+
+<div class="columns columns-3">
+  <div class="stack-card">
+    <span class="stack-card-num">01</span>
+    <span class="strength">Research</span>
+    <h3>Perplexity Pro</h3>
+    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Cited, current data. 92% factual accuracy with inline source links. Start here when you need facts you can verify, not vibes.</div>
+    <span class="price">Free 5/day &middot; Pro $20/mo</span>
+  </div>
+  <div class="stack-card">
+    <span class="stack-card-num">02</span>
+    <span class="strength">Synthesis</span>
+    <h3>Claude (Sonnet 4.6 / Opus 4.7)</h3>
+    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Long-form reasoning, voice matching, deep document work. 1M context = your whole research corpus in one session.</div>
+    <span class="price">Pro $20/mo &middot; API $3-25 / 1M tokens</span>
+  </div>
+  <div class="stack-card">
+    <span class="stack-card-num">03</span>
+    <span class="strength">Output</span>
+    <h3>ChatGPT (GPT-5.5)</h3>
+    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Social posts, email tone, spreadsheets, image generation, presentations. The versatility tool — the one with the widest surface area.</div>
+    <span class="price">Free (5.3) &middot; Plus $20/mo &middot; Pro $100/mo</span>
+  </div>
+</div>
+<div class="arrow">PERPLEXITY &rarr; CLAUDE &rarr; CHATGPT</div>
+
+<h2>Why no single tool wins</h2>
+<p>Modern AI models cluster around specialties because their training data, system prompts, and reinforcement learning targets are different. Claude is tuned for long-context reasoning and writing style transfer. GPT-5.5 is tuned for breadth and creative output. Perplexity is a search engine wearing an LLM coat. Gemini 2.5 Pro chases the longest-context PDF analysis crown.</p>
+
+<p>Picking one favorite forces you to pay a tax every time the task doesn't match the tool's grain. A common pattern: someone fights Claude for an hour to make a marketing image (it can't, it's a writing tool), or fights ChatGPT to read a 300-page research corpus (it summarizes badly past ~50k tokens). The cost is real — both in time and in the mental energy spent wrestling.</p>
+
+<div class="callout callout-yellow">
+  <span class="callout-icon">&#128161;</span>
+  <div class="callout-title">The shortcut</div>
+  <div>Match tool to task, not task to tool. If you find yourself fighting a tool for more than 10 minutes, the answer is usually a different tool, not a better prompt.</div>
+</div>
+
+<h2>Energy-state routing</h2>
+<p>For ND professionals, capacity isn't constant. The right tool at 8am on a high-focus morning is rarely the right tool at 4pm after three meetings. This routing maps your state to your interface.</p>
+
+<div class="energy-row">
+  <div><span class="energy-pill energy-high">High energy</span></div>
+  <div class="body"><strong>Text-based, feature-rich tools.</strong> Claude Projects, Cursor 3 for code, n8n for automation builds. You have working memory to spare — spend it on tools that reward setup with depth.</div>
+</div>
+<div class="energy-row">
+  <div><span class="energy-pill energy-med">Medium energy</span></div>
+  <div class="body"><strong>Familiar surfaces, lower setup.</strong> ChatGPT for general work, Perplexity for guided search where the task is "find me this and cite it." You want utility without ceremony.</div>
+</div>
+<div class="energy-row">
+  <div><span class="energy-pill energy-low">Low energy</span></div>
+  <div class="body"><strong>Voice mode or audio.</strong> Claude Voice (beta, free on all plans) or ChatGPT Advanced Voice when typing is the blocker. NotebookLM Audio Overview if you'd rather consume a research synthesis as a 12-minute podcast than read it.</div>
+</div>
+
+<h2>Three ways to start tomorrow</h2>
+<div class="callout">
+  <span class="callout-icon">&#127881;</span>
+  <div class="callout-title">Pick one — that's enough</div>
+  <div>
+    <p><strong>1. Run one Triple Stack pass on a real task.</strong> Take something already on your plate — a memo, a research summary, a pitch deck — and walk it through Perplexity &rarr; Claude &rarr; ChatGPT once. Notice where each tool earned its keep.</p>
+    <p><strong>2. Set a "voice-only" hour.</strong> Pick a low-energy window this week. Use ChatGPT Advanced Voice or Claude Voice for everything in that hour. No typing. See what gets through.</p>
+    <p><strong>3. Audit your default.</strong> If you reach for one AI tool by reflex, write down the last five tasks you used it for. Cross-check against the matrix on the next page. Anything in the wrong column?</p>
+  </div>
+</div>
+
+<h2>Where to go next</h2>
+<div class="columns columns-2">
+  <div class="stack-card" style="border-left-color: var(--blue);">
+    <span class="strength" style="color:var(--blue-title);">Deep Dive 1</span>
+    <h3><a href="track-multi-ai-matrix.html" style="color:var(--text);">Tool Matrix &mdash; 21 Tasks, Mapped &rarr;</a></h3>
+    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">The full task-to-tool lookup table. Best tool, runner-up, and one sentence of why for every task type. Plus pricing and privacy postures.</div>
+  </div>
+  <div class="stack-card" style="border-left-color: var(--gold);">
+    <span class="strength" style="color:var(--gold);">Deep Dive 2</span>
+    <h3><a href="track-multi-ai-routing.html" style="color:var(--text);">Switching Strategy + Voice Routing &rarr;</a></h3>
+    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">How to move work between tools without losing context. Voice routing for low-energy days. A sample week-long workflow that caps switching at three tools.</div>
+  </div>
+</div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="index.html" class="nav-link prev"><small>&larr; Previous</small>MasterClass Home</a>
+  <a href="track-multi-ai-matrix.html" class="nav-link next"><small>Next &rarr;</small>Tool Matrix &mdash; Deep Dive 1</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>

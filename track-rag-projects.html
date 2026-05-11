@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layer 1: No-Code RAG Tools — Neurodiverse AI MasterClass</title>
+<link rel="stylesheet" href="css/design-system.css">
+<link rel="stylesheet" href="css/brain-header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.tool-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1.1rem;
+  border-top: 3px solid var(--accent);
+  transition: border-color 0.2s var(--ease);
+}
+.tool-card:hover { border-color: var(--border-hover); }
+.tool-card.claude    { border-top-color: #c89b6e; }
+.tool-card.notebook  { border-top-color: var(--blue-title); }
+.tool-card.chatgpt   { border-top-color: var(--green-title); }
+.tool-card.gemini    { border-top-color: var(--accent); }
+.tool-card.perplex   { border-top-color: var(--orange-title); }
+.tool-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; margin-bottom: 0.5rem; }
+.tool-name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--text); }
+.tool-tag {
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 0.15rem 0.55rem; border-radius: 100px;
+  background: var(--accent-soft); color: var(--text-accent);
+  border: 1px solid var(--accent-glow);
+}
+.tool-tag.audio { background: rgba(96,165,250,0.15); color: var(--blue-title); border-color: rgba(96,165,250,0.3); }
+.tool-tag.team  { background: rgba(217,119,6,0.15); color: var(--orange-title); border-color: rgba(217,119,6,0.3); }
+.tool-tag.live  { background: rgba(52,211,153,0.15); color: var(--green-title); border-color: rgba(52,211,153,0.3); }
+.tool-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem 1rem;
+  padding: 0.55rem 0.8rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius-sm);
+  margin: 0.7rem 0;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+}
+.tool-meta strong { color: var(--text-accent); font-weight: 600; }
+.tool-body { font-size: 0.93rem; color: var(--text-mid); line-height: 1.6; }
+.tool-body p { margin: 0 0 0.55rem; }
+.tool-body .nd {
+  font-size: 0.86rem;
+  background: rgba(168,85,247,0.07);
+  border-left: 2px solid var(--accent);
+  padding: 0.55rem 0.8rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-top: 0.7rem;
+}
+.tool-body .nd::before {
+  content: '🌱 ND note · ';
+  font-weight: 700; color: var(--text-accent);
+}
+</style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <canvas id="brainCanvas"></canvas>
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK C · RAG &amp; KNOWLEDGE</span>
+      <h1>Layer 1 · No-Code RAG</h1>
+      <p class="tagline">5 no-code tools for personal RAG — what each is genuinely best for.</p>
+    </div>
+  </div>
+</div>
+<div class="page-wrapper" id="main-content">
+<nav class="nav-bar" aria-label="Page navigation">
+  <div class="nav-breadcrumb"><a href="track-rag.html">&larr; Track C overview</a></div>
+  <span class="phase-indicator phase-power" aria-label="Track C"><span class="phase-num">Track C · RAG &amp; Knowledge</span></span>
+</nav>
+
+<div class="callout callout-purple"><span class="callout-icon">📂</span><div class="callout-title">How Layer 1 works</div><div>
+<p>You drop files into a folder inside a chat tool. The tool indexes them in the background, then routes every question through that index before answering. No code, no embeddings to manage, no vector database to host. You get RAG, you don't think about RAG.</p>
+<p>The five tools below all do this. The difference is <em>what kind of file mix and what kind of question</em> each one handles best — not which one is "better."</p>
+</div></div>
+
+<h2>The 5 tools, in plain comparison</h2>
+
+<div class="tool-card claude">
+  <div class="tool-head">
+    <span class="tool-name">Claude Projects</span>
+    <span class="tool-tag">Default pick</span>
+  </div>
+  <div class="tool-meta">
+    <div><strong>File limit:</strong> 30MB / file</div>
+    <div><strong>Context:</strong> 200K tokens (~500 pages)</div>
+    <div><strong>Audio:</strong> No</div>
+    <div><strong>Plan:</strong> Pro $20/mo</div>
+  </div>
+  <div class="tool-body">
+    <p>The general-purpose RAG choice. You upload files, write custom instructions ("always reply in 3-bullet summaries, never use the word 'leverage'"), and every new conversation in that Project inherits both the files and the instructions.</p>
+    <p>The hidden superpower: at scale Claude auto-activates RAG mode, expanding effective capacity by roughly <strong>10×</strong>. Unlike most retrieval tools, Claude reasons <em>across</em> documents instead of only pulling matching chunks — useful when the answer requires connecting two different sources.</p>
+    <p><em>Known quirk:</em> The RAG-mode trigger fires on file count, not token size (Issue #25759), so a Project with 100 tiny files behaves differently from a Project with 5 big ones. If retrieval feels off, try consolidating into fewer, longer files.</p>
+    <div class="nd">Custom instructions = define your format preferences once. Every session in this Project then arrives pre-configured. No more retyping "explain like I'm tired" at the start of each chat.</div>
+  </div>
+</div>
+
+<div class="tool-card notebook">
+  <div class="tool-head">
+    <span class="tool-name">NotebookLM</span>
+    <span class="tool-tag audio">Audio Overview ★</span>
+  </div>
+  <div class="tool-meta">
+    <div><strong>Sources:</strong> 50 per notebook</div>
+    <div><strong>Per source:</strong> 500K words</div>
+    <div><strong>Context:</strong> 1M tokens</div>
+    <div><strong>Plan:</strong> Free tier exists</div>
+  </div>
+  <div class="tool-body">
+    <p>Google's source-grounded research tool. The strictest RAG of the bunch — NotebookLM <em>refuses</em> to answer outside your uploaded material. Ask it about something you didn't give it and it will tell you it can't, instead of inventing.</p>
+    <p>That refusal makes it the closest thing to <strong>zero-hallucination RAG</strong> available in a consumer product. For study, research synthesis, and "I need to actually understand these 30 PDFs," that strictness is the feature.</p>
+    <p><strong>Audio Overviews</strong> turn any notebook into a podcast-style conversation between two AI hosts discussing your sources. Four formats, 80+ languages, generated in a few minutes. Free.</p>
+    <div class="nd">If reading PDFs feels like wading through molasses, Audio Overviews are the cheat code. Upload your sources, generate an audio file, walk around while it explains the material to you. No other tool on this list does this.</div>
+  </div>
+</div>
+
+<div class="tool-card chatgpt">
+  <div class="tool-head">
+    <span class="tool-name">ChatGPT Projects</span>
+    <span class="tool-tag audio">Voice mode</span>
+  </div>
+  <div class="tool-meta">
+    <div><strong>File limit:</strong> Varies by plan</div>
+    <div><strong>Sources:</strong> Large (plan-tiered)</div>
+    <div><strong>Audio:</strong> Voice input</div>
+    <div><strong>Plan:</strong> Plus $20/mo</div>
+  </div>
+  <div class="tool-body">
+    <p>Projects, not Custom GPTs — these are two different OpenAI features and the distinction matters. <strong>Projects</strong> are private workspaces that hold files plus per-project instructions for your own use. <strong>Custom GPTs</strong> are shareable bots in the GPT Store. If you're doing personal RAG, you want Projects.</p>
+    <p>The standout is voice integration: open the iPhone or Android app, tap the mic, and you can have a spoken conversation that's grounded in your uploaded files. Speech-to-text input combined with retrieval makes this the tool of choice when typing is fatiguing or when you're processing thoughts out loud.</p>
+    <div class="nd">Voice mode pairs naturally with body-doubling. Put your phone on the desk, talk through a document you uploaded, let ChatGPT play back what you said and summarize. The barrier to "starting" drops dramatically.</div>
+  </div>
+</div>
+
+<div class="tool-card gemini">
+  <div class="tool-head">
+    <span class="tool-name">Gemini Gems</span>
+    <span class="tool-tag live">Live Drive sync</span>
+  </div>
+  <div class="tool-meta">
+    <div><strong>File limit:</strong> 10 files / Gem</div>
+    <div><strong>Sources:</strong> 10 (live Drive references)</div>
+    <div><strong>Audio:</strong> No</div>
+    <div><strong>Plan:</strong> Google Workspace</div>
+  </div>
+  <div class="tool-body">
+    <p>Gemini's "Gem" is a saved assistant configuration with instructions and files attached. The file limit is small (10), but the unique trick is that those 10 slots can point to <strong>live Google Drive documents</strong> instead of static uploads.</p>
+    <p>Translation: if you edit the Drive doc, the Gem references the new version on the next question. No re-uploading after every revision. For people whose source-of-truth notes already live in Docs and Sheets, this single feature can outweigh smaller limits.</p>
+    <div class="nd">If you already work in Google Drive, Gemini Gems is the lowest-friction option. Zero "I need to remember to re-upload after I edit." Lower memory tax.</div>
+  </div>
+</div>
+
+<div class="tool-card perplex">
+  <div class="tool-head">
+    <span class="tool-name">Perplexity Spaces</span>
+    <span class="tool-tag team">Web + private docs</span>
+  </div>
+  <div class="tool-meta">
+    <div><strong>File limit:</strong> 50 files</div>
+    <div><strong>Sources:</strong> 50 + live web</div>
+    <div><strong>Audio:</strong> No</div>
+    <div><strong>Plan:</strong> Pro $20/mo</div>
+  </div>
+  <div class="tool-body">
+    <p>The only Layer 1 tool that natively combines your private documents <em>with</em> live web search in the same query. Ask a question and Perplexity will pull from your uploaded files <strong>and</strong> fresh sources from the open web, citing both.</p>
+    <p>Particularly good for small teams doing research where "what's already in our internal docs?" and "what's the current state of the field?" need to be answered together. Spaces can be shared with collaborators, which makes it the closest thing to multi-user RAG without graduating to Layer 3.</p>
+    <div class="nd">Built-in citations on every answer reduce the verify-claims tax. You spend less effort second-guessing whether something was hallucinated.</div>
+  </div>
+</div>
+
+<h2>Layer 1 quick comparison</h2>
+<table>
+<caption>Five Layer 1 tools at a glance</caption>
+<tr><th>Tool</th><th>File / source limit</th><th>Audio</th><th>Best for</th></tr>
+<tr><td><strong>Claude Projects</strong></td><td>30MB/file, ~200K tokens</td><td>No</td><td>Deep document reasoning, ongoing projects</td></tr>
+<tr><td><strong>NotebookLM</strong></td><td>500K words/source, 50 sources</td><td><strong>Yes</strong> — 4 formats, 80+ languages</td><td>Study, synthesis, auditory learners</td></tr>
+<tr><td><strong>ChatGPT Projects</strong></td><td>Plan-tiered, large</td><td>Voice input</td><td>Speaking-not-typing, multi-modal</td></tr>
+<tr><td><strong>Gemini Gems</strong></td><td>10 files</td><td>No</td><td>Google Drive users — live doc sync</td></tr>
+<tr><td><strong>Perplexity Spaces</strong></td><td>50 files</td><td>No</td><td>Private docs + live web, small team</td></tr>
+</table>
+
+<h2>Citation reliability test</h2>
+<div class="callout callout-blue"><span class="callout-icon">🔍</span><div class="callout-title">The 10-question spot-check</div><div>
+<p>Before you trust any RAG setup with real work, run a test you can verify. Pick <strong>10 questions you already know the answer to</strong> from the documents you uploaded. Ask them one at a time. For each answer, check:</p>
+<ol>
+  <li>Is the cited source the correct document?</li>
+  <li>Does the quoted passage actually say what the AI claims it says?</li>
+  <li>Is the answer factually right?</li>
+</ol>
+<p>Score the results:</p>
+<ul>
+  <li><strong>9–10 / 10 correct</strong> — reliable. Use it.</li>
+  <li><strong>7–8 / 10</strong> — usable for low-stakes drafting, verify everything for high-stakes work.</li>
+  <li><strong>Below 7 / 10</strong> — broken. Try fewer files, consolidate, or switch tools.</li>
+</ul>
+<p>This single 20-minute test will save more time than any amount of reading reviews. It's the production-grade evaluation method (RAGAS) compressed into a non-developer-friendly proxy.</p>
+</div></div>
+
+<h2>Privacy when using Layer 1 cloud tools</h2>
+<p>All five tools above run in the cloud. Default settings vary — some opt you into model training, some don't. The opt-out steps as of mid-2026:</p>
+
+<div class="callout callout-gray"><span class="callout-icon">🔒</span><div class="callout-title">Per-tool opt-out</div><div>
+<ul>
+  <li><strong>Claude</strong> — Free/Pro/Max do not train on your conversations by default. No action needed for personal accounts. <strong>Claude Team</strong> tier adds contractual guarantees if you handle client work or sensitive material.</li>
+  <li><strong>NotebookLM</strong> — Personal Google accounts: your uploads are not used for training. Workspace accounts inherit your admin's data-processing terms.</li>
+  <li><strong>ChatGPT</strong> — Settings → Data Controls → toggle <em>"Improve the model for everyone"</em> OFF. Or upgrade to <strong>ChatGPT Team / Enterprise</strong>, which excludes training by default.</li>
+  <li><strong>Gemini</strong> — myactivity.google.com → Gemini Apps Activity → pause. Workspace accounts: admin-controlled.</li>
+  <li><strong>Perplexity</strong> — Settings → Account → AI Data Retention → toggle off. Pro accounts get stricter retention.</li>
+</ul>
+<p>For anything that wouldn't be okay public — even with the toggles off — use a Layer 2 local tool instead. Cloud toggles are policy promises, not technical guarantees.</p>
+</div></div>
+
+<div class="callout callout-teal"><span class="callout-icon">💾</span><div class="callout-title">Save point</div><div>One of these five is almost certainly enough. If you've outgrown them — more than 200 docs, vault you already maintain, or genuine privacy requirements — the next page covers Layer 2 (personal knowledge base) and Layer 3 (production, when it's actually warranted).</div></div>
+
+<nav class="nav-footer" aria-label="Workshop navigation">
+  <a href="track-rag.html" class="nav-link prev"><small>← Previous</small>Track C overview</a>
+  <a href="track-rag-personal-prod.html" class="nav-link next"><small>Next →</small>Layer 2 &amp; Layer 3</a>
+</nav>
+</div>
+<script src="js/main.js"></script>
+<script src="js/brain-animation.js"></script>
+</body>
+</html>
