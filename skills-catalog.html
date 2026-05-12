@@ -34,7 +34,7 @@
   letter-spacing: 0.04em; text-transform: uppercase;
   white-space: nowrap;
 }
-.tag-local    { background: rgba(168,85,247,0.15); color: var(--text-accent); border: 1px solid rgba(168,85,247,0.3); }
+.tag-reference{ background: rgba(168,85,247,0.15); color: var(--text-accent); border: 1px solid rgba(168,85,247,0.3); }
 .tag-community{ background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
 .tag-official { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
 .tag-bundled  { background: rgba(245,197,66,0.15); color: var(--gold); border: 1px solid rgba(245,197,66,0.3); }
@@ -139,16 +139,20 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 </div>
 <div class="page-wrapper" id="main-content">
 <nav class="nav-bar" aria-label="Page navigation">
-  <div class="nav-breadcrumb"><a href="reference-library.html">&larr; Reference Library</a></div>
+  <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
   <span class="phase-indicator" aria-label="Resources"><span class="phase-num">Resources</span></span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> None — browse, search, or jump to a category. <strong>Time:</strong> 5-30 min. <strong>Energy:</strong> Any.</div>
+</div>
 
 <div class="callout callout-purple"><span class="callout-icon">🧠</span><div class="callout-title">What this is</div><div>A curated catalog of skills for Claude Code — pulled from your local library + the broader community, vetted for quality and security. Each entry shows what it does, when to reach for it, and how to install it.</div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">🏷️</span><div class="callout-title">Reading the tags</div><div>
-<strong style="color:var(--text-accent)">🏠 LOCAL</strong> — already installed on the user's machine (the workshop creator's library; you can copy any of these from the source path).<br>
-<strong style="color:var(--blue-title)">🌐 COMMUNITY</strong> — public GitHub skill, vetted and recommended.<br>
-<strong style="color:var(--green-title)">✅ OFFICIAL</strong> — Anthropic-maintained, security-reviewed.<br>
+<strong style="color:var(--text-accent)">🧪 REFERENCE</strong> — example of a custom skill the workshop creator built. Use it as a template for writing your own; not directly installable.<br>
+<strong style="color:var(--blue-title)">🌐 COMMUNITY</strong> — public GitHub skill, vetted and recommended. Click the GitHub link to install.<br>
+<strong style="color:var(--green-title)">✅ OFFICIAL</strong> — Anthropic-maintained, security-reviewed. Install via <code>/plugin install</code>.<br>
 <strong style="color:var(--gold)">📦 BUNDLED</strong> — shipped with this workshop, downloadable from the Reference Library.<br>
 <strong>🌱</strong> ND-friendly — energy-aware, scope-bounded, shame-language-free.<br>
 <strong style="color:var(--green-title)">Low</strong> / <strong style="color:var(--blue-title)">Medium</strong> / <strong style="color:var(--red-title)">High</strong> — energy needed to actually use the skill productively.
@@ -186,7 +190,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">know-me</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -198,7 +202,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">collaborative-workspace</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -210,7 +214,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">interior-design</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -222,7 +226,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">notion-knowledge-capture</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -234,7 +238,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">xlsx</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -246,7 +250,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">pdf</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -258,7 +262,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">financial-analyst</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -316,7 +320,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">product-manager-toolkit</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -328,7 +332,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">senior-pm</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -340,7 +344,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">notion-spec-to-implementation</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -352,7 +356,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">notion-meeting-intelligence</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -364,7 +368,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">pptx</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -376,7 +380,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">docx</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -388,7 +392,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">data-analyst (agent)</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -400,7 +404,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">scrum-master</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -412,7 +416,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">contract-and-proposal-writer</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -469,7 +473,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">humanize-writing</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -494,7 +498,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">content-creator (marketing)</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -518,7 +522,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">prompt-engineer-toolkit</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -530,7 +534,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">template-publisher</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -542,7 +546,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">social-media-analyzer</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -574,7 +578,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">canvas-design</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -586,7 +590,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">theme-factory</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-official">✅ Also Official</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
@@ -599,7 +603,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">algorithmic-art</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -611,7 +615,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">ui-design-system</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-high">High energy</span>
 </div>
 <div class="skill-desc">Generates design tokens, color systems, component architecture, and developer handoff specs for any digital product or brand. Most useful when building a digital product with multiple touchpoints.</div>
@@ -622,7 +626,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">ux-researcher-designer</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -641,7 +645,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">deep-research</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-high">High energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -653,7 +657,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">notebooklm-integration</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -665,7 +669,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">panel-of-experts</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -677,7 +681,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">competitive-teardown</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -737,7 +741,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">the-fool</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -808,7 +812,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">doc-coauthoring (custom)</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -820,7 +824,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">campaign-analytics</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 </div>
 <div class="skill-desc">Multi-touch attribution, funnel conversion analysis, ROI calculation for any marketing or outreach campaign. Best with marketing context.</div>
@@ -838,7 +842,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">security-reviewer</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-medium">Medium energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -850,7 +854,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="skill-card">
 <div class="skill-card-head">
 <span class="skill-card-name">cost-reducer</span>
-<span class="skill-tag tag-local">🏠 Local</span>
+<span class="skill-tag tag-reference">🧪 Reference</span>
 <span class="skill-tag tag-energy-low">Low energy</span>
 <span class="skill-tag tag-nd">🌱 ND-friendly</span>
 </div>
@@ -979,6 +983,10 @@ Inside Claude Code, run <code>/plugin marketplace add anthropics/skills</code> o
 </ol>
 </div></div>
 
+<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+  <div><strong>One thing to remember:</strong> Install ONE new skill this week. Use it 3 times. Decide if it stays.</div>
+</div>
+
 <nav class="nav-footer" aria-label="Workshop navigation">
   <a href="reference-library.html" class="nav-link prev"><small>← Previous</small>Reference Library</a>
   <a href="life-templates.html" class="nav-link next"><small>Next →</small>Life Templates</a>
@@ -986,5 +994,6 @@ Inside Claude Code, run <code>/plugin marketplace add anthropics/skills</code> o
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>
