@@ -6,13 +6,15 @@ const cookie = require('cookie');
 
 const NOTION_VERSION = '2022-06-28';
 
-// Database names to search for (must match the template)
+// Database names to search for. Each key maps to one or more aliases —
+// the template may name DBs as "Prompts" OR "Prompt Library", "Tools" OR
+// "Tool Registry", etc. findDatabase tries each alias in turn.
 const DB_NAMES = {
-  lessons: 'Lessons',
-  prompts: 'Prompts',
-  tools: 'Tools',
-  portfolio: 'Portfolio',
-  workflows: 'Workflows',
+  lessons: ['Lessons'],
+  prompts: ['Prompt Library', 'Prompts'],
+  tools: ['Tool Registry', 'Tools'],
+  portfolio: ['Portfolio'],
+  workflows: ['Workflows'],
 };
 
 /**
@@ -45,27 +47,31 @@ async function notionFetch(token, path, options) {
 }
 
 /**
- * Search the user's workspace for a database by title.
+ * Search the user's workspace for a database. Accepts a string OR an
+ * array of alias strings — tries each until one matches.
  * Returns the database ID or null if not found.
  */
-async function findDatabase(token, title) {
-  const data = await notionFetch(token, '/search', {
-    method: 'POST',
-    body: JSON.stringify({
-      query: title,
-      filter: { property: 'object', value: 'database' },
-      page_size: 5,
-    }),
-  });
-  // Find exact title match
-  for (var i = 0; i < data.results.length; i++) {
-    var db = data.results[i];
-    var dbTitle = '';
-    if (db.title && db.title.length > 0) {
-      dbTitle = db.title.map(function(t) { return t.plain_text; }).join('');
-    }
-    if (dbTitle.toLowerCase().includes(title.toLowerCase())) {
-      return db.id;
+async function findDatabase(token, titleOrAliases) {
+  var aliases = Array.isArray(titleOrAliases) ? titleOrAliases : [titleOrAliases];
+  for (var a = 0; a < aliases.length; a++) {
+    var alias = aliases[a];
+    var data = await notionFetch(token, '/search', {
+      method: 'POST',
+      body: JSON.stringify({
+        query: alias,
+        filter: { property: 'object', value: 'database' },
+        page_size: 10,
+      }),
+    });
+    for (var i = 0; i < data.results.length; i++) {
+      var db = data.results[i];
+      var dbTitle = '';
+      if (db.title && db.title.length > 0) {
+        dbTitle = db.title.map(function(t) { return t.plain_text; }).join('');
+      }
+      if (dbTitle.toLowerCase().includes(alias.toLowerCase())) {
+        return db.id;
+      }
     }
   }
   return null;
