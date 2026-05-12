@@ -351,6 +351,19 @@ em { color: var(--text-mid); font-style: italic; }
 .callout-red .callout-title { color: var(--red-title); }
 
 /* --- ORANGE: Warning/heads up --- */
+/* Teal — save points + milestone markers */
+.callout-teal { border-left-color: #14b8a6; background: rgba(20, 184, 166, 0.04); }
+.callout-teal .callout-title::before {
+  content: 'SAVE POINT';
+  font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.1em; color: #5eead4;
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  border-radius: 3px; padding: 1px 5px;
+  margin-right: 0.6rem; display: inline-block; vertical-align: middle;
+}
+.callout-teal .callout-title { color: #5eead4; }
+
 .callout-orange { border-left-color: var(--orange); }
 .callout-orange .callout-title::before {
   content: 'HEADS UP';
@@ -455,7 +468,8 @@ em { color: var(--text-mid); font-style: italic; }
 .tile-icon { font-size: 1.4rem; margin-bottom: 2px; }
 .tile-name { font-weight: 600; font-size: 0.8rem; }
 .tile-sub { font-size: 0.68rem; color: var(--text-dim); }
-@media (max-width: 640px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- Code Blocks (Prompt Tools) ---------- */
 pre {
@@ -897,25 +911,28 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 .phase-indicator.phase-deeper { background: rgba(217,119,6,0.15); border-color: rgba(217,119,6,0.4); color: var(--yellow-title); }
 .phase-indicator.phase-power { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.4); color: var(--red-title); }
 
-/* Pause-motion control (visible top-right when not in reduced-motion mode) */
+/* Pause-motion control (visible top-right when not in reduced-motion mode)
+   Sized at 44×44 WCAG touch target minimum */
 .motion-toggle {
   position: fixed;
   top: 8px; right: 8px;
+  width: 44px; height: 44px;
   z-index: 100;
-  width: 36px; height: 36px;
   border-radius: 8px;
   border: 1px solid var(--accent-glow);
   background: var(--bg);
   color: var(--text-accent);
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   opacity: 0.6;
 }
 .motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; }
 @media (max-width: 600px) { .motion-toggle { display: none; } }
 body.motion-paused .particles,
 body.motion-paused .mesh-orb { display: none !important; }
+body.motion-paused hr { animation: none !important; background: var(--accent-glow) !important; }
+body.page-emergency .check-item input[type="checkbox"]:checked { animation: none; }
 body.motion-paused *, body.motion-paused *::before, body.motion-paused *::after {
   animation-duration: 0.001ms !important;
   animation-iteration-count: 1 !important;

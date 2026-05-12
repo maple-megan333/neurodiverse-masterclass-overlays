@@ -140,6 +140,8 @@
         return;
       }
       window.addEventListener('message', function onMsg(e) {
+        // Only trust messages from our own origin — prevents arbitrary frames forging auth-complete
+        if (e.origin !== window.location.origin) return;
         if (e.data && e.data.type === 'notion-auth-complete') {
           window.removeEventListener('message', onMsg);
           cache = {};

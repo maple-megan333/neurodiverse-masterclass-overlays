@@ -80,7 +80,8 @@ module.exports = async function handler(req, res) {
   </div>
   <script>
     if (window.opener) {
-      window.opener.postMessage({ type: 'notion-auth-complete' }, '*');
+      // Restrict postMessage to our own origin only — avoids broadcasting to any listener
+      window.opener.postMessage({ type: 'notion-auth-complete' }, window.location.origin);
       setTimeout(function() { window.close(); }, 1500);
     } else {
       // Fallback: redirect back to the app
