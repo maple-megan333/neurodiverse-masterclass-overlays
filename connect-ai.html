@@ -32,6 +32,10 @@
             <span class="phase-indicator phase-setup" aria-label="Phase 2 of 5: Set Up Your Tools"><span class="phase-num">Phase 2</span> of 5 — Set Up</span>
         </nav>
 
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Notion account + a Claude/ChatGPT account. <strong>Time:</strong> 5-20 min. <strong>Energy:</strong> Choose.</div>
+</div>
+
 <div class="columns columns-2">
 <div><div class="callout callout-blue"><span class="callout-icon">🔗</span><div class="callout-title">What you'll set up</div><div>Connect your AI to your tools — Notion, Google, files, everything.</div></div></div>
 <div><div class="callout callout-purple"><span class="callout-icon">⏱️</span><div class="callout-title">Time &amp; Energy</div><div><strong>5–20 min</strong> | <strong>Energy:</strong> Choose your level</div></div></div>
@@ -110,7 +114,6 @@
 <ul>
 <li>A computer (Mac, Windows, or Linux)</li>
 <li>Claude Pro or Team subscription ($20/month at <a href="https://claude.ai">claude.ai</a>)</li>
-<li>Node.js installed (needed to run MCP servers) — download from <a href="https://nodejs.org">nodejs.org</a> (choose the LTS version)</li>
 <li>Your Notion account (free works fine)</li>
 </ul>
 
@@ -122,7 +125,26 @@
 <li>Verify it works — open the app and send a test message</li>
 </ol>
 
-<h3>Step 2: Install Node.js if you don't have it (3 min)</h3>
+<h3>Step 2: Connect Notion via the official plugin (recommended, 2 min)</h3>
+<div class="callout callout-green"><span class="callout-icon">⭐</span><div class="callout-title">Option 1: Easy — Plugin install with OAuth</div><div>
+<p>The official Notion plugin handles auth for you. No tokens. No JSON files. No re-explaining permissions every time you add a page.</p>
+<ol>
+<li>In Claude Desktop, open a new conversation</li>
+<li>Type this slash command:
+<pre><code>/plugin install Notion@claude-plugins-official</code></pre>
+</li>
+<li>A browser tab opens for Notion OAuth — sign in and pick the workspace you want Claude to access</li>
+<li>Authorize the pages and databases you want Claude to see (you can adjust this anytime in Notion's settings)</li>
+<li>Done — Claude can now read and write to those pages</li>
+</ol>
+<p style="margin-top:0.75rem;"><strong>Why this is the recommended path:</strong> OAuth means Notion handles permissions natively. When you add a new page later, share it with the Claude integration once and it works — no config edits, no app restarts.</p>
+</div></div>
+
+<details style="margin-top:1rem;"><summary><strong>Advanced: Manual JSON config (for power users)</strong></summary>
+<div style="padding:1rem;">
+<p>Use this path if the plugin isn't available in your region, you need a custom MCP server, or you want full control over the config. Requires Node.js.</p>
+
+<p><strong>Install Node.js first if you don't have it:</strong></p>
 <ol>
 <li>Open your terminal:
   <ul>
@@ -131,41 +153,31 @@
   </ul>
 </li>
 <li>Check if Node.js is installed: type <code>node --version</code> and hit Enter</li>
-<li>If you see a version number (like <code>v20.11.0</code>), you're good — skip to Step 3</li>
-<li>If you get an error, go to <a href="https://nodejs.org">nodejs.org</a>, download the LTS version, and install it</li>
-<li>Close and reopen your terminal, then verify: <code>node --version</code></li>
+<li>If you see a version number (like <code>v20.11.0</code>), you're set</li>
+<li>If you get an error, go to <a href="https://nodejs.org">nodejs.org</a>, download the LTS version, install it, then re-check</li>
 </ol>
 
-<h3>Step 3: Create your Notion integration (3 min)</h3>
+<p><strong>Create your Notion integration:</strong></p>
 <ol>
 <li>Go to <a href="https://www.notion.so/profile/integrations">notion.so/profile/integrations</a></li>
 <li>Click <strong>New Integration</strong></li>
 <li>Fill in:
   <ul>
   <li><strong>Name:</strong> "Claude MCP"</li>
-  <li><strong>Associated workspace:</strong> Select your MasterClass workspace</li>
+  <li><strong>Associated workspace:</strong> Select your workspace</li>
   <li><strong>Capabilities:</strong> Check all boxes (Read, Update, Insert content)</li>
   </ul>
 </li>
 <li>Click <strong>Save</strong></li>
-<li>You'll see an <strong>Internal Integration Secret</strong> — it starts with <code>ntn_</code>. Copy this and save it somewhere safe (you'll need it in Step 4)</li>
-<li><strong>Important:</strong> Now go to each Notion page or database you want Claude to access:
-  <ul>
-  <li>Click the <strong>···</strong> menu (top-right of the page)</li>
-  <li>Click <strong>Connections</strong></li>
-  <li>Search for "Claude MCP" and add it</li>
-  <li>Repeat for every page/database Claude should see</li>
-  </ul>
-</li>
+<li>Copy the <strong>Internal Integration Secret</strong> (starts with <code>ntn_</code>) — save it somewhere safe</li>
+<li>For each Notion page/database Claude needs: click <strong>···</strong> → <strong>Connections</strong> → add "Claude MCP"</li>
 </ol>
 
-<h3>Step 4: Configure MCP in Claude Desktop (5 min)</h3>
+<p><strong>Edit the Claude Desktop config:</strong></p>
 <ol>
-<li>Open Claude Desktop</li>
-<li>Go to <strong>Claude</strong> menu → <strong>Settings</strong></li>
-<li>Click <strong>Developer</strong> in the left sidebar</li>
-<li>Click <strong>Edit Config</strong> — this opens a JSON config file</li>
-<li>Replace the entire contents with this (then customize the values marked with CAPS):
+<li>Open Claude Desktop → <strong>Claude</strong> menu → <strong>Settings</strong></li>
+<li>Click <strong>Developer</strong> in the left sidebar → <strong>Edit Config</strong></li>
+<li>Replace the contents with this (customize CAPS values):
 <pre><code>{
   "mcpServers": {
     "notion": {
@@ -186,19 +198,20 @@
   }
 }</code></pre>
 </li>
-<li>Replace <code>YOUR_NOTION_KEY_HERE</code> with the key from Step 3 (the one starting with <code>ntn_</code>)</li>
+<li>Replace <code>YOUR_NOTION_KEY_HERE</code> with the <code>ntn_</code> key</li>
 <li>Replace <code>YOUR_FOLDER_PATH_HERE</code> with a folder path:
   <ul>
   <li><strong>Mac:</strong> <code>/Users/yourname/Documents</code></li>
-  <li><strong>Windows:</strong> <code>C:\\Users\\yourname\\Documents</code> (use double backslashes)</li>
+  <li><strong>Windows:</strong> <code>C:\\Users\\yourname\\Documents</code> (double backslashes)</li>
   </ul>
 </li>
 <li>Save the file</li>
-<li><strong>Quit Claude Desktop completely</strong> (not just close the window — right-click the dock/taskbar icon and Quit)</li>
-<li>Reopen Claude Desktop</li>
+<li><strong>Quit Claude Desktop completely</strong> (right-click dock/taskbar icon → Quit), then reopen</li>
 </ol>
+</div>
+</details>
 
-<h3>Step 5: Verify it's working (2 min)</h3>
+<h3>Step 3: Verify it's working (2 min)</h3>
 <ol>
 <li>Start a new conversation in Claude Desktop</li>
 <li>Look for a <strong>🔌 plug icon</strong> or <strong>MCP tools indicator</strong> near the text input — this means servers are connected</li>
@@ -375,6 +388,11 @@ claude mcp list</code></pre>
 
 <div class="callout callout-purple"><span class="callout-icon">🎯</span><div class="callout-title">Next step</div><div>Now that your AI is connected, head to the <a href="onboarding-interview.html">Onboarding Interview</a> to teach your AI how your brain works. Everything you build from here on auto-saves if you set up MCP or Projects.</div></div>
 
+<div class="callout callout-green" style="border-left-width:3px;">
+  <div class="callout-title">Come back for</div>
+  <div>After AI is connected, watch your databases auto-fill as you work.</div>
+</div>
+
 
         <nav class="nav-footer" aria-label="Workshop navigation">
             <a href="prompt-basics.html" class="nav-link prev"><small>← Previous</small>Prompt Basics</a>
@@ -383,5 +401,6 @@ claude mcp list</code></pre>
     </div>
     <script src="js/main.js"></script>
     <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

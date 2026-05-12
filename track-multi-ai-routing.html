@@ -123,9 +123,13 @@
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
   <span class="phase-indicator phase-power" aria-label="Advanced Track">
-    <span class="phase-num">Track A</span> Multi-AI Mastery
+    <span class="phase-num">Track A &middot; 3/3</span> Multi-AI Mastery
   </span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Helpful to read the Tool Matrix first; not required. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Medium.</div>
+</div>
 
 <h2>The Triple Stack workflow</h2>
 <p>The dominant pattern in 2026 is a three-stage chain: gather facts with citations, synthesize with a long-context model, shape the output. The trick is the handoff &mdash; pasting clean context between tools so you keep momentum and skip re-explaining yourself.</p>
@@ -166,7 +170,7 @@
   </div>
   <div class="compare-card">
     <div class="head-row">
-      <h3 style="margin-bottom:0;">Claude Voice (beta)</h3>
+      <h3 style="margin-bottom:0;"><a href="https://techcrunch.com/2026/03/03/claude-code-rolls-out-a-voice-mode-capability/" target="_blank" rel="noopener" style="color:var(--text);text-decoration:none;border-bottom:1px dotted var(--text-accent);">Claude Voice (beta)</a></h3>
       <span class="price-tag">Free on all plans</span>
     </div>
     <p style="font-size:0.9rem; color: var(--text-mid);">Voice layer over Claude's longer reasoning. Continues a typed chat by voice or talks through a complex document already in context.</p>
@@ -188,7 +192,7 @@
 <h2>Long context = no prep tax</h2>
 <p>Before 1M-token context windows, working with a long document meant a chore-list before the real work: split the PDF, summarize chapters, paste the chunks. For ND brains, that prep often killed the task &mdash; 30-45 minutes of executive function spent before any thinking began.</p>
 
-<p>Gemini 2.5 Pro and Claude Opus 4.7 both handle 1M tokens. Gemini holds <strong>99.7% recall</strong> across the full window. Practical implication: load the whole research corpus, contract, or board pack in one paste and ask your real question first.</p>
+<p>Gemini 2.5 Pro and Claude Opus 4.7 both handle 1M tokens. Gemini holds <a href="https://tokenmix.ai/blog/gemini-2-5-pro-review" target="_blank" rel="noopener"><strong>99.7% recall</strong></a> across the full window. Practical implication: load the whole research corpus, contract, or board pack in one paste and ask your real question first.</p>
 
 <div class="callout callout-purple">
   <span class="callout-icon">&#127919;</span>
@@ -236,8 +240,14 @@
 
 <div class="callout">
   <span class="callout-icon">&#128640;</span>
-  <div class="callout-title">One small move</div>
-  <div>Pick one low-energy task. Open Claude Voice or ChatGPT Advanced Voice. Talk for five minutes. Voice routing turns "can't" into "started" without spending the typing budget you don't have today.</div>
+  <div class="callout-title">Five minutes is a complete experiment</div>
+  <div>Pick one low-energy task on your list. Open Claude Voice or ChatGPT Advanced Voice. Talk for five minutes. Voice routing turns "can't" into "started" without spending the typing budget you don't have today.</div>
+</div>
+
+<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+  <span class="callout-icon">&#9166;</span>
+  <div class="callout-title">Come back to this page when&hellip;</div>
+  <div>Test voice routing tomorrow when you're at &lt;50% energy.</div>
 </div>
 
 <nav class="nav-footer" aria-label="Workshop navigation">
@@ -247,5 +257,6 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

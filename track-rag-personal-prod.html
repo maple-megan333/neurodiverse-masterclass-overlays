@@ -105,8 +105,12 @@
 <div class="page-wrapper" id="main-content">
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="track-rag-projects.html">&larr; Layer 1 Tools</a></div>
-  <span class="phase-indicator phase-power" aria-label="Track C"><span class="phase-num">Track C · RAG &amp; Knowledge</span></span>
+  <span class="phase-indicator phase-power" aria-label="Track C, page 3 of 3"><span class="phase-num">Track C · 3/3 RAG &amp; Knowledge</span></span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Best after Project-Level deep dive; technical for Layer 3. <strong>Time:</strong> 20 min. <strong>Energy:</strong> Medium-High.</div>
+</div>
 
 <div class="callout callout-purple"><span class="callout-icon">🌱</span><div class="callout-title">A note before you read on</div><div>If Layer 1 is working for you, you don't need this page right now. Bookmark it. Come back when one of the trigger conditions below shows up in your actual workflow — not because you feel like you "should" be using something fancier.</div></div>
 
@@ -130,7 +134,7 @@
     <span class="tool-tag tag-free">Free</span>
   </div>
   <div class="tool-meta">
-    <div><strong>Downloads:</strong> 786k+</div>
+    <div><strong>Downloads:</strong> 786k+ <a href="https://github.com/brianpetro/obsidian-smart-connections" target="_blank" rel="noopener" style="font-size:0.7rem;">[src]</a></div>
     <div><strong>Embedding:</strong> BGE-micro-v2 on-device</div>
     <div><strong>API key:</strong> Not required</div>
     <div><strong>Setup:</strong> 15–30 min</div>
@@ -238,7 +242,7 @@
 
 <h3>Cost ballpark — what to budget</h3>
 <table class="cost-table">
-<caption>Layer 3 monthly cost ranges (2026)</caption>
+<caption>Layer 3 monthly cost ranges (2026) — figures synthesized from <a href="https://www.groovyweb.co/blog/vector-database-comparison-2026" target="_blank" rel="noopener">GroovyWeb 2026 vector DB comparison</a></caption>
 <tr><th>Use case</th><th>Monthly cost</th><th>Typical stack</th></tr>
 <tr><td>Personal Layer 3 build</td><td>$10–$30</td><td>Chroma / pgvector + OpenAI embeddings + small LLM</td></tr>
 <tr><td>Small team / internal tool</td><td>$50–$200</td><td>Self-hosted Qdrant + OpenAI or Voyage + LlamaIndex</td></tr>
@@ -262,7 +266,7 @@
 <h2>Evaluation — does your RAG actually work?</h2>
 
 <div class="callout callout-green"><span class="callout-icon">📊</span><div class="callout-title">RAGAS — the production-grade evaluation</div><div>
-<p>RAGAS (Retrieval-Augmented Generation Assessment) is the standard framework for measuring whether a RAG system is reliable. It scores four dimensions: faithfulness, answer relevance, context precision, context recall.</p>
+<p>RAGAS (Retrieval-Augmented Generation Assessment) is the standard framework for measuring whether a RAG system is reliable. It scores four dimensions: faithfulness, answer relevance, context precision, context recall (<a href="https://www.evidentlyai.com/llm-guide/rag-evaluation" target="_blank" rel="noopener">Evidently AI: RAG evaluation guide</a>).</p>
 <p>The one number to watch: <strong>faithfulness</strong>. This measures whether the AI's answer is grounded in retrieved documents versus inventing.</p>
 <ul>
   <li><strong>Faithfulness &gt; 0.8</strong> — production-ready for internal tools.</li>
@@ -274,6 +278,10 @@
 
 <div class="callout callout-teal"><span class="callout-icon">💾</span><div class="callout-title">Save point — Track C complete</div><div>You now have a working map of personal RAG (Layer 1), personal knowledge bases (Layer 2), and the production stack (Layer 3) for the rare case it applies. Next: <strong>Councils &amp; Multi-Agent</strong> — orchestrating multiple AIs together for tasks one model can't handle alone.</div></div>
 
+<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+  <div><strong>One thing to remember:</strong> Audit your knowledge stack once a quarter. Tools change.</div>
+</div>
+
 <nav class="nav-footer" aria-label="Workshop navigation">
   <a href="track-rag-projects.html" class="nav-link prev"><small>← Previous</small>Layer 1 Tools</a>
   <a href="track-councils.html" class="nav-link next"><small>Next →</small>Track D: Councils &amp; Multi-Agent</a>
@@ -281,5 +289,6 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

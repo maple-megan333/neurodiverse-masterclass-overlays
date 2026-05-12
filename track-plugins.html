@@ -97,9 +97,13 @@
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
   <span class="phase-indicator phase-power" aria-label="Advanced Track">
-    <span class="phase-num">Track B</span> Plugins, MCP &amp; Agents
+    <span class="phase-num">Track B &middot; 1/3</span> Plugins, MCP &amp; Agents
   </span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Familiarity with the term "Claude Code." <strong>Time:</strong> 12 min. <strong>Energy:</strong> Medium.</div>
+</div>
 
 <h2>What this track teaches</h2>
 <div class="callout callout-purple">
@@ -167,7 +171,7 @@
 <div class="pattern-block">
 <h3><span class="pattern-num">01</span> Official marketplace (canonical)</h3>
 <pre><code>/plugin install Notion@claude-plugins-official</code></pre>
-<div class="when">Use when: the plugin exists in Anthropic's official marketplace. Lowest review burden.</div>
+<div class="when">Use when: the plugin exists in <a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener">Anthropic's official marketplace</a>. Lowest review burden.</div>
 </div>
 
 <div class="pattern-block">
@@ -179,19 +183,19 @@
 <div class="pattern-block">
 <h3><span class="pattern-num">03</span> openskills (cross-agent)</h3>
 <pre><code>npx openskills install anthropics/skills</code></pre>
-<div class="when">Use when: you want the same skill to work in Claude Code, Cursor, and Codex.</div>
+<div class="when">Use when: you want the same skill to work in <a href="https://github.com/numman-ali/openskills" target="_blank" rel="noopener">Claude Code, Cursor, and Codex</a>.</div>
 </div>
 
 <div class="pattern-block">
 <h3><span class="pattern-num">04</span> CCPM (third-party marketplace)</h3>
 <pre><code>npx @daymade/ccpm install &lt;skill-name&gt;</code></pre>
-<div class="when">Use when: browsing the 232+ skill CCPM directory for something specific.</div>
+<div class="when">Use when: browsing the <a href="https://www.morphllm.com/claude-code-skills-mcp-plugins" target="_blank" rel="noopener">232+ skill CCPM directory</a> for something specific.</div>
 </div>
 
 <div class="pattern-block">
 <h3><span class="pattern-num">05</span> ccpi (largest registry)</h3>
 <pre><code>npx ccpi install &lt;plugin&gt;</code></pre>
-<div class="when">Use when: you've already vetted a plugin from the 425-plugin / 2810-skill ccpi index. Variable quality &mdash; review carefully.</div>
+<div class="when">Use when: you've already vetted a plugin from the <a href="https://www.morphllm.com/claude-code-skills-mcp-plugins" target="_blank" rel="noopener">425-plugin / 2810-skill ccpi index</a>. Variable quality &mdash; review carefully.</div>
 </div>
 
 <p>MCP server registration is separate from any of the above &mdash; it edits <code>~/.mcp.json</code>:</p>
@@ -203,12 +207,12 @@
   <span class="callout-icon">&#128737;</span>
   <div class="callout-title">Read this before installing anything</div>
   <div>
-    <p>Skills run with your shell permissions. MCP servers run as long-lived processes with whatever credentials you hand them. Cato Networks 2025 research confirmed that malicious skills can ship through these channels disguised as productivity tools.</p>
+    <p>Skills run with your shell permissions. MCP servers run as long-lived processes with whatever credentials you hand them. <a href="https://www.truefoundry.com/blog/mcp-security-risks-bestpractices" target="_blank" rel="noopener">Cato Networks 2025 research</a> confirmed that malicious skills can ship through these channels disguised as productivity tools.</p>
     <ul>
       <li>Open <code>SKILL.md</code> on GitHub before cloning. Read it. Look for "unrestricted," "<code>--dangerously</code>," "sudo," or "automatically execute."</li>
       <li>Inspect any <code>scripts/</code> directory. Never run a script you haven't read.</li>
-      <li>53% of MCP servers in 2026 use static API keys with no rotation. Treat MCP credentials like database passwords.</li>
-      <li>Three CVEs were filed against Anthropic's own Git MCP server in January 2026 (path traversal + file deletion). Official does not mean immune &mdash; only better-monitored.</li>
+      <li><a href="https://www.truefoundry.com/blog/mcp-security-risks-bestpractices" target="_blank" rel="noopener">53% of MCP servers in 2026 use static API keys</a> with no rotation. Treat MCP credentials like database passwords.</li>
+      <li><a href="https://www.truefoundry.com/blog/mcp-security-risks-bestpractices" target="_blank" rel="noopener">Three CVEs were filed against Anthropic's own Git MCP server in January 2026</a> (path traversal + file deletion). Official does not mean immune &mdash; only better-monitored.</li>
       <li>When uncertain, run the <code>security-reviewer</code> skill against the candidate &mdash; it exists for exactly this.</li>
     </ul>
   </div>
@@ -225,7 +229,7 @@
   </div>
   <div class="starter-card">
     <h3>2. The Filesystem MCP</h3>
-    <div class="why">Path-restricted local file access for Claude Code &mdash; safer than running everything through Bash. Most-installed MCP server of 2026.</div>
+    <div class="why">Path-restricted local file access for Claude Code &mdash; safer than running everything through Bash. <a href="https://openclawmcp.com/blog/best-mcp-servers-2026" target="_blank" rel="noopener">Most-installed MCP server of 2026</a>.</div>
     <pre><code>npx -y @modelcontextprotocol/server-filesystem ~/workspace</code></pre>
   </div>
   <div class="starter-card">
@@ -249,6 +253,12 @@
   </div>
 </div>
 
+<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+  <span class="callout-icon">&#9166;</span>
+  <div class="callout-title">Come back to this page when&hellip;</div>
+  <div>Install ONE plugin this week. See if it earns its place in your workflow.</div>
+</div>
+
 <nav class="nav-footer" aria-label="Workshop navigation">
   <a href="track-multi-ai-routing.html" class="nav-link prev"><small>&larr; Previous</small>Multi-AI Routing</a>
   <a href="track-plugins-best.html" class="nav-link next"><small>Next &rarr;</small>Best in Class &mdash; Deep Dive 1</a>
@@ -256,5 +266,6 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

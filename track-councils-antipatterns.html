@@ -118,10 +118,14 @@
 <div class="page-wrapper" id="main-content">
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="track-councils-patterns.html">&larr; 6 Patterns</a></div>
-  <span class="phase-indicator phase-power" aria-label="Advanced Track">
-    <span class="phase-num">Track D</span> Councils &amp; Multi-Agent
+  <span class="phase-indicator phase-power" aria-label="Track D, page 3 of 3">
+    <span class="phase-num">Track D · 3/3 Councils &amp; Multi-Agent</span>
   </span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Best after the Patterns deep dive. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Medium.</div>
+</div>
 
 <h2>The core anti-pattern</h2>
 <div class="callout callout-red">
@@ -142,7 +146,7 @@
 
 <article class="anti-card">
   <div class="anti-head"><span class="anti-num">ANTI 02</span><span class="anti-name">Coordinator agent that does nothing but route</span></div>
-  <div class="body"><strong>The shape.</strong> A "coordinator" agent that reads a request, picks one of three branches, and dispatches. The routing logic is a five-line <code>if/else</code>. You pay for an LLM call (and ~20K tokens of context-loading overhead) to do what one line of code could do deterministically.</div>
+  <div class="body"><strong>The shape.</strong> A "coordinator" agent that reads a request, picks one of three branches, and dispatches. The routing logic is a five-line <code>if/else</code>. You pay for an LLM call (and ~20K tokens of context-loading overhead per subagent — <a href="https://www.aicosts.ai/blog/claude-code-subagent-cost-explosion-887k-tokens-minute-crisis" target="_blank" rel="noopener">AICosts.ai</a>) to do what one line of code could do deterministically.</div>
   <div class="tell">The coordinator's prompt is a list of rules. If the rules are deterministic, the coordinator should be code.</div>
 </article>
 
@@ -154,7 +158,7 @@
 
 <article class="anti-card">
   <div class="anti-head"><span class="anti-num">ANTI 04</span><span class="anti-name">"Throw 10 agents at it" sprawl</span></div>
-  <div class="body"><strong>The shape.</strong> Enterprise deployments now average around 12 agents per workflow, and roughly half operate in isolation &mdash; firing off, returning output nobody synthesizes, and burning tokens in the background. Gartner projects <strong>more than 40% of agentic AI projects will be cancelled by 2027</strong>, largely because the costs outran the demonstrable value. ND users with high-energy enthusiasm are especially prone to this &mdash; designing the org chart is more dopaminergic than running it.</div>
+  <div class="body"><strong>The shape.</strong> Enterprise deployments now average around 12 agents per workflow, and roughly half operate in isolation &mdash; firing off, returning output nobody synthesizes, and burning tokens in the background. Gartner projects <strong>more than 40% of agentic AI projects will be cancelled by 2027</strong> (<a href="https://www.cio.com/article/4132287/taming-agent-sprawl-3-pillars-of-ai-orchestration.html" target="_blank" rel="noopener">CIO.com — Gartner agent sprawl analysis</a>), largely because the costs outran the demonstrable value. ND users with high-energy enthusiasm are especially prone to this &mdash; designing the org chart is more dopaminergic than running it.</div>
   <div class="tell">You can name your agents but you can't name what each one's last output changed.</div>
 </article>
 
@@ -174,12 +178,12 @@
 <div class="callout callout-blue">
   <span class="callout-icon">&#127919;</span>
   <div class="callout-title">Five conditions where one agent reliably beats a council</div>
-  <div>These are not edge cases. For an estimated 70% of real workloads, one of these conditions applies &mdash; which is why a single well-prompted agent delivers 90-95% of multi-agent outcomes at 30-40% of the cost.</div>
+  <div>These are not edge cases. For an estimated 70% of real workloads, one of these conditions applies &mdash; which is why a single well-prompted agent delivers 90-95% of multi-agent outcomes at 30-40% of the cost (<a href="https://iterathon.tech/blog/multi-agent-orchestration-economics-single-vs-multi-2026" target="_blank" rel="noopener">Iterathon: multi-agent orchestration economics, 2026</a>).</div>
 </div>
 
 <div class="win-row">
   <div class="win-num">01</div>
-  <div class="body"><strong>Sequential reasoning tasks</strong>Stanford research finds that single agents with adequate thinking budget match or outperform multi-agent setups on complex reasoning. When the work is "think hard about one thing," one chain-of-thought beats five summaries of five chains-of-thought.</div>
+  <div class="body"><strong>Sequential reasoning tasks</strong>Research from Google &amp; Stanford on agent-system scaling (<a href="https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/" target="_blank" rel="noopener">Google Research: scaling agent systems</a>) finds that single agents with adequate thinking budget match or outperform multi-agent setups on complex reasoning. When the work is "think hard about one thing," one chain-of-thought beats five summaries of five chains-of-thought.</div>
 </div>
 <div class="win-row">
   <div class="win-num">02</div>
@@ -225,7 +229,11 @@
 <div class="callout callout-purple">
   <span class="callout-icon">&#128218;</span>
   <div class="callout-title">If you take one thing from this track</div>
-  <div>Anthropic's primary design principle &mdash; <em>"prefer simplicity first"</em> &mdash; is the most important sentence in the entire multi-agent literature. The pattern that wins most often is the pattern with the fewest moving parts. The skill being practiced in Track D is restraint, not architecture.</div>
+  <div>Anthropic's primary design principle &mdash; <em>"<a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener">prefer simplicity first</a>"</em> &mdash; is the most important sentence in the entire multi-agent literature. The pattern that wins most often is the pattern with the fewest moving parts. The skill being practiced in Track D is restraint, not architecture.</div>
+</div>
+
+<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+  <div><strong>One thing to remember:</strong> If you've spawned more than 3 agents this month, audit which ones earned their cost.</div>
 </div>
 
 <nav class="nav-footer" aria-label="Workshop navigation">
@@ -235,5 +243,6 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

@@ -181,9 +181,13 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="track-plugins.html">&larr; Track B Overview</a></div>
   <span class="phase-indicator phase-power" aria-label="Advanced Track">
-    <span class="phase-num">Track B</span> Plugins, MCP &amp; Agents
+    <span class="phase-num">Track B &middot; 2/3</span> Plugins, MCP &amp; Agents
   </span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Best after Plugins Overview. <strong>Time:</strong> 20 min. <strong>Energy:</strong> Medium.</div>
+</div>
 
 <h2>How to read this</h2>
 <div class="callout callout-purple">
@@ -213,7 +217,7 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 <span class="skill-card-name">@modelcontextprotocol/server-filesystem</span>
 <span class="skill-tag tag-official">&#9989; Official</span>
 </div>
-<div class="skill-desc">The most-installed MCP server of 2026. Gives Claude path-restricted read and write access to specific directories &mdash; safer than running everything through the Bash tool.</div>
+<div class="skill-desc"><a href="https://openclawmcp.com/blog/best-mcp-servers-2026" target="_blank" rel="noopener">The most-installed MCP server of 2026</a>. Gives Claude path-restricted read and write access to specific directories &mdash; safer than running everything through the Bash tool.</div>
 <code class="skill-install">npx -y @modelcontextprotocol/server-filesystem ~/workspace</code>
 <div class="security-note"><strong>Note:</strong> Args restrict access to the listed paths. Never pass the system root (<code>/</code>) or your home directory blindly.</div>
 </div>
@@ -359,7 +363,7 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 <span class="skill-card-name">playwright</span>
 <span class="skill-tag tag-official">&#9989; Official</span>
 </div>
-<div class="skill-desc">Browser automation done right: navigation, clicks, form fills, network capture, screenshots. Replaces the deprecated Puppeteer MCP, which collected two path-traversal CVEs in January 2026.</div>
+<div class="skill-desc">Browser automation done right: navigation, clicks, form fills, network capture, screenshots. Replaces the deprecated Puppeteer MCP, which collected <a href="https://www.truefoundry.com/blog/mcp-security-risks-bestpractices" target="_blank" rel="noopener">two path-traversal CVEs in January 2026</a>.</div>
 <code class="skill-install">/plugin install playwright@claude-plugins-official</code>
 <div class="security-note"><strong>Note:</strong> The newer Playwright MCP runs the browser in a sandboxed context by default. Prefer this over the legacy Puppeteer server.</div>
 </div>
@@ -461,12 +465,12 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 
 <div class="auth-row">
   <div><span class="auth-pill">Env var</span></div>
-  <div class="body"><strong>Used by ~79% of current servers.</strong> Stdio servers and most local servers. Set a secret in your shell, reference it as <code>${env:VAR}</code> in <code>.mcp.json</code>. Lowest setup cost; rotate manually when needed.</div>
+  <div class="body"><strong><a href="https://www.truefoundry.com/blog/mcp-security-risks-bestpractices" target="_blank" rel="noopener">Used by ~79% of current servers.</a></strong> Stdio servers and most local servers. Set a secret in your shell, reference it as <code>${env:VAR}</code> in <code>.mcp.json</code>. Lowest setup cost; rotate manually when needed.</div>
 </div>
 
 <div class="auth-row">
   <div><span class="auth-pill">OAuth 2.1</span></div>
-  <div class="body"><strong>Mandated by the 2026 MCP spec for remote servers.</strong> The plugin install flow handles the OAuth dance for you &mdash; you click "Allow," tokens land in the plugin's secure store, refresh happens silently. Best UX, but only available for HTTP / remote MCP.</div>
+  <div class="body"><strong><a href="https://modelcontextprotocol.io/specification/2025-11-25" target="_blank" rel="noopener">Mandated by the 2026 MCP spec for remote servers.</a></strong> The plugin install flow handles the OAuth dance for you &mdash; you click "Allow," tokens land in the plugin's secure store, refresh happens silently. Best UX, but only available for HTTP / remote MCP.</div>
 </div>
 
 <div class="auth-row">
@@ -577,6 +581,12 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
   </div>
 </div>
 
+<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+  <span class="callout-icon">&#9166;</span>
+  <div class="callout-title">Come back to this page when&hellip;</div>
+  <div>Pick one MCP server to add to your config this month. Run it for a week. Decide if it stays.</div>
+</div>
+
 <nav class="nav-footer" aria-label="Workshop navigation">
   <a href="track-plugins.html" class="nav-link prev"><small>&larr; Previous</small>Track B Overview</a>
   <a href="track-plugins-build.html" class="nav-link next"><small>Next &rarr;</small>Build Your Own &mdash; Deep Dive 2</a>
@@ -584,5 +594,6 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

@@ -143,9 +143,13 @@
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="track-plugins-best.html">&larr; Best in Class</a></div>
   <span class="phase-indicator phase-power" aria-label="Advanced Track">
-    <span class="phase-num">Track B</span> Plugins, MCP &amp; Agents
+    <span class="phase-num">Track B &middot; 3/3</span> Plugins, MCP &amp; Agents
   </span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Best after Plugins Overview; technical content. <strong>Time:</strong> 25 min. <strong>Energy:</strong> High.</div>
+</div>
 
 <h2>When to build vs install</h2>
 <div class="callout callout-purple">
@@ -285,7 +289,7 @@ with client.beta.claude_code.sessions.stream(
 <p>The other half of "build your own" is deciding which model runs each piece. By mid-2026, the gap between local 7&ndash;14B models and cloud Sonnet has narrowed enough that routing the right work to a local Ollama instance is the single largest cost lever most heavy users have.</p>
 
 <h2>The 70/30 economic argument</h2>
-<p>Roughly 70&ndash;80% of production LLM queries don't actually need a frontier cloud model &mdash; classification, short-answer Q&amp;A, structured extraction, code completion, summarization. A well-routed hybrid offloads that majority to a local model at near-zero marginal cost and reserves cloud spend for the work that genuinely needs Sonnet or Opus.</p>
+<p>Roughly <a href="https://tianpan.co/blog/2026-04-10-hybrid-cloud-edge-llm-architecture-routing-inference" target="_blank" rel="noopener">70&ndash;80% of production LLM queries</a> don't actually need a frontier cloud model &mdash; classification, short-answer Q&amp;A, structured extraction, code completion, summarization. A well-routed hybrid offloads that majority to a local model at near-zero marginal cost and reserves cloud spend for the work that genuinely needs Sonnet or Opus.</p>
 
 <h3>Cost ladder</h3>
 
@@ -298,55 +302,55 @@ with client.beta.claude_code.sessions.stream(
 <div class="cost-row">
   <div><span class="cost-pill tier-haiku">Haiku</span></div>
   <div class="body"><strong>Claude Haiku 4.5</strong> &mdash; routine subagent work that needs strong instruction-following but not deep reasoning. Cheap enough to run at scale.</div>
-  <div class="price">$0.80 / $4 per M</div>
+  <div class="price"><a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">$0.80 / $4 per M</a></div>
 </div>
 
 <div class="cost-row">
   <div><span class="cost-pill tier-sonnet">Sonnet</span></div>
   <div class="body"><strong>Claude Sonnet 4.6</strong> &mdash; the default workhorse for substantive coding, document work, and most agentic tasks. 200K+ context window.</div>
-  <div class="price">$3 / $15 per M</div>
+  <div class="price"><a href="https://benchlm.ai/blog/posts/claude-api-pricing" target="_blank" rel="noopener">$3 / $15 per M</a></div>
 </div>
 
 <div class="cost-row">
   <div><span class="cost-pill tier-opus">Opus</span></div>
   <div class="body"><strong>Claude Opus 4.7</strong> &mdash; reserved for hard reasoning, architecture decisions, deep synthesis. Worth the spend when stakes justify it.</div>
-  <div class="price">$15 / $75 per M</div>
+  <div class="price"><a href="https://benchlm.ai/blog/posts/claude-api-pricing" target="_blank" rel="noopener">$15 / $75 per M</a></div>
 </div>
 
 <h2>Cost comparison</h2>
 <div class="example-card">
-  <strong style="color:var(--text-accent);">Scenario:</strong> 1,000 messages/day power user.
+  <strong style="color:var(--text-accent);">Scenario:</strong> 1,000 messages/day power user (<a href="https://aicostcheck.com/blog/local-vs-cloud-ai-cost-comparison" target="_blank" rel="noopener">source</a>).
   <div class="example-row">
     <div class="example-stat">
       <div class="label">Pure Sonnet</div>
-      <div class="val">$234<span style="font-size:0.85rem;font-weight:400;color:var(--text-dim);">/mo</span></div>
+      <div class="val"><a href="https://aicostcheck.com/blog/local-vs-cloud-ai-cost-comparison" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--text-accent);">$234</a><span style="font-size:0.85rem;font-weight:400;color:var(--text-dim);">/mo</span></div>
     </div>
     <div class="example-stat">
       <div class="label">70% local + 30% Sonnet</div>
-      <div class="val savings">$70<span style="font-size:0.85rem;font-weight:400;color:var(--text-dim);">/mo</span></div>
+      <div class="val savings"><a href="https://tianpan.co/blog/2026-04-10-hybrid-cloud-edge-llm-architecture-routing-inference" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--green-title);">$70</a><span style="font-size:0.85rem;font-weight:400;color:var(--text-dim);">/mo</span></div>
     </div>
   </div>
-  <p style="margin-top:0.7rem;font-size:0.9rem;color:var(--text-mid);">Adding Haiku-tier routing for the cloud half plus the batch-API discount drops the bill further to roughly <strong style="color:var(--green-title);">$25&ndash;$40/mo</strong>. Break-even versus pure Sonnet hits around 50M tokens/month of usage.</p>
+  <p style="margin-top:0.7rem;font-size:0.9rem;color:var(--text-mid);">Adding Haiku-tier routing for the cloud half plus the batch-API discount drops the bill further to roughly <strong style="color:var(--green-title);">$25&ndash;$40/mo</strong>. <a href="https://aicostcheck.com/blog/local-vs-cloud-ai-cost-comparison" target="_blank" rel="noopener">Break-even versus pure Sonnet hits around 50M tokens/month</a> of usage.</p>
 </div>
 
 <h2>Top local models in 2026</h2>
 <table>
 <caption>Best Local Models &mdash; Mid 2026</caption>
 <tr><th>Model</th><th>Best for</th><th>RAM</th><th>License</th></tr>
-<tr><td><strong>Qwen3 8B</strong></td><td>Coding, classification &mdash; starter recommendation</td><td>8 GB</td><td>Apache 2.0</td></tr>
-<tr><td><strong>Llama 4 Scout</strong> (MoE 17B/109B)</td><td>General reasoning at higher quality</td><td>24 GB+</td><td>Meta custom</td></tr>
-<tr><td><strong>gpt-oss 20b / 120b</strong></td><td>Reasoning, similar quality to o3-mini</td><td>16 GB / 80 GB GPU</td><td>Apache 2.0</td></tr>
-<tr><td><strong>DeepSeek V3.2 distills</strong> (7B/14B/32B)</td><td>Long-chain reasoning, math</td><td>8&ndash;32 GB</td><td>Open</td></tr>
-<tr><td><strong>Mistral NeMo 12B</strong></td><td>Long context (128K), European languages</td><td>16 GB GPU</td><td>Apache 2.0</td></tr>
+<tr><td><strong><a href="https://huggingface.co/Qwen/Qwen3-8B" target="_blank" rel="noopener">Qwen3 8B</a></strong></td><td>Coding, classification &mdash; starter recommendation</td><td>8 GB</td><td>Apache 2.0</td></tr>
+<tr><td><strong><a href="https://www.spheron.network/blog/deepseek-vs-llama-4-vs-qwen3/" target="_blank" rel="noopener">Llama 4 Scout</a></strong> (MoE 17B/109B)</td><td>General reasoning at higher quality</td><td>24 GB+</td><td>Meta custom</td></tr>
+<tr><td><strong><a href="https://huggingface.co/blog/welcome-openai-gpt-oss" target="_blank" rel="noopener">gpt-oss 20b / 120b</a></strong></td><td>Reasoning, similar quality to o3-mini</td><td>16 GB / 80 GB GPU</td><td>Apache 2.0</td></tr>
+<tr><td><strong><a href="https://www.spheron.network/blog/deepseek-vs-llama-4-vs-qwen3/" target="_blank" rel="noopener">DeepSeek V3.2 distills</a></strong> (7B/14B/32B)</td><td>Long-chain reasoning, math</td><td>8&ndash;32 GB</td><td>Open</td></tr>
+<tr><td><strong><a href="https://mistral.ai/news/mistral-nemo" target="_blank" rel="noopener">Mistral NeMo 12B</a></strong></td><td>Long context (128K), European languages</td><td>16 GB GPU</td><td>Apache 2.0</td></tr>
 </table>
 
-<p style="font-size:0.9rem;color:var(--text-mid);">On Apple Silicon with 16 GB unified RAM you'll see 40&ndash;80 tokens/second on 7&ndash;8B models. M4 Pro with 24 GB pushes 35&ndash;55 tokens/second on 14&ndash;35B models. Memory bandwidth matters more than raw compute for LLM inference, which is why unified-memory Macs punch above their spec sheet here.</p>
+<p style="font-size:0.9rem;color:var(--text-mid);">On Apple Silicon with 16 GB unified RAM you'll see <a href="https://llmcheck.net/benchmarks" target="_blank" rel="noopener">40&ndash;80 tokens/second on 7&ndash;8B models</a>. M4 Pro with 24 GB pushes <a href="https://apxml.com/posts/best-local-llms-apple-silicon-mac" target="_blank" rel="noopener">35&ndash;55 tokens/second on 14&ndash;35B models</a>. Memory bandwidth matters more than raw compute for LLM inference, which is why unified-memory Macs punch above their spec sheet here.</p>
 
 <h2>Wire Ollama into Claude Code</h2>
 <p>Two MCP servers connect Claude Code to a local Ollama runtime. Pick one based on what you want to do.</p>
 
-<h3>Option A: OllamaClaude (recommended for coding tasks)</h3>
-<p>String-based tools (<code>generate</code>, <code>explain</code>, <code>review</code>, <code>refactor</code>) plus file-aware variants that read files server-side. The vendor claims up to a 98.75% token reduction on file-heavy workflows, because Claude sends a path instead of the file contents.</p>
+<h3>Option A: <a href="https://github.com/Jadael/OllamaClaude" target="_blank" rel="noopener">OllamaClaude</a> (recommended for coding tasks)</h3>
+<p>String-based tools (<code>generate</code>, <code>explain</code>, <code>review</code>, <code>refactor</code>) plus file-aware variants that read files server-side. The vendor claims <a href="https://github.com/Jadael/OllamaClaude" target="_blank" rel="noopener">up to a 98.75% token reduction</a> on file-heavy workflows, because Claude sends a path instead of the file contents.</p>
 
 <pre><code># Clone and install
 git clone https://github.com/Jadael/OllamaClaude
@@ -367,8 +371,8 @@ ollama pull qwen3:8b</code></pre>
   }
 }</code></pre>
 
-<h3>Option B: rawveg/ollama-mcp</h3>
-<p>Exposes the full Ollama SDK as 14 MCP tools &mdash; pull models, list models, generate, embed, stream, manage. Better when you're building pipelines that need to manage Ollama itself, not only call it.</p>
+<h3>Option B: <a href="https://github.com/rawveg/ollama-mcp" target="_blank" rel="noopener">rawveg/ollama-mcp</a></h3>
+<p>Exposes the full Ollama SDK as <a href="https://github.com/rawveg/ollama-mcp" target="_blank" rel="noopener">14 MCP tools</a> &mdash; pull models, list models, generate, embed, stream, manage. Better when you're building pipelines that need to manage Ollama itself, not only call it.</p>
 
 <pre><code># OpenAI-compatible API is already running at localhost:11434
 # No API key needed for local use
@@ -393,8 +397,8 @@ response = local.chat.completions.create(
     <ul>
       <li><strong>You run fewer than ~50 messages a day.</strong> The savings won't cover the hardware time and maintenance attention.</li>
       <li><strong>You don't have spare hardware.</strong> Running a local model on the same machine you're working on burns power and adds latency to everything else. A dedicated Mac Mini or workstation changes the calculus.</li>
-      <li><strong>Your work is reasoning-heavy.</strong> Architecture decisions, deep synthesis, complex agentic tasks &mdash; Qwen3 8B's HumanEval score is 76 versus Sonnet's high-80s-to-90s. The capability ceiling is real.</li>
-      <li><strong>You'd be swapping for a nano-tier model anyway.</strong> Cloud nano tiers (~$0.20 per million tokens) almost never break even against the hardware-time cost of running locally.</li>
+      <li><strong>Your work is reasoning-heavy.</strong> Architecture decisions, deep synthesis, complex agentic tasks &mdash; <a href="https://huggingface.co/Qwen/Qwen3-8B" target="_blank" rel="noopener">Qwen3 8B's HumanEval score is 76</a> versus Sonnet's high-80s-to-90s. The capability ceiling is real.</li>
+      <li><strong>You'd be swapping for a nano-tier model anyway.</strong> Cloud nano tiers (<a href="https://aicostcheck.com/blog/local-vs-cloud-ai-cost-comparison" target="_blank" rel="noopener">~$0.20 per million tokens</a>) almost never break even against the hardware-time cost of running locally.</li>
       <li><strong>You haven't audited which tasks would actually route local.</strong> Build the cost model first. Many people assume their cloud spend is wasteful and discover most of it was already going to genuinely Sonnet-worthy work.</li>
     </ul>
     <p>Privacy and offline capability are the strongest non-cost arguments. If GDPR or HIPAA structure matters to your workflow, or you spend real time on airplanes and hotel wifi, local is worth setting up even when the dollar math is close.</p>
@@ -408,6 +412,12 @@ response = local.chat.completions.create(
   <div>A clean mental model of the four primitives, a curated short-list of what to install first, five patterns for building your own, and the math on when to wire in a local model. The next track moves into Retrieval-Augmented Generation &mdash; how to ground any of this in your own documents and data.</div>
 </div>
 
+<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+  <span class="callout-icon">&#9166;</span>
+  <div class="callout-title">Come back to this page when&hellip;</div>
+  <div>Write your own SKILL.md for a task you do weekly. Even a 5-line one counts.</div>
+</div>
+
 <nav class="nav-footer" aria-label="Workshop navigation">
   <a href="track-plugins-best.html" class="nav-link prev"><small>&larr; Previous</small>Best in Class &mdash; Deep Dive 1</a>
   <a href="track-rag.html" class="nav-link next"><small>Next &rarr;</small>Track C &mdash; RAG &amp; Knowledge</a>
@@ -415,5 +425,6 @@ response = local.chat.completions.create(
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

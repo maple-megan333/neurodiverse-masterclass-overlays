@@ -84,8 +84,12 @@
 <div class="page-wrapper" id="main-content">
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="track-rag.html">&larr; Track C overview</a></div>
-  <span class="phase-indicator phase-power" aria-label="Track C"><span class="phase-num">Track C · RAG &amp; Knowledge</span></span>
+  <span class="phase-indicator phase-power" aria-label="Track C, page 2 of 3"><span class="phase-num">Track C · 2/3 RAG &amp; Knowledge</span></span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> Best after RAG Overview. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Medium.</div>
+</div>
 
 <div class="callout callout-purple"><span class="callout-icon">📂</span><div class="callout-title">How Layer 1 works</div><div>
 <p>You drop files into a folder inside a chat tool. The tool indexes them in the background, then routes every question through that index before answering. No code, no embeddings to manage, no vector database to host. You get RAG, you don't think about RAG.</p>
@@ -101,13 +105,13 @@
   </div>
   <div class="tool-meta">
     <div><strong>File limit:</strong> 30MB / file</div>
-    <div><strong>Context:</strong> 200K tokens (~500 pages)</div>
+    <div><strong>Context:</strong> 200K tokens (~500 pages) <a href="https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects" target="_blank" rel="noopener" style="font-size:0.7rem;">[src]</a></div>
     <div><strong>Audio:</strong> No</div>
     <div><strong>Plan:</strong> Pro $20/mo</div>
   </div>
   <div class="tool-body">
     <p>The general-purpose RAG choice. You upload files, write custom instructions ("always reply in 3-bullet summaries, never use the word 'leverage'"), and every new conversation in that Project inherits both the files and the instructions.</p>
-    <p>The hidden superpower: at scale Claude auto-activates RAG mode, expanding effective capacity by roughly <strong>10×</strong>. Unlike most retrieval tools, Claude reasons <em>across</em> documents instead of only pulling matching chunks — useful when the answer requires connecting two different sources.</p>
+    <p>The hidden superpower: at scale Claude auto-activates RAG mode, expanding effective capacity by roughly <strong>10×</strong> (<a href="https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects" target="_blank" rel="noopener">Anthropic support docs</a>). Unlike most retrieval tools, Claude reasons <em>across</em> documents instead of only pulling matching chunks — useful when the answer requires connecting two different sources.</p>
     <p><em>Known quirk:</em> The RAG-mode trigger fires on file count, not token size (Issue #25759), so a Project with 100 tiny files behaves differently from a Project with 5 big ones. If retrieval feels off, try consolidating into fewer, longer files.</p>
     <div class="nd">Custom instructions = define your format preferences once. Every session in this Project then arrives pre-configured. No more retyping "explain like I'm tired" at the start of each chat.</div>
   </div>
@@ -119,7 +123,7 @@
     <span class="tool-tag audio">Audio Overview ★</span>
   </div>
   <div class="tool-meta">
-    <div><strong>Sources:</strong> 50 per notebook</div>
+    <div><strong>Sources:</strong> 50 per notebook <a href="https://www.digitalocean.com/resources/articles/what-is-notebooklm" target="_blank" rel="noopener" style="font-size:0.7rem;">[src]</a></div>
     <div><strong>Per source:</strong> 500K words</div>
     <div><strong>Context:</strong> 1M tokens</div>
     <div><strong>Plan:</strong> Free tier exists</div>
@@ -230,6 +234,10 @@
 
 <div class="callout callout-teal"><span class="callout-icon">💾</span><div class="callout-title">Save point</div><div>One of these five is almost certainly enough. If you've outgrown them — more than 200 docs, vault you already maintain, or genuine privacy requirements — the next page covers Layer 2 (personal knowledge base) and Layer 3 (production, when it's actually warranted).</div></div>
 
+<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+  <div><strong>One thing to remember:</strong> Spin up a Claude Project or NotebookLM notebook this week. See if it sticks.</div>
+</div>
+
 <nav class="nav-footer" aria-label="Workshop navigation">
   <a href="track-rag.html" class="nav-link prev"><small>← Previous</small>Track C overview</a>
   <a href="track-rag-personal-prod.html" class="nav-link next"><small>Next →</small>Layer 2 &amp; Layer 3</a>
@@ -237,5 +245,6 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>

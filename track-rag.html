@@ -96,8 +96,12 @@
 <div class="page-wrapper" id="main-content">
 <nav class="nav-bar" aria-label="Page navigation">
   <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
-  <span class="phase-indicator phase-power" aria-label="Track C"><span class="phase-num">Track C · RAG &amp; Knowledge</span></span>
+  <span class="phase-indicator phase-power" aria-label="Track C, page 1 of 3"><span class="phase-num">Track C · 1/3 RAG &amp; Knowledge</span></span>
 </nav>
+
+<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+  <div><strong>Prereqs:</strong> None — works standalone. <strong>Time:</strong> 10 min. <strong>Energy:</strong> Any.</div>
+</div>
 
 <div class="callout callout-purple"><span class="callout-icon">🧠</span><div class="callout-title">What RAG is, in plain language</div><div>
 <p>Every AI tool you've used was trained on a snapshot of the internet. It knows nothing about <strong>your</strong> meeting notes, <strong>your</strong> Notion pages, <strong>your</strong> bookmarked PDFs, <strong>your</strong> medical records.</p>
@@ -180,7 +184,7 @@
 <div class="start-list">
   <div class="start-row">
     <div class="who">Beginner, no strong preference yet</div>
-    <div class="pick">Claude Projects <span class="why">200K context, reasons across docs, custom instructions stick session-to-session</span></div>
+    <div class="pick">Claude Projects <span class="why">200K context with ~10× expansion via auto-RAG (<a href="https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects" target="_blank" rel="noopener">source</a>), reasons across docs, custom instructions stick session-to-session</span></div>
   </div>
   <div class="start-row">
     <div class="who">Auditory learner — reading PDFs is exhausting</div>
@@ -188,7 +192,7 @@
   </div>
   <div class="start-row">
     <div class="who">Large note vault (200+) and privacy matters</div>
-    <div class="pick">Obsidian + Smart Connections <span class="why">786k+ downloads, on-device embeddings, nothing leaves your machine</span></div>
+    <div class="pick">Obsidian + Smart Connections <span class="why">786k+ downloads (<a href="https://github.com/brianpetro/obsidian-smart-connections" target="_blank" rel="noopener">source</a>), on-device embeddings, nothing leaves your machine</span></div>
   </div>
   <div class="start-row">
     <div class="who">Team doing research that needs the live web too</div>
@@ -221,6 +225,10 @@
 
 <div class="callout callout-teal"><span class="callout-icon">💾</span><div class="callout-title">Save point</div><div>That's the map. The next two pages zoom in on each layer with concrete tool cards, comparison tables, and the spot-check method that tells you whether your RAG is actually working.</div></div>
 
+<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+  <div><strong>One thing to remember:</strong> Pick the layer that matches your real workflow. Skip the others.</div>
+</div>
+
 <nav class="nav-footer" aria-label="Workshop navigation">
   <a href="track-plugins-build.html" class="nav-link prev"><small>← Previous</small>Track B: Plugins &amp; Build</a>
   <a href="track-rag-projects.html" class="nav-link next"><small>Next →</small>Deep Dive: Layer 1 Tools</a>
@@ -228,5 +236,6 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/brain-animation.js"></script>
+    <script src="js/motion-toggle.js"></script>
 </body>
 </html>
