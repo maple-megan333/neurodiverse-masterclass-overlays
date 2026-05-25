@@ -166,27 +166,41 @@
   pointer-events: none;
 }
 .brain-header-text h1 {
-  font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
-  font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, var(--bh-text) 0%, #F5C542 50%, var(--bh-accent) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-family: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem; font-weight: 400; letter-spacing: -0.025em; line-height: 1.05;
+  margin-bottom: 0.6rem;
+  color: var(--bh-text);
+  font-variation-settings: "opsz" 144, "SOFT" 50;
   animation: fadeUp 0.8s var(--bh-ease) 0.3s forwards; opacity: 0;
 }
 .brain-header--hub .brain-header-text h1 {
-  font-size: 2.6rem;
+  font-size: 2.9rem;
+}
+.brain-header-text h1 em {
+  font-family: inherit;
+  font-style: italic;
+  color: #F5C542;
+  font-weight: 400;
 }
 .brain-header-text .tagline {
-  font-size: 0.95rem; color: var(--bh-text-mid);
-  max-width: 500px; margin: 0 auto 0.75rem;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 1rem; color: var(--bh-text-mid);
+  max-width: 500px; margin: 0 auto 0.85rem;
+  font-variation-settings: "opsz" 9;
+  font-weight: 400;
   animation: fadeUp 0.8s var(--bh-ease) 0.5s forwards; opacity: 0;
 }
 .brain-header-text .pill {
   display: inline-block;
-  background: var(--bh-accent-soft);
-  border: 1px solid var(--bh-accent-glow);
-  border-radius: 100px; padding: 0.5rem 1.25rem;
-  font-size: 0.85rem; color: var(--bh-accent);
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(245, 197, 66, 0.3);
+  border-bottom: 1px solid rgba(245, 197, 66, 0.3);
+  border-radius: 0; padding: 0.35rem 0.9rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem; color: #F5C542;
+  font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
   animation: fadeUp 0.8s var(--bh-ease) 0.7s forwards; opacity: 0;
 }
 

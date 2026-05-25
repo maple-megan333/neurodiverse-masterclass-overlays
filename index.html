@@ -9,55 +9,137 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    /* Home-only layout */
+    /* Home-only layout — editorial */
     .home{max-width:880px;margin:0 auto}
-    .home-lead{padding:24px 0 8px}
-    .home-lead h2{margin:0 0 10px !important;border:0 !important;background:transparent !important;padding:0 !important;font-family:var(--font-display);font-size:1.35rem !important;font-weight:700;letter-spacing:-.01em;color:var(--text) !important;line-height:1.25}
+    .home-lead{padding:32px 0 8px}
+    .home-lead h2{
+      margin:0 0 10px !important;border:0 !important;background:transparent !important;
+      padding:0 !important;font-family:var(--font-display);
+      font-size:1.5rem !important;font-weight:400 !important;
+      letter-spacing:-.015em;color:var(--text) !important;line-height:1.25;
+      font-variation-settings:"opsz" 72;
+    }
     .home-lead h2::before{display:none !important}
-    .home-lead p{font-size:1rem;color:var(--text-mid);max-width:60ch;margin:0 0 20px;line-height:1.55}
+    .home-lead p{font-size:1rem;color:var(--text-mid);max-width:60ch;margin:0 0 24px;line-height:1.55}
 
-    /* Focus-visible for home cards (offset to clear the lifted shadow) */
-    .energy-card:focus-visible,.track-card:focus-visible,.resume-card-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .energy-card:focus-visible,.track-card:focus-visible,.resume-card-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-    /* Home cards — unified rhythm: --radius (10px), 0.95rem titles, 0.82rem desc, consistent lift on hover */
-    .resume-card{display:none;align-items:center;gap:14px;padding:14px 18px;background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(192,132,252,.04));border:1px solid rgba(168,85,247,.3);border-radius:var(--radius);margin:0 0 24px;transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+    /* Resume card */
+    .resume-card{
+      display:none;align-items:center;gap:16px;
+      padding:16px 20px;
+      background:var(--bg-elev);
+      border:1px solid var(--border);
+      border-left:2px solid var(--gold);
+      border-radius:var(--radius);
+      margin:0 0 32px;
+      transition:border-color .25s var(--ease-out),box-shadow .25s var(--ease-out),transform .25s var(--ease-out);
+    }
     .resume-card.shown{display:flex}
-    .resume-card:hover{border-color:rgba(168,85,247,.55);box-shadow:0 6px 20px rgba(168,85,247,.12)}
-    .resume-card-icon{font-size:1.5rem;flex-shrink:0}
+    .resume-card:hover{border-color:var(--border-hover);box-shadow:0 10px 28px rgba(0,0,0,.35);transform:translateY(-2px)}
+    .resume-card-icon{font-size:1.4rem;flex-shrink:0;opacity:.9}
     .resume-card-body{flex:1;min-width:0}
-    .resume-card-title{font-weight:700;color:var(--text);font-size:.95rem;margin:0 0 2px;line-height:1.3}
+    .resume-card-title{
+      font-family:var(--font-display);font-weight:500;
+      color:var(--text);font-size:1.02rem;margin:0 0 2px;line-height:1.3;
+      letter-spacing:-.01em;font-variation-settings:"opsz" 48;
+    }
     .resume-card-meta{font-size:.78rem;color:var(--text-mid);margin:0;line-height:1.4}
-    .resume-card-btn{padding:8px 16px;border-radius:var(--radius-sm);background:#a855f7;color:#0A0A14;font-weight:600;font-size:.85rem;text-decoration:none;flex-shrink:0;transition:background .15s,transform .15s}
-    .resume-card-btn:hover{background:#c084fc;transform:translateX(2px)}
+    .resume-card-btn{
+      padding:9px 18px;border-radius:var(--radius-sm);
+      background:var(--gold);color:#1A1626;
+      font-family:var(--font-label);font-weight:600;font-size:.78rem;
+      letter-spacing:.04em;text-decoration:none;flex-shrink:0;
+      transition:background .15s,transform .15s;
+    }
+    .resume-card-btn:hover{background:#FFD466;transform:translateX(2px)}
 
-    .energy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 32px}
-    .energy-card{padding:16px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);transition:transform .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease),box-shadow .2s var(--ease);display:flex;flex-direction:column;gap:6px;position:relative}
-    .energy-card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--bg-card-hover);box-shadow:0 8px 20px rgba(168,85,247,.12)}
-    .energy-card-time{font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);line-height:1.4}
-    .energy-card-title{font-family:var(--font-display);font-size:.95rem;font-weight:700;color:var(--text);margin:0;line-height:1.3;letter-spacing:-.01em}
-    .energy-card-desc{font-size:.82rem;color:var(--text-mid);line-height:1.5;margin:0}
-    .energy-card.low::before,.energy-card.mid::before,.energy-card.high::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;border-radius:var(--radius) 0 0 var(--radius)}
-    .energy-card.low::before{background:#6b7280}
-    .energy-card.mid::before{background:#a855f7}
-    .energy-card.high::before{background:#dc2626}
+    /* Energy cards — start-here trio */
+    .energy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 40px}
+    .energy-card{
+      padding:20px;background:var(--bg-elev);
+      border:1px solid var(--border);border-radius:var(--radius);
+      text-decoration:none;color:var(--text);
+      transition:transform .25s var(--ease-out),border-color .25s var(--ease-out),
+                 background .25s var(--ease-out),box-shadow .25s var(--ease-out);
+      display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
+    }
+    .energy-card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--bg-elev-2);box-shadow:0 10px 28px rgba(0,0,0,.35),0 0 0 1px var(--gold-glow)}
+    .energy-card-time{
+      font-family:var(--font-display);font-size:.72rem;
+      font-weight:500;font-style:italic;letter-spacing:.02em;
+      color:var(--gold);line-height:1.4;
+      font-variation-settings:"opsz" 9;
+    }
+    .energy-card-title{
+      font-family:var(--font-display);font-size:1.15rem;font-weight:500;
+      color:var(--text);margin:0;line-height:1.2;letter-spacing:-.015em;
+      font-variation-settings:"opsz" 48;
+    }
+    .energy-card-desc{font-size:.86rem;color:var(--text-mid);line-height:1.5;margin:0}
+    .energy-card.low::before,.energy-card.mid::before,.energy-card.high::before{
+      content:"";position:absolute;top:0;left:0;width:2px;height:100%;
+    }
+    .energy-card.low::before{background:rgba(245,234,220,.3)}
+    .energy-card.mid::before{background:var(--accent)}
+    .energy-card.high::before{background:var(--accent2)}
     @media(max-width:640px){.energy-grid{grid-template-columns:1fr}}
 
-    .section-head-clean{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:36px 0 12px;padding:0 0 8px;border-bottom:1px solid var(--border)}
-    .section-head-clean h2{margin:0 !important;border:0 !important;background:transparent !important;padding:0 !important;font-size:.78rem !important;color:var(--text-mid) !important;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+    /* Section head — editorial */
+    .section-head-clean{
+      display:flex;align-items:baseline;justify-content:space-between;
+      gap:16px;margin:48px 0 16px;padding:0 0 10px;
+      border-bottom:1px solid var(--border);
+    }
+    .section-head-clean h2{
+      margin:0 !important;border:0 !important;background:transparent !important;
+      padding:0 !important;
+      font-family:var(--font-label) !important;
+      font-size:.7rem !important;color:var(--gold) !important;
+      text-transform:uppercase;letter-spacing:.18em;font-weight:600 !important;
+    }
     .section-head-clean h2::before{display:none !important}
-    .section-head-clean .section-meta{font-size:.75rem;color:var(--text-dim)}
+    .section-head-clean .section-meta{
+      font-family:var(--font-display);font-style:italic;
+      font-size:.82rem;color:var(--text-dim);
+      font-variation-settings:"opsz" 9;
+    }
 
-    .track-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 28px}
-    .track-card{padding:16px;background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text);transition:transform .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease),box-shadow .2s var(--ease);display:block}
-    .track-card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--bg-card-hover);box-shadow:0 8px 20px rgba(168,85,247,.1)}
-    .track-card-tag{display:inline-block;font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--text-dim);margin-bottom:4px}
-    .track-card-title{font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--text);margin:0 0 4px;line-height:1.3;letter-spacing:-.01em}
-    .track-card-desc{font-size:.82rem;color:var(--text-mid);line-height:1.5;margin:0}
+    /* Track cards — editorial, with serif numerals */
+    .track-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 0 32px}
+    .track-card{
+      padding:20px;background:var(--bg-elev);
+      border:1px solid var(--border);border-radius:var(--radius);
+      text-decoration:none;color:var(--text);
+      transition:transform .25s var(--ease-out),border-color .25s var(--ease-out),
+                 background .25s var(--ease-out),box-shadow .25s var(--ease-out);
+      display:block;position:relative;
+    }
+    .track-card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--bg-elev-2);box-shadow:0 10px 28px rgba(0,0,0,.35),0 0 0 1px var(--gold-glow)}
+    .track-card-tag{
+      display:inline-block;
+      font-family:var(--font-display);font-style:italic;
+      font-size:.78rem;font-weight:500;letter-spacing:.01em;
+      color:var(--gold);margin-bottom:6px;
+      font-variation-settings:"opsz" 9;
+    }
+    .track-card-title{
+      font-family:var(--font-display);font-weight:500;font-size:1.1rem;
+      color:var(--text);margin:0 0 6px;line-height:1.2;letter-spacing:-.015em;
+      font-variation-settings:"opsz" 48;
+    }
+    .track-card-desc{font-size:.86rem;color:var(--text-mid);line-height:1.55;margin:0}
     @media(max-width:560px){.track-grid{grid-template-columns:1fr}}
 
-    .meta-line{font-size:.8rem;color:var(--text-dim);margin:18px 0 0;padding:10px 0;border-top:1px dashed rgba(255,255,255,.06);display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
-    .meta-line a{color:var(--text-mid);text-decoration:underline;text-decoration-color:rgba(168,85,247,.3)}
-    .meta-line a:hover{color:var(--text-accent)}
+    .meta-line{
+      font-family:var(--font-display);font-style:italic;
+      font-size:.85rem;color:var(--text-dim);margin:32px 0 0;
+      padding:16px 0;border-top:1px solid var(--border);
+      display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
+      font-variation-settings:"opsz" 9;
+    }
+    .meta-line a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-glow);padding-bottom:1px;transition:border-color .2s,color .2s}
+    .meta-line a:hover{color:var(--text);border-bottom-color:var(--gold)}
   </style>
 </head>
 <body>
@@ -71,9 +153,9 @@
     <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <h1>Neurodiverse AI MasterClass</h1>
+      <h1>Neurodiverse AI <em>MasterClass</em></h1>
       <p class="tagline">Build an AI system your brain can actually use.</p>
-      <span class="pill">Your pace is the right pace.</span>
+      <span class="pill">Your pace is the right pace</span>
     </div>
   </div>
 </div>
