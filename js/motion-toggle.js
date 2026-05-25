@@ -29,30 +29,41 @@
     try { localStorage.setItem('motion-paused', paused ? 'true' : 'false'); } catch (e) {}
   }
 
+  function render(iconEl, labelEl, btn, paused) {
+    iconEl.textContent = paused ? '▶' : '⏸';
+    labelEl.textContent = paused ? 'Resume motion' : 'Pause motion';
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    var aria = paused ? 'Resume animations' : 'Pause animations';
+    btn.setAttribute('aria-label', aria);
+    btn.setAttribute('title', aria);
+  }
+
   function init() {
     var btn = document.getElementById('motionToggle');
+    var iconEl, labelEl;
     if (!btn) {
       btn = document.createElement('button');
       btn.id = 'motionToggle';
       btn.className = 'motion-toggle';
-      btn.setAttribute('aria-label', 'Pause animations');
-      btn.setAttribute('title', 'Pause animations');
-      btn.setAttribute('aria-pressed', 'false');
-      btn.textContent = '⏸';
+      btn.type = 'button';
+      iconEl = document.createElement('span');
+      iconEl.className = 'motion-toggle-icon';
+      iconEl.setAttribute('aria-hidden', 'true');
+      labelEl = document.createElement('span');
+      labelEl.className = 'motion-toggle-label';
+      btn.appendChild(iconEl);
+      btn.appendChild(labelEl);
       document.body.appendChild(btn);
+    } else {
+      iconEl = btn.querySelector('.motion-toggle-icon');
+      labelEl = btn.querySelector('.motion-toggle-label');
     }
     var paused = readPaused();
-    if (paused) {
-      document.body.classList.add('motion-paused');
-      btn.textContent = '▶';
-      btn.setAttribute('aria-pressed', 'true');
-      btn.setAttribute('aria-label', 'Resume animations');
-    }
+    if (paused) document.body.classList.add('motion-paused');
+    render(iconEl, labelEl, btn, paused);
     btn.addEventListener('click', function () {
       var nowPaused = document.body.classList.toggle('motion-paused');
-      btn.textContent = nowPaused ? '▶' : '⏸';
-      btn.setAttribute('aria-pressed', nowPaused ? 'true' : 'false');
-      btn.setAttribute('aria-label', nowPaused ? 'Resume animations' : 'Pause animations');
+      render(iconEl, labelEl, btn, nowPaused);
       writePaused(nowPaused);
     });
   }
