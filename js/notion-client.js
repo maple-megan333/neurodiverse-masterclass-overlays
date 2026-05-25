@@ -230,23 +230,75 @@
 
         var completedSlugs = {};
         data.lessons.forEach(function (lesson) {
-          if (lesson.status === 'completed') {
-            if (lesson.slug) completedSlugs[lesson.slug.toLowerCase()] = true;
-            var words = lesson.title.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ');
-            completedSlugs[words.join('-')] = true;
-          }
+          if (lesson.status !== 'completed') return;
+          NC._slugCandidates(lesson).forEach(function (s) {
+            if (s) completedSlugs[s] = true;
+          });
         });
 
         navItems.forEach(function (item) {
           var page = (item.dataset.page || '').toLowerCase();
-          var label = (item.querySelector('.nav-label') || {}).textContent || '';
-          label = label.toLowerCase().replace(/[^a-z0-9 ]/g, '').trim().split(' ').join('-');
+          var labelText = (item.querySelector('.nav-label') || {}).textContent || '';
+          var label = NC._slugify(labelText);
 
           if (completedSlugs[page] || completedSlugs[label]) {
             item.classList.add('nc-completed');
           }
         });
       }).catch(function () { /* silently fail */ });
+    },
+
+    // Lesson titles in Notion don't always derive cleanly to nav slugs.
+    // "Writing & Voice" \u2192 "writing-voice" works via slugify; but
+    // "F1: How AI Actually Thinks" \u2192 "first-ai-conversation" needs an
+    // explicit mapping. Override per lesson by adding a "Slug" rich-text
+    // property in Notion \u2014 that takes precedence over everything here.
+    _titleToNavMap: {
+      'how-ai-actually-thinks': 'first-ai-conversation',
+      'talking-to-ai': 'prompt-basics',
+      'prompt-as-conversation': 'prompt-basics',
+      'your-ai-toolbox': 'setup-your-tools',
+      'building-your-system': 'connect-ai',
+      'mcp': 'track-plugins',
+      'plugins-and-mcp': 'track-plugins',
+      'expert-panels': 'track-councils',
+      'councils': 'track-councils',
+      'multi-ai': 'track-multi-ai',
+      'rag-and-knowledge': 'track-rag',
+      'rag': 'track-rag',
+    },
+
+    // Two slug variants: ampersandMode 'and' \u2192 "writing-and-voice",
+    // 'drop' \u2192 "writing-voice". Nav slugs use either; emit both.
+    _slugify: function (s, ampersandMode) {
+      var ampersand = ampersandMode === 'and' ? ' and ' : ' ';
+      return String(s || '')
+        .toLowerCase()
+        .replace(/&/g, ampersand)
+        .replace(/[^a-z0-9 ]/g, ' ')
+        .trim()
+        .split(/\s+/)
+        .join('-');
+    },
+
+    _stripModulePrefix: function (s) {
+      // "F1: How AI Actually Thinks" \u2192 "How AI Actually Thinks"
+      return String(s || '').replace(/^\s*[A-Za-z]\d+\s*[:.\-]\s*/, '');
+    },
+
+    _slugCandidates: function (lesson) {
+      var out = [];
+      if (lesson.slug) out.push(String(lesson.slug).toLowerCase().trim());
+      var title = lesson.title || '';
+      var stripped = NC._stripModulePrefix(title);
+      ['and', 'drop'].forEach(function (mode) {
+        var full = NC._slugify(title, mode);
+        var stripSlug = NC._slugify(stripped, mode);
+        out.push(full, stripSlug);
+        if (NC._titleToNavMap[full]) out.push(NC._titleToNavMap[full]);
+        if (NC._titleToNavMap[stripSlug]) out.push(NC._titleToNavMap[stripSlug]);
+      });
+      return out;
     },
 
     _clearSidebarProgress: function () {
