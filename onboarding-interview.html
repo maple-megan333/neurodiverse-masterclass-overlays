@@ -1,153 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onboarding Interview — Neurodiverse AI MasterClass</title>
-    <link rel="stylesheet" href="css/design-system.css">
-    <link rel="stylesheet" href="css/brain-header.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding — Neurodiverse AI MasterClass</title>
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/brain-header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    .ob{max-width:760px;margin:0 auto}
+    .ob-progress{position:sticky;top:0;z-index:5;background:rgba(10,10,20,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:14px 0 12px;margin-bottom:24px;border-bottom:1px solid rgba(168,85,247,.12)}
+    .ob-progress-track{height:4px;background:rgba(168,85,247,.12);border-radius:2px;overflow:hidden}
+    .ob-progress-bar{height:100%;background:linear-gradient(90deg,#a855f7,#c084fc);border-radius:2px;transition:width .4s cubic-bezier(.22,1,.36,1);width:0}
+    .ob-progress-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:.78rem;color:var(--text-mid)}
+    .ob-progress-saved{color:var(--green-title);opacity:0;transition:opacity .3s}
+    .ob-progress-saved.shown{opacity:1}
 
+    .ob-stepper{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 0;padding:0;list-style:none}
+    .ob-stepper li{flex:1;min-width:40px}
+    .ob-stepper button{width:100%;border:0;background:rgba(255,255,255,.04);color:var(--text-dim);font-size:.72rem;font-weight:600;padding:6px 4px;border-radius:6px;cursor:pointer;font-family:inherit;text-align:center;transition:background .15s,color .15s}
+    .ob-stepper button:hover{background:rgba(168,85,247,.1);color:var(--text-mid)}
+    .ob-stepper button.current{background:rgba(168,85,247,.18);color:#c4b5fd}
+    .ob-stepper button.done{color:var(--green-title)}
+    .ob-stepper button.done::before{content:"\2713\00a0"}
+
+    .ob-step{padding:28px 0}
+    .ob-step h2{margin-top:0 !important}
+    .ob-step .ob-prompt{font-size:1.05rem;color:var(--text);line-height:1.55;margin:8px 0 20px}
+    .ob-step .ob-helper{font-size:.88rem;color:var(--text-mid);margin:-8px 0 18px}
+
+    .ob-questions{display:flex;flex-direction:column;gap:18px}
+    .ob-q{padding:16px 18px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:12px;transition:border-color .2s,background .2s}
+    .ob-q:focus-within{border-color:rgba(168,85,247,.45);background:rgba(168,85,247,.04)}
+    .ob-q-label{display:block;font-size:.95rem;color:var(--text);margin:0 0 10px;font-weight:600}
+    .ob-q-helper{font-size:.78rem;color:var(--text-dim);margin:-6px 0 10px}
+
+    .ob-radios{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+    .ob-radio{display:block;cursor:pointer}
+    .ob-radio input{position:absolute;opacity:0;pointer-events:none}
+    .ob-radio span{display:flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);color:var(--text-mid);font-size:.88rem;font-weight:500;transition:all .15s;text-align:center;line-height:1.3;min-height:42px}
+    .ob-radio:hover span{border-color:rgba(168,85,247,.35);color:var(--text)}
+    .ob-radio input:checked + span{background:rgba(168,85,247,.18);border-color:#a855f7;color:#F8F8FC;font-weight:600}
+    .ob-radio input:focus-visible + span{outline:2px solid #a855f7;outline-offset:2px}
+
+    .ob-scale-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+    .ob-scale-row:last-child{border-bottom:0}
+    .ob-scale-label{flex:1;min-width:130px;font-size:.92rem;color:var(--text)}
+    .ob-scale-buttons{display:flex;gap:4px;flex-shrink:0}
+    .ob-scale-btn{width:32px;height:32px;border-radius:6px;border:1.5px solid rgba(255,255,255,.08);background:transparent;color:var(--text-mid);font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s}
+    .ob-scale-btn:hover{border-color:rgba(168,85,247,.4);color:var(--text)}
+    .ob-scale-btn.active{background:#a855f7;border-color:#a855f7;color:#0A0A14}
+
+    .ob-checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+    .ob-check{cursor:pointer;position:relative}
+    .ob-check input{position:absolute;opacity:0;pointer-events:none}
+    .ob-check span{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);color:var(--text-mid);font-size:.88rem;transition:all .15s}
+    .ob-check:hover span{border-color:rgba(168,85,247,.35);color:var(--text)}
+    .ob-check input:checked + span{background:rgba(168,85,247,.15);border-color:#a855f7;color:#F8F8FC}
+    .ob-check input:checked + span::before{content:"\2713";color:#c084fc;font-weight:700}
+    .ob-check input:focus-visible + span{outline:2px solid #a855f7;outline-offset:2px}
+
+    .ob-text{width:100%;min-height:80px;padding:12px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,.08);background:rgba(0,0,0,.25);color:var(--text);font-family:inherit;font-size:.95rem;line-height:1.5;resize:vertical;transition:border-color .15s}
+    .ob-text:focus{outline:0;border-color:#a855f7}
+
+    .ob-input{width:100%;padding:10px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,.08);background:rgba(0,0,0,.25);color:var(--text);font-family:inherit;font-size:.95rem;transition:border-color .15s}
+    .ob-input:focus{outline:0;border-color:#a855f7}
+
+    .ob-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)}
+    .ob-btn{padding:11px 22px;border-radius:8px;border:0;font-family:inherit;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .15s;min-height:44px}
+    .ob-btn-primary{background:#a855f7;color:#0A0A14}
+    .ob-btn-primary:hover{background:#c084fc}
+    .ob-btn-ghost{background:transparent;color:var(--text-mid);border:1px solid rgba(255,255,255,.1)}
+    .ob-btn-ghost:hover{color:var(--text);border-color:rgba(168,85,247,.4)}
+    .ob-btn:disabled{opacity:.4;cursor:not-allowed}
+    .ob-skip{font-size:.82rem;color:var(--text-dim);background:transparent;border:0;cursor:pointer;font-family:inherit;text-decoration:underline;padding:4px 8px}
+    .ob-skip:hover{color:var(--text-mid)}
+
+    .ob-summary{padding:24px;background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(192,132,252,.04));border:1px solid rgba(168,85,247,.25);border-radius:14px;margin:8px 0}
+    .ob-summary h3{font-family:var(--font-display);font-size:1rem;color:#c4b5fd;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px;font-weight:700}
+    .ob-summary dl{margin:0}
+    .ob-summary-row{display:flex;gap:12px;padding:8px 0;font-size:.92rem;color:var(--text);border-bottom:1px dashed rgba(255,255,255,.08)}
+    .ob-summary-row:last-child{border-bottom:0}
+    .ob-summary-row dt{flex:0 0 130px;color:var(--text-mid);font-weight:600}
+    .ob-summary-row dd{margin:0;flex:1;color:var(--text)}
+    .ob-summary-empty{color:var(--text-dim);font-style:italic;font-size:.88rem}
+
+    .ob-path-heading{font-family:var(--font-display);font-size:1rem;color:#c4b5fd;text-transform:uppercase;letter-spacing:.06em;margin:24px 0 6px}
+    .ob-path-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:18px}
+    .ob-path-card{padding:16px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;color:var(--text);transition:all .15s;display:block}
+    .ob-path-card:hover{border-color:rgba(168,85,247,.45);background:rgba(168,85,247,.06)}
+    .ob-path-card.recommended{border-color:#a855f7;background:rgba(168,85,247,.1)}
+    .ob-path-card-tag{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#c4b5fd;background:rgba(168,85,247,.18);padding:3px 8px;border-radius:4px;margin-bottom:8px}
+    .ob-path-card h4{margin:0 0 6px;font-family:var(--font-display);font-size:1rem;color:var(--text)}
+    .ob-path-card p{margin:0;font-size:.85rem;color:var(--text-mid);line-height:1.4}
+
+    .ob-danger{font-size:.78rem;color:var(--text-dim);background:transparent;border:0;cursor:pointer;font-family:inherit;text-decoration:underline;padding:4px 8px;margin-top:8px}
+    .ob-danger:hover{color:#f87171}
+
+    @media(max-width:560px){
+      .ob-radios{grid-template-columns:1fr 1fr}
+      .ob-scale-row{flex-direction:column;align-items:flex-start;gap:6px}
+      .ob-scale-label{min-width:0}
+      .ob-nav{flex-wrap:wrap}
+      .ob-btn{flex:1;min-width:120px}
+    }
+  </style>
 </head>
 <body>
 <script src="js/spa-redirect.js"></script>
 <a href="#main-content" class="skip-link">Skip to main content</a>
-<div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
-<div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
     <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">WORKSHOP</span>
-      <h1>Onboarding Interview</h1>
-      <p class="tagline">7 phases to figure out how YOUR brain works with AI.</p>
-      
+      <span class="pill" style="font-size:.65rem;padding:.25rem .75rem;margin-bottom:.5rem;">ONBOARDING</span>
+      <h1>How your brain works with AI</h1>
+      <p class="tagline">7 short questions. Answers stay on this device. Come back anytime.</p>
     </div>
   </div>
 </div>
-    <div class="page-wrapper" id="main-content">
-        <nav class="nav-bar" aria-label="Page navigation">
-            <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
-            <span class="phase-indicator phase-onboarding" aria-label="Phase 3 of 5: Onboarding"><span class="phase-num">Phase 3</span> of 5 — Onboarding</span>
-        </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
-  <div><strong>Prereqs:</strong> Best after Set Up Your Tools — but works standalone. <strong>Time:</strong> 10-40 min. <strong>Energy:</strong> Any.</div>
-</div>
-
-<div class="columns columns-2">
-<div><div class="callout callout-purple"><span class="callout-icon">🧭</span><div class="callout-title">What this is</div><div>A 7-phase interview that maps how YOUR brain works with AI. Go at your own pace.</div></div></div>
-<div><div class="callout callout-purple"><span class="callout-icon">⏱️</span><div class="callout-title">Time &amp; Energy</div><div><strong>10–40 min</strong> | <strong>Energy:</strong> Any | Builds automatically</div></div></div>
-</div>
-
-<div class="journey" style="flex-wrap:wrap;padding:1rem 0;">
-<div class="j-step"><div class="j-dot" style="background:#2d1b4e;border-color:#A855F7;font-size:0.8rem;">1</div><div class="j-label">Learn</div></div>
-<span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#2d1b4e;border-color:#A855F7;font-size:0.8rem;">2</div><div class="j-label">Priorities</div></div>
-<span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#2d1b4e;border-color:#A855F7;font-size:0.8rem;">3</div><div class="j-label">Tools</div></div>
-<span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#2d1b4e;border-color:#A855F7;font-size:0.8rem;">4</div><div class="j-label">Level</div></div>
-<span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#2d1b4e;border-color:#A855F7;font-size:0.8rem;">5</div><div class="j-label">Work</div></div>
-<span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#2d1b4e;border-color:#A855F7;font-size:0.8rem;">6</div><div class="j-label">Life</div></div>
-<span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#2d1b4e;border-color:#A855F7;font-size:0.8rem;">7</div><div class="j-label">Path</div></div>
-</div>
-
-<div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>Only do <strong>Phase 1</strong> and <strong>Phase 4</strong> (purple ones). Learning style + experience level is enough to be useful.</div></div>
-
-<hr>
-<h2>🧠 Phase 1: How Do You Learn Best?</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Drop this into Claude and answer one question at a time</div><div>
-<pre><code>I'm setting up my AI tools and want to understand how my brain works best. Ask me 5 quick questions (one at a time) about:
-- Whether I learn better by reading, listening, watching, or doing
-- What time of day my brain works best
-- How long I can focus before needing a break
-- Whether I prefer details-first or big-picture-first
-- What happens when I'm overwhelmed
-
-After my answers, give me a 3-4 sentence summary labeled "Learning Style &amp; Energy Patterns." Keep it conversational.</code></pre>
-</div></div>
-<div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">Save it</div><div>Copy summary → <a href="ai-profile.html">Your AI Profile</a> → "How I learn best"</div></div>
-
-<hr>
-<h2>🎯 Phase 2: What Do You Want AI to Help With?</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Rate it in AI — takes 2 minutes</div><div>
-<pre><code>Rate each category 1-5 (1 = not interested, 5 = exactly what I need):
-- Writing, Research, Work tasks, Creative projects, Life management, Learning, Automation
-
-Give me my top 3 as a short list for my AI profile.</code></pre>
-</div></div>
-
-<hr>
-<h2>🔧 Phase 3: Your Tools & Setup</h2>
-<div class="columns columns-4">
-<div><div class="callout callout-purple"><span class="callout-icon">🟣</span><div class="callout-title">Claude</div><div><div class="checkbox-item"><input type="checkbox" id="claude-free"> <label for="claude-free">Free</label></div><div class="checkbox-item"><input type="checkbox" id="claude-pro"> <label for="claude-pro">Pro</label></div></div></div></div>
-<div><div class="callout callout-green"><span class="callout-icon">🟢</span><div class="callout-title">ChatGPT</div><div><div class="checkbox-item"><input type="checkbox" id="chatgpt-free"> <label for="chatgpt-free">Free</label></div><div class="checkbox-item"><input type="checkbox" id="chatgpt-plus"> <label for="chatgpt-plus">Plus</label></div></div></div></div>
-<div><div class="callout callout-blue"><span class="callout-icon">🔵</span><div class="callout-title">Google</div><div><div class="checkbox-item"><input type="checkbox" id="gemini-basic"> <label for="gemini-basic">Gemini</label></div><div class="checkbox-item"><input type="checkbox" id="gemini-advanced"> <label for="gemini-advanced">Advanced</label></div></div></div></div>
-<div><div class="callout callout-yellow"><span class="callout-icon">📓</span><div class="callout-title">Other</div><div><div class="checkbox-item"><input type="checkbox" id="other-notebooklm"> <label for="other-notebooklm">NotebookLM</label></div><div class="checkbox-item"><input type="checkbox" id="other-notion"> <label for="other-notion">Notion</label></div></div></div></div>
-</div>
-
-<hr>
-<h2>📊 Phase 4: Experience Level</h2>
-<div class="callout callout-purple"><span class="callout-icon">💭</span><div class="callout-title">Pick the closest one</div><div>
-<div class="checkbox-item"><input type="checkbox" id="exp-never"> <label for="exp-never"><strong>Never tried it</strong></label></div>
-<div class="checkbox-item"><input type="checkbox" id="exp-dabbled"> <label for="exp-dabbled"><strong>Dabbled a little</strong></label></div>
-<div class="checkbox-item"><input type="checkbox" id="exp-sometimes"> <label for="exp-sometimes"><strong>Use it sometimes</strong></label></div>
-<div class="checkbox-item"><input type="checkbox" id="exp-regular"> <label for="exp-regular"><strong>Regular user</strong></label></div>
-<div class="checkbox-item"><input type="checkbox" id="exp-power"> <label for="exp-power"><strong>Power user</strong></label></div>
-</div></div>
-
-<hr>
-<h2>💼 Phase 5: Your Work</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Let AI interview you about your role</div><div>
-<pre><code>Ask me one at a time:
-1. Job title or main role?
-2. Industry or field?
-3. Top 3 weekly tasks?
-4. Which tasks do you wish took less time?
-Then give me a "Role &amp; Work Context" summary.</code></pre>
-</div></div>
-
-<hr>
-<h2>🏠 Phase 6: Your Life</h2>
-<div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Same rating system, life version</div><div>
-<pre><code>Rate these 1-5 for where AI can help in personal life:
-Morning routines, Decisions, Household admin, Learning, Social communication, Financial tracking, Health &amp; wellness
-Give me my top 2-3 life areas.</code></pre>
-</div></div>
-
-<hr>
-<h2>🗺️ Phase 7: Your Path</h2>
-<div class="columns columns-4">
-<div><div class="callout callout-green"><span class="callout-icon">🌱</span><div class="callout-title">Never tried</div><div><a href="first-ai-conversation.html">Your First AI Conversation →</a></div></div></div>
-<div><div class="callout callout-blue"><span class="callout-icon">📝</span><div class="callout-title">Sometimes</div><div><a href="prompt-basics.html">Prompt Basics →</a></div></div></div>
-<div><div class="callout callout-purple"><span class="callout-icon">⚡</span><div class="callout-title">Regular</div><div><a href="setup-your-tools.html">Set Up Tools →</a></div></div></div>
-<div><div class="callout callout-red"><span class="callout-icon">🔬</span><div class="callout-title">Power</div><div><a href="track-multi-ai.html">Advanced Tracks →</a></div></div></div>
-</div>
-
-<details><summary>📚 Research</summary><div style="padding:0 1.5rem 1.5rem;">
-<ul><li>Flavell (1979) — Metacognition</li><li>Schraw & Dennison (1994) — Self-regulated learning</li><li>Singer (1998) — Neurodiversity paradigm</li><li>NNG — Progressive disclosure</li><li>W3C COGA — Cognitive accessibility</li></ul>
-</div></details>
-
-<div class="callout callout-green" style="border-left-width:3px;">
-  <div class="callout-title">Come back for</div>
-  <div>Visit AI Profile to see your answers turned into Custom Instructions.</div>
-</div>
-
-        <nav class="nav-footer" aria-label="Workshop navigation">
-            <a href="connect-ai.html" class="nav-link prev"><small>← Previous</small>Connect Your AI</a>
-            <a href="ai-profile.html" class="nav-link next"><small>Next →</small>AI Profile</a>
-        </nav>
+<main class="page-wrapper" id="main-content">
+  <div class="ob">
+    <div class="ob-progress" role="region" aria-label="Onboarding progress">
+      <div class="ob-progress-track"><div class="ob-progress-bar" id="ob-bar"></div></div>
+      <div class="ob-progress-meta">
+        <span id="ob-progress-text">Step 1 of 7</span>
+        <span class="ob-progress-saved" id="ob-saved" aria-live="polite">&#10003; Saved</span>
+      </div>
+      <ol class="ob-stepper" id="ob-stepper" aria-label="Jump to step"></ol>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/brain-animation.js"></script>
-    <script src="js/motion-toggle.js"></script>
-    <script src="js/onboarding-state.js"></script>
+
+    <section class="ob-step" id="ob-step" aria-live="polite"></section>
+
+    <div class="ob-nav">
+      <button class="ob-btn ob-btn-ghost" id="ob-prev" type="button">&larr; Back</button>
+      <button class="ob-skip" id="ob-skip" type="button">Skip this step</button>
+      <button class="ob-btn ob-btn-primary" id="ob-next" type="button">Next &rarr;</button>
+    </div>
+
+    <button class="ob-danger" id="ob-clear" type="button">Clear all my answers</button>
+  </div>
+</main>
+
+<script src="js/brain-animation.js"></script>
+<script src="js/store.js"></script>
+<script src="js/motion-toggle.js"></script>
+<script>
+/* Onboarding controller — pure DOM, no framework.
+   State lives in MasterClass.store under key 'onboarding'.
+   Works in standalone, iframe, and SPA-injected contexts. */
+(function () {
+  'use strict';
+  var store = window.MasterClass && window.MasterClass.store;
+  if (!store) { console.warn('[onboarding] store unavailable'); return; }
+
+  var STEPS = [
+    {
+      id: 'learn',
+      title: 'How do you learn best?',
+      prompt: 'Pick what feels closest. Trust your gut.',
+      questions: [
+        { id: 'mode',     label: 'When you really need to understand something new, what works?',
+          type: 'radio', options: ['Read it','Hear it','Watch it','Do it'] },
+        { id: 'peak',     label: 'When does your brain work best?',
+          type: 'radio', options: ['Early morning','Late morning','Afternoon','Evening','Late night'] },
+        { id: 'focus',    label: 'How long can you focus before needing a real break?',
+          type: 'radio', options: ['10 min','25 min','45 min','60 min+'] },
+        { id: 'detail',   label: 'Big picture first, or details first?',
+          type: 'radio', options: ['Big picture','Details','Both, switching'] },
+        { id: 'overwhelm', label: 'When you hit overwhelm, what helps?',
+          type: 'radio', options: ['Walk away','Talk it out','Smaller steps','Sleep on it'] }
+      ]
+    },
+    {
+      id: 'priorities',
+      title: 'What do you want AI to help with?',
+      prompt: 'Rate each area 1 (not now) to 5 (this is the point).',
+      questions: [
+        { id: 'priorities', label: '', type: 'scale',
+          rows: ['Writing','Research','Work tasks','Creative projects','Life management','Learning','Automation'] }
+      ]
+    },
+    {
+      id: 'tools',
+      title: 'Which AI tools do you have right now?',
+      prompt: 'Check all that apply. Free counts.',
+      questions: [
+        { id: 'tools', label: '', type: 'checkbox',
+          options: ['Claude (free)','Claude Pro','ChatGPT (free)','ChatGPT Plus','Gemini','Gemini Advanced','NotebookLM','Perplexity','Microsoft Copilot','None yet'] }
+      ]
+    },
+    {
+      id: 'level',
+      title: 'Where are you with AI today?',
+      prompt: 'No judgment. The course adapts.',
+      questions: [
+        { id: 'level', label: '', type: 'radio',
+          options: ['Never tried it','Dabbled a little','Use it sometimes','Regular user','Power user'] }
+      ]
+    },
+    {
+      id: 'work',
+      title: 'Your work',
+      prompt: 'Short answers are fine. This shapes your AI Profile.',
+      questions: [
+        { id: 'role',     label: 'Job title or main role',           type: 'text', short: true },
+        { id: 'industry', label: 'Industry or field',                type: 'text', short: true },
+        { id: 'tasks',    label: 'Top 3 weekly tasks',               type: 'text' },
+        { id: 'painful',  label: 'Which one would you most like to take less time?', type: 'text' }
+      ]
+    },
+    {
+      id: 'life',
+      title: 'Your life',
+      prompt: 'Same rating system, life version.',
+      questions: [
+        { id: 'life', label: '', type: 'scale',
+          rows: ['Morning routines','Decisions','Household admin','Learning new things','Social communication','Financial tracking','Health & wellness'] }
+      ]
+    },
+    {
+      id: 'path',
+      title: 'Your path',
+      prompt: 'Based on what you said, here is a starting point. Pick anything.',
+      questions: [],
+      isPath: true
+    }
+  ];
+
+  var data = store.get('onboarding', {});
+  if (typeof data !== 'object' || data === null || Array.isArray(data)) data = {};
+  var idx = clampStep(data._step || 0);
+  var saveTimer = null;
+
+  var stepEl   = document.getElementById('ob-step');
+  var barEl    = document.getElementById('ob-bar');
+  var stepperEl= document.getElementById('ob-stepper');
+  var progText = document.getElementById('ob-progress-text');
+  var savedEl  = document.getElementById('ob-saved');
+  var prevBtn  = document.getElementById('ob-prev');
+  var nextBtn  = document.getElementById('ob-next');
+  var skipBtn  = document.getElementById('ob-skip');
+  var clearBtn = document.getElementById('ob-clear');
+
+  function clampStep(n) {
+    n = parseInt(n, 10) || 0;
+    if (n < 0) return 0;
+    if (n >= STEPS.length) return STEPS.length - 1;
+    return n;
+  }
+
+  function isStepDone(stepIdx) {
+    var step = STEPS[stepIdx];
+    if (!step || step.isPath) return false;
+    var stepData = data[step.id] || {};
+    return step.questions.some(function (q) {
+      var v = stepData[q.id];
+      if (v === undefined || v === null || v === '') return false;
+      if (Array.isArray(v)) return v.length > 0;
+      if (typeof v === 'object') return Object.keys(v).length > 0;
+      return true;
+    });
+  }
+
+  function flashSaved() {
+    savedEl.classList.add('shown');
+    clearTimeout(savedEl._t);
+    savedEl._t = setTimeout(function () { savedEl.classList.remove('shown'); }, 1200);
+  }
+
+  function persist() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () {
+      data._step = idx;
+      data._updated = Date.now();
+      store.set('onboarding', data);
+      flashSaved();
+    }, 280);
+  }
+
+  function clearChildren(el) { while (el.firstChild) el.removeChild(el.firstChild); }
+
+  function renderStepper() {
+    clearChildren(stepperEl);
+    STEPS.forEach(function (s, i) {
+      var li = document.createElement('li');
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = String(i + 1);
+      btn.setAttribute('aria-label', 'Go to step ' + (i + 1) + ': ' + s.title);
+      if (i === idx) btn.classList.add('current');
+      if (isStepDone(i)) btn.classList.add('done');
+      btn.addEventListener('click', function () { goto(i); });
+      li.appendChild(btn);
+      stepperEl.appendChild(li);
+    });
+  }
+
+  function updateProgressBar() {
+    var done = 0;
+    for (var i = 0; i < STEPS.length; i++) if (isStepDone(i)) done++;
+    var pct = Math.round((done / (STEPS.length - 1)) * 100);
+    barEl.style.width = Math.min(100, pct) + '%';
+    progText.textContent = 'Step ' + (idx + 1) + ' of ' + STEPS.length + ' · ' + done + ' done';
+  }
+
+  function getQValue(stepId, qId) {
+    if (!data[stepId]) return undefined;
+    return data[stepId][qId];
+  }
+  function setQValue(stepId, qId, value) {
+    if (!data[stepId]) data[stepId] = {};
+    data[stepId][qId] = value;
+    persist();
+    renderStepper();
+    updateProgressBar();
+  }
+
+  function buildRadioGroup(stepId, q) {
+    var wrap = document.createElement('div');
+    wrap.className = 'ob-radios';
+    wrap.setAttribute('role', 'radiogroup');
+    wrap.setAttribute('aria-label', q.label || q.id);
+    var current = getQValue(stepId, q.id);
+    q.options.forEach(function (opt) {
+      var label = document.createElement('label');
+      label.className = 'ob-radio';
+      var input = document.createElement('input');
+      input.type = 'radio';
+      input.name = stepId + '-' + q.id;
+      input.value = opt;
+      input.checked = current === opt;
+      input.addEventListener('change', function () { setQValue(stepId, q.id, opt); });
+      var span = document.createElement('span');
+      span.textContent = opt;
+      label.appendChild(input);
+      label.appendChild(span);
+      wrap.appendChild(label);
+    });
+    return wrap;
+  }
+
+  function buildScale(stepId, q) {
+    var wrap = document.createElement('div');
+    var current = getQValue(stepId, q.id) || {};
+    q.rows.forEach(function (row) {
+      var rowEl = document.createElement('div');
+      rowEl.className = 'ob-scale-row';
+      var label = document.createElement('div');
+      label.className = 'ob-scale-label';
+      label.textContent = row;
+      var btns = document.createElement('div');
+      btns.className = 'ob-scale-buttons';
+      btns.setAttribute('role', 'radiogroup');
+      btns.setAttribute('aria-label', row + ' rating');
+      [1,2,3,4,5].forEach(function (n) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'ob-scale-btn' + (current[row] === n ? ' active' : '');
+        b.textContent = String(n);
+        b.setAttribute('aria-label', row + ' rated ' + n + ' of 5');
+        b.setAttribute('aria-pressed', current[row] === n ? 'true' : 'false');
+        b.addEventListener('click', function () {
+          current[row] = n;
+          setQValue(stepId, q.id, current);
+          btns.querySelectorAll('.ob-scale-btn').forEach(function (el, i) {
+            var on = (i + 1) === n;
+            el.classList.toggle('active', on);
+            el.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+        });
+        btns.appendChild(b);
+      });
+      rowEl.appendChild(label);
+      rowEl.appendChild(btns);
+      wrap.appendChild(rowEl);
+    });
+    return wrap;
+  }
+
+  function buildChecks(stepId, q) {
+    var wrap = document.createElement('div');
+    wrap.className = 'ob-checks';
+    var current = getQValue(stepId, q.id) || [];
+    q.options.forEach(function (opt) {
+      var label = document.createElement('label');
+      label.className = 'ob-check';
+      var input = document.createElement('input');
+      input.type = 'checkbox';
+      input.checked = current.indexOf(opt) !== -1;
+      input.addEventListener('change', function () {
+        var arr = (getQValue(stepId, q.id) || []).slice();
+        var pos = arr.indexOf(opt);
+        if (input.checked && pos === -1) arr.push(opt);
+        if (!input.checked && pos !== -1) arr.splice(pos, 1);
+        setQValue(stepId, q.id, arr);
+      });
+      var span = document.createElement('span');
+      span.textContent = opt;
+      label.appendChild(input);
+      label.appendChild(span);
+      wrap.appendChild(label);
+    });
+    return wrap;
+  }
+
+  function buildText(stepId, q) {
+    var el = document.createElement(q.short ? 'input' : 'textarea');
+    if (q.short) { el.type = 'text'; el.className = 'ob-input'; }
+    else { el.className = 'ob-text'; }
+    el.value = getQValue(stepId, q.id) || '';
+    el.addEventListener('input', function () { setQValue(stepId, q.id, el.value); });
+    return el;
+  }
+
+  function buildPath() {
+    var wrap = document.createElement('div');
+
+    /* Summary of what we've gathered */
+    var sum = document.createElement('div');
+    sum.className = 'ob-summary';
+    var h3 = document.createElement('h3');
+    h3.textContent = 'Your AI Profile so far';
+    sum.appendChild(h3);
+    var dl = document.createElement('dl');
+
+    function row(label, value, empty) {
+      var d = document.createElement('div');
+      d.className = 'ob-summary-row';
+      var dt = document.createElement('dt'); dt.textContent = label;
+      var dd = document.createElement('dd');
+      if (value) {
+        dd.textContent = value;
+      } else {
+        var emptySpan = document.createElement('span');
+        emptySpan.className = 'ob-summary-empty';
+        emptySpan.textContent = empty;
+        dd.appendChild(emptySpan);
+      }
+      d.appendChild(dt); d.appendChild(dd);
+      dl.appendChild(d);
+    }
+
+    var learn = data.learn || {};
+    var prios = (data.priorities && data.priorities.priorities) || {};
+    var tools = (data.tools && data.tools.tools) || [];
+    var level = (data.level && data.level.level) || '';
+    var work  = data.work || {};
+
+    var topPrios = Object.keys(prios)
+      .filter(function (k) { return prios[k] >= 4; })
+      .sort(function (a, b) { return prios[b] - prios[a]; })
+      .slice(0, 3);
+
+    row('Learning style', [learn.mode, learn.detail].filter(Boolean).join(' · '), 'Step 1 not answered');
+    row('Focus window',   learn.focus || '',                                            'Step 1 not answered');
+    row('Top priorities', topPrios.join(', '),                                          'Step 2 not answered');
+    row('Tools',          tools.join(', '),                                             'Step 3 not answered');
+    row('Experience',     level,                                                        'Step 4 not answered');
+    row('Role',           [work.role, work.industry].filter(Boolean).join(' · '),  'Step 5 not answered');
+
+    sum.appendChild(dl);
+    wrap.appendChild(sum);
+
+    /* Path recommendation based on level */
+    var recommended = (function () {
+      if (level === 'Never tried it' || level === 'Dabbled a little') return 'first-ai-conversation';
+      if (level === 'Use it sometimes') return 'prompt-basics';
+      if (level === 'Regular user') return 'setup-your-tools';
+      if (level === 'Power user') return 'track-multi-ai';
+      return 'first-ai-conversation';
+    })();
+
+    var paths = [
+      { id: 'first-ai-conversation', tag: 'Brand new',   title: 'Your First AI Conversation', desc: 'Open Claude, test it with a real question.' },
+      { id: 'prompt-basics',         tag: 'Some XP',     title: 'Prompt Basics',              desc: '4-element framework. Build 3 prompts you will use this week.' },
+      { id: 'setup-your-tools',      tag: 'Regular',     title: 'Set Up Your Tools',          desc: 'Accounts, memory, your primary tool.' },
+      { id: 'track-multi-ai',        tag: 'Power user',  title: 'Multi-AI Mastery',           desc: 'Use the right AI for the moment.' }
+    ];
+
+    var pathHeading = document.createElement('h3');
+    pathHeading.className = 'ob-path-heading';
+    pathHeading.textContent = 'Where to go next';
+    wrap.appendChild(pathHeading);
+
+    var cards = document.createElement('div');
+    cards.className = 'ob-path-cards';
+    paths.forEach(function (p) {
+      var a = document.createElement('a');
+      a.href = p.id + '.html';
+      a.className = 'ob-path-card' + (p.id === recommended ? ' recommended' : '');
+      var tag = document.createElement('span');
+      tag.className = 'ob-path-card-tag';
+      tag.textContent = p.id === recommended ? 'Recommended for you' : p.tag;
+      var h4 = document.createElement('h4'); h4.textContent = p.title;
+      var pp = document.createElement('p'); pp.textContent = p.desc;
+      a.appendChild(tag); a.appendChild(h4); a.appendChild(pp);
+      cards.appendChild(a);
+    });
+    wrap.appendChild(cards);
+
+    return wrap;
+  }
+
+  function renderStep() {
+    var step = STEPS[idx];
+    clearChildren(stepEl);
+
+    var h2 = document.createElement('h2');
+    h2.textContent = step.title;
+    stepEl.appendChild(h2);
+
+    if (step.prompt) {
+      var p = document.createElement('p');
+      p.className = 'ob-prompt';
+      p.textContent = step.prompt;
+      stepEl.appendChild(p);
+    }
+
+    if (step.isPath) {
+      stepEl.appendChild(buildPath());
+    } else {
+      var qList = document.createElement('div');
+      qList.className = 'ob-questions';
+      step.questions.forEach(function (q) {
+        var qBlock = document.createElement('div');
+        qBlock.className = 'ob-q';
+        if (q.label) {
+          var lab = document.createElement('label');
+          lab.className = 'ob-q-label';
+          lab.textContent = q.label;
+          qBlock.appendChild(lab);
+        }
+        var control;
+        if (q.type === 'radio')         control = buildRadioGroup(step.id, q);
+        else if (q.type === 'scale')    control = buildScale(step.id, q);
+        else if (q.type === 'checkbox') control = buildChecks(step.id, q);
+        else if (q.type === 'text')     control = buildText(step.id, q);
+        if (control) qBlock.appendChild(control);
+        qList.appendChild(qBlock);
+      });
+      stepEl.appendChild(qList);
+    }
+
+    prevBtn.disabled = idx === 0;
+    nextBtn.textContent = idx === STEPS.length - 1 ? 'Done →' : 'Next →';
+    skipBtn.style.display = step.isPath ? 'none' : '';
+
+    renderStepper();
+    updateProgressBar();
+
+    /* Scroll progress bar into view, gently */
+    if (window.scrollTo) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goto(n) {
+    idx = clampStep(n);
+    persist();
+    renderStep();
+  }
+
+  prevBtn.addEventListener('click', function () { goto(idx - 1); });
+  nextBtn.addEventListener('click', function () {
+    if (idx === STEPS.length - 1) {
+      window.location.href = 'ai-profile.html';
+      return;
+    }
+    goto(idx + 1);
+  });
+  skipBtn.addEventListener('click', function () { goto(idx + 1); });
+  clearBtn.addEventListener('click', function () {
+    if (!confirm('Clear all your onboarding answers? This cannot be undone.')) return;
+    data = {};
+    idx = 0;
+    store.remove('onboarding');
+    renderStep();
+  });
+
+  /* Keyboard: left/right arrows when not in text input */
+  document.addEventListener('keydown', function (e) {
+    var tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+    if (e.key === 'ArrowLeft' && idx > 0) goto(idx - 1);
+    if (e.key === 'ArrowRight' && idx < STEPS.length - 1) goto(idx + 1);
+  });
+
+  renderStep();
+})();
+</script>
 </body>
 </html>

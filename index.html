@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,16 +7,58 @@
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/brain-header.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- All styles now in css/design-system.css -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Home-only layout */
+    .home{max-width:880px;margin:0 auto}
+    .home-lead{padding:24px 0 8px}
+    .home-lead h2{margin:0 0 8px !important;border:0 !important;background:transparent !important;padding:0 !important;font-size:1.35rem !important;color:var(--text) !important}
+    .home-lead h2::before{display:none !important}
+    .home-lead p{font-size:1rem;color:var(--text-mid);max-width:60ch;margin:0 0 18px}
+
+    .resume-card{display:none;align-items:center;gap:14px;padding:14px 18px;background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(192,132,252,.04));border:1px solid rgba(168,85,247,.3);border-radius:12px;margin:0 0 24px}
+    .resume-card.shown{display:flex}
+    .resume-card-icon{font-size:1.5rem;flex-shrink:0}
+    .resume-card-body{flex:1;min-width:0}
+    .resume-card-title{font-weight:700;color:var(--text);font-size:.95rem;margin:0 0 2px}
+    .resume-card-meta{font-size:.78rem;color:var(--text-mid);margin:0}
+    .resume-card-btn{padding:8px 16px;border-radius:8px;background:#a855f7;color:#0A0A14;font-weight:600;font-size:.85rem;text-decoration:none;flex-shrink:0;transition:background .15s}
+    .resume-card-btn:hover{background:#c084fc}
+
+    .energy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 32px}
+    .energy-card{padding:18px 16px;background:rgba(255,255,255,.025);border:1.5px solid rgba(255,255,255,.06);border-radius:12px;text-decoration:none;color:var(--text);transition:all .2s;display:flex;flex-direction:column;gap:6px;position:relative}
+    .energy-card:hover{transform:translateY(-2px);border-color:rgba(168,85,247,.4);background:rgba(168,85,247,.04)}
+    .energy-card-time{font-family:var(--font-mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim)}
+    .energy-card-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--text);margin:0}
+    .energy-card-desc{font-size:.82rem;color:var(--text-mid);line-height:1.4;margin:0}
+    .energy-card.low::before,.energy-card.mid::before,.energy-card.high::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;border-radius:12px 0 0 12px}
+    .energy-card.low::before{background:#6b7280}
+    .energy-card.mid::before{background:#a855f7}
+    .energy-card.high::before{background:#dc2626}
+    @media(max-width:640px){.energy-grid{grid-template-columns:1fr}}
+
+    .section-head-clean{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:36px 0 8px;padding:0 0 8px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .section-head-clean h2{margin:0 !important;border:0 !important;background:transparent !important;padding:0 !important;font-size:.95rem !important;color:var(--text-mid) !important;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+    .section-head-clean h2::before{display:none !important}
+    .section-head-clean .section-meta{font-size:.75rem;color:var(--text-dim)}
+
+    .track-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:0 0 28px}
+    .track-card{padding:14px 16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;text-decoration:none;color:var(--text);transition:all .15s;display:block}
+    .track-card:hover{border-color:rgba(168,85,247,.35);background:rgba(168,85,247,.04)}
+    .track-card-tag{display:inline-block;font-family:var(--font-mono);font-size:.65rem;font-weight:700;letter-spacing:.08em;color:var(--text-dim);margin-bottom:4px}
+    .track-card-title{font-weight:600;font-size:.95rem;color:var(--text);margin:0 0 4px}
+    .track-card-desc{font-size:.8rem;color:var(--text-mid);line-height:1.4;margin:0}
+    @media(max-width:560px){.track-grid{grid-template-columns:1fr}}
+
+    .meta-line{font-size:.8rem;color:var(--text-dim);margin:18px 0 0;padding:10px 0;border-top:1px dashed rgba(255,255,255,.06);display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between}
+    .meta-line a{color:var(--text-mid);text-decoration:underline;text-decoration-color:rgba(168,85,247,.3)}
+    .meta-line a:hover{color:var(--text-accent)}
+  </style>
 </head>
-<!-- REMOVED: 423 lines of inline CSS now in design-system.css -->
 <body>
 <script src="js/spa-redirect.js"></script>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-
-<div class="scroll-progress" id="scrollProgress"></div>
 <div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
@@ -25,219 +67,193 @@
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
       <h1>Neurodiverse AI MasterClass</h1>
-      <p class="tagline">The first AI system built for neurodivergent brains — not adapted for them.</p>
-      <span class="pill">🌟 Your pace is the right pace. Start anywhere.</span>
+      <p class="tagline">Build an AI system your brain can actually use.</p>
+      <span class="pill">Your pace is the right pace.</span>
     </div>
   </div>
 </div>
 
-<!-- Main Content -->
-<div class="page" id="main-content">
+<main class="page home" id="main-content">
 
-  <!-- 20-minute starter path banner -->
-  <div class="callout callout-purple" style="border-left-width:4px;margin-top:1rem;">
-    <span class="callout-icon">⚡</span>
-    <div class="callout-title">First time here? Got 20 minutes?</div>
-    <div>
-      <p style="margin:0 0 0.75rem;">Three pages = one concrete win today. Skip everything else.</p>
-      <ol style="margin:0;padding-left:1.25rem;">
-        <li><strong>5 min</strong> — <a href="first-ai-conversation.html">Your First AI Conversation</a> (test it with a question that has no real answer)</li>
-        <li><strong>10 min</strong> — <a href="playground.html">AI Playground</a> (paste a real email or task; rewrite it with AI)</li>
-        <li><strong>5 min</strong> — <a href="emergency-toolkit.html">Emergency Toolkit</a> (bookmark this for the days your brain is offline)</li>
-      </ol>
-      <p style="margin:0.75rem 0 0;color:var(--text-mid);font-size:0.85rem;">Want the full course? Keep scrolling — but the order is up to you.</p>
+  <div id="resume" class="resume-card" role="region" aria-label="Resume onboarding">
+    <span class="resume-card-icon" aria-hidden="true">&#x1F9ED;</span>
+    <div class="resume-card-body">
+      <p class="resume-card-title">Pick up where you left off</p>
+      <p class="resume-card-meta" id="resume-meta">You were on step 1 of onboarding.</p>
     </div>
+    <a href="onboarding-interview.html" class="resume-card-btn">Resume &rarr;</a>
   </div>
 
-  <!-- Journey -->
-  <div class="journey">
-    <div class="j-step">
-      <div class="j-dot" style="background:#1f2937; border-color:#6b7280;">💬</div>
-      <div class="j-label">Intro</div>
-    </div>
-    <span class="j-arrow">→</span>
-    <div class="j-step">
-      <div class="j-dot" style="background:#064e3b; border-color:#059669;">🔧</div>
-      <div class="j-label">Set Up</div>
-    </div>
-    <span class="j-arrow">→</span>
-    <div class="j-step">
-      <div class="j-dot" style="background:#2d1b4e; border-color:#A855F7;">🧭</div>
-      <div class="j-label">Onboarding</div>
-    </div>
-    <span class="j-arrow">→</span>
-    <div class="j-step">
-      <div class="j-dot" style="background:#451a03; border-color:#d97706;">🎯</div>
-      <div class="j-label">Configure</div>
-    </div>
-    <span class="j-arrow">→</span>
-    <div class="j-step">
-      <div class="j-dot" style="background:#450a0a; border-color:#dc2626;">🔬</div>
-      <div class="j-label">Power User</div>
-    </div>
-  </div>
+  <section class="home-lead">
+    <h2>Got a few minutes? Start with one of these.</h2>
+    <p>You don&rsquo;t have to do them in order. Pick whatever matches your energy right now.</p>
+  </section>
 
-  <hr>
-
-  <!-- Phase 1 -->
-  <div class="section-head"><h2>💬 Phase 1: First Conversations <span class="badge">Optional</span></h2></div>
-  <p class="section-desc">New to AI? Start here. Already use ChatGPT or Claude? Skip to Phase 2.</p>
-  <div class="cards">
-    <a href="first-ai-conversation.html" class="c p-gray">
-      <span class="c-icon">💬</span>
-      <div><div class="c-title">Your First AI Conversation</div><div class="c-desc">Open Claude, say hello, test its limits. Understand what AI is and how it thinks.</div><div class="c-meta">15 min · Any energy</div></div>
+  <div class="energy-grid">
+    <a href="playground.html" class="energy-card low">
+      <span class="energy-card-time">5 min &middot; low energy</span>
+      <h3 class="energy-card-title">Open the playground</h3>
+      <p class="energy-card-desc">Copy one prompt, paste it into Claude, see what comes back.</p>
     </a>
-    <a href="playground.html" class="c p-gray">
-      <span class="c-icon">⚡</span>
-      <div><div class="c-title">AI Playground</div><div class="c-desc">Prompts, tools, experiments. No setup required.</div><div class="c-meta">2 min · Low energy</div></div>
+    <a href="onboarding-interview.html" class="energy-card mid">
+      <span class="energy-card-time">10&ndash;15 min &middot; any energy</span>
+      <h3 class="energy-card-title">Do the onboarding</h3>
+      <p class="energy-card-desc">7 short questions. The course adapts to what you tell it.</p>
+    </a>
+    <a href="setup-your-tools.html" class="energy-card high">
+      <span class="energy-card-time">30&ndash;45 min &middot; focus required</span>
+      <h3 class="energy-card-title">Set up your tools</h3>
+      <p class="energy-card-desc">Accounts, memory on, prompt basics. The proper start.</p>
     </a>
   </div>
 
-  <!-- Phase 2 -->
-  <div class="section-head"><h2>🔧 Phase 2: Pick Your Tools & Get Ready</h2></div>
-  <p class="section-desc">Choose your AI tools, set up accounts, turn on memory, learn prompting basics, and connect AI to this template.</p>
-  <div class="cards">
-    <a href="setup-your-tools.html" class="c p-green">
-      <span class="c-icon">🔧</span>
-      <div><div class="c-title">Set Up Your AI Tools</div><div class="c-desc">Set up accounts, configure settings, turn on memory, pick your primary AI tool.</div><div class="c-meta">15 min · Medium energy</div></div>
+  <div class="section-head-clean">
+    <h2>The course</h2>
+    <span class="section-meta">8 lessons &middot; do in any order</span>
+  </div>
+  <div class="track-grid">
+    <a href="first-ai-conversation.html" class="track-card">
+      <span class="track-card-tag">LESSON 01</span>
+      <p class="track-card-title">Your first AI conversation</p>
+      <p class="track-card-desc">Open Claude. Ask something with no right answer. Notice how it thinks.</p>
     </a>
-    <a href="prompt-basics.html" class="c p-green">
-      <span class="c-icon">✏️</span>
-      <div><div class="c-title">Prompt Basics That Actually Work</div><div class="c-desc">The 4-element prompt framework. Build 3 prompts you'll use this week.</div><div class="c-meta">15 min · Any energy</div></div>
+    <a href="prompt-basics.html" class="track-card">
+      <span class="track-card-tag">LESSON 02</span>
+      <p class="track-card-title">Prompt basics that work</p>
+      <p class="track-card-desc">4-element framework. Build 3 prompts you&rsquo;ll use this week.</p>
     </a>
-    <a href="connect-ai.html" class="c p-green">
-      <span class="c-icon">🔗</span>
-      <div><div class="c-title">Connect Your AI to This Template</div><div class="c-desc">Make AI read/write to your databases live, so everything auto-saves.</div><div class="c-meta">5–20 min · Choose your level</div></div>
+    <a href="setup-your-tools.html" class="track-card">
+      <span class="track-card-tag">LESSON 03</span>
+      <p class="track-card-title">Set up your tools</p>
+      <p class="track-card-desc">Accounts, memory, your primary AI. The setup that pays off.</p>
+    </a>
+    <a href="connect-ai.html" class="track-card">
+      <span class="track-card-tag">LESSON 04</span>
+      <p class="track-card-title">Connect AI to your template</p>
+      <p class="track-card-desc">Optional: let AI read and write to your Notion databases.</p>
+    </a>
+    <a href="onboarding-interview.html" class="track-card">
+      <span class="track-card-tag">LESSON 05</span>
+      <p class="track-card-title">Onboarding interview</p>
+      <p class="track-card-desc">7 phases. Maps how your brain works with AI.</p>
+    </a>
+    <a href="ai-profile.html" class="track-card">
+      <span class="track-card-tag">LESSON 06</span>
+      <p class="track-card-title">Your AI profile</p>
+      <p class="track-card-desc">A living manual. Starts empty, fills from your onboarding answers.</p>
+    </a>
+    <a href="writing-voice.html" class="track-card">
+      <span class="track-card-tag">LESSON 07</span>
+      <p class="track-card-title">Writing voice</p>
+      <p class="track-card-desc">Calibrate a voice card so AI writes like you, not like AI.</p>
+    </a>
+    <a href="emergency-toolkit.html" class="track-card">
+      <span class="track-card-tag">LESSON 08</span>
+      <p class="track-card-title">Emergency toolkit</p>
+      <p class="track-card-desc">Crisis prompts for days your brain is offline. Bookmark this.</p>
     </a>
   </div>
 
-  <!-- Phase 3 -->
-  <div class="section-head"><h2>🧭 Phase 3: Onboarding & AI Profile</h2></div>
-  <p class="section-desc">Your tools are set up. Now let's figure out how YOUR brain works with AI.</p>
-  <div class="cards">
-    <a href="onboarding-interview.html" class="c p-purple">
-      <span class="c-icon">🧭</span>
-      <div><div class="c-title">Onboarding Interview</div><div class="c-desc">7 phases: how you learn, your priorities, experience level, work context, life needs, and your personalized path.</div><div class="c-meta">10–40 min · Any energy</div></div>
-    </a>
-    <a href="ai-profile.html" class="c p-purple">
-      <span class="c-icon">👤</span>
-      <div><div class="c-title">Your AI Profile</div><div class="c-desc">Your living AI operating manual. Starts empty, fills as you answer onboarding questions.</div><div class="c-meta">Builds automatically</div></div>
-    </a>
+  <div class="section-head-clean">
+    <h2>Pick by what you want to do</h2>
+    <span class="section-meta">5 use-case workshops &middot; 30&ndash;45 min each</span>
+  </div>
+  <div class="track-grid">
+    <a href="research-analysis.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Research &amp; analysis</p><p class="track-card-desc">Templates and workflows that don&rsquo;t make you re-read the source.</p></a>
+    <a href="work-productivity.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Work &amp; productivity</p><p class="track-card-desc">Email, meetings, reports. The drudge tasks AI handles cleanly.</p></a>
+    <a href="creative-projects.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Creative projects</p><p class="track-card-desc">Brainstorming and ideation. Where the playground earns its name.</p></a>
+    <a href="life-management.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Life management</p><p class="track-card-desc">Routines, decisions, household admin. The boring wins.</p></a>
+    <a href="writing-voice.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Writing voice</p><p class="track-card-desc">Make AI write like you, not like a press release.</p></a>
   </div>
 
-  <!-- Phase 4 -->
-  <div class="section-head"><h2>🎯 Phase 4: Deeper Configurations</h2></div>
-  <p class="section-desc">Pick any track. Each one builds real workflows saved to your databases.</p>
-  <div class="cards">
-    <a href="writing-voice.html" class="c p-yellow"><span class="c-icon">✍️</span><div><div class="c-title">AI Writing Voice</div><div class="c-desc">Run voice calibration, save your Voice Card.</div><div class="c-meta">30–45 min · Any energy</div></div></a>
-    <a href="research-analysis.html" class="c p-yellow"><span class="c-icon">🔍</span><div><div class="c-title">Research & Analysis</div><div class="c-desc">Build research templates and workflows.</div><div class="c-meta">30–45 min · Any energy</div></div></a>
-    <a href="work-productivity.html" class="c p-yellow"><span class="c-icon">💼</span><div><div class="c-title">Work & Productivity</div><div class="c-desc">Email, meetings, reports, automations.</div><div class="c-meta">30–45 min · Any energy</div></div></a>
-    <a href="creative-projects.html" class="c p-yellow"><span class="c-icon">🎨</span><div><div class="c-title">Creative Projects</div><div class="c-desc">Brainstorming and ideation pipelines.</div><div class="c-meta">30–45 min · Any energy</div></div></a>
-    <a href="life-management.html" class="c p-yellow"><span class="c-icon">🏠</span><div><div class="c-title">Life Management</div><div class="c-desc">Routines, decisions, household admin.</div><div class="c-meta">30–45 min · Any energy</div></div></a>
+  <div class="section-head-clean">
+    <h2>Advanced tracks</h2>
+    <span class="section-meta">Skip if you&rsquo;re still finding your footing</span>
+  </div>
+  <div class="track-grid">
+    <a href="track-multi-ai.html" class="track-card"><span class="track-card-tag">TRACK A</span><p class="track-card-title">Multi-AI mastery</p><p class="track-card-desc">Triple stack workflow. 21-task matrix. Voice routing for low-energy days.</p></a>
+    <a href="track-plugins.html" class="track-card"><span class="track-card-tag">TRACK B</span><p class="track-card-title">Plugins, MCP &amp; agents</p><p class="track-card-desc">Skills teach. MCP connects. Agents execute. 20 top servers + build patterns.</p></a>
+    <a href="track-rag.html" class="track-card"><span class="track-card-tag">TRACK C</span><p class="track-card-title">RAG &amp; knowledge</p><p class="track-card-desc">Make AI answer from your documents. Claude Projects, NotebookLM, Obsidian.</p></a>
+    <a href="track-councils.html" class="track-card"><span class="track-card-tag">TRACK D</span><p class="track-card-title">Councils &amp; multi-agent</p><p class="track-card-desc">When multi-agent helps. When it just costs more. 6 patterns + 6 anti-patterns.</p></a>
   </div>
 
-  <!-- Advanced Tracks (replaces former Phase 5) -->
-  <div class="section-head"><h2>🚀 Advanced Tracks <span class="badge">Pick any order</span></h2></div>
-  <p class="section-desc">Four independent tracks for 2026 AI fluency. Each has an overview + 2 deep-dives. Start with whichever fits your current need.</p>
-  <div class="cards">
-    <a href="track-multi-ai.html" class="c p-red"><span class="c-icon">🤖</span><div><div class="c-title">Track A · Multi-AI Mastery</div><div class="c-desc">Use the right AI for the moment. Triple Stack workflow. 21-task matrix. Voice routing for low-energy days.</div><div class="c-meta">3 pages · Any energy</div></div></a>
-    <a href="track-plugins.html" class="c p-red"><span class="c-icon">📦</span><div><div class="c-title">Track B · Plugins, MCP &amp; Agents</div><div class="c-desc">Skills teach. MCP connects. Agents execute. 20 top servers, 15 plugins, 5 build patterns + hybrid Ollama.</div><div class="c-meta">3 pages · Any energy</div></div></a>
-    <a href="track-rag.html" class="c p-red"><span class="c-icon">🗂️</span><div><div class="c-title">Track C · RAG &amp; Knowledge</div><div class="c-desc">Make AI answer from YOUR documents. 3-layer model + decision tree. Claude Projects, NotebookLM, Obsidian, vector DBs.</div><div class="c-meta">3 pages · Any energy</div></div></a>
-    <a href="track-councils.html" class="c p-red"><span class="c-icon">🪖</span><div><div class="c-title">Track D · Councils &amp; Multi-Agent</div><div class="c-desc">When multi-agent helps vs hurts. 6 patterns ND pros can actually use + 6 anti-patterns to avoid.</div><div class="c-meta">3 pages · Any energy</div></div></a>
+  <div class="section-head-clean">
+    <h2>Resources</h2>
+    <span class="section-meta">Reach for when you need them</span>
+  </div>
+  <div class="track-grid">
+    <a href="reference-library.html" class="track-card"><span class="track-card-tag">REFERENCE</span><p class="track-card-title">Reference library</p><p class="track-card-desc">Glossary, cheat sheets, tool guides, skill files, sources.</p></a>
+    <a href="skills-catalog.html" class="track-card"><span class="track-card-tag">REFERENCE</span><p class="track-card-title">Skills catalog</p><p class="track-card-desc">Downloadable Claude Code skill files you can drop in.</p></a>
+    <a href="life-templates.html" class="track-card"><span class="track-card-tag">TOOLKIT</span><p class="track-card-title">Life templates</p><p class="track-card-desc">Dopamine Menu and meal planning, tuned for ND daily life.</p></a>
+    <a href="your-progress.html" class="track-card"><span class="track-card-tag">DATA</span><p class="track-card-title">Your progress</p><p class="track-card-desc">What you&rsquo;ve built. Saved automatically as you go.</p></a>
   </div>
 
-  <hr>
+  <p class="meta-line">
+    <span>Built for neurodivergent brains. No streaks, no shame, no AI hype.</span>
+    <span><a href="reference-library.html">Sources &amp; research &rarr;</a></span>
+  </p>
 
-  <!-- Resources -->
-  <div class="section-head"><h2>🛠️ Resources & Tools</h2></div>
-  <div class="cards">
-    <a href="reference-library.html" class="c p-gray"><span class="c-icon">📚</span><div><div class="c-title">Reference Library</div><div class="c-desc">Glossary, cheat sheets, tool guides, skill files, research sources.</div></div></a>
-  </div>
-
-  <!-- Templates -->
-  <div class="section-head"><h2>🧰 Templates & Toolkits</h2></div>
-  <p class="section-desc">Ready-made systems for common ND challenges.</p>
-  <div class="cards">
-    <a href="life-templates.html" class="c p-green"><span class="c-icon">🍳</span><div><div class="c-title">Life Templates</div><div class="c-desc">Dopamine Menu + Meal Planning for ND daily life.</div></div></a>
-    <a href="emergency-toolkit.html" class="c p-red"><span class="c-icon">🚨</span><div><div class="c-title">Emergency Toolkit</div><div class="c-desc">Crisis prompts for when your brain is offline.</div></div></a>
-  </div>
-
-  <hr>
-
-  <!-- Data & Progress -->
-  <div class="section-head"><h2>📊 Your Data & Progress</h2></div>
-  <p class="section-desc">Everything you build saves here. These databases live in Notion.</p>
-  <div class="tiles">
-    <div class="tile"><div class="tile-icon">📚</div><div class="tile-name">Lessons</div><div class="tile-sub">Track progress</div></div>
-    <div class="tile"><div class="tile-icon">✏️</div><div class="tile-name">Prompts</div><div class="tile-sub">Your library</div></div>
-    <div class="tile"><div class="tile-icon">🔧</div><div class="tile-name">Tools</div><div class="tile-sub">Set up & ready</div></div>
-    <div class="tile"><div class="tile-icon">🎨</div><div class="tile-name">Portfolio</div><div class="tile-sub">Things you've made</div></div>
-    <div class="tile"><div class="tile-icon">⚡</div><div class="tile-name">Workflows</div><div class="tile-sub">Your playbooks</div></div>
-  </div>
-  <div class="callout">
-    <strong>🔄 AI-Connected?</strong> If you <a href="connect-ai.html">connected your AI</a>, try: "What lessons have I completed?" or "Add this prompt to my library."
-  </div>
-
-</div>
+</main>
 
 <script src="js/brain-animation.js"></script>
-    <script src="js/motion-toggle.js"></script>
-<!-- JavaScript -->
+<script src="js/store.js"></script>
+<script src="js/motion-toggle.js"></script>
 <script>
-  // Generate particles — skip when reduced motion is requested
-  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const particlesContainer = document.querySelector('.particles');
-  const particleCount = reducedMotion ? 0 : 25;
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
+/* Particles + reveal + resume card */
+(function () {
+  'use strict';
 
-    const duration = 10 + Math.random() * 15;
-    const delay = Math.random() * 5;
-    const opacity = 0.3 + Math.random() * 0.7;
-    const drift = 20 + Math.random() * 80;
-
-    particle.style.setProperty('--op', opacity);
-    particle.style.setProperty('--drift', drift + 'px');
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animationDuration = duration + 's';
-    particle.style.animationDelay = delay + 's';
-
-    particlesContainer.appendChild(particle);
+  /* Particles — skip when reduced motion */
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var particlesContainer = document.querySelector('.particles');
+  if (particlesContainer && !reducedMotion) {
+    for (var i = 0; i < 25; i++) {
+      var particle = document.createElement('div');
+      particle.className = 'particle';
+      var duration = 10 + Math.random() * 15;
+      var delay = Math.random() * 5;
+      var opacity = 0.3 + Math.random() * 0.7;
+      var drift = 20 + Math.random() * 80;
+      particle.style.setProperty('--op', opacity);
+      particle.style.setProperty('--drift', drift + 'px');
+      particle.style.left = (Math.random() * 100) + '%';
+      particle.style.top = (Math.random() * 100) + '%';
+      particle.style.animationDuration = duration + 's';
+      particle.style.animationDelay = delay + 's';
+      particlesContainer.appendChild(particle);
+    }
   }
 
-  // IntersectionObserver for card animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        const cards = entry.target.parentElement.querySelectorAll('.c');
-        cards.forEach((card, cardIndex) => {
-          setTimeout(() => {
-            card.classList.add('visible');
-          }, cardIndex * 80);
+  /* Resume card — read store, show if onboarding is partially complete */
+  var store = window.MasterClass && window.MasterClass.store;
+  if (store) {
+    var data = store.get('onboarding', null);
+    if (data && typeof data === 'object') {
+      var stepNames = ['How you learn','Priorities','Tools','Experience','Work','Life','Your path'];
+      var answered = ['learn','priorities','tools','level','work','life'].filter(function (k) {
+        var v = data[k];
+        if (!v || typeof v !== 'object') return false;
+        return Object.keys(v).some(function (qk) {
+          var val = v[qk];
+          if (val === undefined || val === null || val === '') return false;
+          if (Array.isArray(val)) return val.length > 0;
+          if (typeof val === 'object') return Object.keys(val).length > 0;
+          return true;
         });
-        observer.unobserve(entry.target);
+      }).length;
+
+      var step = (typeof data._step === 'number') ? data._step : 0;
+      if (answered > 0 && answered < 6) {
+        var resume = document.getElementById('resume');
+        var meta = document.getElementById('resume-meta');
+        if (resume && meta) {
+          meta.textContent = 'Onboarding: ' + answered + ' of 6 steps answered. Last on ' + (stepNames[step] || 'step ' + (step + 1)) + '.';
+          resume.classList.add('shown');
+        }
       }
-    });
-  }, { threshold: 0.1 });
-
-  // Observe all card containers
-  document.querySelectorAll('.cards').forEach(container => {
-    observer.observe(container);
-  });
-
-  // Mouse tracking for radial glow effect
-  document.addEventListener('mousemove', (e) => {
-    document.querySelectorAll('.c').forEach(card => {
-      const rect = card.getBoundingClientRect();
-      const mx = ((e.clientX - rect.left) / rect.width) * 100;
-      const my = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mx', mx + '%');
-      card.style.setProperty('--my', my + '%');
-    });
-  });
+    }
+  }
+})();
 </script>
-
 </body>
 </html>

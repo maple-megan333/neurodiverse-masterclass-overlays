@@ -960,7 +960,10 @@
       try { initToolPicker(contentArea); } catch (e) { console.warn('[IE] Tool picker init failed:', e); }
     }
 
-    if (page === 'onboarding-interview') {
+    /* onboarding-interview manages its own state through MasterClass.store —
+       the legacy form-persistence path here only fires for older standalone
+       pages that contain inputs without the new ob-stepper UI. */
+    if (page === 'onboarding-interview' && !contentArea.querySelector('#ob-stepper')) {
       try { initOnboarding(contentArea); } catch (e) { console.warn('[IE] Onboarding init failed:', e); }
     }
 
