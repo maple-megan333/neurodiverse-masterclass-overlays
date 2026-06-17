@@ -602,14 +602,24 @@ pre code { background: none; padding: 0; color: inherit; }
   background: rgba(245, 197, 66, 0.18); color: var(--text);
   border-color: var(--gold); box-shadow: 0 2px 8px var(--gold-glow);
 }
+/* Code-block label sits on its own line (was inline → "Work PromptYou are a…") */
+.code-label {
+  display: block;
+  font-family: var(--font-label);
+  font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: var(--s-2);
+}
 
 /* ---------- Blockquotes — editorial pull quote ---------- */
 blockquote {
   border-left: none;
   padding: var(--s-5) var(--s-6); margin: var(--s-6) 0;
   color: var(--text); font-style: italic;
-  background: transparent;
-  border-radius: 0;
+  /* Dark glass scrim so pull-quotes stay legible over the brain/synapse backdrop */
+  background: rgba(10, 9, 16, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
   font-family: var(--font-display);
   font-size: 1.35rem;
   line-height: 1.45;
@@ -617,6 +627,14 @@ blockquote {
   letter-spacing: -0.01em;
   font-variation-settings: "opsz" 72;
   position: relative;
+}
+/* Reusable scrim for long-form running text that sits over the backdrop */
+.text-scrim {
+  background: rgba(10, 9, 16, 0.5);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: var(--s-5);
 }
 blockquote::before {
   content: '"';
@@ -690,6 +708,18 @@ th {
 }
 td { padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--border); color: var(--text-mid); }
 tr:hover td { background: var(--bg-card-hover); color: var(--text); }
+
+/* Wide tables on small screens: contain to a horizontal scroll area instead of
+   overflowing the viewport. Wrap a table in .table-wrapper for the cleanest result;
+   the bare-table rule is a safety net for any table that isn't wrapped. */
+.table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: var(--s-5); }
+.table-wrapper table { margin-bottom: 0; }
+@media (max-width: 640px) {
+  .table-wrapper table { min-width: 520px; }
+  #content-area table:not(.table-wrapper table) {
+    display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+}
 
 /* ---------- Lists ---------- */
 ul, ol { margin: var(--s-3) 0 var(--s-4) var(--s-5); }
@@ -1049,7 +1079,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
   position: absolute;
   top: -40px; left: 8px;
   background: var(--accent);
-  color: #fff;
+  color: #0B0910; /* dark ink on gold — fixes ~1.6:1 white-on-gold contrast */
   padding: 8px 16px;
   border-radius: 6px;
   font-weight: 600;

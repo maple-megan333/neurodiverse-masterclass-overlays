@@ -130,6 +130,9 @@
         NC.ready = true;
         NC.isAuthenticated = false;
         window.dispatchEvent(new CustomEvent('notion:auth-ready', { detail: { authenticated: false } }));
+        // Even when the auth check fails (endpoint down / offline), still render the
+        // "Connect Notion" button so the CTA is always visible and does something.
+        NC._renderAuthUI();
       });
     },
 

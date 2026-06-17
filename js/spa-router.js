@@ -106,7 +106,7 @@
 
     var cached = pageCache[pageName];
     if (cached) {
-      renderPage(cached, pageName);
+      renderPage(cached.html, pageName, cached.title);
     } else {
       var fileName = pageName === 'index' ? 'index.html' : pageName + '.html';
       fetch(fileName).then(function(resp) {
@@ -118,11 +118,20 @@
         var styles = Array.from(doc.querySelectorAll('head style')).map(function(s) {
           return s.outerHTML;
         }).join('');
+        // The shell (app.html) owns the single "Skip to main content" link. Remove only
+        // the page's duplicate of THAT link; keep other skip affordances such as
+        // "Skip to next guide" (a distinct in-page jump, styled in design-system.css).
+        doc.querySelectorAll('.skip-link').forEach(function(n) {
+          if (/skip to main content/i.test(n.textContent)) n.remove();
+        });
+        // Capture the page's own <title> so we can give each route a distinct title.
+        var titleEl = doc.querySelector('title');
+        var pageTitle = titleEl ? titleEl.textContent.trim() : null;
         var body = doc.querySelector('body');
         // Same-origin HTML from our own pages — safe to use innerHTML
         var pageHtml = body ? styles + body.innerHTML : '<p>Content not found.</p>'; // eslint-disable-line
-        pageCache[pageName] = pageHtml;
-        renderPage(pageHtml, pageName);
+        pageCache[pageName] = { html: pageHtml, title: pageTitle };
+        renderPage(pageHtml, pageName, pageTitle);
       }).catch(function(err) {
         var errDiv = document.createElement('div');
         errDiv.style.cssText = 'padding:40px;text-align:center';
@@ -157,7 +166,11 @@
     }, { passive: true });
   }
 
-  function renderPage(pageHtml, pageName) {
+  function renderPage(pageHtml, pageName, pageTitle) {
+    // Per-route title: give each route its own document title (was static shell title).
+    if (pageTitle) {
+      document.title = pageTitle;
+    }
     // Parse same-origin page HTML into DOM nodes via template element
     var template = document.createElement('template');
     template.innerHTML = pageHtml; // eslint-disable-line -- same-origin content only
@@ -191,6 +204,7 @@
     initScrollReveal();
     initInteractiveElements(pageName);
     initNotionEnhancements(pageName);
+    initChecklistPersistence(pageName);
     currentPage = pageName;
 
     // Fix 1: Hide sidebar on home page; open on desktop for all other pages.
@@ -315,6 +329,23 @@
       try { window.initInteractiveForPage(pageName); }
       catch(e) { console.warn('Interactive elements init error:', e); }
     }
+  }
+
+  // === Per-lesson checklist persistence ===
+  // main.js handles this only in non-SPA mode (it returns early when #spaMain exists),
+  // so in the shell — the canonical render — checklists never persisted. Re-add here
+  // using the shared mc.v1.* localStorage store so progress survives across sessions.
+  function initChecklistPersistence(pageName) {
+    var store = window.MasterClass && window.MasterClass.store;
+    if (!store) return;
+    var boxes = contentArea.querySelectorAll('.checkbox-item input[type="checkbox"], .check-item input[type="checkbox"]');
+    boxes.forEach(function(cb, i) {
+      var key = 'checkbox.' + pageName + '.' + i;
+      try {
+        if (store.get(key) === true) cb.checked = true;
+        cb.addEventListener('change', function() { store.set(key, cb.checked); });
+      } catch (e) { /* store unavailable — checklists simply won't persist */ }
+    });
   }
 
   // === Notion Enhancements ===
