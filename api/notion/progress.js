@@ -38,7 +38,7 @@ module.exports = async function handler(req, res) {
               }
               if (prop.type === 'select' && prop.select && prop.select.name) {
                 var sname = prop.select.name.toLowerCase();
-                if (sname === 'done' || sname === 'completed' || sname === 'complete') return true;
+                if (sname === 'done' || sname === 'completed' || sname === 'complete' || sname === 'already know this') return true;
               }
             }
             return false;

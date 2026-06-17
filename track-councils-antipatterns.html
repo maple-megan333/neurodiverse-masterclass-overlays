@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 .anti-card {
   background: var(--bg-card);
@@ -18,7 +19,7 @@
   margin-bottom: 0.9rem;
   transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.anti-card:hover { border-color: rgba(248,113,113,0.5); transform: translateY(-1px); }
+.anti-card:hover { border-color: rgba(255,107,107,0.5); transform: translateY(-1px); }
 .anti-head {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.55rem;
   margin-bottom: 0.45rem;
@@ -27,8 +28,8 @@
   font-family: var(--font-mono);
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
   color: var(--red-title);
-  background: rgba(220,38,38,0.12);
-  border: 1px solid rgba(220,38,38,0.3);
+  background: rgba(255,107,107,0.12);
+  border: 1px solid rgba(255,107,107,0.3);
   border-radius: 3px;
   padding: 2px 6px;
 }
@@ -42,7 +43,7 @@
 .anti-card .tell {
   margin-top: 0.5rem;
   font-size: 0.83rem; color: var(--text-dim);
-  border-top: 1px dashed rgba(248,113,113,0.18);
+  border-top: 1px dashed rgba(255,107,107,0.18);
   padding-top: 0.5rem;
 }
 .anti-card .tell::before {
@@ -60,7 +61,7 @@
   border-left: 3px solid var(--green);
   border-radius: var(--radius-sm);
   margin-bottom: 0.6rem;
-  background: rgba(5, 150, 105, 0.04);
+  background: rgba(245,197,66, 0.04);
 }
 .win-num {
   font-family: var(--font-mono);
@@ -74,7 +75,7 @@
 .win-row .body { font-size: 0.93rem; color: var(--text-mid); line-height: 1.55; }
 .win-row .body strong { color: var(--text); display: block; margin-bottom: 0.1rem; font-family: var(--font-display); font-size: 0.98rem; }
 .recap-card {
-  background: rgba(168, 85, 247, 0.05);
+  background: rgba(245,197,66, 0.05);
   border: 1px solid var(--border-hover);
   border-radius: var(--radius);
   padding: 1.1rem 1.3rem;
@@ -106,10 +107,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK D &middot; COUNCILS &amp; MULTI-AGENT</span>
+      <span class="pill">TRACK D &middot; COUNCILS &amp; MULTI-AGENT</span>
       <h1>Anti-Patterns &amp; When Single-Agent Wins</h1>
       <p class="tagline">When multi-agent hurts. When a single agent wins. The ND-specific decision rule.</p>
     </div>
@@ -123,7 +123,7 @@
   </span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> Best after the Patterns deep dive. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Medium.</div>
 </div>
 
@@ -232,7 +232,7 @@
   <div>Anthropic's primary design principle &mdash; <em>"<a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener">prefer simplicity first</a>"</em> &mdash; is the most important sentence in the entire multi-agent literature. The pattern that wins most often is the pattern with the fewest moving parts. The skill being practiced in Track D is restraint, not architecture.</div>
 </div>
 
-<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-purple">
   <div><strong>One thing to remember:</strong> If you've spawned more than 3 agents this month, audit which ones earned their cost.</div>
 </div>
 
@@ -242,7 +242,6 @@
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

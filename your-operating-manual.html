@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Operating Manual — Neurodiverse AI MasterClass</title>
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/brain-header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* === Page-local styles — capstone operating manual === */
+
+        /* Deploy cards — platform-specific 2x2 grid */
+        .deploy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .deploy-grid { grid-template-columns: 1fr; }
+        }
+        .deploy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.4rem;
+            transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+        }
+        .deploy-card:hover {
+            border-color: var(--border-hover);
+            background: rgba(245, 197, 66, 0.03);
+        }
+        .deploy-card .platform-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.45rem;
+        }
+        .deploy-card h3 {
+            margin: 0 0 0.75rem;
+            font-size: 1.05rem;
+            font-family: var(--font-display);
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            font-variation-settings: "opsz" 48;
+        }
+        .deploy-card ol {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+        .deploy-card ol li {
+            font-size: 0.875rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+            margin-bottom: 0.3rem;
+        }
+        .deploy-card ol li:last-child { margin-bottom: 0; }
+        .deploy-card .deploy-note {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 0.6rem;
+            font-style: italic;
+        }
+
+        /* Before/after comparison block */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        @media (max-width: 768px) {
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+        .compare-card {
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1.1rem 1.2rem;
+        }
+        .compare-card.before { border-top: 2px solid rgba(255, 107, 107, 0.5); }
+        .compare-card.after  { border-top: 2px solid rgba(100, 220, 140, 0.5); }
+        .compare-card .compare-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .compare-card.before .compare-label { color: rgba(255, 107, 107, 0.8); }
+        .compare-card.after  .compare-label { color: rgba(100, 220, 140, 0.9); }
+        .compare-card p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-mid);
+            line-height: 1.58;
+        }
+
+        /* Checklist — what you take with you */
+        .artifact-list {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .artifact-list li {
+            font-size: 0.925rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(245,234,220,0.04);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
+        .artifact-list li:last-child { border-bottom: none; }
+        .artifact-list .artifact-check {
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        /* CTA end section */
+        .end-section {
+            text-align: center;
+            padding: 3rem 1.5rem 2.5rem;
+            background: linear-gradient(135deg, rgba(245, 197, 66, 0.06), rgba(255, 107, 107, 0.04));
+            border: 1px solid rgba(245, 197, 66, 0.2);
+            border-radius: var(--radius);
+            margin: 2.5rem 0 1.5rem;
+        }
+        .end-section h2 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.75rem;
+            color: var(--text);
+            margin: 0 0 1rem;
+            font-variation-settings: "opsz" 72;
+        }
+        .end-section p {
+            font-size: 1rem;
+            color: var(--text-mid);
+            margin: 0 auto;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        /* Migration sub-section headers */
+        .migration-block {
+            margin-bottom: 1.25rem;
+        }
+        .migration-block h4 {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0 0 0.4rem;
+            font-variation-settings: "opsz" 48;
+        }
+        .migration-block ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+        .migration-block ul li {
+            font-size: 0.875rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Keep-it-living timeline */
+        .living-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.875rem;
+            margin-bottom: 1.25rem;
+        }
+        @media (max-width: 768px) {
+            .living-grid { grid-template-columns: 1fr; }
+        }
+        .living-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.2rem;
+        }
+        .living-block .time-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .living-block p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-mid);
+            line-height: 1.55;
+        }
+    </style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill">THE FINAL THING</span>
+      <h1>Pack it all into one thing you carry with you</h1>
+      <p class="tagline">Everything you built in this course, distilled into one document. Paste it into Claude, ChatGPT, Gemini, or any AI — and your setup goes with you.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper" id="main-content">
+    <nav class="nav-bar" aria-label="Page navigation">
+        <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+        <span class="phase-indicator phase-deeper" aria-label="Final — Take it with you">FINAL &middot; Take it with you</span>
+    </nav>
+
+    <!-- ============================================================
+         SECTION 1 — Why this exists
+         ============================================================ -->
+    <h2>Why this exists</h2>
+    <p>You've built a lot. An AI Profile. A Voice Card. A prompt library that does your actual work. Now we're going to compress all of it into one document — and you'll be able to paste it into any AI on earth and have your setup, your voice, your guardrails travel with you.</p>
+    <p>No starting over when you switch tools. No re-explaining yourself at the top of every new chat. No generic output that sounds nothing like you. This document is the thing you hand to any AI and it immediately knows who it's working with.</p>
+    <p>It's also the thing you hand to yourself — a record of how you think and what you've built — so three months from now, you can update one section and re-deploy it everywhere instead of starting from scratch.</p>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION 2 — The template
+         ============================================================ -->
+    <h2>The template</h2>
+    <p>Fill this in using everything you've built in this course. Each section tells you exactly where to pull from. Don't overthink the polish — rough and honest beats polished and vague every time.</p>
+
+    <pre><span class="code-label">Your Operating Manual</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy operating manual template to clipboard">Copy</button><code># [Your Name]'s AI Operating Manual
+_Last updated: [DATE]_
+
+## WHO I AM
+[Pull from your AI Profile page (ai-profile.html). 3-5 sentences about who you are
+and what you do. Job title is the start — also include what you make, who you serve,
+and what "good work" looks like in your world.]
+
+## HOW I THINK / WHAT I NEED
+[From your Onboarding Interview answers. ADHD? Visual thinker? Need step-by-step?
+Hate small talk? Process out loud before deciding? Be specific. This is the section
+where you give AI permission to work the way your brain actually works.]
+
+## MY VOICE
+[From your Voice Card (writing-voice.html). 2-3 sentences describing how you write.
+Include 1-2 phrases you actually use. List words or tones you want avoided.
+Example: "Direct, warm, a little dry. I say 'here's the thing' and 'to be clear.'
+Never formal. Never 'utilize.'"]
+
+## MY STANDARD PROMPTS
+[Your top 5-10 prompts from your Prompt Library. Paste the actual text of each one
+so AI can call them by name. Label them: MORNING_TRIAGE, EMAIL_DRAFT, WEEKLY_REVIEW, etc.]
+
+## THE WORK I DO
+[3-5 sentences: your role, your deliverables, who you serve, and the vocabulary that
+matters in your field. If you use specific terms of art, list them. AI should be able
+to write a document for your job without needing a glossary.]
+
+## MY GUARDRAILS
+[From the AI Safety lesson. What NOT to paste in (client data, personal health info,
+anything in your RED bucket). When NOT to use AI (high-stakes decisions, grief,
+anything requiring human judgment). Topics you handle yourself, full stop.]
+
+## RESPONSE FORMAT I WANT BY DEFAULT
+[How long? What tone? Bullets or paragraphs? Should AI ask clarifying questions or
+just make a call? Should it summarize at the end? Be as specific as you want —
+this is the default you live with every day.]
+
+## WHEN TO USE COUNCILS
+[From the Councils track. Which types of decisions deserve a panel of perspectives.
+Which topics you've found benefit from being challenged before you commit.
+Example: "Any decision with irreversible consequences. Any time I'm excited
+about something I came up with myself."]</code></pre>
+
+    <div class="callout callout-blue">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <div class="callout-title">Keep it under 800 words</div>
+        <div>The manual travels as a system prompt or custom instruction. Most platforms have limits — and shorter, more precise instructions work better than long ones anyway. Write the minimum that actually captures you.</div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION 3 — Deploy it
+         ============================================================ -->
+    <h2>Deploy it</h2>
+    <p>Same document, four different drop-zones. Pick the AI you use most and start there. You can deploy to the others when it's convenient — nothing expires.</p>
+
+    <div class="deploy-grid">
+        <div class="deploy-card">
+            <span class="platform-label">Claude</span>
+            <h3>Claude Project</h3>
+            <ol>
+                <li>Create a new Project in Claude</li>
+                <li>Project settings &rarr; <strong>Project Knowledge</strong> &rarr; paste your full manual</li>
+                <li>Optionally: Project instructions &rarr; paste the first 200 words as a quick orientation</li>
+                <li>All conversations inside that project now run with your manual active</li>
+            </ol>
+            <p class="deploy-note">Tip: name the project after what you do, not your name. "Freelance Design Work" is more useful than "My Setup."</p>
+        </div>
+
+        <div class="deploy-card">
+            <span class="platform-label">ChatGPT</span>
+            <h3>Custom Instructions</h3>
+            <ol>
+                <li>Settings &rarr; Personalization &rarr; <strong>Custom Instructions</strong></li>
+                <li>Box 1 ("What would you like ChatGPT to know?") &rarr; paste <strong>WHO I AM + HOW I THINK + THE WORK I DO</strong></li>
+                <li>Box 2 ("How would you like ChatGPT to respond?") &rarr; paste <strong>MY VOICE + RESPONSE FORMAT</strong></li>
+                <li>Save &rarr; applies to every conversation going forward</li>
+            </ol>
+            <p class="deploy-note">ChatGPT splits the manual across two boxes — this split is intentional, it maps to how the boxes are used internally.</p>
+        </div>
+
+        <div class="deploy-card">
+            <span class="platform-label">Gemini</span>
+            <h3>Gems</h3>
+            <ol>
+                <li>Go to Gems &rarr; <strong>Create new Gem</strong></li>
+                <li>Paste your full manual into the Instructions field</li>
+                <li>Name it "[Your name]'s Operating Manual" or something role-based</li>
+                <li>Pin it for quick access from your sidebar</li>
+            </ol>
+            <p class="deploy-note">Gems also accept file uploads — you can attach a PDF of your manual so it stays versioned alongside the instructions.</p>
+        </div>
+
+        <div class="deploy-card">
+            <span class="platform-label">Any other tool</span>
+            <h3>System prompt / API</h3>
+            <ol>
+                <li>Look for "system prompt," "custom personality," or "instructions" in settings</li>
+                <li>Paste your manual directly — the structure works everywhere</li>
+                <li>If you're using an API: set the manual as the <code>system</code> message before your first user message</li>
+                <li>Same approach works for Copilot, Perplexity, Mistral, and any open-weight model</li>
+            </ol>
+            <p class="deploy-note">If a tool doesn't have a persistent system prompt, paste the manual at the top of your first message each session. It still works.</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION 4 — Test it
+         ============================================================ -->
+    <h2>Test it before you trust it</h2>
+    <p>Run this exercise once. It takes 10 minutes and it tells you immediately whether the manual is doing its job.</p>
+
+    <div class="callout callout-green">
+        <span class="callout-icon">&#x1F9EA;</span>
+        <div class="callout-title">The test prompt</div>
+        <div>
+            <p style="margin:0 0 0.75rem;">Use this exact prompt in two places: once in a fresh chat with no manual loaded, and once in a chat where your manual is active.</p>
+            <pre><span class="code-label">Test Prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy test prompt to clipboard">Copy</button><code>Help me think about whether to take on a new freelance client.
+They want [describe the work], my plate currently looks like [describe your situation],
+and I'm leaning [your gut instinct]. What am I not thinking about?</code></pre>
+            <p style="margin:0.75rem 0 0; font-size: 0.875rem; color: var(--text-mid);">Compare the responses. Does the manual-loaded version sound like advice from someone who knows your work? Does it use your vocabulary? Does it skip the disclaimers you don't need? That gap is what the manual is for.</p>
+        </div>
+    </div>
+
+    <div class="compare-grid">
+        <div class="compare-card before">
+            <span class="compare-label">Without your manual</span>
+            <p>Generic. Considers things like "work-life balance" and "professional growth opportunities." Sounds like it was written for anyone. Probably includes a numbered list of questions you didn't ask for.</p>
+        </div>
+        <div class="compare-card after">
+            <span class="compare-label">With your manual active</span>
+            <p>Anchored to how you actually work. References your capacity, your voice, your known guardrails. Asks the follow-up that matters for your situation. Skips the filler. Sounds like a smart colleague who knows your context.</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION 5 — Migration scenarios
+         ============================================================ -->
+    <h2>When life shifts</h2>
+
+    <div class="callout callout-yellow">
+        <span class="callout-icon">&#x1F6A7;</span>
+        <div class="callout-title">Three scenarios you'll hit eventually</div>
+        <div>
+
+            <div class="migration-block" style="margin-top:0.75rem;">
+                <h4>Moving from personal to work account</h4>
+                <ul>
+                    <li><strong>Safe to bring:</strong> your prompts, your voice, your frameworks — those are yours, not your employer's</li>
+                    <li><strong>Scrub before moving:</strong> project memory with personal data, anything about other employers, anything in your RED bucket from the AI Safety lesson</li>
+                    <li>Use this as the moment to refresh the whole manual — role changes are the best time to update anyway</li>
+                </ul>
+            </div>
+
+            <div class="migration-block">
+                <h4>Switching AI tools</h4>
+                <ul>
+                    <li>The manual is already the portable artifact — same content, different drop-zone</li>
+                    <li>Re-deploy following Section 3 above for whichever platform you're moving to</li>
+                    <li>You don't need to rebuild anything. That's exactly why you made this.</li>
+                </ul>
+            </div>
+
+            <div class="migration-block" style="margin-bottom:0;">
+                <h4>Handing off to a colleague or team</h4>
+                <ul>
+                    <li>Share the <strong>structure</strong>, not your personal content — your voice and WHO I AM sections are yours</li>
+                    <li>Point them to <a href="find-your-path.html">Find Your Path</a> so they build their own from scratch</li>
+                    <li>A team where everyone has their own manual is more consistent than a team sharing one generic one</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION 6 — Keep it living
+         ============================================================ -->
+    <h2>Keep it living</h2>
+    <p>The manual is only useful if it reflects who you are right now, not who you were when you wrote it. Here's a simple maintenance rhythm.</p>
+
+    <div class="living-grid">
+        <div class="living-block">
+            <span class="time-label">After big projects</span>
+            <p>Did you develop new vocabulary? Shift how you write? Learn a new prompt pattern that replaced an old one? Update MY VOICE and MY STANDARD PROMPTS.</p>
+        </div>
+        <div class="living-block">
+            <span class="time-label">After role changes</span>
+            <p>WHO I AM and THE WORK I DO need a full rewrite. Don't try to patch — start those sections fresh and port over what still fits.</p>
+        </div>
+        <div class="living-block">
+            <span class="time-label">Quarterly anyway</span>
+            <p>Even if nothing major changed, read it through once a quarter. You'll spot one or two things that no longer sound like you. 20 minutes, done.</p>
+        </div>
+    </div>
+
+    <div class="callout callout-blue">
+        <span class="callout-icon">&#x1F4BE;</span>
+        <div class="callout-title">Where to store the master copy</div>
+        <div>Keep a canonical version somewhere version-controlled: your Notion dashboard (link it from <a href="your-progress.html">Your Progress</a>), a private GitHub Gist, or a dated document in your notes app. When you update it, date the entry. The goal is: you can always find the current version and you can always see what changed.</div>
+    </div>
+
+    <hr>
+
+    <!-- ============================================================
+         SECTION 7 — What you take with you
+         ============================================================ -->
+    <h2>What you take with you</h2>
+    <p>Here's the full inventory of what you've built.</p>
+
+    <ul class="artifact-list">
+        <li><span class="artifact-check">&#x2713;</span><span>AI Profile in Notion — who you are, how you think, what your work looks like</span></li>
+        <li><span class="artifact-check">&#x2713;</span><span>Voice Card — a precise description of how you write that any AI can match</span></li>
+        <li><span class="artifact-check">&#x2713;</span><span>Prompt Library — 10+ saved prompts for the work you actually do, ready to use without starting from blank</span></li>
+        <li><span class="artifact-check">&#x2713;</span><span>Tool Registry — your AI inventory, with notes on what each tool is for and when to reach for it</span></li>
+        <li><span class="artifact-check">&#x2713;</span><span>Workflows — repeatable multi-step prompt chains for your most common tasks</span></li>
+        <li><span class="artifact-check">&#x2713;</span><span><strong>Operating Manual</strong> — the portable artifact you built on this page. Everything above, compressed into one deployable document.</span></li>
+        <li><span class="artifact-check">&#x2713;</span><span>Skills Catalog reference — a library of AI skill patterns to reach for when you hit a new type of problem (<a href="skills-catalog.html">Skills catalog &rarr;</a>)</span></li>
+    </ul>
+
+    <!-- ============================================================
+         FINAL CTA
+         ============================================================ -->
+    <div class="end-section">
+        <h2>You're done</h2>
+        <p>That's the whole course. You came here probably because AI felt like it wasn't built for how your brain works. Now you have one that is — and a way to take it anywhere. The manual grows with you. Come back any time your work shifts and you need to rebuild a section. Nothing here expires.</p>
+    </div>
+
+    <nav class="nav-footer" aria-label="Workshop navigation">
+        <a href="your-progress.html" class="nav-link prev"><small>&larr; Previous</small>Your Progress</a>
+        <a href="index.html" class="nav-link next"><small>Start again &rarr;</small>Course Home</a>
+    </nav>
+</div>
+
+<script>
+  // === Copy to Clipboard ===
+  function copyCode(button) {
+    const pre = button.closest('pre');
+    const code = pre.querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      const originalText = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(() => {
+        button.textContent = originalText;
+      }, 2000);
+    });
+  }
+</script>
+
+<script src="js/store.js"></script>
+<script src="js/motion-toggle.js"></script>
+</body>
+</html>

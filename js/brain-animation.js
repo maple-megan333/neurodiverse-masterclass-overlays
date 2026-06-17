@@ -105,7 +105,7 @@
       points: [
         {x:0.49,y:0.60},{x:0.49,y:0.66},{x:0.48,y:0.72},{x:0.48,y:0.76}
       ],
-      color:{h:0,s:0,l:96}, thickness:3, glowWidth:14,
+      color:{h:0,s:0,l:96}, thickness:2, glowWidth:10,
       startAt:0.00, endAt:0.05, pulse:true, dotInterval:0
     },
 
@@ -134,7 +134,7 @@
         {x:0.34,y:0.43},
         {x:0.30,y:0.44}
       ],
-      color:{h:310,s:90,l:72}, thickness:3, glowWidth:16,
+      color:{h:310,s:90,l:72}, thickness:2, glowWidth:11,
       startAt:0.05, endAt:0.25, pulse:true, dotInterval:0.06
     },
 
@@ -156,7 +156,7 @@
         {x:0.75,y:0.30},
         {x:0.78,y:0.40}
       ],
-      color:{h:185,s:88,l:68}, thickness:2.5, glowWidth:14,
+      color:{h:185,s:88,l:68}, thickness:1.6, glowWidth:10,
       startAt:0.15, endAt:0.35, pulse:true, dotInterval:0
     },
 
@@ -166,7 +166,7 @@
       points: [
         {x:0.60,y:0.12},{x:0.66,y:0.11},{x:0.72,y:0.14},{x:0.76,y:0.20},{x:0.78,y:0.28}
       ],
-      color:{h:138,s:88,l:62}, thickness:2, glowWidth:12,
+      color:{h:138,s:88,l:62}, thickness:1.3, glowWidth:8,
       startAt:0.20, endAt:0.40, pulse:false, dotInterval:0
     },
 
@@ -182,7 +182,7 @@
         {x:0.75,y:0.51},
         {x:0.80,y:0.50}
       ],
-      color:{h:42,s:95,l:62}, thickness:2.5, glowWidth:14,
+      color:{h:42,s:95,l:62}, thickness:1.6, glowWidth:10,
       startAt:0.20, endAt:0.40, pulse:true, dotInterval:0
     },
 
@@ -193,7 +193,7 @@
         {x:0.28,y:0.40},{x:0.34,y:0.35},{x:0.40,y:0.32},{x:0.47,y:0.30},
         {x:0.54,y:0.32},{x:0.60,y:0.35},{x:0.66,y:0.40}
       ],
-      color:{h:275,s:82,l:68}, thickness:2, glowWidth:10,
+      color:{h:275,s:82,l:68}, thickness:1.3, glowWidth:7,
       startAt:0.30, endAt:0.50, pulse:false, dotInterval:0
     },
     {
@@ -202,7 +202,7 @@
         {x:0.30,y:0.54},{x:0.36,y:0.50},{x:0.42,y:0.48},{x:0.48,y:0.47},
         {x:0.54,y:0.48},{x:0.60,y:0.51},{x:0.65,y:0.55}
       ],
-      color:{h:268,s:78,l:65}, thickness:1.5, glowWidth:8,
+      color:{h:268,s:78,l:65}, thickness:1.0, glowWidth:6,
       startAt:0.32, endAt:0.52, pulse:false, dotInterval:0
     },
 
@@ -213,7 +213,7 @@
         {x:0.47,y:0.72},{x:0.42,y:0.70},{x:0.37,y:0.67},{x:0.32,y:0.62},
         {x:0.27,y:0.56},{x:0.24,y:0.50},{x:0.22,y:0.44}
       ],
-      color:{h:322,s:88,l:68}, thickness:2, glowWidth:10,
+      color:{h:322,s:88,l:68}, thickness:1.3, glowWidth:7,
       startAt:0.35, endAt:0.55, pulse:false, dotInterval:0
     },
 
@@ -221,25 +221,25 @@
     {
       id: 'orange-a',
       points: [{x:0.52,y:0.46},{x:0.58,y:0.44},{x:0.64,y:0.42},{x:0.68,y:0.41}],
-      color:{h:28,s:92,l:65}, thickness:2, glowWidth:12,
+      color:{h:28,s:92,l:65}, thickness:1.3, glowWidth:8,
       startAt:0.40, endAt:0.56, pulse:true, dotInterval:0
     },
     {
       id: 'orange-b',
       points: [{x:0.52,y:0.46},{x:0.54,y:0.40},{x:0.55,y:0.35},{x:0.56,y:0.30}],
-      color:{h:35,s:90,l:62}, thickness:1.5, glowWidth:10,
+      color:{h:35,s:90,l:62}, thickness:1.0, glowWidth:7,
       startAt:0.42, endAt:0.56, pulse:true, dotInterval:0
     },
     {
       id: 'orange-c',
       points: [{x:0.52,y:0.46},{x:0.48,y:0.44},{x:0.44,y:0.42},{x:0.40,y:0.41}],
-      color:{h:22,s:94,l:67}, thickness:1.5, glowWidth:9,
+      color:{h:22,s:94,l:67}, thickness:1.0, glowWidth:6,
       startAt:0.41, endAt:0.56, pulse:false, dotInterval:0
     },
     {
       id: 'orange-d',
       points: [{x:0.52,y:0.46},{x:0.55,y:0.50},{x:0.58,y:0.53},{x:0.62,y:0.56}],
-      color:{h:32,s:88,l:60}, thickness:1.5, glowWidth:8,
+      color:{h:32,s:88,l:60}, thickness:1.0, glowWidth:6,
       startAt:0.43, endAt:0.56, pulse:false, dotInterval:0
     },
 
@@ -250,7 +250,7 @@
         {x:0.20,y:0.52},{x:0.18,y:0.46},{x:0.17,y:0.40},{x:0.19,y:0.33},
         {x:0.23,y:0.26},{x:0.28,y:0.20},{x:0.34,y:0.15}
       ],
-      color:{h:318,s:86,l:70}, thickness:2, glowWidth:10,
+      color:{h:318,s:86,l:70}, thickness:1.3, glowWidth:7,
       startAt:0.45, endAt:0.63, pulse:false, dotInterval:0
     },
 
@@ -261,7 +261,7 @@
         {x:0.22,y:0.58},{x:0.27,y:0.62},{x:0.33,y:0.66},{x:0.38,y:0.69},
         {x:0.43,y:0.71},{x:0.47,y:0.72}
       ],
-      color:{h:305,s:84,l:67}, thickness:1.5, glowWidth:8,
+      color:{h:305,s:84,l:67}, thickness:1.0, glowWidth:6,
       startAt:0.48, endAt:0.63, pulse:false, dotInterval:0
     },
 
@@ -272,7 +272,7 @@
         {x:0.25,y:0.46},{x:0.32,y:0.42},{x:0.38,y:0.39},{x:0.44,y:0.38},
         {x:0.50,y:0.38},{x:0.56,y:0.40},{x:0.62,y:0.44}
       ],
-      color:{h:330,s:80,l:71}, thickness:1.5, glowWidth:8,
+      color:{h:330,s:80,l:71}, thickness:1.0, glowWidth:6,
       startAt:0.50, endAt:0.63, pulse:false, dotInterval:0
     },
 
@@ -283,7 +283,7 @@
         {x:0.28,y:0.50},{x:0.34,y:0.46},{x:0.40,y:0.43},{x:0.46,y:0.42},
         {x:0.52,y:0.43},{x:0.58,y:0.46},{x:0.64,y:0.50}
       ],
-      color:{h:192,s:85,l:65}, thickness:1.5, glowWidth:8,
+      color:{h:192,s:85,l:65}, thickness:1.0, glowWidth:6,
       startAt:0.52, endAt:0.63, pulse:false, dotInterval:0
     }
   ];
@@ -450,7 +450,7 @@
     ctx.moveTo(cpts[0].x, cpts[0].y);
     for (var g = 1; g < cpts.length; g++) ctx.lineTo(cpts[g].x, cpts[g].y);
     ctx.strokeStyle = 'hsla(' + c.h + ',' + c.s + '%,' + c.l + '%,' + (0.18 * alpha) + ')';
-    ctx.lineWidth   = (strand.glowWidth * 2.2) * pulse;
+    ctx.lineWidth   = (strand.glowWidth * 1.8) * pulse;
     ctx.lineCap     = 'round';
     ctx.lineJoin    = 'round';
     ctx.stroke();
@@ -459,7 +459,7 @@
     ctx.beginPath();
     ctx.moveTo(cpts[0].x, cpts[0].y);
     for (var m = 1; m < cpts.length; m++) ctx.lineTo(cpts[m].x, cpts[m].y);
-    ctx.strokeStyle = 'hsla(' + c.h + ',' + c.s + '%,' + c.l + '%,' + (0.38 * alpha) + ')';
+    ctx.strokeStyle = 'hsla(' + c.h + ',' + c.s + '%,' + c.l + '%,' + (0.42 * alpha) + ')';
     ctx.lineWidth   = strand.glowWidth * pulse;
     ctx.lineCap     = 'round';
     ctx.lineJoin    = 'round';
@@ -489,7 +489,7 @@
 
       // White hot center
       ctx.beginPath();
-      ctx.arc(tip.x, tip.y, 2.5, 0, Math.PI * 2);
+      ctx.arc(tip.x, tip.y, 1.8, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
       ctx.fill();
     }
@@ -499,11 +499,11 @@
       var di = strand.dotInterval;
       for (var dt = di; dt <= drawT - di * 0.5; dt += di) {
         var dotPt = toCanvas(getPointOnStrand(strandIdx, dt), rect);
-        var dotGr = ctx.createRadialGradient(dotPt.x, dotPt.y, 0, dotPt.x, dotPt.y, 5);
+        var dotGr = ctx.createRadialGradient(dotPt.x, dotPt.y, 0, dotPt.x, dotPt.y, 3.5);
         dotGr.addColorStop(0, 'hsla(' + c.h + ',60%,98%,' + (0.9 * alpha) + ')');
         dotGr.addColorStop(1, 'hsla(' + c.h + ',' + c.s + '%,' + c.l + '%,0)');
         ctx.beginPath();
-        ctx.arc(dotPt.x, dotPt.y, 5, 0, Math.PI * 2);
+        ctx.arc(dotPt.x, dotPt.y, 3.5, 0, Math.PI * 2);
         ctx.fillStyle = dotGr;
         ctx.fill();
       }

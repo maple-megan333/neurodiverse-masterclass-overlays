@@ -63,6 +63,7 @@ async function findDatabase(token, titleOrAliases) {
         page_size: 10,
       }),
     });
+    if (!data || !Array.isArray(data.results)) continue;
     for (var i = 0; i < data.results.length; i++) {
       var db = data.results[i];
       var dbTitle = '';
@@ -89,6 +90,7 @@ async function findPage(token, title) {
       page_size: 5,
     }),
   });
+  if (!data || !Array.isArray(data.results)) return null;
   for (var i = 0; i < data.results.length; i++) {
     var page = data.results[i];
     var props = page.properties || {};

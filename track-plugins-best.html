@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* Reuses the skill-card pattern from skills-catalog.html */
 .skill-card {
@@ -34,10 +35,10 @@
   letter-spacing: 0.04em; text-transform: uppercase;
   white-space: nowrap;
 }
-.tag-official { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
-.tag-community{ background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
+.tag-official { background: rgba(245,197,66,0.15); color: var(--green-title); border: 1px solid rgba(245,197,66,0.3); }
+.tag-community{ background: rgba(245,197,66,0.15); color: var(--blue-title); border: 1px solid rgba(245,197,66,0.3); }
 .tag-paid     { background: rgba(245,197,66,0.15); color: var(--gold); border: 1px solid rgba(245,197,66,0.3); }
-.tag-risk     { background: rgba(248,113,113,0.12); color: var(--red-title); border: 1px solid rgba(248,113,113,0.3); }
+.tag-risk     { background: rgba(255,107,107,0.12); color: var(--red-title); border: 1px solid rgba(255,107,107,0.3); }
 .skill-desc { color: var(--text-mid); font-size: 0.92rem; line-height: 1.5; margin: 0.25rem 0 0.4rem; }
 .skill-install {
   font-family: var(--font-mono);
@@ -56,7 +57,7 @@
   color: var(--yellow-title);
   margin-top: 0.4rem;
   padding: 0.4rem 0.55rem;
-  background: rgba(217,119,6,0.06);
+  background: rgba(245,197,66,0.06);
   border-left: 2px solid var(--yellow-title);
   border-radius: 2px;
 }
@@ -83,7 +84,7 @@ details.category {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   margin-bottom: 1rem;
-  background: rgba(255,255,255,0.015);
+  background: rgba(245,234,220,0.015);
 }
 details.category[open] { border-color: var(--border-hover); }
 details.category > summary {
@@ -120,7 +121,7 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   margin-bottom: 0.5rem;
-  background: rgba(255,255,255,0.015);
+  background: rgba(245,234,220,0.015);
 }
 .auth-pill {
   display: inline-block;
@@ -128,8 +129,8 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
   letter-spacing: 0.06em; text-transform: uppercase;
   padding: 0.2rem 0.55rem;
   border-radius: 100px;
-  background: rgba(168,85,247,0.15);
-  border: 1px solid rgba(168,85,247,0.3);
+  background: rgba(245,197,66,0.15);
+  border: 1px solid rgba(245,197,66,0.3);
   color: var(--text-accent);
   white-space: nowrap;
 }
@@ -168,10 +169,9 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK B &middot; PLUGINS &amp; MCP</span>
+      <span class="pill">TRACK B &middot; PLUGINS &amp; MCP</span>
       <h1>Best in Class</h1>
       <p class="tagline">20 production-ready MCP servers + 15 plugins, organized by use case.</p>
     </div>
@@ -185,7 +185,7 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
   </span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> Best after Plugins Overview. <strong>Time:</strong> 20 min. <strong>Energy:</strong> Medium.</div>
 </div>
 
@@ -193,7 +193,7 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 <div class="callout callout-purple">
   <span class="callout-icon">&#128218;</span>
   <div class="callout-title">Curated, not exhaustive</div>
-  <div>The full registries hold thousands of options. This page is the short-list &mdash; servers and plugins that are actively maintained in 2026, have a real production track record, and pair well with the workflows in this MasterClass. <strong style="color:var(--green-title)">OFFICIAL</strong> means Anthropic-managed in <code>claude-plugins-official</code>. <strong style="color:var(--blue-title)">COMMUNITY</strong> means a vetted GitHub project. <strong style="color:var(--gold)">PAID</strong> flags servers that need a paid backing service. Read the security note on any card before installing.</div>
+  <div>The full registries hold thousands of options. This page is the short-list &mdash; servers and plugins that are actively maintained in 2026, have a real production track record, and pair well with the workflows in this MasterClass. <strong class="t-green">OFFICIAL</strong> means Anthropic-managed in <code>claude-plugins-official</code>. <strong class="t-blue">COMMUNITY</strong> means a vetted GitHub project. <strong class="t-gold">PAID</strong> flags servers that need a paid backing service. Read the security note on any card before installing.</div>
 </div>
 
 <h2>Top 20 MCP Servers</h2>
@@ -571,17 +571,17 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 <div class="columns columns-2">
   <div class="plugin-card" style="border-left-color: var(--gold);">
     <h4 style="color:var(--gold);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-bottom:0.3rem;">Deep Dive 2</h4>
-    <p style="font-size:0.95rem;"><a href="track-plugins-build.html" style="color:var(--text);font-weight:600;">Build Your Own + Wire In Local Ollama &rarr;</a></p>
+    <p style="font-size:0.95rem;"><a href="track-plugins-build.html" class="u-text-strong">Build Your Own + Wire In Local Ollama &rarr;</a></p>
     <p>Five build patterns from a 30-minute skill to a full Agent SDK process. Plus when wiring a local model into the loop actually saves money.</p>
   </div>
   <div class="plugin-card" style="border-left-color: var(--accent);">
     <h4 style="color:var(--text-accent);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;margin-bottom:0.3rem;">Companion</h4>
-    <p style="font-size:0.95rem;"><a href="skills-catalog.html" style="color:var(--text);font-weight:600;">Skills Catalog &rarr;</a></p>
+    <p style="font-size:0.95rem;"><a href="skills-catalog.html" class="u-text-strong">Skills Catalog &rarr;</a></p>
     <p>The wider library of skills curated for ND work and life. Energy-tagged, safety-reviewed, install-ready.</p>
   </div>
 </div>
 
-<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-green">
   <span class="callout-icon">&#9166;</span>
   <div class="callout-title">Come back to this page when&hellip;</div>
   <div>Pick one MCP server to add to your config this month. Run it for a week. Decide if it stays.</div>
@@ -593,7 +593,6 @@ details.category > div { padding: 0 1.2rem 1.1rem; }
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

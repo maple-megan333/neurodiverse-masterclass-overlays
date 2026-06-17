@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/brain-header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
 
 </head>
@@ -19,10 +20,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">DASHBOARD</span>
+      <span class="pill">DASHBOARD</span>
       <h1>Your Progress</h1>
       <p class="tagline">Track what you've built and where to go next.</p>
       
@@ -34,7 +34,7 @@
             <div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div>
             <span class="phase-indicator" aria-label="Resources"><span class="phase-num">Resources</span></span>
         </nav>
-<div class="callout callout-purple"><span class="callout-icon">📊</span><div class="callout-title">What this is</div><div>Your personal dashboard for everything you build in this MasterClass. Five databases track your journey — lessons completed, prompts saved, tools configured, things you've made, and workflows you can repeat.</div></div>
+<div class="callout callout-purple"><span class="callout-icon">📊</span><div class="callout-title">What this is</div><div>Your personal dashboard for everything you build in this MasterClass. Five databases track what you do — lessons completed, prompts saved, tools configured, things you've made, and workflows you can repeat.</div></div>
 
 <div class="callout callout-yellow"><span class="callout-icon">👀</span><div class="callout-title">What you're seeing right now</div><div>The dashboard below shows the <strong>structure</strong> of your progress system. Once you <a href="connect-ai.html">connect your AI to Notion</a>, your real data populates here automatically — lessons completed, prompts saved, tools configured.</div></div>
 
@@ -61,12 +61,11 @@
 <div class="callout callout-yellow"><span class="callout-icon">🏆</span><div class="callout-title">What counts as done?</div><div>A lesson is "done" when you've used the thing it taught you at least once in real life. Not when you've read it. Not when you've saved the prompt. When you've actually done the thing.</div></div>
 
         <nav class="nav-footer" aria-label="Workshop navigation">
-            <a href="emergency-toolkit.html" class="nav-link prev"><small>← Previous</small>Emergency Toolkit</a>
-            <span></span>
+            <a href="emergency-toolkit.html" class="nav-link prev"><small>&larr; Previous</small>Emergency Toolkit</a>
+            <a href="your-operating-manual.html" class="nav-link next"><small>Next &rarr;</small>Your Operating Manual</a>
         </nav>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/brain-animation.js"></script>
+    <script src="js/store.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

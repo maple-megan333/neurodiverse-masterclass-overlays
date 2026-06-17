@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Safety &amp; Trust at Work &mdash; Neurodiverse AI MasterClass</title>
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/brain-header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill">DEEPER</span>
+      <h1>AI Safety &amp; Trust at Work</h1>
+      <p class="tagline">What to put in. What to keep out. How to decide.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper" id="main-content">
+  <nav class="nav-bar" aria-label="Page navigation">
+    <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+    <span class="phase-indicator phase-deepen" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 4</span> &middot; Use AI responsibly</span>
+  </nav>
+
+  <div class="callout callout-purple">
+    <div class="callout-content">
+      <div class="callout-title">&#x23F1; Time &amp; Energy</div>
+      <div class="callout-text"><strong>15 min</strong> &middot; any energy &middot; You&rsquo;ll need: your employer&rsquo;s AI policy if you have one (look in the employee handbook or Slack #ai channel)</div>
+    </div>
+  </div>
+
+  <blockquote><strong>The core problem:</strong> Everything you paste into a public AI tool may train a future model, may be stored, may be accessible to the vendor&rsquo;s employees. For most uses that&rsquo;s fine. For some &mdash; PII, proprietary work, credentials &mdash; it&rsquo;s career-ending.</blockquote>
+
+  <hr>
+
+  <h2>The three buckets</h2>
+
+  <div class="columns columns-2">
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F52C; Why this works</div>
+        <div class="callout-text">Bucketing reduces decision fatigue. Instead of weighing every paste, you sort the kind of data once, then apply the matching rule on autopilot. Cognitive offload &mdash; especially helpful for ADHD brains where every micro-decision drains the same budget.</div>
+      </div>
+    </div>
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x2601;&#xFE0F; Low energy version</div>
+        <div class="callout-text">Memorize one rule: <em>&ldquo;If it would be bad on a billboard, don&rsquo;t paste it into AI.&rdquo;</em> Not perfect, but covers 90% of mistakes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F7E2; Green bucket &mdash; freely usable</div>
+      <div class="callout-text">Things that are already public, generic, or fully synthetic. Paste these without thinking twice.</div>
+      <ul>
+        <li>Public blog posts, articles, marketing copy</li>
+        <li>Generic templates and how-to questions</li>
+        <li>Open-source code with permissive licenses</li>
+        <li>Made-up examples and synthetic data</li>
+        <li>Your own personal notes you&rsquo;d be fine sharing publicly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F7E1; Yellow bucket &mdash; only in approved tools</div>
+      <div class="callout-text">Internal work data that&rsquo;s sensitive-but-not-secret. Use enterprise AI (Smartsheet&rsquo;s sanctioned tools, ChatGPT Enterprise, Claude for Work) where data isn&rsquo;t used for training. Never paste into a personal account.</div>
+      <ul>
+        <li>Internal documents, draft proposals, project plans</li>
+        <li>Anonymized customer data (names removed)</li>
+        <li>Code from your employer&rsquo;s codebase</li>
+        <li>Meeting notes, roadmaps, OKRs</li>
+        <li>Email drafts referencing internal projects</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-blue" style="border-left-color: hsla(0, 100%, 71%, 0.55);">
+    <div class="callout-content">
+      <div class="callout-title" style="color: hsla(0, 100%, 81%, 1);">&#x1F534; Red bucket &mdash; never, in any AI tool</div>
+      <div class="callout-text">If you put any of these into <em>any</em> AI tool, treat it as leaked. Even in &ldquo;enterprise&rdquo; tiers, the operational risk isn&rsquo;t worth it.</div>
+      <ul>
+        <li><strong>Credentials</strong> &mdash; API keys, passwords, tokens, .env files</li>
+        <li><strong>PII for people who didn&rsquo;t consent</strong> &mdash; customer names + emails, employee data, health info</li>
+        <li><strong>Regulated data</strong> &mdash; PHI (HIPAA), financial account numbers, government IDs</li>
+        <li><strong>Unreleased product info</strong> &mdash; specs, designs, financials before public announcement</li>
+        <li><strong>Legal / HR-sensitive content</strong> &mdash; investigations, contracts under negotiation, severance terms</li>
+        <li><strong>Anything your employer has explicitly told you not to</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>The Smartsheet-specific calibration</h2>
+
+  <p>This will be different for you depending on your employer&rsquo;s policy. For a tech company like Smartsheet with mature AI usage:</p>
+
+  <div class="callout callout-blue">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F4D8; Likely OK (always verify with your team)</div>
+      <ul>
+        <li>Using Smartsheet&rsquo;s sanctioned AI tools for any internal work</li>
+        <li>Pasting public documentation, generic code patterns into personal AI</li>
+        <li>Asking AI for help with general engineering concepts</li>
+        <li>Drafting status updates, refactoring style, brainstorming</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-content">
+      <div class="callout-title">&#x26A0;&#xFE0F; Likely not OK</div>
+      <ul>
+        <li>Pasting actual customer Sheets data, even anonymized, into a personal AI</li>
+        <li>Sharing pre-release feature specs in a public AI chat</li>
+        <li>Putting Smartsheet codebase snippets in a personal Claude / ChatGPT account</li>
+        <li>Asking AI to summarize a confidential meeting recording</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-content">
+      <div class="callout-title">&#x2B50; The decisive question</div>
+      <div class="callout-text"><em>&ldquo;If this conversation leaked tomorrow &mdash; in a vendor breach, a screenshot, a court subpoena &mdash; would I be in trouble?&rdquo;</em> If yes, use the enterprise tool or don&rsquo;t use AI for this one.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>Build your personal AI policy</h2>
+
+  <p>The cleanest way to never have to decide in the moment is to decide once, in advance. Spend 10 minutes on this. Save it somewhere you&rsquo;ll see it.</p>
+
+  <div class="callout callout-green">
+    <div class="callout-content">
+      <div class="callout-title">&#x270F;&#xFE0F; My AI policy &mdash; template</div>
+<pre><span class="code-label">Personal AI policy</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy personal AI policy template to clipboard">Copy</button><code># My AI Policy &mdash; [your name], [date]
+
+## Where I use AI
+- Personal stuff &rarr; [Claude / ChatGPT / whichever]
+- Work stuff &rarr; ONLY [enterprise tool name your employer approves]
+- I never use personal AI accounts for work data.
+
+## What I never paste anywhere
+- Credentials (keys, passwords, tokens, .env contents)
+- Customer / coworker names paired with sensitive context
+- PHI / financial account numbers / government IDs
+- Pre-release product info or specs
+- Anything from a confidential channel
+
+## My check before pasting
+1. Which bucket: green / yellow / red?
+2. Right tool for that bucket?
+3. Would a leak embarrass me or my employer?
+
+## What I do when I'm not sure
+- Skip the paste. Describe the situation generically instead.
+- Or: ask my manager / security team before pasting.
+
+## When I update this
+- New job
+- New AI tool I start using
+- Whenever my employer's AI policy changes</code></pre>
+      <div class="callout-text" style="margin-top:1rem">Save this to your <a href="reference-library.html">Reference library</a> or pin it in Notion. Re-read it once a quarter or when something changes.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>AI vs. human: when to choose which</h2>
+
+  <p>Even setting safety aside, AI is the wrong tool for some jobs. A quick map:</p>
+
+  <div class="callout callout-blue">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F4D8; AI vs. human decision matrix</div>
+      <table>
+        <tr><th>Task</th><th>Default tool</th><th>Why</th></tr>
+        <tr><td>Drafting, brainstorming, refactoring style</td><td>AI</td><td>Speed, no judgment risk</td></tr>
+        <tr><td>Learning a new technical topic</td><td>AI + docs</td><td>AI for shape, docs for ground truth</td></tr>
+        <tr><td>Translation / summarization</td><td>AI</td><td>Volume use case, low stakes</td></tr>
+        <tr><td>Emotional support, hard feedback</td><td>Human</td><td>AI fakes warmth. People know the difference.</td></tr>
+        <tr><td>Career decisions, big life choices</td><td>Human (mentor, therapist)</td><td>You need someone who knows you</td></tr>
+        <tr><td>Anything involving real people&rsquo;s sensitive info</td><td>Human / approved tool</td><td>Safety bucket above</td></tr>
+        <tr><td>Anything where being wrong is dangerous (medical, legal, financial)</td><td>Professional + AI for prep</td><td>Use AI to ask better questions, not for answers</td></tr>
+        <tr><td>Quick factual lookup</td><td>Search engine first</td><td>Faster, citable, no hallucination</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-content">
+      <div class="callout-title">&#x2B50; The ND-specific note</div>
+      <div class="callout-text">Neurodivergent brains often <em>love</em> AI for things humans are bad at (judgment-free brainstorming, repeated questions, drafting hard emails). That&rsquo;s real. But AI also can&rsquo;t notice when you&rsquo;re burnt out, can&rsquo;t advocate for you, can&rsquo;t reality-check whether your boss is actually being unreasonable. Keep humans in the loop for the human stuff.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="columns columns-2">
+    <div class="callout callout-blue">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F516; You built</div>
+        <div class="callout-text">A <strong>3-bucket data model</strong>, a <strong>Smartsheet calibration</strong>, a <strong>personal AI policy</strong>, and a <strong>human-vs-AI matrix</strong>.</div>
+      </div>
+    </div>
+    <div class="callout callout-green">
+      <div class="callout-content">
+        <div class="callout-title">&#x27A1;&#xFE0F; Next</div>
+        <div class="callout-text"><a href="writing-voice.html"><strong>Writing Voice &rarr;</strong></a> or jump to a use case workshop.</div>
+      </div>
+    </div>
+  </div>
+
+  <details>
+    <summary>&#x1F4DA; Further reading</summary>
+    <div>
+      <ul>
+        <li><strong>OWASP LLM Top 10</strong> &mdash; security risks for LLM applications. <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">owasp.org/&hellip;/llm</a></li>
+        <li><strong>NIST AI Risk Management Framework</strong> &mdash; <a href="https://www.nist.gov/itl/ai-risk-management-framework">nist.gov/itl/ai-risk-management-framework</a></li>
+        <li><strong>Anthropic Acceptable Use Policy</strong> &mdash; <a href="https://www.anthropic.com/legal/aup">anthropic.com/legal/aup</a></li>
+        <li><strong>Your employer&rsquo;s AI policy</strong> &mdash; usually in the employee handbook or a #ai-policy Slack channel</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="callout callout-green">
+    <div class="callout-title">Come back for</div>
+    <div>Fill in the policy template with your specifics. Re-read it next time you&rsquo;re about to paste something work-related into a personal AI account.</div>
+  </div>
+
+  <nav class="nav-footer" aria-label="Workshop navigation">
+    <a href="quality-check.html" class="nav-link prev"><small>&larr; Previous</small>Evaluating AI Output</a>
+    <a href="writing-voice.html" class="nav-link next"><small>Next &rarr;</small>Writing Voice</a>
+  </nav>
+</div>
+
+<script>
+  function copyCode(button) {
+    var pre = button.closest('pre');
+    var code = pre.querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(function () {
+      var originalText = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(function () { button.textContent = originalText; }, 2000);
+    });
+  }
+</script>
+<script src="js/main.js"></script>
+<script src="js/motion-toggle.js"></script>
+</body>
+</html>

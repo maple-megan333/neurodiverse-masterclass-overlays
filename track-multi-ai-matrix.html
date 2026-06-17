@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 table caption {
   font-family: var(--font-display);
@@ -25,8 +26,8 @@ table caption {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(168,85,247,0.10);
-  border-bottom: 1px solid rgba(168,85,247,0.25);
+  background: rgba(245,197,66,0.10);
+  border-bottom: 1px solid rgba(245,197,66,0.25);
   padding: 0.5rem 0.75rem !important;
 }
 td.best {
@@ -54,9 +55,9 @@ td.why {
   padding: 0.15rem 0.5rem;
   border-radius: 100px;
   white-space: nowrap;
-  background: rgba(52,211,153,0.12);
+  background: rgba(245,197,66,0.12);
   color: var(--green-title);
-  border: 1px solid rgba(52,211,153,0.3);
+  border: 1px solid rgba(245,197,66,0.3);
 }
 .scroll-table {
   overflow-x: auto;
@@ -73,8 +74,8 @@ td.why {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--accent);
-  background: rgba(168,85,247,0.10);
-  border: 1px solid rgba(168,85,247,0.25);
+  background: rgba(245,197,66,0.10);
+  border: 1px solid rgba(245,197,66,0.25);
   border-radius: 3px;
   padding: 1px 6px;
   margin-left: 0.3rem;
@@ -89,10 +90,9 @@ td.why {
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">DEEP DIVE 1</span>
+      <span class="pill">DEEP DIVE 1</span>
       <h1>Tool Matrix &mdash; 21 Tasks, Mapped</h1>
       <p class="tagline">Best tool by task type, with current pricing.</p>
     </div>
@@ -106,7 +106,7 @@ td.why {
   </span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> Helpful to read the Overview first; not required. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Medium.</div>
 </div>
 
@@ -391,7 +391,7 @@ td.why {
   </div>
 </div>
 
-<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-green">
   <span class="callout-icon">&#9166;</span>
   <div class="callout-title">Come back to this page when&hellip;</div>
   <div>Save this page. The matrix is most useful as a reference, not a one-time read.</div>
@@ -403,7 +403,6 @@ td.why {
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

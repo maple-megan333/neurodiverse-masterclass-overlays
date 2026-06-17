@@ -10,13 +10,22 @@
    Source Sans 3 = body. */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
-/* ---------- CSS Variables ---------- */
+/* ---------- CSS Variables ----------
+   AURORA brand direction (V5).
+   Single source of truth for color, type, motion. */
 :root {
-  /* Core Palette — warm dark, layered.
-     bg = deep ink, bg-elev = card surface (slightly warmer + lighter),
-     bg-card-hover = subtle wash on interaction. */
-  --bg: #0B0910;
+  /* === AURORA Core Palette ===
+     Warm dark void → cream type → gold + coral accents.
+     Use the AURORA names (--bg-base, --text-primary, --accent-gold, --accent-coral)
+     in new code. The shorter aliases below are kept for back-compat. */
+  --bg-base: #0B0910;
   --bg-elev: #14101C;
+  --text-primary: #F5EADC;
+  --accent-gold: #F5C542;
+  --accent-coral: #FF6B6B;
+
+  /* Core Palette aliases — keep the legacy short names working. */
+  --bg: var(--bg-base);
   --bg-elev-2: #1A1626;
   --bg-card: rgba(245, 234, 220, 0.025);
   --bg-card-hover: rgba(245, 234, 220, 0.05);
@@ -24,18 +33,19 @@
   --border-hover: rgba(245, 197, 66, 0.35);
 
   /* Text — warm off-white instead of cool blue-white */
-  --text: #F5EADC;
+  --text: var(--text-primary);
   --text-mid: rgba(245, 234, 220, 0.72);
   --text-dim: rgba(245, 234, 220, 0.5);
-  --text-accent: #F5C542;
+  --text-accent: var(--accent-gold);
 
-  /* Accent — editorial trio: electric purple (hero), gold (primary eyebrow), coral (emphasis) */
-  --accent: hsla(270, 85%, 68%, 1);
-  --accent-soft: hsla(270, 75%, 60%, 0.14);
-  --accent-glow: hsla(270, 85%, 68%, 0.28);
-  --accent2: hsla(8, 88%, 68%, 1);            /* warm coral */
-  --accent2-soft: hsla(8, 80%, 65%, 0.12);
-  --gold: #F5C542;
+  /* Accent — AURORA editorial: gold primary, coral secondary.
+     Purple aliases redirect to gold so inherited components stay warm. */
+  --accent: #F5C542;
+  --accent-soft: rgba(245, 197, 66, 0.14);
+  --accent-glow: rgba(245, 197, 66, 0.28);
+  --accent2: var(--accent-coral);             /* AURORA coral */
+  --accent2-soft: rgba(255, 107, 107, 0.12);
+  --gold: var(--accent-gold);
   --gold-bg: rgba(245, 197, 66, 0.07);
   --gold-glow: rgba(245, 197, 66, 0.22);
 
@@ -54,28 +64,31 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 0.25s;
 
-  /* Functional Colors */
-  --green: #059669;
-  --green-bg: #064e3b;
-  --green-title: #34d399;
-  --gray: #4b5563;
-  --gray-bg: #1f2937;
-  --gray-title: #9ca3af;
-  --blue: #2563eb;
-  --blue-bg: #1e3a5f;
-  --blue-title: #60a5fa;
-  --yellow: #d97706;
-  --yellow-bg: #451a03;
-  --yellow-title: #fbbf24;
-  --red: #dc2626;
-  --red-bg: #450a0a;
-  --red-title: #f87171;
-  --orange: #ea580c;
-  --orange-bg: #431407;
-  --orange-title: #fb923c;
-  --purple-surface: #2d1b4e;
-  --purple-surface-hover: #3d2b5e;
-  --purple-deep: #6B3FA0;
+  /* Functional Colors — AURORA: all cool semantic tones redirect to gold,
+     warning/danger tones to coral. Backgrounds use the warm dark elev surface
+     so chrome stays consistent across pages. */
+  --green: var(--accent-gold);
+  --green-bg: var(--bg-elev);
+  --green-title: var(--accent-gold);
+  --gray: rgba(245, 234, 220, 0.32);
+  --gray-bg: var(--bg-elev);
+  --gray-title: var(--text-dim);
+  --blue: var(--accent-gold);
+  --blue-bg: var(--bg-elev);
+  --blue-title: var(--accent-gold);
+  --yellow: var(--accent-gold);
+  --yellow-bg: var(--bg-elev);
+  --yellow-title: var(--accent-gold);
+  --red: var(--accent-coral);
+  --red-bg: var(--bg-elev);
+  --red-title: var(--accent-coral);
+  --orange: var(--accent-coral);
+  --orange-bg: var(--bg-elev);
+  --orange-title: var(--accent-coral);
+  /* Legacy purple aliases redirected to AURORA warm tones. */
+  --purple-surface: var(--bg-elev);
+  --purple-surface-hover: var(--bg-elev-2);
+  --purple-deep: var(--accent-gold);
 
   /* Layout */
   --max-width: 880px;
@@ -91,33 +104,34 @@
   --font-label: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 
-  /* === Backwards Compatibility Aliases === */
+  /* === Backwards Compatibility Aliases ===
+     (--text-primary is defined above as the AURORA canonical name; do not
+     redefine here or it creates a circular reference with --text.) */
   --purple-bg: var(--bg);
   --purple-neon: var(--accent);
-  --purple-light: #C9B6F0;
-  --text-primary: var(--text);
+  --purple-light: #FFE9A8;
   --text-secondary: var(--text-mid);
   --text-muted: var(--text-dim);
   --font-heading: var(--font-label);
   --font-body: var(--font);
-  --green-action: #059669;
-  --green-action-bg: #064e3b;
-  --green-action-border: #059669;
-  --gray-low-energy: #4b5563;
-  --gray-low-energy-bg: #1f2937;
-  --gray-low-energy-border: #6b7280;
-  --blue-data: #2563eb;
-  --blue-data-bg: #1e3a5f;
-  --blue-data-border: #3b82f6;
-  --yellow-insight: #d97706;
-  --yellow-insight-bg: #451a03;
-  --yellow-insight-border: #f59e0b;
-  --red-power: #dc2626;
-  --red-power-bg: #450a0a;
-  --red-power-border: #ef4444;
-  --orange-warning: #ea580c;
-  --orange-warning-bg: #431407;
-  --orange-warning-border: #f97316;
+  --green-action: var(--accent-gold);
+  --green-action-bg: var(--bg-elev);
+  --green-action-border: var(--accent-gold);
+  --gray-low-energy: rgba(245, 234, 220, 0.32);
+  --gray-low-energy-bg: var(--bg-elev);
+  --gray-low-energy-border: rgba(245, 234, 220, 0.32);
+  --blue-data: var(--accent-gold);
+  --blue-data-bg: var(--bg-elev);
+  --blue-data-border: var(--accent-gold);
+  --yellow-insight: var(--accent-gold);
+  --yellow-insight-bg: var(--bg-elev);
+  --yellow-insight-border: var(--accent-gold);
+  --red-power: var(--accent-coral);
+  --red-power-bg: var(--bg-elev);
+  --red-power-border: var(--accent-coral);
+  --orange-warning: var(--accent-coral);
+  --orange-warning-bg: var(--bg-elev);
+  --orange-warning-border: var(--accent-coral);
 }
 
 /* ---------- Keyframes ---------- */
@@ -172,7 +186,7 @@ a:hover { color: var(--accent2); }
   position: absolute; border-radius: 50%; filter: blur(100px);
   animation: orbFade 1.6s ease-out forwards;
 }
-.mesh-orb:nth-child(1) { width: 480px; height: 480px; background: hsla(270, 75%, 50%, 0.09); top: -200px; left: -160px; }
+.mesh-orb:nth-child(1) { width: 480px; height: 480px; background: rgba(245, 197, 66, 0.08); top: -200px; left: -160px; }
 .mesh-orb:nth-child(2) { width: 420px; height: 420px; background: hsla(8, 80%, 55%, 0.05); top: 55%; right: -180px; animation-delay: 0.2s; }
 .mesh-orb:nth-child(3) { width: 360px; height: 360px; background: hsla(42, 85%, 55%, 0.04); bottom: -120px; left: 45%; transform: translateX(-50%); animation-delay: 0.4s; }
 .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
@@ -306,25 +320,38 @@ em { color: var(--text); font-style: italic; font-family: var(--font-display); f
 }
 .callout-green .callout-title, .callout:not([class*="callout-"]) .callout-title { color: var(--gold); }
 
+/* Callout body text — unified warmth across every page.
+   .callout-content / .callout-text are layout wrappers used on some lesson pages
+   (prompt-craft, prompt-basics, quality-check, ai-safety). They were never defined
+   in CSS, so their text rendered at full-bright cream while <p>-based callouts
+   elsewhere rendered at --text-mid — a visible brightness mismatch between pages.
+   Normalize all callout body copy to --text-mid (matches the global <p> rule);
+   strong/links keep their emphasis. */
+.callout-content { display: block; }
+.callout > div:not(.callout-title):not(.callout-content),
+.callout-content > div:not(.callout-title),
+.callout-text { color: var(--text-mid); }
+.callout-text strong, .callout-content strong, .callout > div strong { color: var(--text); }
+
 /* All non-action callouts share one quiet system: thin left rule, italic serif label.
    Color is conveyed only by the border-left + label color, not by saturated backgrounds.
    This gives the page one focal accent (gold/coral) at a time instead of 8 competing tags. */
 
-/* --- BLUE: Context/info --- */
-.callout-blue { border-left-color: hsla(210, 60%, 70%, 0.55); background: var(--bg-elev); }
+/* --- BLUE: Context/info — AURORA warm cream --- */
+.callout-blue { border-left-color: rgba(245, 234, 220, 0.32); background: var(--bg-elev); }
 .callout-blue .callout-title::before {
   content: 'Context';
   font-family: var(--font-display); font-size: 0.7rem;
   font-weight: 500; font-style: italic; letter-spacing: 0.02em;
-  color: hsla(210, 70%, 78%, 1);
+  color: rgba(245, 234, 220, 0.92);
   background: transparent; border: none;
-  border-right: 1px solid hsla(210, 60%, 70%, 0.35);
+  border-right: 1px solid rgba(245, 234, 220, 0.22);
   border-radius: 0; padding: 0 var(--s-3) 0 0; text-transform: none;
   font-variation-settings: "opsz" 9;
 }
-.callout-blue .callout-title { color: hsla(210, 70%, 78%, 1); }
+.callout-blue .callout-title { color: rgba(245, 234, 220, 0.92); }
 
-/* --- PURPLE: Learning/profile --- */
+/* --- PURPLE → AURORA gold: Learning/profile --- */
 .callout-purple { border-left-color: var(--accent); background: var(--bg-elev); }
 .callout-purple .callout-title::before {
   content: 'Learn';
@@ -336,7 +363,7 @@ em { color: var(--text); font-style: italic; font-family: var(--font-display); f
   border-radius: 0; padding: 0 var(--s-3) 0 0; text-transform: none;
   font-variation-settings: "opsz" 9;
 }
-.callout-purple .callout-title { color: #DCC9F8; }
+.callout-purple .callout-title { color: var(--gold); }
 
 /* --- YELLOW: Insight/tip --- */
 .callout-yellow {
@@ -392,20 +419,20 @@ em { color: var(--text); font-style: italic; font-family: var(--font-display); f
 }
 .callout-red .callout-title { color: var(--accent2); }
 
-/* --- TEAL — save points + milestone markers --- */
-.callout-teal { border-left-color: hsla(170, 60%, 60%, 0.7); background: var(--bg-elev); }
+/* --- TEAL → AURORA cream: save points + milestone markers --- */
+.callout-teal { border-left-color: rgba(245, 234, 220, 0.42); background: var(--bg-elev); }
 .callout-teal .callout-title::before {
   content: 'Save point';
   font-family: var(--font-display); font-size: 0.7rem;
   font-weight: 500; font-style: italic; letter-spacing: 0.02em;
-  color: hsla(170, 60%, 75%, 1);
+  color: rgba(245, 234, 220, 0.88);
   background: transparent; border: none;
-  border-right: 1px solid hsla(170, 60%, 60%, 0.35);
+  border-right: 1px solid rgba(245, 234, 220, 0.28);
   border-radius: 0; padding: 0 var(--s-3) 0 0; text-transform: none;
   margin-right: 0; display: inline-block; vertical-align: baseline;
   font-variation-settings: "opsz" 9;
 }
-.callout-teal .callout-title { color: hsla(170, 60%, 75%, 1); }
+.callout-teal .callout-title { color: rgba(245, 234, 220, 0.88); }
 
 /* --- ORANGE: Warning/heads up --- */
 .callout-orange { border-left-color: var(--accent2); background: var(--bg-elev); }
@@ -750,6 +777,40 @@ li::marker { color: var(--gold); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 .text-center { text-align: center; }
 
+/* Common typographic utilities (replaces ~40 inline color/size overrides) */
+.u-text-mid { color: var(--text-mid); }
+.u-text-dim { color: var(--text-dim); }
+.u-text-strong { color: var(--text); font-weight: 600; }
+.u-text-sm { font-size: 0.88rem; line-height: 1.55; }
+.u-text-body-md { color: var(--text-mid); font-size: 0.92rem; line-height: 1.55; }
+.u-eyebrow {
+  font-family: var(--font-label);
+  font-size: 0.75rem; color: var(--text-mid);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin: 0 0 var(--s-2);
+}
+
+/* Pill chip — used for resource link rows in emergency-toolkit etc. */
+.pill-link {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background: rgba(10, 10, 20, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-mid);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.pill-link:hover { border-color: var(--gold-glow); color: var(--gold); background: var(--bg-elev-2); }
+.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: var(--s-4) 0; }
+
+/* Semantic title-color helpers for callout titles (replaces inline color="var(--*-title)") */
+.t-green { color: var(--green-title); }
+.t-blue  { color: var(--blue-title); }
+.t-red   { color: var(--red-title); }
+.t-gold  { color: var(--gold); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   .cards { grid-template-columns: 1fr; }
@@ -862,7 +923,7 @@ li::marker { color: var(--gold); }
 }
 .check-item input[type="checkbox"]:checked {
   background: var(--accent); border-color: var(--accent);
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+  box-shadow: 0 0 8px rgba(245, 197, 66, 0.4);
   animation: checkPop 0.3s var(--ease);
 }
 @keyframes checkPop { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
@@ -890,9 +951,9 @@ li::marker { color: var(--gold); }
 }
 .progress-dot {
   width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(168, 85, 247, 0.2); transition: all 0.3s var(--ease);
+  background: rgba(245, 197, 66, 0.2); transition: all 0.3s var(--ease);
 }
-.progress-dot.active { background: var(--accent); box-shadow: 0 0 6px rgba(168, 85, 247, 0.5); }
+.progress-dot.active { background: var(--accent); box-shadow: 0 0 6px rgba(245, 197, 66, 0.5); }
 .progress-dot.done { background: var(--green); }
 
 /* ---------- Scroll Reveal ---------- */
@@ -1011,7 +1072,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
     --text: #fff;
     --text-mid: #fff;
     --border: rgba(255,255,255,0.4);
-    --accent: hsla(270, 100%, 75%, 1);
+    --accent: var(--accent-gold);
   }
   .callout { border-width: 2px; }
   a { text-decoration: underline; }
@@ -1037,11 +1098,11 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
   white-space: nowrap;
 }
 .phase-indicator .phase-num { color: var(--accent); }
-.phase-indicator.phase-intro { background: rgba(75,85,99,0.15); border-color: rgba(75,85,99,0.4); color: var(--gray-title); }
-.phase-indicator.phase-setup { background: rgba(5,150,105,0.15); border-color: rgba(5,150,105,0.4); color: var(--green-title); }
+.phase-indicator.phase-intro { background: rgba(245,234,220,0.08); border-color: rgba(245,234,220,0.2); color: var(--text-dim); }
+.phase-indicator.phase-setup { background: rgba(245,197,66,0.12); border-color: rgba(245,197,66,0.35); color: var(--accent-gold); }
 .phase-indicator.phase-onboarding { background: var(--accent-soft); border-color: var(--accent-glow); color: var(--text-accent); }
-.phase-indicator.phase-deeper { background: rgba(217,119,6,0.15); border-color: rgba(217,119,6,0.4); color: var(--yellow-title); }
-.phase-indicator.phase-power { background: rgba(220,38,38,0.15); border-color: rgba(220,38,38,0.4); color: var(--red-title); }
+.phase-indicator.phase-deeper { background: rgba(245,197,66,0.12); border-color: rgba(245,197,66,0.35); color: var(--accent-gold); }
+.phase-indicator.phase-power { background: rgba(255,107,107,0.12); border-color: rgba(255,107,107,0.35); color: var(--accent-coral); }
 
 /* Pause-motion control — pill button anchored top-right with visible label.
    Mirrors the hamburger sidebar-toggle at top-left for visual symmetry.

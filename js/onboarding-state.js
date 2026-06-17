@@ -52,8 +52,8 @@
     el.style.cssText = [
       'position:fixed', 'bottom:16px', 'right:16px', 'z-index:200',
       'padding:8px 14px', 'border-radius:8px',
-      'background:rgba(5,150,105,0.15)', 'border:1px solid rgba(52,211,153,0.4)',
-      'color:#34d399', 'font-size:0.8rem', 'font-weight:600',
+      'background:rgba(245,197,66,0.15)', 'border:1px solid rgba(245,197,66,0.4)',
+      'color:#F5C542', 'font-size:0.8rem', 'font-weight:600',
       'opacity:0', 'transition:opacity 0.3s ease',
       'pointer-events:none'
     ].join(';');

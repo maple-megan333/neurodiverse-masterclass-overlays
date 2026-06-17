@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 .stack-card {
   background: var(--bg-card);
@@ -23,8 +24,8 @@
   font-size: 0.65rem; font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--accent);
-  background: rgba(168,85,247,0.12);
-  border: 1px solid rgba(168,85,247,0.3);
+  background: rgba(245,197,66,0.12);
+  border: 1px solid rgba(245,197,66,0.3);
   border-radius: 3px;
   padding: 1px 6px;
   margin-right: 0.5rem;
@@ -63,7 +64,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   margin-bottom: 0.6rem;
-  background: rgba(255,255,255,0.015);
+  background: rgba(245,234,220,0.015);
 }
 .energy-pill {
   display: inline-block;
@@ -75,9 +76,9 @@
   border-radius: 100px;
   white-space: nowrap;
 }
-.energy-high { background: rgba(248,113,113,0.15); color: var(--red-title); border: 1px solid rgba(248,113,113,0.3); }
-.energy-med  { background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
-.energy-low  { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
+.energy-high { background: rgba(255,107,107,0.15); color: var(--red-title); border: 1px solid rgba(255,107,107,0.3); }
+.energy-med  { background: rgba(245,197,66,0.15); color: var(--blue-title); border: 1px solid rgba(245,197,66,0.3); }
+.energy-low  { background: rgba(245,197,66,0.15); color: var(--green-title); border: 1px solid rgba(245,197,66,0.3); }
 .energy-row .body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.5; }
 .energy-row .body strong { color: var(--text); }
 @media (max-width: 600px) {
@@ -93,10 +94,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK A &middot; MULTI-AI</span>
+      <span class="pill">TRACK A &middot; MULTI-AI</span>
       <h1>Multi-AI Mastery</h1>
       <p class="tagline">Use the right AI for the moment, not a favorite for everything.</p>
     </div>
@@ -110,7 +110,7 @@
   </span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> None &mdash; works as standalone reading. <strong>Time:</strong> 10 min. <strong>Energy:</strong> Any.</div>
 </div>
 
@@ -129,21 +129,21 @@
     <span class="stack-card-num">01</span>
     <span class="strength">Research</span>
     <h3>Perplexity Pro</h3>
-    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Cited, current data. <a href="https://www.finout.io/blog/perplexity-pricing-in-2026" target="_blank" rel="noopener">92% factual accuracy</a> with inline source links. Start here when you need facts you can verify, not vibes.</div>
+    <div class="u-text-body-md">Cited, current data. <a href="https://www.finout.io/blog/perplexity-pricing-in-2026" target="_blank" rel="noopener">92% factual accuracy</a> with inline source links. Start here when you need facts you can verify, not vibes.</div>
     <span class="price">Free 5/day &middot; Pro $20/mo</span>
   </div>
   <div class="stack-card">
     <span class="stack-card-num">02</span>
     <span class="strength">Synthesis</span>
     <h3>Claude (Sonnet 4.6 / Opus 4.7)</h3>
-    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Long-form reasoning, voice matching, deep document work. <a href="https://claude.com/pricing" target="_blank" rel="noopener">1M context</a> = your whole research corpus in one session.</div>
+    <div class="u-text-body-md">Long-form reasoning, voice matching, deep document work. <a href="https://claude.com/pricing" target="_blank" rel="noopener">1M context</a> = your whole research corpus in one session.</div>
     <span class="price">Pro $20/mo &middot; API $3-25 / 1M tokens</span>
   </div>
   <div class="stack-card">
     <span class="stack-card-num">03</span>
     <span class="strength">Output</span>
     <h3>ChatGPT (GPT-5.5)</h3>
-    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Social posts, email tone, spreadsheets, image generation, presentations. The versatility tool — the one with the widest surface area.</div>
+    <div class="u-text-body-md">Social posts, email tone, spreadsheets, image generation, presentations. The versatility tool — the one with the widest surface area.</div>
     <span class="price">Free (5.3) &middot; Plus $20/mo &middot; Pro $100/mo</span>
   </div>
 </div>
@@ -187,7 +187,7 @@
   </div>
 </div>
 
-<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-green">
   <span class="callout-icon">&#9166;</span>
   <div class="callout-title">Come back to this page when&hellip;</div>
   <div>Try a Triple Stack run this week on one real task. See which tool actually helped most.</div>
@@ -197,13 +197,13 @@
 <div class="columns columns-2">
   <div class="stack-card" style="border-left-color: var(--blue);">
     <span class="strength" style="color:var(--blue-title);">Deep Dive 1</span>
-    <h3><a href="track-multi-ai-matrix.html" style="color:var(--text);">Tool Matrix &mdash; 21 Tasks, Mapped &rarr;</a></h3>
-    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">The full task-to-tool lookup table. Best tool, runner-up, and one sentence of why for every task type. Plus pricing and privacy postures.</div>
+    <h3><a href="track-multi-ai-matrix.html" class="u-text-strong">Tool Matrix &mdash; 21 Tasks, Mapped &rarr;</a></h3>
+    <div class="u-text-body-md">The full task-to-tool lookup table. Best tool, runner-up, and one sentence of why for every task type. Plus pricing and privacy postures.</div>
   </div>
   <div class="stack-card" style="border-left-color: var(--gold);">
-    <span class="strength" style="color:var(--gold);">Deep Dive 2</span>
-    <h3><a href="track-multi-ai-routing.html" style="color:var(--text);">Switching Strategy + Voice Routing &rarr;</a></h3>
-    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">How to move work between tools without losing context. Voice routing for low-energy days. A sample week-long workflow that caps switching at three tools.</div>
+    <span class="strength" class="t-gold">Deep Dive 2</span>
+    <h3><a href="track-multi-ai-routing.html" class="u-text-strong">Switching Strategy + Voice Routing &rarr;</a></h3>
+    <div class="u-text-body-md">How to move work between tools without losing context. Voice routing for low-energy days. A sample week-long workflow that caps switching at three tools.</div>
   </div>
 </div>
 
@@ -213,7 +213,6 @@
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

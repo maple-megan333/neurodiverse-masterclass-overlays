@@ -20,15 +20,47 @@
   var spaMain = document.getElementById('spaMain');
   var pageCache = {};
   var currentPage = null;
+  var firstRender = true;
 
   // === Sidebar toggle ===
-  sidebarToggle.addEventListener('click', function() {
-    sidebar.classList.toggle('collapsed');
-    sidebarOverlay.classList.toggle('active');
-  });
-  sidebarOverlay.addEventListener('click', function() {
+  // On narrow screens (<=768px) sidebar starts collapsed; on wide screens it starts open.
+  // We use the .collapsed class as the single source of truth so CSS only describes
+  // what "collapsed" looks like — JS owns the open/closed state.
+  var MOBILE_BREAKPOINT = 768;
+  function isMobile() { return window.innerWidth <= MOBILE_BREAKPOINT; }
+
+  function openSidebar() {
+    sidebar.classList.remove('collapsed');
+    if (isMobile()) sidebarOverlay.classList.add('active');
+    sidebarToggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar() {
     sidebar.classList.add('collapsed');
     sidebarOverlay.classList.remove('active');
+    sidebarToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  // Initial state: collapsed on mobile, open on desktop.
+  if (isMobile()) {
+    sidebar.classList.add('collapsed');
+    sidebarToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  sidebarToggle.addEventListener('click', function() {
+    if (sidebar.classList.contains('collapsed')) openSidebar();
+    else closeSidebar();
+  });
+  sidebarOverlay.addEventListener('click', closeSidebar);
+
+  // Keep state sensible when resizing across the breakpoint.
+  var lastIsMobile = isMobile();
+  window.addEventListener('resize', function() {
+    var nowMobile = isMobile();
+    if (nowMobile !== lastIsMobile) {
+      if (nowMobile) closeSidebar();
+      else { sidebar.classList.remove('collapsed'); sidebarOverlay.classList.remove('active'); sidebarToggle.setAttribute('aria-expanded', 'true'); }
+      lastIsMobile = nowMobile;
+    }
   });
 
   // === Nav click handler ===
@@ -37,10 +69,7 @@
     if (!item) return;
     var page = item.dataset.page;
     if (page) navigateTo(page);
-    if (window.innerWidth <= 768) {
-      sidebar.classList.add('collapsed');
-      sidebarOverlay.classList.remove('active');
-    }
+    if (isMobile()) closeSidebar();
   });
 
   // === CRITICAL: Scroll bridge ===
@@ -116,6 +145,18 @@
     }
   }
 
+  // === Fix 2b: Header fade on scroll ===
+  function wireHeaderFade() {
+    var spaMainEl = document.getElementById('spaMain');
+    if (!spaMainEl) return;
+    spaMainEl.addEventListener('scroll', function() {
+      var header = document.querySelector('.brain-header-text');
+      if (!header) return;
+      if (spaMainEl.scrollTop > 40) header.classList.add('hidden');
+      else header.classList.remove('hidden');
+    }, { passive: true });
+  }
+
   function renderPage(pageHtml, pageName) {
     // Parse same-origin page HTML into DOM nodes via template element
     var template = document.createElement('template');
@@ -139,6 +180,9 @@
     // Reset scroll
     spaMain.scrollTop = 0;
 
+    // Notify scroll-effects.js (and any other listeners) that new content is live
+    window.dispatchEvent(new CustomEvent('spa:rendered', { detail: { pageName: pageName } }));
+
     // Init enhancements
     initCopyButtons();
     initSmoothScroll();
@@ -149,7 +193,30 @@
     initNotionEnhancements(pageName);
     currentPage = pageName;
 
-    // Brain header stays sticky (from brain-header.css). Content covers it via opaque background + z-index:10.
+    // Fix 1: Hide sidebar on home page; open on desktop for all other pages.
+    if (pageName === 'index' || pageName === '') {
+      closeSidebar();
+    } else if (!isMobile()) {
+      openSidebar();
+    }
+
+    // Fix 2b: Wire scroll listener so header fades once per SPA session.
+    if (firstRender) {
+      wireHeaderFade();
+    }
+
+    // Fix 3: Screen reader announcement + focus management on route change.
+    var announce = document.getElementById('sr-announce');
+    var newH1 = contentArea.querySelector('h1');
+    if (announce && newH1) {
+      announce.textContent = newH1.textContent + ' — loaded';
+      if (!firstRender) {
+        newH1.setAttribute('tabindex', '-1');
+        newH1.focus({ preventScroll: false });
+      }
+    }
+
+    firstRender = false;
 
     contentArea.classList.remove('loading');
     loader.classList.remove('active');
@@ -164,15 +231,25 @@
       w.style.position = 'relative';
       pre.parentNode.insertBefore(w, pre);
       w.appendChild(pre);
+      // If pre already contains an inline copy-btn, skip adding a duplicate
+      if (pre.querySelector('.copy-btn')) return;
       var btn = document.createElement('button');
       btn.className = 'copy-btn';
+      btn.type = 'button';
       btn.textContent = 'Copy';
-      btn.style.cssText = 'position:absolute;top:8px;right:8px;background:var(--purple-surface);color:var(--text-secondary);border:1px solid rgba(168,85,247,.2);border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer';
+      var codeLabel = pre.querySelector('.code-label');
+      var labelText = codeLabel ? codeLabel.textContent.trim() : 'code';
+      btn.setAttribute('aria-label', 'Copy ' + labelText + ' to clipboard');
+      btn.style.cssText = 'position:absolute;top:8px;right:8px;background:var(--purple-surface);color:var(--text-secondary);border:1px solid rgba(245,197,66,.25);border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer';
       btn.addEventListener('click', function() {
         var code = pre.querySelector('code') || pre;
         navigator.clipboard.writeText(code.textContent).then(function() {
           btn.textContent = 'Copied!';
-          setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+          btn.setAttribute('aria-label', labelText + ' copied to clipboard');
+          setTimeout(function() {
+            btn.textContent = 'Copy';
+            btn.setAttribute('aria-label', 'Copy ' + labelText + ' to clipboard');
+          }, 2000);
         });
       });
       w.appendChild(btn);

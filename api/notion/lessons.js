@@ -29,8 +29,15 @@ module.exports = async function handler(req, res) {
         }
         if (prop.type === 'status' && prop.status && prop.status.name) {
           var sname = prop.status.name.toLowerCase();
-          if (sname === 'done' || sname === 'completed' || sname === 'complete') status = 'completed';
-          else if (sname === 'in progress' || sname === 'started') status = 'in-progress';
+          if (sname === 'done' || sname === 'completed' || sname === 'complete' || sname === 'already know this') status = 'completed';
+          else if (sname === 'in progress' || sname === 'started' || sname === 'revisiting') status = 'in-progress';
+        }
+        // The Notion template uses a Select-type "Status" property (not the native Status type).
+        // Mirror the same name matching so the sidebar checkmarks light up.
+        if (prop.type === 'select' && prop.select && prop.select.name && key.toLowerCase() === 'status') {
+          var selName = prop.select.name.toLowerCase();
+          if (selName === 'done' || selName === 'completed' || selName === 'complete' || selName === 'already know this') status = 'completed';
+          else if (selName === 'in progress' || selName === 'started' || selName === 'revisiting') status = 'in-progress';
         }
         // Look for a slug/URL property
         if ((key.toLowerCase() === 'slug' || key.toLowerCase() === 'page') && prop.type === 'rich_text' && prop.rich_text) {

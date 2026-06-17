@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Prompt Craft &mdash; Neurodiverse AI MasterClass</title>
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/brain-header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill">DEEPER</span>
+      <h1>Advanced Prompt Craft</h1>
+      <p class="tagline">Three patterns that take you past the 4-element framework.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper" id="main-content">
+  <nav class="nav-bar" aria-label="Page navigation">
+    <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+    <span class="phase-indicator phase-deepen" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 3&ndash;4</span> &middot; Deeper craft</span>
+  </nav>
+
+  <div class="callout callout-blue">
+    <div><strong>Prereqs:</strong> You&rsquo;ve done <a href="prompt-basics.html">prompt basics</a> and used the 4-element framework at least a few times. <strong>Time:</strong> 20&ndash;30 min. <strong>Energy:</strong> Medium (focus required).</div>
+  </div>
+
+  <div class="callout callout-purple">
+    <div class="callout-content">
+      <div class="callout-title">&#x23F1; Time &amp; Energy</div>
+      <div class="callout-text"><strong>20&ndash;30 min</strong> &middot; medium energy &middot; You&rsquo;ll need: <a href="https://claude.ai">Claude.ai</a> + a real task you&rsquo;d normally avoid</div>
+    </div>
+  </div>
+
+  <blockquote><strong>Why three patterns?</strong> The 4-element framework gets you to 70% quality fast. These three patterns get you the last 30% &mdash; when you actually care about the output.</blockquote>
+
+  <hr>
+
+  <h2>Pattern 1: Few-Shot Prompting</h2>
+
+  <div class="columns columns-2">
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F52C; Why this works</div>
+        <div class="callout-text">Models learn the pattern you want from 2&ndash;5 worked examples better than from rules describing the pattern (<a href="https://arxiv.org/abs/2005.14165">Brown et al., 2020</a>). Show, then ask.</div>
+      </div>
+    </div>
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x2601;&#xFE0F; Low energy version</div>
+        <div class="callout-text">Pick ONE recurring task. Find 2 examples you already wrote. Paste them in. Ask AI to do the next one in the same style. Done.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>You&rsquo;re writing weekly status updates at Smartsheet. You&rsquo;ve described them six different ways in the prompt and the AI still misses the tone. Stop describing. Show.</p>
+
+  <div class="callout callout-green">
+    <div class="callout-content">
+      <div class="callout-title">&#x270F;&#xFE0F; Few-shot template &mdash; status updates</div>
+<pre><span class="code-label">Few-shot prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy few-shot prompt example to clipboard">Copy</button><code>You are a status-update writer for a senior PM at Smartsheet.
+Match the tone, structure, and length of these examples exactly.
+
+Example 1:
+Week of Mar 3 &mdash; Sheets perf
+- Shipped: P95 read latency from 480ms to 210ms after index pass
+- Next: review wide-row pagination, partner with infra on cache layer
+- Risk: none new
+
+Example 2:
+Week of Mar 10 &mdash; Sheets perf
+- Shipped: nothing visible; spent the week on the wide-row review
+- Next: ship pagination behind flag, start cache spike
+- Risk: cache spike likely slips a week; not blocking
+
+Now write the update for this week:
+- I finished the cache layer spike, it works but adds 60ms tail latency
+- I'm starting on the rollout plan
+- I'm worried we picked the wrong eviction strategy</code></pre>
+      <div class="callout-text" style="margin-top:1rem">The AI mimics your terseness, your three-bucket structure (Shipped/Next/Risk), even your habit of saying &ldquo;nothing visible.&rdquo; That&rsquo;s the trick.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-content">
+      <div class="callout-title">&#x2B50; What good looks like</div>
+      <div class="callout-text">Output reads like you wrote it. If it&rsquo;s still off, your examples weren&rsquo;t representative &mdash; add a third example, or pick better ones. <strong>Two strong examples beat ten mediocre ones.</strong></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>Pattern 2: Chain-of-Thought</h2>
+
+  <div class="columns columns-2">
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F52C; Why this works</div>
+        <div class="callout-text">Asking AI to think step-by-step before answering reduces hallucinations on multi-step reasoning by 20&ndash;40% (<a href="https://arxiv.org/abs/2201.11903">Wei et al., 2022</a>). It trades speed for accuracy.</div>
+      </div>
+    </div>
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x2601;&#xFE0F; Low energy version</div>
+        <div class="callout-text">Add one line to any prompt: <em>&ldquo;Think through this step by step before answering.&rdquo;</em> That&rsquo;s it. That&rsquo;s the whole technique.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Use this for: analyzing data, comparing options, debugging logic, anything where &ldquo;just give me the answer&rdquo; usually gives you a confidently wrong answer.</p>
+
+  <div class="callout callout-green">
+    <div class="callout-content">
+      <div class="callout-title">&#x270F;&#xFE0F; CoT template &mdash; data analysis</div>
+<pre><span class="code-label">Chain-of-thought prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy chain-of-thought prompt example to clipboard">Copy</button><code>You are a careful data analyst. Before answering, walk through:
+  1. What is the question actually asking?
+  2. What data do I have, and what's missing?
+  3. What's the simplest analysis that answers it?
+  4. What could go wrong with that analysis?
+  5. THEN: give your answer, with the caveats from step 4.
+
+Question: Our weekly active users dropped 8% last week.
+Is this a real signal or noise?
+
+Data: WAU for the last 12 weeks: 41k, 42k, 40k, 43k, 44k, 45k,
+43k, 46k, 45k, 47k, 48k, 44k. Last week was the 44k.</code></pre>
+      <div class="callout-text" style="margin-top:1rem">The model will reason out loud, notice the variance is normally &plusmn;3k, and conclude this is likely noise &mdash; instead of confidently saying &ldquo;yes, churn problem.&rdquo;</div>
+    </div>
+  </div>
+
+  <div class="callout callout-blue">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F4D8; When to skip CoT</div>
+      <div class="callout-text">Quick lookups, drafting, brainstorming. CoT slows AI down and costs more tokens. Only use it when being wrong matters more than being fast.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>Pattern 3: Iteration</h2>
+
+  <div class="columns columns-2">
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F52C; Why this works</div>
+        <div class="callout-text">The first answer is rarely the best. Treating AI output as a draft and editing in conversation gets dramatically better results than one-shot prompting (<a href="https://docs.anthropic.com">Anthropic Prompt Engineering Guide</a>).</div>
+      </div>
+    </div>
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x2601;&#xFE0F; Low energy version</div>
+        <div class="callout-text">When you get an answer that&rsquo;s close-but-not-right, don&rsquo;t restart. Just reply: &ldquo;make this <em>X</em>&rdquo; where X is one specific change. Repeat until done.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Iteration is the cheapest, most under-used technique. The mistake is starting a new conversation every time the answer is wrong. <strong>Keep the conversation going.</strong></p>
+
+  <div class="callout callout-green">
+    <div class="callout-content">
+      <div class="callout-title">&#x270F;&#xFE0F; Iteration recipe &mdash; drafting a doc</div>
+<pre><span class="code-label">Iteration sequence</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy iteration sequence example to clipboard">Copy</button><code>You 1: Draft a one-page design doc for adding offline mode to our app.
+  Audience: senior engineers. Sections: problem, proposal, risks.
+
+AI: [first draft, probably generic]
+
+You 2: The "problem" section is too abstract. Rewrite it with a
+  concrete user scenario &mdash; someone on a plane losing 2 hours of work.
+
+AI: [better problem section]
+
+You 3: Risks section is missing the data sync conflict case.
+  Add it as the top risk, with two mitigation options.
+
+You 4: Tighten the whole thing. Cut 30% of the words. Keep all sections.
+
+You 5: One more pass &mdash; make it sound like an engineer wrote it, not a PM.</code></pre>
+      <div class="callout-text" style="margin-top:1rem">Each turn is one specific change. The doc gets sharper every step. <strong>One ask per turn</strong> is the rule.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-content">
+      <div class="callout-title">&#x2B50; What good looks like</div>
+      <div class="callout-text">You&rsquo;re using AI like a writing partner, not a vending machine. The final draft is something neither you nor AI would&rsquo;ve gotten to alone.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>Combine them: the real workflow</h2>
+
+  <p>These patterns aren&rsquo;t separate. A real prompt for important work often uses all three:</p>
+
+  <div class="callout callout-purple">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F9E0; All three together &mdash; drafting an email you&rsquo;ve been avoiding</div>
+<pre><span class="code-label">Combined prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy combined prompt example to clipboard">Copy</button><code>You are a direct, warm email writer. Match my style from these examples:
+
+Example 1: [paste an old email you wrote that you liked]
+Example 2: [paste another]
+
+Before drafting, think through:
+  1. What is the recipient actually worried about?
+  2. What do they need from me in this email?
+  3. What's the shortest version that answers both?
+
+Then draft. I'll iterate from there.
+
+The task: I owe my manager an update on the project that's behind.
+Context: It's behind because Q1 priorities shifted, not because I dropped it.
+I want to acknowledge the slip without sounding defensive.</code></pre>
+    </div>
+  </div>
+
+  <div class="callout callout-blue">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F4D8; Mini-cheatsheet</div>
+      <table>
+        <tr><th>When you want&hellip;</th><th>Reach for&hellip;</th></tr>
+        <tr><td>Output to match a specific style</td><td>Few-shot (2&ndash;5 examples)</td></tr>
+        <tr><td>Analysis or multi-step reasoning</td><td>Chain-of-thought (&ldquo;think step-by-step&rdquo;)</td></tr>
+        <tr><td>To turn a draft into something good</td><td>Iteration (one ask per turn)</td></tr>
+        <tr><td>To save it for later</td><td>Add to your <a href="prompt-basics.html">Prompt Library</a></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="columns columns-2">
+    <div class="callout callout-blue">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F516; You learned</div>
+        <div class="callout-text">Three patterns: <strong>few-shot</strong> (show, don&rsquo;t describe), <strong>chain-of-thought</strong> (think before answering), <strong>iteration</strong> (one ask per turn).<br><strong>Saved in:</strong> Prompt Library (tag: Advanced)</div>
+      </div>
+    </div>
+    <div class="callout callout-green">
+      <div class="callout-content">
+        <div class="callout-title">&#x27A1;&#xFE0F; Next</div>
+        <div class="callout-text"><a href="quality-check.html"><strong>Evaluating AI Output &rarr;</strong></a> &mdash; how to know when AI is wrong.</div>
+      </div>
+    </div>
+  </div>
+
+  <details>
+    <summary>&#x1F4DA; Research behind this lesson</summary>
+    <div>
+      <ul>
+        <li><strong>Few-shot</strong> &mdash; Brown et al. (2020). &ldquo;Language Models are Few-Shot Learners.&rdquo; <em>arXiv:2005.14165</em></li>
+        <li><strong>Chain-of-thought</strong> &mdash; Wei et al. (2022). &ldquo;Chain-of-Thought Prompting Elicits Reasoning.&rdquo; <em>arXiv:2201.11903</em></li>
+        <li><strong>Iterative refinement</strong> &mdash; Anthropic. &ldquo;Prompt Engineering Guide.&rdquo; <a href="https://docs.anthropic.com">docs.anthropic.com</a></li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="callout callout-green">
+    <div class="callout-title">Come back for</div>
+    <div>Pick a recurring task. Convert your best prompt for it into a few-shot version with two examples. Use it for a week.</div>
+  </div>
+
+  <nav class="nav-footer" aria-label="Workshop navigation">
+    <a href="prompt-basics.html" class="nav-link prev"><small>&larr; Previous</small>Prompt Basics</a>
+    <a href="quality-check.html" class="nav-link next"><small>Next &rarr;</small>Evaluating AI Output</a>
+  </nav>
+</div>
+
+<script>
+  function copyCode(button) {
+    var pre = button.closest('pre');
+    var code = pre.querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(function () {
+      var originalText = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(function () { button.textContent = originalText; }, 2000);
+    });
+  }
+</script>
+<script src="js/main.js"></script>
+<script src="js/motion-toggle.js"></script>
+</body>
+</html>

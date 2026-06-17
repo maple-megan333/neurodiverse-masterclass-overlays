@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,21 @@
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/brain-header.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Page-local: prompt-card structure + category gradient covers.
+       Lives here because no other page uses this composition. */
+    .pg-prompt-wrap { position: relative; margin: var(--s-4) 0; }
+    .pg-copy-btn { position: static; width: 100%; margin-top: var(--s-2); }
+    /* AURORA category covers — warm gold/coral gradients */
+    .pg-card-work { background: linear-gradient(135deg, #2A1F12, #4A3818); }
+    .pg-card-life { background: linear-gradient(135deg, #3D2810, #6B4515); }
+    .pg-card-creative { background: linear-gradient(135deg, #4A3018, #8B5D1E); }
+    .pg-card-think { background: linear-gradient(135deg, #2A1A0E, #4D3015); }
+    .pg-card-mood { background: linear-gradient(135deg, #38201C, #5C2828); }
+    .pg-card-spicy { background: linear-gradient(135deg, #4A1818, #8B2A2A); }
+  </style>
 </head>
 <body>
 <script src="js/spa-redirect.js"></script>
@@ -17,10 +31,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">EXPLORE</span>
+      <span class="pill">EXPLORE</span>
       <h1>AI Playground</h1>
       <p class="tagline">Prompts, tools, experiments. No setup required.</p>
     </div>
@@ -33,7 +46,7 @@
       <span class="phase-indicator phase-intro" aria-label="Phase 1 of 5: First Conversations"><span class="phase-num">Phase 1</span> of 5 — First Conversations</span>
     </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> None — runs in your browser. <strong>Time:</strong> 2-15 min. <strong>Energy:</strong> Any.</div>
 </div>
 
@@ -50,34 +63,34 @@
 
       <div class="gallery">
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #064e3b, #047857);">💼</div>
+          <div class="card-cover pg-card-work">💼</div>
           <div class="card-body">
             <div class="card-title">Professional Email Rewrite</div>
             <div class="card-desc">Make your email sound more professional while keeping your voice.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>Rewrite this email to be more professional but still sound like me:
 
 [paste your email here]</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'Rewrite this email to be more professional but still sound like me:\n\n[paste your email here]')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'Rewrite this email to be more professional but still sound like me:\n\n[paste your email here]')">Copy Prompt</button>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #064e3b, #047857);">📝</div>
+          <div class="card-cover pg-card-work">📝</div>
           <div class="card-body">
             <div class="card-title">Summarize a Long Email</div>
             <div class="card-desc">Get the main points from a wall of text.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>Summarize this email in bullet points. What action do I need to take?
 
 [paste email here]</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'Summarize this email in bullet points. What action do I need to take?\n\n[paste email here]')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'Summarize this email in bullet points. What action do I need to take?\n\n[paste email here]')">Copy Prompt</button>
           </div>
         </div>
       </div>
@@ -89,30 +102,30 @@
 
       <div class="gallery">
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #451a03, #78350f);">🍽️</div>
+          <div class="card-cover pg-card-life">🍽️</div>
           <div class="card-body">
             <div class="card-title">Meal Planning From Ingredients</div>
             <div class="card-desc">What can I make with what I have right now?</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>I have [ingredients] in my fridge. What can I make for dinner in under 30 minutes?</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'I have [ingredients] in my fridge. What can I make for dinner in under 30 minutes?')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'I have [ingredients] in my fridge. What can I make for dinner in under 30 minutes?')">Copy Prompt</button>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #451a03, #78350f);">📋</div>
+          <div class="card-cover pg-card-life">📋</div>
           <div class="card-body">
             <div class="card-title">Task List Cleanup</div>
             <div class="card-desc">Organize and prioritize your to-dos.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>Here's my task list: [paste list]. Help me prioritize and group these by area of my life.</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'Here\'s my task list: [paste list]. Help me prioritize and group these by area of my life.')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'Here\'s my task list: [paste list]. Help me prioritize and group these by area of my life.')">Copy Prompt</button>
           </div>
         </div>
       </div>
@@ -124,30 +137,30 @@
 
       <div class="gallery">
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #6b21a8, #7c3aed);">✍️</div>
+          <div class="card-cover pg-card-creative">✍️</div>
           <div class="card-body">
             <div class="card-title">Blog Post Angle Generator</div>
             <div class="card-desc">Find unique angles on topics you want to write about.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>Give me 5 unusual angles for a blog post about [topic]</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'Give me 5 unusual angles for a blog post about [topic]')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'Give me 5 unusual angles for a blog post about [topic]')">Copy Prompt</button>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #6b21a8, #7c3aed);">💬</div>
+          <div class="card-cover pg-card-creative">💬</div>
           <div class="card-body">
             <div class="card-title">Story Starter</div>
             <div class="card-desc">Get unstuck with creative writing prompts.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>I want to write a story about [your idea]. Give me 3 opening paragraphs I can choose from and build on.</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'I want to write a story about [your idea]. Give me 3 opening paragraphs I can choose from and build on.')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'I want to write a story about [your idea]. Give me 3 opening paragraphs I can choose from and build on.')">Copy Prompt</button>
           </div>
         </div>
       </div>
@@ -159,30 +172,30 @@
 
       <div class="gallery">
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #1e40af, #2563eb);">⚖️</div>
+          <div class="card-cover pg-card-think">⚖️</div>
           <div class="card-body">
             <div class="card-title">Decision Framework</div>
             <div class="card-desc">Get clarity when you're stuck between two options.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>I'm deciding between [A] and [B]. Ask me 3 questions to help me figure out which is right for me.</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'I\'m deciding between [A] and [B]. Ask me 3 questions to help me figure out which is right for me.')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'I\'m deciding between [A] and [B]. Ask me 3 questions to help me figure out which is right for me.')">Copy Prompt</button>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #1e40af, #2563eb);">🎯</div>
+          <div class="card-cover pg-card-think">🎯</div>
           <div class="card-body">
             <div class="card-title">Pros & Cons Builder</div>
             <div class="card-desc">Organize the factors in your decision.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>I'm thinking about [decision]. Help me think through pros and cons. What am I missing?</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'I\'m thinking about [decision]. Help me think through pros and cons. What am I missing?')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'I\'m thinking about [decision]. Help me think through pros and cons. What am I missing?')">Copy Prompt</button>
           </div>
         </div>
       </div>
@@ -194,30 +207,30 @@
 
       <div class="gallery">
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #7f1d1d, #dc2626);">📖</div>
+          <div class="card-cover pg-card-spicy">📖</div>
           <div class="card-body">
             <div class="card-title">Explain Like I'm Smart But Not an Expert</div>
             <div class="card-desc">Understand complex topics without jargon.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>Explain [concept] like I'm smart but not an expert in this field. Use an analogy.</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'Explain [concept] like I\'m smart but not an expert in this field. Use an analogy.')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'Explain [concept] like I\'m smart but not an expert in this field. Use an analogy.')">Copy Prompt</button>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #7f1d1d, #dc2626);">❓</div>
+          <div class="card-cover pg-card-spicy">❓</div>
           <div class="card-body">
             <div class="card-title">Simplify Technical Jargon</div>
             <div class="card-desc">Make confusing terms clear.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>I don't understand this. [paste confusing text]. Explain what this means in simple words.</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'I don\'t understand this. [paste confusing text]. Explain what this means in simple words.')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'I don\'t understand this. [paste confusing text]. Explain what this means in simple words.')">Copy Prompt</button>
           </div>
         </div>
       </div>
@@ -229,30 +242,30 @@
 
       <div class="gallery">
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #667eea, #764ba2);">📱</div>
+          <div class="card-cover pg-card-mood">📱</div>
           <div class="card-body">
             <div class="card-title">Casual Text Message</div>
             <div class="card-desc">Write warm but brief messages without overthinking.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>Write a casual text to [person] about [topic]. Keep it warm but brief.</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'Write a casual text to [person] about [topic]. Keep it warm but brief.')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'Write a casual text to [person] about [topic]. Keep it warm but brief.')">Copy Prompt</button>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-cover" style="background: linear-gradient(135deg, #667eea, #764ba2);">💌</div>
+          <div class="card-cover pg-card-mood">💌</div>
           <div class="card-body">
             <div class="card-title">Conversation Starter</div>
             <div class="card-desc">Break the ice with someone you want to connect with.</div>
 
-            <div style="position: relative; margin: var(--spacing-md) 0;">
+            <div class="pg-prompt-wrap">
               <pre><code>Help me start a conversation with [who/context]. What's a good opening that shows genuine interest?</code></pre>
             </div>
 
-            <button class="copy-btn" style="position: static; width: 100%; margin-top: var(--spacing-sm);" onclick="copyToClipboard(this, 'Help me start a conversation with [who/context]. What\'s a good opening that shows genuine interest?')">Copy Prompt</button>
+            <button class="copy-btn pg-copy-btn" onclick="copyToClipboard(this, 'Help me start a conversation with [who/context]. What\'s a good opening that shows genuine interest?')">Copy Prompt</button>
           </div>
         </div>
       </div>
@@ -304,23 +317,23 @@
         <div style="display:grid;gap:0.75rem;margin-bottom:1rem;">
           <div>
             <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Role</label>
-            <input type="text" id="pb-role" placeholder="e.g., You are a patient writing coach for someone with ADHD" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+            <input type="text" id="pb-role" placeholder="e.g., You are a patient writing coach for someone with ADHD" style="width:100%;padding:0.6rem 0.8rem;background:#0B0910;border:1px solid rgba(245,197,66,0.20);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
           </div>
           <div>
             <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Context</label>
-            <input type="text" id="pb-context" placeholder="e.g., I'm working on a blog post about meal planning" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+            <input type="text" id="pb-context" placeholder="e.g., I'm working on a blog post about meal planning" style="width:100%;padding:0.6rem 0.8rem;background:#0B0910;border:1px solid rgba(245,197,66,0.20);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
           </div>
           <div>
             <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Task</label>
-            <input type="text" id="pb-task" placeholder="e.g., Help me write an outline with 5 sections" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+            <input type="text" id="pb-task" placeholder="e.g., Help me write an outline with 5 sections" style="width:100%;padding:0.6rem 0.8rem;background:#0B0910;border:1px solid rgba(245,197,66,0.20);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
           </div>
           <div>
             <label style="font-size:0.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.05em;">Format</label>
-            <input type="text" id="pb-format" placeholder="e.g., Bullet points, casual tone, under 200 words" style="width:100%;padding:0.6rem 0.8rem;background:#070510;border:1px solid rgba(107,63,160,0.35);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
+            <input type="text" id="pb-format" placeholder="e.g., Bullet points, casual tone, under 200 words" style="width:100%;padding:0.6rem 0.8rem;background:#0B0910;border:1px solid rgba(245,197,66,0.20);border-radius:6px;color:var(--text);font-family:var(--font);font-size:0.9rem;outline:none;">
           </div>
         </div>
-        <div id="pb-output" style="background:#070510;border:1px solid rgba(107,63,160,0.35);border-top:2px solid rgba(168,85,247,0.5);border-radius:var(--radius);padding:1rem;font-family:var(--font-mono);font-size:0.85rem;line-height:1.7;color:rgba(168,85,247,0.4);font-style:italic;min-height:80px;margin-bottom:0.75rem;white-space:pre-wrap;">Your prompt will appear here as you type...</div>
-        <button id="pb-copy-btn" style="width:100%;padding:0.6rem;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.35);border-radius:6px;color:var(--text-accent);font-weight:700;font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;">Copy Prompt</button>
+        <div id="pb-output" style="background:#0B0910;border:1px solid rgba(245,197,66,0.20);border-top:2px solid rgba(245,197,66,0.45);border-radius:var(--radius);padding:1rem;font-family:var(--font-mono);font-size:0.85rem;line-height:1.7;color:rgba(245,234,220,0.45);font-style:italic;min-height:80px;margin-bottom:0.75rem;white-space:pre-wrap;">Your prompt will appear here as you type...</div>
+        <button id="pb-copy-btn" style="width:100%;padding:0.6rem;background:rgba(245,197,66,0.15);border:1px solid rgba(245,197,66,0.35);border-radius:6px;color:var(--text-accent);font-weight:700;font-size:0.8rem;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;">Copy Prompt</button>
       </div>
       <script>
       (function(){
@@ -336,11 +349,11 @@
           var output = document.getElementById('pb-output');
           if(parts.length === 0){
             output.textContent = 'Your prompt will appear here as you type...';
-            output.style.color = 'rgba(168,85,247,0.4)';
+            output.style.color = 'rgba(245,197,66,0.4)';
             output.style.fontStyle = 'italic';
           } else {
             output.textContent = parts.join('\n\n');
-            output.style.color = '#e2e8f0';
+            output.style.color = '#F5EADC';
             output.style.fontStyle = 'normal';
           }
         }
@@ -375,7 +388,7 @@
 
     </main>
 
-    <div class="callout callout-green" style="border-left-width:3px;">
+    <div class="callout callout-green">
       <div class="callout-title">Come back for</div>
       <div>Save the 3 prompts you used most this week to your Prompt Library.</div>
     </div>
@@ -401,7 +414,7 @@
         button.textContent = 'Copied!';
         button.style.background = 'var(--green-action-bg)';
         button.style.borderColor = 'var(--green-action)';
-        button.style.color = '#34d399';
+        button.style.color = '#F5C542';
 
         setTimeout(() => {
           button.textContent = originalText;
@@ -414,7 +427,6 @@
   </script>
 
   <script src="js/main.js"></script>
-  <script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

@@ -6,9 +6,12 @@
   <title>Neurodiverse AI MasterClass</title>
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/brain-header.css">
+  <link rel="stylesheet" href="css/aurora-backdrop.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Sub-page fonts: Inter (body fallback on older pages) + JetBrains Mono (code blocks) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     /* === SPA Shell — ONLY layout, nothing else === */
     *,*::before,*::after{box-sizing:border-box}
@@ -41,7 +44,7 @@
     .nav-item .nav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
     /* Main content area — scrollable */
-    .spa-main{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;background:#0B0910}
+    .spa-main{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;background:transparent}
     .spa-main::-webkit-scrollbar{width:6px}
     .spa-main::-webkit-scrollbar-thumb{background:rgba(245,197,66,.18);border-radius:3px}
     #content-area{min-height:100%;opacity:1;transition:opacity .2s ease;position:relative;z-index:1}
@@ -50,7 +53,7 @@
     /* Loader */
     .spa-loader{display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10}
     .spa-loader.active{display:block}
-    .spinner{width:40px;height:40px;border:3px solid rgba(168,85,247,.15);border-top-color:var(--purple-neon);border-radius:50%;animation:spin .8s linear infinite}
+    .spinner{width:40px;height:40px;border:3px solid rgba(245,197,66,.15);border-top-color:#F5C542;border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
 
     /* Sidebar toggle */
@@ -68,7 +71,7 @@
 
     /* Content flows over sticky brain header — transparent so animation shows through */
     #content-area .page,
-    #content-area .page-wrapper{position:relative;z-index:2}
+    #content-area .page-wrapper{position:relative;z-index:10}
 
     /* Show brain header h1 (design-system.css hides all h1) */
     #content-area .brain-header-text h1{display:block !important;opacity:1 !important;transform:none !important}
@@ -88,21 +91,119 @@
       opacity:1 !important;transform:none !important;
     }
 
-    /* Responsive */
+    /* Responsive — at <=768px sidebar becomes overlay-mode (fixed, slides in over content).
+       Initial collapsed state is set by spa-router.js on load (so JS owns open/close state). */
     @media(max-width:768px){
       .spa-sidebar{position:fixed;top:0;left:0;bottom:0;z-index:50;box-shadow:4px 0 20px rgba(0,0,0,.5)}
-      .spa-sidebar.collapsed{margin-left:-280px}
       .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:49}
       .sidebar-overlay.active{display:block}
-    }
-    /* Auto-collapse sidebar on narrow screens (Notion iframe typical width) */
-    @media(max-width:600px){
-      .spa-sidebar{margin-left:-280px;opacity:0;pointer-events:none}
+      .sidebar-toggle{box-shadow:0 4px 12px rgba(0,0,0,.4)}
     }
   </style>
 </head>
 <body>
   <a href="#content-area" class="skip-link">Skip to main content</a>
+  <div aria-live="polite" id="sr-announce" class="sr-only" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"></div>
+
+  <!-- ─── AURORA BACKDROP — brain image + synapse SVG, fixed behind shell ─── -->
+  <div class="brain-bg-layer" aria-hidden="true">
+    <img class="brain-bg-img" src="assets/brain.png" alt="" />
+    <div class="brain-bg-glow"></div>
+    <div class="brain-bg-glow delay"></div>
+  </div>
+  <div class="synapse-layer" aria-hidden="true">
+    <svg class="synapse-overlay" viewBox="0 0 600 346" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- Tertiary sparks across the canvas -->
+      <g class="synapse-sparks">
+        <circle class="sy-spark"        cx="180" cy="160" r="1.4"/>
+        <circle class="sy-spark"        cx="220" cy="100" r="1.2"/>
+        <circle class="sy-spark coral"  cx="310" cy="170" r="1.5"/>
+        <circle class="sy-spark"        cx="380" cy="120" r="1.3"/>
+        <circle class="sy-spark"        cx="420" cy="170" r="1.4"/>
+        <circle class="sy-spark coral"  cx="450" cy="200" r="1.2"/>
+        <circle class="sy-spark"        cx="270" cy="220" r="1.3"/>
+        <circle class="sy-spark"        cx="240" cy="270" r="1.4"/>
+        <circle class="sy-spark coral"  cx="340" cy="240" r="1.2"/>
+        <circle class="sy-spark"        cx="400" cy="280" r="1.4"/>
+        <circle class="sy-spark"        cx="155" cy="200" r="1.3"/>
+        <circle class="sy-spark"        cx="500" cy="230" r="1.2"/>
+      </g>
+
+      <!-- HERO cluster: upper third of brain -->
+      <g class="synapse-group">
+        <path class="sy-path"       d="M 128 92  C 165 100, 205 118, 258 132"/>
+        <path class="sy-path"       d="M 258 132 C 320 110, 395 92,  478 88"/>
+        <path class="sy-path coral" d="M 128 92  C 230 60,  340 70,  478 88"/>
+        <path class="sy-path"       d="M 258 132 C 295 110, 340 100, 360 82"/>
+        <path class="sy-path"       d="M 478 88  C 510 120, 540 145, 555 175"/>
+        <path class="sy-path coral" d="M 360 82  C 410 95,  450 88,  478 88"/>
+        <path class="sy-path"       d="M 128 92  C 145 130, 180 145, 258 132"/>
+        <path class="sy-path coral" d="M 478 88  C 460 130, 450 170, 450 200"/>
+
+        <path class="sy-pulse"          d="M 128 92  C 165 100, 205 118, 258 132"/>
+        <path class="sy-pulse d2"       d="M 258 132 C 320 110, 395 92,  478 88"/>
+        <path class="sy-pulse coral d3" d="M 128 92  C 230 60,  340 70,  478 88"/>
+        <path class="sy-pulse fast d1"  d="M 258 132 C 295 110, 340 100, 360 82"/>
+        <path class="sy-pulse slow d4"  d="M 478 88  C 510 120, 540 145, 555 175"/>
+        <path class="sy-pulse coral d5" d="M 360 82  C 410 95,  450 88,  478 88"/>
+        <path class="sy-pulse d3"       d="M 128 92  C 145 130, 180 145, 258 132"/>
+        <path class="sy-pulse coral d5" d="M 478 88  C 460 130, 450 170, 450 200"/>
+
+        <circle class="sy-halo"          cx="128" cy="92"  r="8"/>
+        <circle class="sy-halo coral f2" cx="258" cy="132" r="9.5"/>
+        <circle class="sy-halo f3"       cx="478" cy="88"  r="8"/>
+        <circle class="sy-halo f4"       cx="360" cy="82"  r="5"/>
+
+        <circle class="sy-dot"          cx="128" cy="92"  r="3.8"/>
+        <circle class="sy-dot coral"    cx="258" cy="132" r="4.8"/>
+        <circle class="sy-dot"          cx="478" cy="88"  r="4.0"/>
+        <circle class="sy-dot"          cx="360" cy="82"  r="2.8"/>
+      </g>
+
+      <!-- TOPOGRAPHY: mid-right -->
+      <g class="synapse-group">
+        <path class="sy-path"       d="M 258 132 C 310 175, 380 215, 465 262"/>
+        <path class="sy-path coral" d="M 478 88  C 530 130, 555 200, 465 262"/>
+        <path class="sy-path"       d="M 555 175 C 560 200, 540 230, 465 262"/>
+        <path class="sy-path coral" d="M 258 132 C 350 200, 420 240, 465 262"/>
+        <path class="sy-path"       d="M 478 88  C 470 150, 470 200, 465 262"/>
+        <path class="sy-path coral" d="M 478 88  C 555 110, 575 160, 575 200"/>
+
+        <path class="sy-pulse d1"          d="M 258 132 C 310 175, 380 215, 465 262"/>
+        <path class="sy-pulse coral d3"    d="M 478 88  C 530 130, 555 200, 465 262"/>
+        <path class="sy-pulse coral d1"    d="M 555 175 C 560 200, 540 230, 465 262"/>
+        <path class="sy-pulse coral fast d5" d="M 258 132 C 350 200, 420 240, 465 262"/>
+        <path class="sy-pulse d2"          d="M 478 88  C 470 150, 470 200, 465 262"/>
+        <path class="sy-pulse coral slow d4" d="M 478 88  C 555 110, 575 160, 575 200"/>
+
+        <circle class="sy-halo coral"    cx="465" cy="262" r="9.5"/>
+        <circle class="sy-halo f3"       cx="555" cy="175" r="5"/>
+        <circle class="sy-dot coral"     cx="465" cy="262" r="5.0"/>
+        <circle class="sy-dot"           cx="555" cy="175" r="3.0"/>
+      </g>
+
+      <!-- CHAPTERS: lower web -->
+      <g class="synapse-group">
+        <path class="sy-path"       d="M 205 312 C 260 295, 340 280, 465 262"/>
+        <path class="sy-path coral" d="M 258 132 C 220 195, 195 255, 205 312"/>
+        <path class="sy-path"       d="M 465 262 C 380 290, 290 308, 205 312"/>
+        <path class="sy-path"       d="M 205 312 C 145 295, 90  265, 60  220"/>
+        <path class="sy-path coral" d="M 380 295 C 410 285, 440 275, 465 262"/>
+
+        <path class="sy-pulse"             d="M 205 312 C 260 295, 340 280, 465 262"/>
+        <path class="sy-pulse coral d2"    d="M 258 132 C 220 195, 195 255, 205 312"/>
+        <path class="sy-pulse d3"          d="M 465 262 C 380 290, 290 308, 205 312"/>
+        <path class="sy-pulse slow d1"     d="M 205 312 C 145 295, 90  265, 60  220"/>
+        <path class="sy-pulse coral fast d2" d="M 380 295 C 410 285, 440 275, 465 262"/>
+
+        <circle class="sy-halo"          cx="205" cy="312" r="8"/>
+        <circle class="sy-halo coral f2" cx="465" cy="262" r="9"/>
+        <circle class="sy-dot"           cx="205" cy="312" r="4.4"/>
+        <circle class="sy-dot coral"     cx="465" cy="262" r="4.8"/>
+      </g>
+    </svg>
+  </div>
+
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation menu" aria-expanded="true" aria-controls="sidebar">&#x2630;</button>
   <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
   <div class="spa-shell">
@@ -114,15 +215,22 @@
       <nav class="sidebar-nav" id="sidebarNav">
         <div class="nav-section">Start</div>
         <button class="nav-item" data-page="index"><span class="nav-icon">&#x1F3E0;</span><span class="nav-label">Course Home</span></button>
+        <button class="nav-item" data-page="find-your-path"><span class="nav-icon">&#x1F5FA;&#xFE0F;</span><span class="nav-label">Suggested path</span></button>
         <button class="nav-item" data-page="onboarding-interview"><span class="nav-icon">&#x1F9ED;</span><span class="nav-label">Onboarding (7 steps)</span></button>
         <button class="nav-item" data-page="first-ai-conversation"><span class="nav-icon">&#x1F4AC;</span><span class="nav-label">Your First AI Conversation</span></button>
         <button class="nav-item" data-page="playground"><span class="nav-icon">&#x26A1;</span><span class="nav-label">AI Playground</span></button>
 
         <div class="nav-section">Set up</div>
         <button class="nav-item" data-page="setup-your-tools"><span class="nav-icon">&#x1F527;</span><span class="nav-label">Set up your tools</span></button>
+        <button class="nav-item" data-page="setup-claude-for-work"><span class="nav-icon">&#x1F91D;</span><span class="nav-label">1-on-1 personal setup</span></button>
         <button class="nav-item" data-page="prompt-basics"><span class="nav-icon">&#x270D;&#xFE0F;</span><span class="nav-label">Prompt basics</span></button>
+        <button class="nav-item" data-page="prompt-craft"><span class="nav-icon">&#x2728;</span><span class="nav-label">Advanced prompt craft</span></button>
         <button class="nav-item" data-page="connect-ai"><span class="nav-icon">&#x1F517;</span><span class="nav-label">Connect AI to template</span></button>
         <button class="nav-item" data-page="ai-profile"><span class="nav-icon">&#x1F464;</span><span class="nav-label">Your AI profile</span></button>
+
+        <div class="nav-section">Stay critical</div>
+        <button class="nav-item" data-page="quality-check"><span class="nav-icon">&#x1F50D;</span><span class="nav-label">Evaluating AI output</span></button>
+        <button class="nav-item" data-page="ai-safety"><span class="nav-icon">&#x1F512;</span><span class="nav-label">AI safety at work</span></button>
 
         <div class="nav-section">Use it</div>
         <button class="nav-item" data-page="writing-voice"><span class="nav-icon">&#x270D;&#xFE0F;</span><span class="nav-label">Writing voice</span></button>
@@ -151,6 +259,9 @@
         <button class="nav-item" data-page="life-templates"><span class="nav-icon">&#x1F373;</span><span class="nav-label">Life templates</span></button>
         <button class="nav-item" data-page="emergency-toolkit"><span class="nav-icon">&#x1F6A8;</span><span class="nav-label">Emergency toolkit</span></button>
         <button class="nav-item" data-page="your-progress"><span class="nav-icon">&#x1F4CA;</span><span class="nav-label">Your progress</span></button>
+
+        <div class="nav-section">Take it with you</div>
+        <button class="nav-item" data-page="your-operating-manual"><span class="nav-icon">&#x1F4CB;</span><span class="nav-label">Your Operating Manual</span></button>
       </nav>
     </aside>
     <main class="spa-main" id="spaMain">
@@ -163,5 +274,9 @@
   <script src="js/notion-client.js"></script>
   <script src="js/interactive-elements.js"></script>
   <script src="js/spa-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/scroll-effects.js" defer></script>
 </body>
 </html>

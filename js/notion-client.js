@@ -52,61 +52,61 @@
       '.nc-connect-btn {',
       '  display: flex; align-items: center; gap: 8px;',
       '  padding: 10px 16px; margin: 12px 16px;',
-      '  background: rgba(5, 150, 105, 0.15);',
-      '  border: 1px solid rgba(5, 150, 105, 0.3);',
-      '  border-radius: 8px; color: #34d399;',
+      '  background: rgba(245,197,66, 0.15);',
+      '  border: 1px solid rgba(245,197,66, 0.3);',
+      '  border-radius: 8px; color: #F5C542;',
       '  font-size: 0.82rem; font-weight: 600;',
       '  cursor: pointer; transition: all 0.2s;',
       '  font-family: inherit; width: calc(100% - 32px);',
       '}',
       '.nc-connect-btn:hover {',
-      '  background: rgba(5, 150, 105, 0.25);',
-      '  border-color: #059669;',
+      '  background: rgba(245,197,66, 0.25);',
+      '  border-color: #F5C542;',
       '}',
       '.nc-user-badge {',
       '  display: flex; align-items: center; gap: 8px;',
       '  padding: 10px 16px; margin: 12px 16px;',
-      '  background: rgba(168, 85, 247, 0.1);',
-      '  border: 1px solid rgba(168, 85, 247, 0.2);',
+      '  background: rgba(245,197,66, 0.1);',
+      '  border: 1px solid rgba(245,197,66, 0.2);',
       '  border-radius: 8px; font-size: 0.8rem;',
       '  color: rgba(255,255,255,0.7);',
       '}',
       '.nc-user-badge img {',
       '  width: 24px; height: 24px; border-radius: 50%;',
       '}',
-      '.nc-user-name { font-weight: 600; color: #c4b5fd; }',
+      '.nc-user-name { font-weight: 600; color: #F5C542; }',
       '.nc-logout { color: rgba(255,255,255,0.4); cursor: pointer; margin-left: auto; font-size: 0.7rem; }',
       '.nc-logout:hover { color: rgba(255,255,255,0.7); }',
       '.nav-check {',
-      '  margin-left: auto; font-size: 0.75rem; color: #34d399;',
+      '  margin-left: auto; font-size: 0.75rem; color: #F5C542;',
       '  opacity: 0; transition: opacity 0.3s;',
       '}',
       '.nav-item.nc-completed .nav-check { opacity: 1; }',
       '.nc-completion-badge {',
       '  display: inline-flex; align-items: center; gap: 4px;',
       '  padding: 2px 10px; border-radius: 100px;',
-      '  background: rgba(5, 150, 105, 0.15);',
-      '  border: 1px solid rgba(5, 150, 105, 0.3);',
-      '  color: #34d399; font-size: 0.7rem; font-weight: 600;',
+      '  background: rgba(245,197,66, 0.15);',
+      '  border: 1px solid rgba(245,197,66, 0.3);',
+      '  color: #F5C542; font-size: 0.7rem; font-weight: 600;',
       '  margin-left: 8px; letter-spacing: 0.03em;',
       '}',
       '.nc-progress-card {',
       '  background: rgba(10, 10, 20, 0.85);',
-      '  border: 1px solid rgba(168, 85, 247, 0.2);',
+      '  border: 1px solid rgba(245,197,66, 0.2);',
       '  border-radius: 10px; padding: 1.25rem;',
       '  margin-bottom: 1rem;',
       '}',
       '.nc-progress-bar {',
-      '  width: 100%; height: 8px; background: rgba(168, 85, 247, 0.15);',
+      '  width: 100%; height: 8px; background: rgba(245,197,66, 0.15);',
       '  border-radius: 4px; overflow: hidden; margin: 8px 0;',
       '}',
       '.nc-progress-fill {',
       '  height: 100%; border-radius: 4px;',
-      '  background: linear-gradient(90deg, #059669, #34d399);',
+      '  background: linear-gradient(90deg, #F5C542, #F5C542);',
       '  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);',
       '}',
       '.nc-stat { display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 4px 0; }',
-      '.nc-stat-value { color: #F8F8FC; font-weight: 600; }',
+      '.nc-stat-value { color: #F5EADC; font-weight: 600; }',
     ].join('\n');
     document.head.appendChild(style);
   }
@@ -175,7 +175,7 @@
 
       var area = document.createElement('div');
       area.className = 'nc-auth-area';
-      area.style.cssText = 'margin-top: auto; border-top: 1px solid rgba(168,85,247,0.1); padding-top: 4px;';
+      area.style.cssText = 'margin-top: auto; border-top: 1px solid rgba(245,197,66,0.1); padding-top: 4px;';
 
       if (NC.isAuthenticated && NC.user) {
         var badge = document.createElement('div');
@@ -360,7 +360,7 @@
           var lessons = stats.lessons || { total: 0, completed: 0 };
           var pct = lessons.total > 0 ? Math.round((lessons.completed / lessons.total) * 100) : 0;
 
-          card.appendChild(textEl('h3', 'Your Progress', 'color:#c4b5fd;margin:0 0 8px;font-size:1rem'));
+          card.appendChild(textEl('h3', 'Your Progress', 'color:#F5C542;margin:0 0 8px;font-size:1rem'));
 
           var barOuter = document.createElement('div');
           barOuter.className = 'nc-progress-bar';
@@ -374,7 +374,7 @@
             var row = document.createElement('div');
             row.className = 'nc-stat';
             row.appendChild(textEl('span', label));
-            row.appendChild(textEl('span', value, 'color:#F8F8FC;font-weight:600'));
+            row.appendChild(textEl('span', value, 'color:#F5EADC;font-weight:600'));
             row.lastChild.className = 'nc-stat-value';
             card.appendChild(row);
           }

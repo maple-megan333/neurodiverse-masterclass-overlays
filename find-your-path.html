@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suggested Learning Path &mdash; Neurodiverse AI MasterClass</title>
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/brain-header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    .path-wrap{max-width:880px;margin:0 auto;padding:32px 0 64px}
+
+    .path-intro h2{
+      margin:0 0 10px !important;border:0 !important;background:transparent !important;
+      padding:0 !important;font-family:var(--font-display);
+      font-size:1.55rem !important;font-weight:400 !important;
+      letter-spacing:-.015em;color:var(--text) !important;line-height:1.25;
+      font-variation-settings:"opsz" 72;
+    }
+    .path-intro h2::before{display:none !important}
+    .path-intro p{font-size:1rem;color:var(--text-mid);max-width:60ch;margin:0 0 18px;line-height:1.55}
+
+    .path-pills{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 26px}
+    .path-pills .pill{
+      font-family:var(--font-label);font-size:.72rem;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--text-dim);
+      background:var(--bg-elev);border:1px solid var(--border);
+      border-radius:99px;padding:6px 12px;
+    }
+
+    /* Phase rail — vertical timeline */
+    .phase-rail{position:relative;margin:18px 0 0;padding-left:38px}
+    .phase-rail::before{
+      content:"";position:absolute;left:14px;top:18px;bottom:18px;width:2px;
+      background:linear-gradient(180deg,
+        var(--gold) 0%,
+        var(--accent) 50%,
+        var(--accent2) 100%);
+      opacity:.5;border-radius:2px;
+    }
+
+    .phase{
+      position:relative;margin:0 0 22px;
+      padding:22px 24px;background:var(--bg-elev);
+      border:1px solid var(--border);border-radius:var(--radius);
+      transition:border-color .25s var(--ease-out),background .25s var(--ease-out),
+                 transform .25s var(--ease-out),box-shadow .25s var(--ease-out);
+    }
+    .phase:hover{border-color:var(--border-hover);background:var(--bg-elev-2);
+      box-shadow:0 10px 28px rgba(0,0,0,.3)}
+    .phase::before{
+      content:attr(data-num);position:absolute;left:-38px;top:18px;
+      width:30px;height:30px;border-radius:50%;
+      background:var(--bg);border:2px solid var(--gold);
+      color:var(--gold);display:flex;align-items:center;justify-content:center;
+      font-family:var(--font-display);font-weight:600;font-size:.92rem;
+      font-variation-settings:"opsz" 48;z-index:2;
+    }
+    .phase.p1::before{border-color:var(--gold);color:var(--gold)}
+    .phase.p2::before{border-color:var(--accent2);color:hsla(8, 88%, 78%, 1)}
+    .phase.p3::before{border-color:var(--gold);color:var(--gold)}
+    .phase.p4::before{border-color:var(--accent2);color:hsla(8, 88%, 78%, 1)}
+    .phase.p5::before{border-color:var(--gold);color:var(--gold)}
+
+    .phase-tag{
+      font-family:var(--font-label);font-size:.66rem;letter-spacing:.16em;
+      text-transform:uppercase;font-weight:600;
+      color:var(--gold);margin:0 0 6px;display:flex;
+      align-items:center;gap:10px;flex-wrap:wrap;
+    }
+    .phase-tag .energy{
+      font-family:var(--font-display);font-style:italic;font-weight:400;
+      letter-spacing:.01em;text-transform:none;font-size:.78rem;
+      color:var(--text-dim);font-variation-settings:"opsz" 9;
+    }
+    .phase-title{
+      font-family:var(--font-display);font-weight:500;font-size:1.32rem;
+      color:var(--text);margin:0 0 10px;line-height:1.22;
+      letter-spacing:-.015em;font-variation-settings:"opsz" 48;
+    }
+    .phase-desc{font-size:.95rem;color:var(--text-mid);line-height:1.55;margin:0 0 14px}
+
+    .phase-lessons{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:14px 0 0}
+    .phase-lesson{
+      display:flex;align-items:flex-start;gap:10px;padding:12px 14px;
+      background:var(--bg);border:1px solid var(--border);
+      border-radius:var(--radius-sm);text-decoration:none;color:var(--text);
+      transition:border-color .2s,background .2s,transform .2s;
+    }
+    .phase-lesson:hover{border-color:var(--gold-glow);background:var(--bg-elev-2);transform:translateY(-1px)}
+    .phase-lesson .pl-icon{font-size:1rem;opacity:.85;flex-shrink:0;margin-top:1px}
+    .phase-lesson .pl-body{flex:1;min-width:0}
+    .phase-lesson .pl-title{
+      font-family:var(--font-display);font-weight:500;font-size:.92rem;
+      color:var(--text);margin:0 0 2px;line-height:1.3;letter-spacing:-.005em;
+      font-variation-settings:"opsz" 48;
+    }
+    .phase-lesson .pl-meta{font-size:.74rem;color:var(--text-dim);line-height:1.4;margin:0}
+
+    /* Reassurance card */
+    .reassurance{
+      margin:30px 0 0;padding:22px 24px;
+      background:var(--bg-elev);border:1px solid var(--border);
+      border-left:2px solid var(--accent);border-radius:var(--radius);
+    }
+    .reassurance h3{
+      margin:0 0 8px !important;font-family:var(--font-display);
+      font-size:1.1rem;font-weight:500;color:var(--text);
+      letter-spacing:-.01em;font-variation-settings:"opsz" 48;
+    }
+    .reassurance h3::before{display:none !important}
+    .reassurance p{font-size:.92rem;color:var(--text-mid);line-height:1.55;margin:0 0 8px}
+    .reassurance p:last-child{margin:0}
+
+    /* Entry points — three doors */
+    .doors{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 0}
+    @media(max-width:640px){.doors{grid-template-columns:1fr}}
+    .door{
+      padding:18px;background:var(--bg-elev);
+      border:1px solid var(--border);border-radius:var(--radius-sm);
+      text-decoration:none;color:var(--text);display:block;
+      transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;
+    }
+    .door:hover{border-color:var(--gold-glow);background:var(--bg-elev-2);
+      transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.3)}
+    .door .door-eyebrow{
+      font-family:var(--font-label);font-size:.66rem;letter-spacing:.16em;
+      color:var(--gold);text-transform:uppercase;font-weight:600;
+      display:inline-block;margin:0 0 6px;
+    }
+    .door .door-title{
+      font-family:var(--font-display);font-weight:500;font-size:1rem;
+      color:var(--text);margin:0 0 4px;line-height:1.25;letter-spacing:-.01em;
+      font-variation-settings:"opsz" 48;
+    }
+    .door .door-desc{font-size:.8rem;color:var(--text-mid);line-height:1.5;margin:0}
+
+    .path-foot{
+      font-family:var(--font-display);font-style:italic;
+      font-size:.88rem;color:var(--text-dim);margin:32px 0 0;
+      padding:16px 0;border-top:1px solid var(--border);line-height:1.5;
+      font-variation-settings:"opsz" 9;
+    }
+    .path-foot a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-glow);
+      transition:color .2s,border-color .2s}
+    .path-foot a:hover{color:var(--text);border-bottom-color:var(--gold)}
+  </style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header brain-header--hub" id="brainHeader">
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill">SUGGESTED PATH</span>
+      <h1>A <em>path</em> through the course</h1>
+      <p class="tagline">Five phases. Suggested, not required. Skip what you already know.</p>
+    </div>
+  </div>
+</div>
+
+<main class="page path-wrap" id="main-content">
+
+  <nav class="nav-bar" aria-label="Page navigation">
+    <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+  </nav>
+
+  <section class="path-intro">
+    <h2>The shortest route, if you want one.</h2>
+    <p>You don&rsquo;t have to follow this. The course works in any order. But if your brain wants a map &mdash; here&rsquo;s the route that gets most people to a working AI setup in the fewest steps.</p>
+    <div class="path-pills">
+      <span class="pill">5 phases</span>
+      <span class="pill">~3 hours total, spread out</span>
+      <span class="pill">Stop anywhere</span>
+      <span class="pill">Mix &amp; match</span>
+    </div>
+  </section>
+
+  <div class="doors">
+    <a href="playground.html" class="door">
+      <span class="door-eyebrow">If low energy</span>
+      <p class="door-title">Start at the playground</p>
+      <p class="door-desc">Copy one prompt. See what AI does. 5 minutes.</p>
+    </a>
+    <a href="onboarding-interview.html" class="door">
+      <span class="door-eyebrow">If you want guidance</span>
+      <p class="door-title">Do the onboarding</p>
+      <p class="door-desc">7 short questions. Course adapts to you.</p>
+    </a>
+    <a href="find-your-level.html" class="door">
+      <span class="door-eyebrow">If unsure</span>
+      <p class="door-title">Find your level</p>
+      <p class="door-desc">2 min quiz, suggests a starting lesson.</p>
+    </a>
+  </div>
+
+  <div class="phase-rail" role="list" aria-label="Suggested 5-phase path">
+
+    <article class="phase p1" data-num="1" role="listitem">
+      <p class="phase-tag">Phase 1 &middot; Orient <span class="energy">10&ndash;15 min &middot; any energy</span></p>
+      <h3 class="phase-title">Get your bearings.</h3>
+      <p class="phase-desc">Skip if you already know what you want from AI. Otherwise: the onboarding interview maps how your brain works with AI &mdash; what energy you have, what tools fit, what to skip. The course adapts to your answers.</p>
+      <div class="phase-lessons">
+        <a href="onboarding-interview.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F9ED;</span>
+          <div class="pl-body">
+            <p class="pl-title">Onboarding interview</p>
+            <p class="pl-meta">7 phases &middot; saves to your profile</p>
+          </div>
+        </a>
+        <a href="find-your-level.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F4CD;</span>
+          <div class="pl-body">
+            <p class="pl-title">Find your level</p>
+            <p class="pl-meta">Skip ahead if you&rsquo;re not new</p>
+          </div>
+        </a>
+      </div>
+    </article>
+
+    <article class="phase p2" data-num="2" role="listitem">
+      <p class="phase-tag">Phase 2 &middot; First conversation <span class="energy">15 min &middot; any energy</span></p>
+      <h3 class="phase-title">Talk to AI on purpose.</h3>
+      <p class="phase-desc">Open Claude, ask one thing, notice how it thinks. Then the prompt framework that makes everything else easier. Two short lessons. After this, you can use AI for real work, even imperfectly.</p>
+      <div class="phase-lessons">
+        <a href="first-ai-conversation.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F4AC;</span>
+          <div class="pl-body">
+            <p class="pl-title">Your first AI conversation</p>
+            <p class="pl-meta">10 min &middot; one open-ended question</p>
+          </div>
+        </a>
+        <a href="prompt-basics.html" class="phase-lesson">
+          <span class="pl-icon">&#x270D;&#xFE0F;</span>
+          <div class="pl-body">
+            <p class="pl-title">Prompt basics</p>
+            <p class="pl-meta">15 min &middot; 4-element framework</p>
+          </div>
+        </a>
+      </div>
+    </article>
+
+    <article class="phase p3" data-num="3" role="listitem">
+      <p class="phase-tag">Phase 3 &middot; Build your toolkit <span class="energy">30&ndash;45 min &middot; focus required</span></p>
+      <h3 class="phase-title">Set up so future-you doesn&rsquo;t have to.</h3>
+      <p class="phase-desc">The boring infrastructure that pays off later: accounts, memory turned on, a primary tool chosen on purpose. Then your AI profile &mdash; a living manual that means you never re-explain yourself. Low-energy version: do setup-your-tools and stop there.</p>
+      <div class="phase-lessons">
+        <a href="setup-your-tools.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F527;</span>
+          <div class="pl-body">
+            <p class="pl-title">Set up your tools</p>
+            <p class="pl-meta">Accounts, memory, primary AI</p>
+          </div>
+        </a>
+        <a href="ai-profile.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F464;</span>
+          <div class="pl-body">
+            <p class="pl-title">Your AI profile</p>
+            <p class="pl-meta">Living manual, fills from onboarding</p>
+          </div>
+        </a>
+        <a href="prompt-craft.html" class="phase-lesson">
+          <span class="pl-icon">&#x2728;</span>
+          <div class="pl-body">
+            <p class="pl-title">Advanced prompt craft</p>
+            <p class="pl-meta">Few-shot, chain-of-thought, iteration</p>
+          </div>
+        </a>
+      </div>
+    </article>
+
+    <article class="phase p4" data-num="4" role="listitem">
+      <p class="phase-tag">Phase 4 &middot; Go deeper <span class="energy">45&ndash;90 min &middot; focus required</span></p>
+      <h3 class="phase-title">Stay critical, stay safe.</h3>
+      <p class="phase-desc">AI is convincing even when it&rsquo;s wrong. This phase teaches you to spot bad output, and to handle work data without leaking it. Both short. Both protect you from the most common ways AI use goes sideways.</p>
+      <div class="phase-lessons">
+        <a href="quality-check.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F50D;</span>
+          <div class="pl-body">
+            <p class="pl-title">Evaluating AI output</p>
+            <p class="pl-meta">Trust but verify, spot hallucinations</p>
+          </div>
+        </a>
+        <a href="ai-safety.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F512;</span>
+          <div class="pl-body">
+            <p class="pl-title">AI safety &amp; trust at work</p>
+            <p class="pl-meta">What not to share, personal policy</p>
+          </div>
+        </a>
+        <a href="writing-voice.html" class="phase-lesson">
+          <span class="pl-icon">&#x270D;&#xFE0F;</span>
+          <div class="pl-body">
+            <p class="pl-title">Writing voice</p>
+            <p class="pl-meta">Calibrate so AI writes like you</p>
+          </div>
+        </a>
+      </div>
+    </article>
+
+    <article class="phase p5" data-num="5" role="listitem">
+      <p class="phase-tag">Phase 5 &middot; Make it yours <span class="energy">open-ended &middot; pick what fits</span></p>
+      <h3 class="phase-title">Apply to your real life.</h3>
+      <p class="phase-desc">Pick one use case that matters to you this week &mdash; work email, research, creative ideation, life admin. Build one workflow. Save the prompts that work. Come back for more when you have energy. The advanced tracks (multi-AI, MCP, RAG, councils) are here if you ever want them.</p>
+      <div class="phase-lessons">
+        <a href="work-productivity.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F4BC;</span>
+          <div class="pl-body">
+            <p class="pl-title">Work &amp; productivity</p>
+            <p class="pl-meta">Email, meetings, reports</p>
+          </div>
+        </a>
+        <a href="research-analysis.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F50D;</span>
+          <div class="pl-body">
+            <p class="pl-title">Research &amp; analysis</p>
+            <p class="pl-meta">Read less, learn more</p>
+          </div>
+        </a>
+        <a href="creative-projects.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F3A8;</span>
+          <div class="pl-body">
+            <p class="pl-title">Creative projects</p>
+            <p class="pl-meta">Brainstorm partner mode</p>
+          </div>
+        </a>
+        <a href="life-management.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F3E0;</span>
+          <div class="pl-body">
+            <p class="pl-title">Life management</p>
+            <p class="pl-meta">Boring wins, routines</p>
+          </div>
+        </a>
+        <a href="emergency-toolkit.html" class="phase-lesson">
+          <span class="pl-icon">&#x1F6A8;</span>
+          <div class="pl-body">
+            <p class="pl-title">Emergency toolkit</p>
+            <p class="pl-meta">Bookmark for offline-brain days</p>
+          </div>
+        </a>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="reassurance">
+    <h3>A few things to remember</h3>
+    <p><strong>Skip freely.</strong> If a phase isn&rsquo;t for you, scroll past. If you bounce off a lesson, that&rsquo;s data &mdash; it&rsquo;s not the right one for now.</p>
+    <p><strong>Energy &gt; order.</strong> A low-energy day on Phase 1 beats a Phase 4 lesson you&rsquo;ll forget. Match what you do to what you&rsquo;ve got.</p>
+    <p><strong>Your pace is the right pace.</strong> Most people do this over weeks, not days. There&rsquo;s no clock.</p>
+  </section>
+
+  <p class="path-foot">
+    Want a different on-ramp? Try <a href="find-your-level.html">find your level</a> for a 2-minute quiz that suggests a starting point, or jump straight to the <a href="reference-library.html">reference library</a> if you already know what you&rsquo;re looking for.
+  </p>
+
+  <nav class="nav-footer" aria-label="Workshop navigation">
+    <a href="index.html" class="nav-link prev"><small>&larr; Previous</small>Course Home</a>
+    <a href="first-ai-conversation.html" class="nav-link next"><small>Next &rarr;</small>Your First AI Conversation</a>
+  </nav>
+
+</main>
+
+<script src="js/store.js"></script>
+<script src="js/motion-toggle.js"></script>
+<script>
+/* Particles — skip when reduced motion */
+(function () {
+  'use strict';
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var particlesContainer = document.querySelector('.particles');
+  if (particlesContainer && !reducedMotion) {
+    for (var i = 0; i < 25; i++) {
+      var particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.setProperty('--op', 0.3 + Math.random() * 0.7);
+      particle.style.setProperty('--drift', (20 + Math.random() * 80) + 'px');
+      particle.style.left = (Math.random() * 100) + '%';
+      particle.style.top = (Math.random() * 100) + '%';
+      particle.style.animationDuration = (10 + Math.random() * 15) + 's';
+      particle.style.animationDelay = (Math.random() * 5) + 's';
+      particlesContainer.appendChild(particle);
+    }
+  }
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@latest/dist/lenis.min.js"></script>
+<script src="js/scroll-effects.js"></script>
+</body>
+</html>

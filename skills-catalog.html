@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* Catalog-specific styles */
 .skill-card {
@@ -34,14 +35,14 @@
   letter-spacing: 0.04em; text-transform: uppercase;
   white-space: nowrap;
 }
-.tag-reference{ background: rgba(168,85,247,0.15); color: var(--text-accent); border: 1px solid rgba(168,85,247,0.3); }
-.tag-community{ background: rgba(96,165,250,0.15); color: var(--blue-title); border: 1px solid rgba(96,165,250,0.3); }
-.tag-official { background: rgba(52,211,153,0.15); color: var(--green-title); border: 1px solid rgba(52,211,153,0.3); }
+.tag-reference{ background: rgba(245,197,66,0.15); color: var(--text-accent); border: 1px solid rgba(245,197,66,0.3); }
+.tag-community{ background: rgba(245,197,66,0.15); color: var(--blue-title); border: 1px solid rgba(245,197,66,0.3); }
+.tag-official { background: rgba(245,197,66,0.15); color: var(--green-title); border: 1px solid rgba(245,197,66,0.3); }
 .tag-bundled  { background: rgba(245,197,66,0.15); color: var(--gold); border: 1px solid rgba(245,197,66,0.3); }
-.tag-energy-low    { background: rgba(52,211,153,0.12); color: var(--green-title); }
-.tag-energy-medium { background: rgba(96,165,250,0.12); color: var(--blue-title); }
-.tag-energy-high   { background: rgba(248,113,113,0.12); color: var(--red-title); }
-.tag-nd { background: rgba(168,85,247,0.12); color: var(--text-accent); }
+.tag-energy-low    { background: rgba(245,197,66,0.12); color: var(--green-title); }
+.tag-energy-medium { background: rgba(245,197,66,0.12); color: var(--blue-title); }
+.tag-energy-high   { background: rgba(255,107,107,0.12); color: var(--red-title); }
+.tag-nd { background: rgba(245,197,66,0.12); color: var(--text-accent); }
 .skill-desc { color: var(--text-mid); font-size: 0.92rem; line-height: 1.5; margin: 0.3rem 0 0.5rem; }
 .skill-trigger {
   font-size: 0.8rem; color: var(--text-dim);
@@ -86,7 +87,7 @@ details.category {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   margin-bottom: 1.25rem;
-  background: rgba(255,255,255,0.015);
+  background: rgba(245,234,220,0.015);
 }
 details.category[open] { border-color: var(--border-hover); }
 details.category > summary {
@@ -128,10 +129,9 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">CATALOG</span>
+      <span class="pill">CATALOG</span>
       <h1>Skills Catalog</h1>
       <p class="tagline">A curated library of the best Claude skills for life and work.</p>
     </div>
@@ -143,7 +143,7 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
   <span class="phase-indicator" aria-label="Resources"><span class="phase-num">Resources</span></span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> None — browse, search, or jump to a category. <strong>Time:</strong> 5-30 min. <strong>Energy:</strong> Any.</div>
 </div>
 
@@ -151,11 +151,11 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 
 <div class="callout callout-yellow"><span class="callout-icon">🏷️</span><div class="callout-title">Reading the tags</div><div>
 <strong style="color:var(--text-accent)">🧪 REFERENCE</strong> — example of a custom skill the workshop creator built. Use it as a template for writing your own; not directly installable.<br>
-<strong style="color:var(--blue-title)">🌐 COMMUNITY</strong> — public GitHub skill, vetted and recommended. Click the GitHub link to install.<br>
-<strong style="color:var(--green-title)">✅ OFFICIAL</strong> — Anthropic-maintained, security-reviewed. Install via <code>/plugin install</code>.<br>
-<strong style="color:var(--gold)">📦 BUNDLED</strong> — shipped with this workshop, downloadable from the Reference Library.<br>
+<strong class="t-blue">🌐 COMMUNITY</strong> — public GitHub skill, vetted and recommended. Click the GitHub link to install.<br>
+<strong class="t-green">✅ OFFICIAL</strong> — Anthropic-maintained, security-reviewed. Install via <code>/plugin install</code>.<br>
+<strong class="t-gold">📦 BUNDLED</strong> — shipped with this workshop, downloadable from the Reference Library.<br>
 <strong>🌱</strong> ND-friendly — energy-aware, scope-bounded, shame-language-free.<br>
-<strong style="color:var(--green-title)">Low</strong> / <strong style="color:var(--blue-title)">Medium</strong> / <strong style="color:var(--red-title)">High</strong> — energy needed to actually use the skill productively.
+<strong class="t-green">Low</strong> / <strong class="t-blue">Medium</strong> / <strong class="t-red">High</strong> — energy needed to actually use the skill productively.
 </div></div>
 
 <div class="callout callout-purple"><span class="callout-icon">🚀</span><div class="callout-title">Looking for deeper context?</div><div>Skills are the atomic unit. For the full picture of how skills fit with plugins, MCP servers, and agents — and how to use multi-AI / RAG / councils — see the four <strong>Advanced Tracks</strong>:
@@ -925,30 +925,30 @@ details.category > div { padding: 0 1.25rem 1.25rem; }
 
 <div class="callout callout-red"><span class="callout-icon">⚠️</span><div class="callout-title">Why this list exists</div><div>The Claude skill ecosystem has thousands of options. Star count is not a security signal. These skills are popular but have real risks — install them only if you fully understand the trade-offs.</div></div>
 
-<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card" style="border-color: rgba(255,107,107,0.3);">
 <div class="skill-card-head">
 <span class="skill-card-name">asklokesh/loki-mode</span>
 <a href="https://github.com/asklokesh/loki-mode" class="skill-link">↗ GitHub</a>
 </div>
-<div class="skill-desc"><strong style="color:var(--red-title)">Avoid.</strong> Requires <code>--dangerously-skip-permissions</code>. 37 autonomous agents with unrestricted file write, code execution, and network access. The same security pattern that caused 2 skills to be deleted from this catalog's source library — at 37× the blast radius.</div>
+<div class="skill-desc"><strong class="t-red">Avoid.</strong> Requires <code>--dangerously-skip-permissions</code>. 37 autonomous agents with unrestricted file write, code execution, and network access. The same security pattern that caused 2 skills to be deleted from this catalog's source library — at 37× the blast radius.</div>
 </div>
 
-<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card" style="border-color: rgba(255,107,107,0.3);">
 <div class="skill-card-head">
 <span class="skill-card-name">prshahbs/healthcare-claude-skills</span>
 <a href="https://github.com/prshahbs/healthcare-claude-skills" class="skill-link">↗ GitHub</a>
 </div>
-<div class="skill-desc"><strong style="color:var(--red-title)">Avoid.</strong> Quality score 62/100 with documented data validation failures (invalid ICD codes accepted, extreme vital sign readings passing as valid). Healthcare misinformation from a low-quality source is a genuine harm category.</div>
+<div class="skill-desc"><strong class="t-red">Avoid.</strong> Quality score 62/100 with documented data validation failures (invalid ICD codes accepted, extreme vital sign readings passing as valid). Healthcare misinformation from a low-quality source is a genuine harm category.</div>
 </div>
 
-<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card" style="border-color: rgba(255,107,107,0.3);">
 <div class="skill-card-head">
 <span class="skill-card-name">Any "curl … | bash" install pattern</span>
 </div>
-<div class="skill-desc"><strong style="color:var(--red-title)">Avoid.</strong> Cato Networks 2025 research confirmed Claude skills can be weaponized as malware delivery via this exact pattern — a "productivity" skill with a hidden payload in the install script. Always read the SKILL.md content directly on GitHub before cloning. Never pipe to bash blindly.</div>
+<div class="skill-desc"><strong class="t-red">Avoid.</strong> Cato Networks 2025 research confirmed Claude skills can be weaponized as malware delivery via this exact pattern — a "productivity" skill with a hidden payload in the install script. Always read the SKILL.md content directly on GitHub before cloning. Never pipe to bash blindly.</div>
 </div>
 
-<div class="skill-card" style="border-color: rgba(248,113,113,0.3);">
+<div class="skill-card" style="border-color: rgba(255,107,107,0.3);">
 <div class="skill-card-head">
 <span class="skill-card-name">hesreallyhim/awesome-claude-code</span>
 <a href="https://github.com/hesreallyhim/awesome-claude-code" class="skill-link">↗ GitHub (42.8k★)</a>
@@ -983,7 +983,7 @@ Inside Claude Code, run <code>/plugin marketplace add anthropics/skills</code> o
 </ol>
 </div></div>
 
-<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-purple">
   <div><strong>One thing to remember:</strong> Install ONE new skill this week. Use it 3 times. Decide if it stays.</div>
 </div>
 
@@ -993,7 +993,6 @@ Inside Claude Code, run <code>/plugin marketplace add anthropics/skills</code> o
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

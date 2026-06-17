@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluating AI Output &mdash; Neurodiverse AI MasterClass</title>
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/brain-header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill">DEEPER</span>
+      <h1>Evaluating AI Output</h1>
+      <p class="tagline">Trust but verify. How to know when AI is confidently wrong.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper" id="main-content">
+  <nav class="nav-bar" aria-label="Page navigation">
+    <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+    <span class="phase-indicator phase-deepen" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 4</span> &middot; Stay critical</span>
+  </nav>
+
+  <div class="callout callout-purple">
+    <div class="callout-content">
+      <div class="callout-title">&#x23F1; Time &amp; Energy</div>
+      <div class="callout-text"><strong>12&ndash;15 min</strong> &middot; any energy &middot; You&rsquo;ll need: a recent AI output you want to sanity-check</div>
+    </div>
+  </div>
+
+  <blockquote><strong>The core problem:</strong> AI writes fluent, confident sentences whether it knows the answer or not. There&rsquo;s no visible difference between &ldquo;correct&rdquo; and &ldquo;completely made up.&rdquo; Your job is to read with suspicion when it counts.</blockquote>
+
+  <hr>
+
+  <h2>The trust-but-verify framework</h2>
+
+  <div class="columns columns-2">
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F52C; Why this works</div>
+        <div class="callout-text">Large language models hallucinate &mdash; produce confident, plausible, false statements &mdash; in 3-27% of factual claims, depending on domain (<a href="https://arxiv.org/abs/2311.05232">Huang et al., 2023</a>). Verification offloads the &ldquo;is this true&rdquo; check to a system, not your memory.</div>
+      </div>
+    </div>
+    <div class="callout callout-gray">
+      <div class="callout-content">
+        <div class="callout-title">&#x2601;&#xFE0F; Low energy version</div>
+        <div class="callout-text">Just ask one question of every output: <em>&ldquo;What would make this wrong?&rdquo;</em> If you can&rsquo;t answer, you can&rsquo;t verify it. Slow down or use a different source.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The framework is three questions, in this order:</p>
+
+  <div class="callout callout-blue">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F4D8; The three checks</div>
+      <table>
+        <tr><th>Step</th><th>Question</th><th>If yes&hellip;</th></tr>
+        <tr><td><strong>1. Stakes</strong></td><td>Does being wrong here cost me real time, money, or trust?</td><td>Verify before using. If no, skip the rest.</td></tr>
+        <tr><td><strong>2. Source</strong></td><td>Could this fact be checked in a known place I trust?</td><td>Check that one place. Don&rsquo;t trust AI for the answer.</td></tr>
+        <tr><td><strong>3. Pattern</strong></td><td>Does the output match patterns I know are usually true?</td><td>Lower confidence, but still verify the specific claim.</td></tr>
+      </table>
+      <div class="callout-text" style="margin-top:1rem"><strong>The most important step is #1.</strong> Most AI use is low-stakes &mdash; brainstorming, drafting, summaries. Save your scrutiny budget for the high-stakes outputs.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>The seven red flags</h2>
+
+  <p>Run through these when stakes are high. If you spot two or more in one output, treat it as a draft, not an answer.</p>
+
+  <div class="columns columns-2">
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F6A9; 1. Confident-sounding nonsense</div>
+        <div class="callout-text">Authoritative tone with no caveats on a topic where any expert would hedge. Real experts say &ldquo;it depends&rdquo; a lot. AI rarely does unless you ask.</div>
+      </div>
+    </div>
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F6A9; 2. Invented citations</div>
+        <div class="callout-text">Specific authors, dates, journals, or URLs that look perfect. AI invents convincing-looking sources constantly. <strong>Always click the link.</strong> If it 404s, the source is fake.</div>
+      </div>
+    </div>
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F6A9; 3. Circular reasoning</div>
+        <div class="callout-text">&ldquo;X is true because it&rsquo;s widely accepted that X.&rdquo; Watch for &ldquo;research shows&rdquo; or &ldquo;experts agree&rdquo; with no specific researchers, no specific findings.</div>
+      </div>
+    </div>
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F6A9; 4. Numbers that match too neatly</div>
+        <div class="callout-text">Round, satisfying percentages (&ldquo;70% of users&hellip;&rdquo;) with no source. Real stats are uglier. Specific-looking precision with no citation is a red flag.</div>
+      </div>
+    </div>
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F6A9; 5. Anachronisms</div>
+        <div class="callout-text">References to versions, products, or events from after the model&rsquo;s training cutoff. If it confidently describes something that just shipped, double-check &mdash; it might be guessing.</div>
+      </div>
+    </div>
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F6A9; 6. &ldquo;According to&rdquo; without details</div>
+        <div class="callout-text">&ldquo;According to a 2022 study&rdquo; with no journal, no authors, no link. If AI doesn&rsquo;t name the study, it probably doesn&rsquo;t know one exists.</div>
+      </div>
+    </div>
+    <div class="callout callout-yellow">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F6A9; 7. Hedging in the wrong direction</div>
+        <div class="callout-text">AI hedges on simple facts (&ldquo;the capital might be&hellip;&rdquo;) and asserts on hard ones (&ldquo;the optimal architecture is&hellip;&rdquo;). When the confidence-level feels mismatched to the question, get suspicious.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>The 60-second checklist</h2>
+
+  <p>For a busy worker. Stick this on a tab. Run it when stakes are real.</p>
+
+  <div class="callout callout-green">
+    <div class="callout-content">
+      <div class="callout-title">&#x2705; Before I send/use this output</div>
+      <ol>
+        <li><strong>Stakes check.</strong> Will being wrong cost me anything? If no, ship it.</li>
+        <li><strong>Specific facts.</strong> Underline names, dates, numbers, URLs. Verify each one externally.</li>
+        <li><strong>Click every link.</strong> Fake URLs are the #1 hallucination. Real links resolve.</li>
+        <li><strong>Read it aloud.</strong> Hallucinations often have a fluent-but-empty quality your ear catches faster than your eye.</li>
+        <li><strong>Ask &ldquo;how would I know?&rdquo;</strong> For each major claim &mdash; what would I need to see to believe it? Can I see that?</li>
+        <li><strong>One human check.</strong> For high-stakes work, run it past one person who&rsquo;d know.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <div class="callout-content">
+      <div class="callout-title">&#x2B50; What good looks like</div>
+      <div class="callout-text">You can defend every specific claim in the output. Not because AI said it &mdash; because you checked, or because the stakes are low enough that you don&rsquo;t need to.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>The verify-with-AI trick</h2>
+
+  <p>You can use AI to verify AI. It&rsquo;s not foolproof, but it catches obvious problems.</p>
+
+  <div class="callout callout-green">
+    <div class="callout-content">
+      <div class="callout-title">&#x270F;&#xFE0F; Red-team your own output</div>
+<pre><span class="code-label">Verify prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy verify prompt template to clipboard">Copy</button><code>I'm going to paste an answer from another AI. Your job is to red-team it.
+
+Tell me:
+  1. What specific claims are factually checkable?
+  2. Which claims sound confident but might be wrong?
+  3. Are any cited sources, names, or dates suspicious?
+  4. What's missing that should be there?
+  5. If you had to bet $100 something here is wrong, what would you bet on?
+
+Be specific. Don't be polite. Don't summarize.
+
+Here's the output to red-team:
+
+[PASTE THE OUTPUT]</code></pre>
+      <div class="callout-text" style="margin-top:1rem">Use a <em>different</em> model than the one that generated the original. Two different models hallucinating the same wrong fact is much less likely than one.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-blue">
+    <div class="callout-content">
+      <div class="callout-title">&#x1F4D8; When to skip all this</div>
+      <div class="callout-text"><strong>Skip verification when:</strong> brainstorming, free-writing, drafting something you&rsquo;ll heavily edit, learning a topic (where you&rsquo;ll Google anyway), or formatting/styling existing content. Verification is for facts that&rsquo;ll be acted on.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="columns columns-2">
+    <div class="callout callout-blue">
+      <div class="callout-content">
+        <div class="callout-title">&#x1F516; You learned</div>
+        <div class="callout-text"><strong>3-question trust framework</strong>, <strong>7 red flags</strong>, a <strong>60-second checklist</strong>, and the <strong>red-team trick</strong> for verifying with AI.</div>
+      </div>
+    </div>
+    <div class="callout callout-green">
+      <div class="callout-content">
+        <div class="callout-title">&#x27A1;&#xFE0F; Next</div>
+        <div class="callout-text"><a href="ai-safety.html"><strong>AI Safety &amp; Trust at Work &rarr;</strong></a> &mdash; the other half of using AI responsibly.</div>
+      </div>
+    </div>
+  </div>
+
+  <details>
+    <summary>&#x1F4DA; Research behind this lesson</summary>
+    <div>
+      <ul>
+        <li><strong>Hallucination rates</strong> &mdash; Huang et al. (2023). &ldquo;A Survey on Hallucination in LLMs.&rdquo; <em>arXiv:2311.05232</em></li>
+        <li><strong>Confidence calibration</strong> &mdash; Lin et al. (2022). &ldquo;Teaching Models to Express Uncertainty.&rdquo; <em>arXiv:2205.14334</em></li>
+        <li><strong>Verification workflows</strong> &mdash; Gao et al. (2023). &ldquo;RARR: Researching and Revising for AI.&rdquo; <em>ACL 2023</em></li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="callout callout-green">
+    <div class="callout-title">Come back for</div>
+    <div>Take one AI output you used this week. Run it through the 60-second checklist. Notice where you would&rsquo;ve trusted something you shouldn&rsquo;t have.</div>
+  </div>
+
+  <nav class="nav-footer" aria-label="Workshop navigation">
+    <a href="prompt-craft.html" class="nav-link prev"><small>&larr; Previous</small>Advanced Prompt Craft</a>
+    <a href="ai-safety.html" class="nav-link next"><small>Next &rarr;</small>AI Safety at Work</a>
+  </nav>
+</div>
+
+<script>
+  function copyCode(button) {
+    var pre = button.closest('pre');
+    var code = pre.querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(function () {
+      var originalText = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(function () { button.textContent = originalText; }, 2000);
+    });
+  }
+</script>
+<script src="js/main.js"></script>
+<script src="js/motion-toggle.js"></script>
+</body>
+</html>

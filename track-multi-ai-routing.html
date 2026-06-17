@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 .step-list {
   counter-reset: step-counter;
@@ -31,8 +32,8 @@
   font-size: 0.7rem;
   font-weight: 700;
   color: var(--accent);
-  background: rgba(168,85,247,0.12);
-  border: 1px solid rgba(168,85,247,0.3);
+  background: rgba(245,197,66,0.12);
+  border: 1px solid rgba(245,197,66,0.3);
   border-radius: 50%;
   width: 1.7rem; height: 1.7rem;
   display: flex; align-items: center; justify-content: center;
@@ -94,8 +95,8 @@
 .context-hl {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  background: rgba(168,85,247,0.10);
-  border: 1px solid rgba(168,85,247,0.25);
+  background: rgba(245,197,66,0.10);
+  border: 1px solid rgba(245,197,66,0.25);
   border-radius: 3px;
   padding: 1px 6px;
   color: var(--text-accent);
@@ -110,10 +111,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">DEEP DIVE 2</span>
+      <span class="pill">DEEP DIVE 2</span>
       <h1>Switching Strategy + Voice Routing</h1>
       <p class="tagline">Move work between tools without losing context. Use voice when typing is the blocker.</p>
     </div>
@@ -127,7 +127,7 @@
   </span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> Helpful to read the Tool Matrix first; not required. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Medium.</div>
 </div>
 
@@ -244,7 +244,7 @@
   <div>Pick one low-energy task on your list. Open Claude Voice or ChatGPT Advanced Voice. Talk for five minutes. Voice routing turns "can't" into "started" without spending the typing budget you don't have today.</div>
 </div>
 
-<div class="callout callout-green" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-green">
   <span class="callout-icon">&#9166;</span>
   <div class="callout-title">Come back to this page when&hellip;</div>
   <div>Test voice routing tomorrow when you're at &lt;50% energy.</div>
@@ -256,7 +256,6 @@
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Up Claude for Your Work — Neurodiverse AI MasterClass</title>
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/brain-header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* === Page-local styles — personal setup walkthrough === */
+
+        /* Step cards — numbered, left-bordered, matching stack-card pattern from track-councils */
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.4rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+        }
+        .step-card:hover {
+            border-color: var(--border-hover);
+            background: rgba(245, 197, 66, 0.03);
+        }
+        .step-card .step-num {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+        .step-card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.05rem;
+            font-family: var(--font-display);
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            font-variation-settings: "opsz" 48;
+        }
+        .step-card p {
+            margin: 0;
+            font-size: 0.92rem;
+            color: var(--text-mid);
+            line-height: 1.58;
+        }
+
+        /* Outcome cards — small, 4-up grid */
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.875rem;
+            margin-bottom: 1.25rem;
+        }
+        @media (max-width: 768px) {
+            .outcome-grid { grid-template-columns: 1fr; }
+        }
+        .outcome-card {
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.15rem;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .outcome-card:hover {
+            border-color: var(--gold-glow);
+            background: var(--bg-elev-2);
+        }
+        .outcome-card .outcome-icon {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .outcome-card strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+        .outcome-card p {
+            margin: 0;
+            font-size: 0.84rem;
+            color: var(--text-mid);
+            line-height: 1.5;
+        }
+
+        /* Session timeline — 3-column stacked */
+        .session-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.875rem;
+            margin-bottom: 1.25rem;
+        }
+        @media (max-width: 768px) {
+            .session-grid { grid-template-columns: 1fr; }
+        }
+        .session-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.2rem;
+        }
+        .session-block .time-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .session-block h3 {
+            margin: 0 0 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text);
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-variation-settings: "opsz" 48;
+        }
+        .session-block p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-mid);
+            line-height: 1.55;
+        }
+
+        /* CTA section */
+        .cta-section {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(245, 197, 66, 0.06), rgba(255, 107, 107, 0.04));
+            border: 1px solid rgba(245, 197, 66, 0.2);
+            border-radius: var(--radius);
+            margin: 2rem 0 1.5rem;
+        }
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--text);
+            margin: 0 0 0.5rem;
+            font-variation-settings: "opsz" 72;
+        }
+        .cta-section p {
+            font-size: 0.95rem;
+            color: var(--text-mid);
+            margin: 0 0 1.5rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-primary {
+            display: inline-block;
+            padding: 13px 28px;
+            background: var(--accent);
+            color: var(--bg-base);
+            border-radius: 8px;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.15s;
+            letter-spacing: 0.01em;
+        }
+        .cta-primary:hover {
+            background: #FFD466;
+            transform: translateY(-1px);
+        }
+        .cta-note {
+            display: block;
+            margin-top: 0.75rem;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+        }
+
+        /* Checklist block — wraps check-items with context */
+        .checklist-block {
+            background: rgba(10, 6, 16, 0.6);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.4rem;
+            margin-bottom: 1.25rem;
+        }
+        .checklist-block .check-item {
+            border-bottom: 1px solid rgba(245, 234, 220, 0.04);
+            padding: 0.65rem 0;
+        }
+        .checklist-block .check-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .checklist-block .check-item:first-child {
+            padding-top: 0;
+        }
+    </style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill">PERSONAL SETUP</span>
+      <h1>Set up Claude for your actual work</h1>
+      <p class="tagline">A 45-minute walkthrough we do together. By the end, Claude knows what you do, how you think, and what to do when you say the word.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper" id="main-content">
+    <nav class="nav-bar" aria-label="Page navigation">
+        <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+        <span class="phase-indicator phase-setup" aria-label="Personal Session">PERSONAL SESSION</span>
+    </nav>
+
+    <div class="callout callout-blue">
+      <div><strong>Format:</strong> 1-on-1 session with Megan. &nbsp;<strong>Time:</strong> 45 min. &nbsp;<strong>What to bring:</strong> Recent work samples + a real project you're sitting on.</div>
+    </div>
+
+    <hr>
+
+    <h2>Why this exists</h2>
+    <p>Most people set up Claude alone and end up with a generic chatbot. They type "help me write an email," get something that sounds nothing like them, and quietly stop using it. The point of doing this together is that you leave with Claude actually tuned for your work — not a demo version of it.</p>
+    <p>We do five passes: your domain, your voice, your reference materials, your shortcuts, your guardrails. Each one narrows the gap between what Claude produces by default and what you'd actually use. By the end you have a setup that fits, not a setup that almost fits.</p>
+
+    <hr>
+
+    <h2>What we'll cover</h2>
+
+    <div class="step-card">
+        <span class="step-num">01 &mdash; Your domain</span>
+        <h3>What work you actually do</h3>
+        <p>The vocab, the deliverables, the people you serve. Claude needs to know you're a social worker, not a social media manager. We write that down precisely.</p>
+    </div>
+
+    <div class="step-card">
+        <span class="step-num">02 &mdash; Your voice</span>
+        <h3>How you write</h3>
+        <p>Formal, warm, direct, technical? We feed Claude examples of your real writing — past emails, reports, messages — so it learns to match your register, not produce a polished stranger's version.</p>
+    </div>
+
+    <div class="step-card">
+        <span class="step-num">03 &mdash; Your reference materials</span>
+        <h3>What Claude should know about</h3>
+        <p>Docs, style guides, org charts, past projects. We identify which ones are load-bearing and get them into Claude's context so you're not re-explaining your world every conversation.</p>
+    </div>
+
+    <div class="step-card">
+        <span class="step-num">04 &mdash; Your shortcuts</span>
+        <h3>The 5&ndash;10 prompts you'll actually use every day</h3>
+        <p>Saved, named, ready. No starting from a blank chat. You open Claude, pick your prompt, and it already knows what you need it to do.</p>
+    </div>
+
+    <div class="step-card">
+        <span class="step-num">05 &mdash; Your guardrails</span>
+        <h3>When NOT to use Claude</h3>
+        <p>Topics you handle yourself. Confidentiality lines. The cases where Claude's confident-sounding output is dangerous, not helpful. Knowing the limits is what makes the tool safe to use fast.</p>
+    </div>
+
+    <hr>
+
+    <h2>Before our session</h2>
+    <p>Gather these five things. None of it needs to be polished — rough is fine, recent is what matters.</p>
+
+    <div class="checklist-block">
+        <div class="check-item">
+            <input type="checkbox" id="pre1">
+            <label for="pre1"><strong>30 minutes of recent work samples</strong> — emails, documents, reports, anything you actually produce. Don't curate. Just recent.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="pre2">
+            <label for="pre2"><strong>One sentence describing what you do</strong> — not your job title, what you actually do day-to-day.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="pre3">
+            <label for="pre3"><strong>One sentence describing your most-frustrated work pattern</strong> — the task you dread, the thing you redo, the bottleneck that reappears.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="pre4">
+            <label for="pre4"><strong>Account access</strong> — Claude.ai, ChatGPT, or whichever AI you have. Logged in, open, ready.</label>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="pre5">
+            <label for="pre5"><strong>A real project you're stuck on or starting fresh</strong> — we'll run it through your new setup before the session ends.</label>
+        </div>
+    </div>
+
+    <div class="callout callout-gray">
+        <span class="callout-icon">&#128336;</span>
+        <div class="callout-title">Low energy?</div>
+        <div>Text one sentence to yourself about what you do. Screenshot three recent work emails. That's enough to start — we'll fill in the rest live.</div>
+    </div>
+
+    <hr>
+
+    <h2>During the session</h2>
+
+    <div class="session-grid">
+        <div class="session-block">
+            <span class="time-label">First 10 minutes</span>
+            <h3>Talk through your work</h3>
+            <p>I ask questions and take notes. No AI yet. The goal is to understand how you actually work before we touch anything.</p>
+        </div>
+        <div class="session-block">
+            <span class="time-label">10&ndash;30 minutes</span>
+            <h3>Build your Claude Brief</h3>
+            <p>We write your "this is who I am" document together — your domain, voice samples, context, guardrails. This becomes Claude's persistent instruction set.</p>
+        </div>
+        <div class="session-block">
+            <span class="time-label">30&ndash;45 minutes</span>
+            <h3>Run your real project</h3>
+            <p>We take the project you brought and work it through your setup. Adjust what isn't landing. Save your prompt library. You leave with something done, not just configured.</p>
+        </div>
+    </div>
+
+    <div class="callout callout-purple">
+        <span class="callout-icon">&#128161;</span>
+        <div class="callout-title">How the Claude Brief works</div>
+        <div>It's a single document — a Notion page or a plain doc — that lives in your Claude Project. Every time you open Claude, it reads this brief and already knows who you are, how you think, and what you're trying to do. One setup, permanent context.</div>
+    </div>
+
+    <hr>
+
+    <h2>What you leave with</h2>
+
+    <div class="outcome-grid">
+        <div class="outcome-card">
+            <span class="outcome-icon">&#128196;</span>
+            <strong>Your personal Claude Brief</strong>
+            <p>A Notion page or doc with your domain, voice, context, and guardrails. Paste it into any AI tool and you're configured in seconds.</p>
+        </div>
+        <div class="outcome-card">
+            <span class="outcome-icon">&#9889;</span>
+            <strong>5&ndash;10 named prompts</strong>
+            <p>Saved in your Claude Project. Open Claude, pick a prompt, and the heavy thinking is already done. No blank-page stall every time.</p>
+        </div>
+        <div class="outcome-card">
+            <span class="outcome-icon">&#128683;</span>
+            <strong>A shortlist of what NOT to use Claude for</strong>
+            <p>The specific cases in your work where Claude should stay out of it — by topic, by audience, by risk level. Your guardrails, written down.</p>
+        </div>
+        <div class="outcome-card">
+            <span class="outcome-icon">&#9989;</span>
+            <strong>One real piece of work, done</strong>
+            <p>Something you brought to the session, run through your setup, finished. Concrete proof it works — and a baseline to measure against.</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="cta-section">
+        <h2>Book a session</h2>
+        <p>45 minutes, one-on-one. You come with your work. You leave with a setup that's actually yours.</p>
+        <a href="mailto:maple.megan333@gmail.com?subject=Personal%20Claude%20Setup%20Session" class="cta-primary">Book your 45 minutes</a>
+        <span class="cta-note">Email — we'll find a time that works.</span>
+    </div>
+
+    <div class="callout callout-green">
+        <div class="callout-title">After your session</div>
+        <div>Your Claude Brief lives in a Project. As your work evolves, you add to it. It grows with you — no starting over, just updating what changed.</div>
+    </div>
+
+    <nav class="nav-footer" aria-label="Workshop navigation">
+        <a href="setup-your-tools.html" class="nav-link prev"><small>&larr; Previous</small>Set Up Your AI Tools</a>
+        <a href="connect-ai.html" class="nav-link next"><small>Next &rarr;</small>Connect AI to Template</a>
+    </nav>
+</div>
+
+<script src="js/store.js"></script>
+<script src="js/motion-toggle.js"></script>
+</body>
+</html>

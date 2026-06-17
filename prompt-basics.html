@@ -1,13 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prompt Basics That Actually Work — Neurodiverse AI MasterClass</title>
   <link rel="stylesheet" href="css/design-system.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="css/brain-header.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 <script src="js/spa-redirect.js"></script>
@@ -17,10 +18,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">SETUP</span>
+      <span class="pill">SETUP</span>
       <h1>Prompt Basics That Actually Work</h1>
       <p class="tagline">The 4-element prompt framework for neurodivergent brains.</p>
 
@@ -30,10 +30,6 @@
 
     <div class="page-wrapper" id="main-content">
         <nav class="nav-bar" aria-label="Page navigation"><div class="nav-breadcrumb"><a href="index.html">← MasterClass Home</a></div><span class="phase-indicator phase-setup" aria-label="Phase 2 of 5: Set Up Your Tools"><span class="phase-num">Phase 2</span> of 5 — Set Up</span></nav>
-
-      <div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
-        <div><strong>Prereqs:</strong> You've sent at least 3 AI messages. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Any.</div>
-      </div>
 
       <div class="callout callout-purple">
         <div class="callout-content">
@@ -85,7 +81,7 @@
       <div class="callout-content">
         <div class="callout-title">✏️ Build a work prompt you'll actually use</div>
         <div class="callout-text">Think of a <strong>work task</strong> you do regularly. Copy this template into Claude:</div>
-        <pre style="margin-top: 1rem;"><span class="code-label">Work Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>You are a [ROLE — e.g., "concise professional writer"].
+        <pre style="margin-top: 1rem;"><span class="code-label">Work Prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy work prompt template to clipboard">Copy</button><code>You are a [ROLE — e.g., "concise professional writer"].
 
 Context: [YOUR SITUATION — e.g., "I'm a freelance designer sending weekly updates"]
 
@@ -111,7 +107,7 @@ Format: [HOW YOU WANT IT — e.g., "3 short paragraphs, warm but professional, u
       <div class="callout callout-green">
         <div class="callout-content">
           <div class="callout-title">🏠 Life prompt</div>
-          <pre><span class="code-label">Life Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>You are a [ROLE — e.g., "calm, practical life organizer"].
+          <pre><span class="code-label">Life Prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy life prompt template to clipboard">Copy</button><code>You are a [ROLE — e.g., "calm, practical life organizer"].
 
 Context: [YOUR SITUATION — e.g., "I have ADHD and struggle with meal planning."]
 
@@ -123,7 +119,7 @@ Format: [HOW YOU WANT IT — e.g., "List, one per day, include cook time"]</code
       <div class="callout callout-green">
         <div class="callout-content">
           <div class="callout-title">🎨 Creative prompt</div>
-          <pre><span class="code-label">Creative Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>You are a [ROLE — e.g., "creative brainstorm partner"].
+          <pre><span class="code-label">Creative Prompt</span><button class="copy-btn" type="button" onclick="copyCode(this)" aria-label="Copy creative prompt template to clipboard">Copy</button><code>You are a [ROLE — e.g., "creative brainstorm partner"].
 
 Context: [YOUR SITUATION — e.g., "Newsletter about ND productivity"]
 
@@ -186,7 +182,7 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
       </div>
     </details>
 
-    <div class="callout callout-green" style="border-left-width:3px;">
+    <div class="callout callout-green">
       <div class="callout-title">Come back for</div>
       <div>Build 3 prompts using the 4-element framework, then try them in real workflows next week.</div>
     </div>
@@ -213,7 +209,6 @@ Format: [HOW YOU WANT IT — e.g., "Numbered list, one sentence each, star top 3
 </script>
 
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

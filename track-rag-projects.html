@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 .tool-card {
   background: var(--bg-card);
@@ -19,7 +20,7 @@
   transition: border-color 0.2s var(--ease);
 }
 .tool-card:hover { border-color: var(--border-hover); }
-.tool-card.claude    { border-top-color: #c89b6e; }
+.tool-card.claude    { border-top-color: #F5C542; }
 .tool-card.notebook  { border-top-color: var(--blue-title); }
 .tool-card.chatgpt   { border-top-color: var(--green-title); }
 .tool-card.gemini    { border-top-color: var(--accent); }
@@ -33,9 +34,9 @@
   background: var(--accent-soft); color: var(--text-accent);
   border: 1px solid var(--accent-glow);
 }
-.tool-tag.audio { background: rgba(96,165,250,0.15); color: var(--blue-title); border-color: rgba(96,165,250,0.3); }
-.tool-tag.team  { background: rgba(217,119,6,0.15); color: var(--orange-title); border-color: rgba(217,119,6,0.3); }
-.tool-tag.live  { background: rgba(52,211,153,0.15); color: var(--green-title); border-color: rgba(52,211,153,0.3); }
+.tool-tag.audio { background: rgba(245,197,66,0.15); color: var(--blue-title); border-color: rgba(245,197,66,0.3); }
+.tool-tag.team  { background: rgba(245,197,66,0.15); color: var(--orange-title); border-color: rgba(245,197,66,0.3); }
+.tool-tag.live  { background: rgba(245,197,66,0.15); color: var(--green-title); border-color: rgba(245,197,66,0.3); }
 .tool-meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -52,7 +53,7 @@
 .tool-body p { margin: 0 0 0.55rem; }
 .tool-body .nd {
   font-size: 0.86rem;
-  background: rgba(168,85,247,0.07);
+  background: rgba(245,197,66,0.07);
   border-left: 2px solid var(--accent);
   padding: 0.55rem 0.8rem;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
@@ -72,10 +73,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK C · RAG &amp; KNOWLEDGE</span>
+      <span class="pill">TRACK C · RAG &amp; KNOWLEDGE</span>
       <h1>Layer 1 · No-Code RAG</h1>
       <p class="tagline">5 no-code tools for personal RAG — what each is genuinely best for.</p>
     </div>
@@ -87,7 +87,7 @@
   <span class="phase-indicator phase-power" aria-label="Track C, page 2 of 3"><span class="phase-num">Track C · 2/3 RAG &amp; Knowledge</span></span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> Best after RAG Overview. <strong>Time:</strong> 15 min. <strong>Energy:</strong> Medium.</div>
 </div>
 
@@ -234,7 +234,7 @@
 
 <div class="callout callout-teal"><span class="callout-icon">💾</span><div class="callout-title">Save point</div><div>One of these five is almost certainly enough. If you've outgrown them — more than 200 docs, vault you already maintain, or genuine privacy requirements — the next page covers Layer 2 (personal knowledge base) and Layer 3 (production, when it's actually warranted).</div></div>
 
-<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-purple">
   <div><strong>One thing to remember:</strong> Spin up a Claude Project or NotebookLM notebook this week. See if it sticks.</div>
 </div>
 
@@ -244,7 +244,6 @@
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

@@ -1,0 +1,153 @@
+/* ============================================
+   AURORA Backdrop — sits behind the SPA shell.
+   Two fixed layers:
+     1. .brain-bg-layer  — assets/brain.png at low opacity, screen blend,
+                            with two pulsing radial glows for warmth.
+     2. .synapse-layer   — SVG of gold + coral traces and traveling pulses.
+   Both are aria-hidden, pointer-events:none, and below the .spa-shell
+   stacking context so they read as atmosphere.
+   ============================================ */
+
+.brain-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  will-change: opacity;
+}
+.brain-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+  filter: brightness(1.2) saturate(1.3) contrast(1.55);
+}
+.brain-bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 36% 26% at 28% 32%, rgba(245,197,66,0.22), transparent 62%),
+    radial-gradient(ellipse 30% 22% at 72% 58%, rgba(245,197,66,0.18), transparent 60%),
+    radial-gradient(ellipse 26% 20% at 50% 82%, rgba(255,107,107,0.14), transparent 60%);
+  mix-blend-mode: screen;
+  animation: brainBgPulse 6.5s ease-in-out infinite;
+}
+.brain-bg-glow.delay { animation-delay: -3.2s; }
+@keyframes brainBgPulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+
+/* ─── Synapse layer ───────────────────────────────── */
+.synapse-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.synapse-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  contain: layout paint;
+}
+
+/* Static faint trace */
+.sy-path {
+  fill: none;
+  stroke: rgba(245, 197, 66, 0.4);
+  stroke-width: 0.4;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+.sy-path.coral { stroke: rgba(255, 107, 107, 0.34); }
+
+/* Traveling pulse — CSS animated dasharray for continuous beads */
+.sy-pulse {
+  fill: none;
+  stroke: #F5C542;
+  stroke-width: 1.0;
+  stroke-linecap: round;
+  stroke-dasharray: 14 90;
+  stroke-dashoffset: 0;
+  opacity: 0.9;
+  animation: synPulse 9s linear infinite;
+}
+.sy-pulse.coral { stroke: #FF6B6B; }
+.sy-pulse.fast  { animation-duration: 6s; }
+.sy-pulse.slow  { animation-duration: 14s; }
+.sy-pulse.d1    { animation-delay: -1s; }
+.sy-pulse.d2    { animation-delay: -3s; }
+.sy-pulse.d3    { animation-delay: -5s; }
+.sy-pulse.d4    { animation-delay: -7s; }
+.sy-pulse.d5    { animation-delay: -2.5s; }
+@keyframes synPulse {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -208; }
+}
+
+/* Junction dots + halos */
+.sy-dot {
+  fill: #F5C542;
+  opacity: 0.85;
+}
+.sy-dot.coral { fill: #FF6B6B; }
+
+.sy-halo {
+  fill: rgba(245, 197, 66, 0.35);
+  opacity: 0.6;
+  animation: synHalo 5s ease-in-out infinite;
+}
+.sy-halo.coral { fill: rgba(255, 107, 107, 0.32); }
+.sy-halo.f2 { animation-delay: -1.2s; }
+.sy-halo.f3 { animation-delay: -2.4s; }
+.sy-halo.f4 { animation-delay: -3.1s; }
+.sy-halo.f5 { animation-delay: -4.0s; }
+@keyframes synHalo {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%      { opacity: 0.85; transform: scale(1.18); }
+}
+
+/* SVG transform-origin needs explicit centering on each circle */
+.sy-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Static tertiary sparks */
+.sy-spark {
+  fill: #F5C542;
+  opacity: 0.45;
+}
+.sy-spark.coral { fill: #FF6B6B; }
+
+/* SPA shell sits above the backdrop */
+.spa-shell { position: relative; z-index: 1; }
+.sidebar-toggle, .sidebar-overlay { z-index: 100; }
+
+/* On mobile, dial down the backdrop a touch so it doesn't compete with content */
+@media (max-width: 640px) {
+  .brain-bg-layer { opacity: 0.05; }
+  .synapse-layer { opacity: 0.5; }
+}
+
+/* Honor reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .brain-bg-glow, .sy-pulse, .sy-halo {
+    animation: none !important;
+  }
+  .brain-bg-layer { opacity: 0.05; }
+  .synapse-layer { opacity: 0.5; }
+}
+
+/* Pause-motion via the motion-toggle button */
+body.motion-paused .brain-bg-glow,
+body.motion-paused .sy-pulse,
+body.motion-paused .sy-halo {
+  animation: none !important;
+}

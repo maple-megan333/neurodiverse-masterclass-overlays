@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/design-system.css">
     <link rel="stylesheet" href="css/brain-header.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -18,10 +19,9 @@
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">WORKSHOP</span>
+      <span class="pill">WORKSHOP</span>
       <h1>Your AI Writing Voice</h1>
       <p class="tagline">Run voice calibration, save your Voice Card.</p>
       
@@ -34,7 +34,7 @@
             <span class="phase-indicator phase-deeper" aria-label="Phase 4 of 5: Go Deeper"><span class="phase-num">Phase 4</span> of 5 — Go Deeper</span>
         </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> AI tool of your choice + 100+ words of your existing writing. <strong>Time:</strong> 30–45 min. <strong>Energy:</strong> Any. <strong>Pick:</strong> One workshop section at a time.</div>
 </div>
 
@@ -44,22 +44,22 @@
 </div>
 
 <div class="journey" style="flex-wrap:wrap;padding:1rem 0;">
-<div class="j-step"><div class="j-dot" style="background:#7c3aed;border-color:#a78bfa;font-size:0.7rem;">W1</div><div class="j-label">Voice</div></div>
+<div class="j-step"><div class="j-dot" style="background:#F5C542;border-color:#FFD466;color:#0B0910;font-size:0.7rem;">W1</div><div class="j-label">Voice</div></div>
 <span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#2563eb;border-color:#60a5fa;font-size:0.7rem;">W2</div><div class="j-label">Outline</div></div>
+<div class="j-step"><div class="j-dot" style="background:#FF6B6B;border-color:#FF8F8F;color:#0B0910;font-size:0.7rem;">W2</div><div class="j-label">Outline</div></div>
 <span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#059669;border-color:#34d399;font-size:0.7rem;">W3</div><div class="j-label">Edit</div></div>
+<div class="j-step"><div class="j-dot" style="background:#F5C542;border-color:#FFD466;color:#0B0910;font-size:0.7rem;">W3</div><div class="j-label">Edit</div></div>
 <span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#d97706;border-color:#fbbf24;font-size:0.7rem;">W4</div><div class="j-label">Translate</div></div>
+<div class="j-step"><div class="j-dot" style="background:#FF6B6B;border-color:#FF8F8F;color:#0B0910;font-size:0.7rem;">W4</div><div class="j-label">Translate</div></div>
 <span class="j-arrow">→</span>
-<div class="j-step"><div class="j-dot" style="background:#dc2626;border-color:#f87171;font-size:0.7rem;">W5</div><div class="j-label">Ideate</div></div>
+<div class="j-step"><div class="j-dot" style="background:#F5C542;border-color:#FFD466;color:#0B0910;font-size:0.7rem;">W5</div><div class="j-label">Ideate</div></div>
 </div>
 
 <div class="callout callout-gray"><span class="callout-icon">☁️</span><div class="callout-title">Low energy shortcut</div><div>One option: <strong>Voice Preservation</strong> only. Paste one paragraph, ask for 5 adjectives. Save those. That's enough.</div></div>
 
 <hr>
 
-<details><summary>✍️ Voice Preservation — Make AI Sound Like You</summary><div style="padding:0 1.5rem 1.5rem;">
+<details><summary>✍️ Voice Preservation — Make AI Sound Like You</summary><div>
 <div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Name your voice in 5 words</div><div>
 <pre><code>Analyze this writing style. Describe my voice in 5 adjectives and list phrases I use often. Note what I avoid.
 
@@ -77,12 +77,12 @@ Writing rhythm: [short? long? mix?]</code></pre></div></div>
 
 <div data-voice-demo></div>
 
-<details><summary>📄 Outline-First — Beat Blank Page Paralysis</summary><div style="padding:0 1.5rem 1.5rem;">
+<details><summary>📄 Outline-First — Beat Blank Page Paralysis</summary><div>
 <div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Get 3 Outlines</div><div>
 <pre><code>I need to write [TASK]. Give me 3 completely different outline structures. Make each distinct. Use 3 levels: main sections, key points, supporting details.</code></pre></div></div>
 </div></details>
 
-<details><summary>✂️ Editing as Thinking — 4 Editing Modes</summary><div style="padding:0 1.5rem 1.5rem;">
+<details><summary>✂️ Editing as Thinking — 4 Editing Modes</summary><div>
 <div class="callout callout-blue"><span class="callout-icon">📘</span><div class="callout-title">4 Modes</div><div>
 <ul><li><strong>Clarity:</strong> Rewrite unclear sentences. Keep my voice.</li>
 <li><strong>Tone:</strong> Shift to be more [formal/casual/warm].</li>
@@ -91,7 +91,7 @@ Writing rhythm: [short? long? mix?]</code></pre></div></div>
 </div></div>
 </div></details>
 
-<details><summary>🔄 Translation Layer — Messy Notes to Polished Output</summary><div style="padding:0 1.5rem 1.5rem;">
+<details><summary>🔄 Translation Layer — Messy Notes to Polished Output</summary><div>
 <div class="callout callout-green"><span class="callout-icon">✏️</span><div class="callout-title">Translate Your Notes</div><div>
 <pre><code>Turn these raw notes into a clear 3-paragraph summary. Keep my phrasing where possible. Don't add ideas I didn't mention.
 
@@ -100,14 +100,14 @@ Writing rhythm: [short? long? mix?]</code></pre></div></div>
 
 <div class="callout callout-purple"><span class="callout-icon">💡</span><div class="callout-title">Want brainstorming techniques?</div><div>The anti-anchoring method and other ideation tools are in <a href="creative-projects.html">Creative Projects</a>.</div></div>
 
-<details><summary>📚 Research</summary><div style="padding:0 1.5rem 1.5rem;">
+<details><summary>📚 Research</summary><div>
 <ul><li>Graham & Harris (2003) — Writing & executive function</li>
 <li>Tversky & Kahneman (1974) — Anchoring bias</li>
 <li>Ippolito et al. (2022) — Voice preservation in AI writing</li>
 <li>Risko & Gilbert (2016) — Cognitive offloading</li></ul>
 </div></details>
 
-<div class="callout callout-green" style="border-left-width:3px;">
+<div class="callout callout-green">
   <div class="callout-title">Come back for</div>
   <div>Run the same prompt through your Voice Card next month. Compare. Update the card.</div>
 </div>
@@ -118,7 +118,6 @@ Writing rhythm: [short? long? mix?]</code></pre></div></div>
         </nav>
     </div>
     <script src="js/main.js"></script>
-    <script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

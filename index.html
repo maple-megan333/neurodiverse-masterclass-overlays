@@ -1,346 +1,1484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neurodiverse AI MasterClass</title>
-  <link rel="stylesheet" href="css/design-system.css">
-  <link rel="stylesheet" href="css/brain-header.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    /* Home-only layout — editorial */
-    .home{max-width:880px;margin:0 auto}
-    .home-lead{padding:32px 0 8px}
-    .home-lead h2{
-      margin:0 0 10px !important;border:0 !important;background:transparent !important;
-      padding:0 !important;font-family:var(--font-display);
-      font-size:1.5rem !important;font-weight:400 !important;
-      letter-spacing:-.015em;color:var(--text) !important;line-height:1.25;
-      font-variation-settings:"opsz" 72;
-    }
-    .home-lead h2::before{display:none !important}
-    .home-lead p{font-size:1rem;color:var(--text-mid);max-width:60ch;margin:0 0 24px;line-height:1.55}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Neurodiverse AI MasterClass — A practice for minds that don't run on rails</title>
+<meta name="description" content="11 lessons. One workbench. The new machine — finally on terms that fit how your brain actually thinks." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --void:        #0B0910;
+    --void-deep:   #060409;
+    --ink-card:    #15121C;
+    --ink-card-2:  #1A1622;
+    --gold:        #F5C542;
+    --gold-soft:   rgba(245, 197, 66, 0.72);
+    --gold-faint:  rgba(245, 197, 66, 0.14);
+    --coral:       #FF6B6B;
+    --coral-soft:  rgba(255, 107, 107, 0.72);
+    --pearl:       #F5EADC;
+    --pearl-dim:   rgba(245, 234, 220, 0.84);
+    --pearl-faint: rgba(245, 234, 220, 0.70);
+    --rule:        rgba(245, 234, 220, 0.18);
+    --rule-soft:   rgba(245, 234, 220, 0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--void);
+    color: var(--pearl);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
 
-    .energy-card:focus-visible,.track-card:focus-visible,.resume-card-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  /* ─── PARALLAX LAYERS ─── */
+  .parallax-layer { position: fixed; inset: -10%; pointer-events: none; will-change: transform; }
+  .layer-bg  { z-index: 0; }
+  .layer-mid { z-index: 1; }
+  .layer-fog { z-index: 3; }
 
-    /* Resume card */
-    .resume-card{
-      display:none;align-items:center;gap:16px;
-      padding:16px 20px;
-      background:var(--bg-elev);
-      border:1px solid var(--border);
-      border-left:2px solid var(--gold);
-      border-radius:var(--radius);
-      margin:0 0 32px;
-      transition:border-color .25s var(--ease-out),box-shadow .25s var(--ease-out),transform .25s var(--ease-out);
-    }
-    .resume-card.shown{display:flex}
-    .resume-card:hover{border-color:var(--border-hover);box-shadow:0 10px 28px rgba(0,0,0,.35);transform:translateY(-2px)}
-    .resume-card-icon{font-size:1.4rem;flex-shrink:0;opacity:.9}
-    .resume-card-body{flex:1;min-width:0}
-    .resume-card-title{
-      font-family:var(--font-display);font-weight:500;
-      color:var(--text);font-size:1.02rem;margin:0 0 2px;line-height:1.3;
-      letter-spacing:-.01em;font-variation-settings:"opsz" 48;
-    }
-    .resume-card-meta{font-size:.78rem;color:var(--text-mid);margin:0;line-height:1.4}
-    .resume-card-btn{
-      padding:9px 18px;border-radius:var(--radius-sm);
-      background:var(--gold);color:#1A1626;
-      font-family:var(--font-label);font-weight:600;font-size:.78rem;
-      letter-spacing:.04em;text-decoration:none;flex-shrink:0;
-      transition:background .15s,transform .15s;
-    }
-    .resume-card-btn:hover{background:#FFD466;transform:translateX(2px)}
+  /* ─── BRAIN BACKGROUND LAYER ─── */
+  .brain-bg-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: var(--brain-opacity, 0.07);
+    will-change: opacity, transform;
+    transition: opacity 0.4s ease-out;
+  }
+  .brain-img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; mix-blend-mode: screen;
+    filter: brightness(1.2) saturate(1.3) contrast(1.55);
+  }
+  .brain-glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 36% 26% at 28% 32%, rgba(245,197,66,0.22), transparent 62%),
+      radial-gradient(ellipse 30% 22% at 72% 58%, rgba(245,197,66,0.18), transparent 60%),
+      radial-gradient(ellipse 26% 20% at 50% 82%, rgba(255,107,107,0.14), transparent 60%);
+    mix-blend-mode: screen;
+    animation: brainPulse 6.5s ease-in-out infinite;
+  }
+  .brain-glow.delay { animation-delay: -3.2s; }
+  @keyframes brainPulse {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.06); }
+  }
+  .brain-particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .bp { fill: var(--gold); opacity: 0; animation: bpDrift 14s ease-in-out infinite; }
+  .bp.coral { fill: var(--coral); }
+  @keyframes bpDrift {
+    0%   { opacity: 0;    transform: translate3d(0, 30px, 0); }
+    20%  { opacity: 0.85; }
+    50%  { opacity: 0.65; transform: translate3d(8px, -30px, 0); }
+    80%  { opacity: 0.85; }
+    100% { opacity: 0;    transform: translate3d(-6px, -80px, 0); }
+  }
+  .bp.d1 { animation-delay: -1s;  animation-duration: 12s; }
+  .bp.d2 { animation-delay: -3s;  animation-duration: 16s; }
+  .bp.d3 { animation-delay: -5s;  animation-duration: 13s; }
+  .bp.d4 { animation-delay: -7s;  animation-duration: 18s; }
+  .bp.d5 { animation-delay: -2.5s; animation-duration: 15s; }
+  .bp.d6 { animation-delay: -9s;  animation-duration: 11s; }
+  .bp.d7 { animation-delay: -4s;  animation-duration: 17s; }
+  .bp.d8 { animation-delay: -6.5s; animation-duration: 14s; }
 
-    /* Energy cards — start-here trio */
-    .energy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 0 40px}
-    .energy-card{
-      padding:20px;background:var(--bg-elev);
-      border:1px solid var(--border);border-radius:var(--radius);
-      text-decoration:none;color:var(--text);
-      transition:transform .25s var(--ease-out),border-color .25s var(--ease-out),
-                 background .25s var(--ease-out),box-shadow .25s var(--ease-out);
-      display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
-    }
-    .energy-card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--bg-elev-2);box-shadow:0 10px 28px rgba(0,0,0,.35),0 0 0 1px var(--gold-glow)}
-    .energy-card-time{
-      font-family:var(--font-display);font-size:.72rem;
-      font-weight:500;font-style:italic;letter-spacing:.02em;
-      color:var(--gold);line-height:1.4;
-      font-variation-settings:"opsz" 9;
-    }
-    .energy-card-title{
-      font-family:var(--font-display);font-size:1.15rem;font-weight:500;
-      color:var(--text);margin:0;line-height:1.2;letter-spacing:-.015em;
-      font-variation-settings:"opsz" 48;
-    }
-    .energy-card-desc{font-size:.86rem;color:var(--text-mid);line-height:1.5;margin:0}
-    .energy-card.low::before,.energy-card.mid::before,.energy-card.high::before{
-      content:"";position:absolute;top:0;left:0;width:2px;height:100%;
-    }
-    .energy-card.low::before{background:rgba(245,234,220,.3)}
-    .energy-card.mid::before{background:var(--accent)}
-    .energy-card.high::before{background:var(--accent2)}
-    @media(max-width:640px){.energy-grid{grid-template-columns:1fr}}
+  /* ─── SYNAPSE LAYER ─── */
+  .synapse-layer { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: var(--synapse-opacity, 1); transition: opacity 0.4s ease-out; }
+  .synapse-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; contain: layout paint; }
+  .sy-path { fill: none; stroke: rgba(245,197,66,0.40); stroke-width: 0.55; stroke-linecap: round; opacity: 0.55; }
+  .sy-path.coral { stroke: rgba(255,107,107,0.34); }
+  .sy-pulse {
+    fill: none; stroke: #F5C542; stroke-width: 1.0; stroke-linecap: round;
+    stroke-dasharray: 14 90; stroke-dashoffset: 0; opacity: 1; will-change: stroke-dashoffset;
+  }
+  .sy-pulse.coral { stroke: #FF6B6B; }
+  .sy-pulse.thick { stroke-width: 1.3; stroke-dasharray: 18 100; }
+  .sy-dot { fill: #F5C542; opacity: 0.85; transform-origin: center; transform-box: fill-box; will-change: transform; }
+  .sy-dot.coral { fill: #FF6B6B; }
+  .sy-halo { fill: rgba(245,197,66,0.35); opacity: 0.6; transform-origin: center; transform-box: fill-box; will-change: transform; }
+  .sy-halo.coral { fill: rgba(255,107,107,0.32); }
+  .sy-spark { fill: #F5C542; opacity: 0.45; }
+  .sy-spark.coral { fill: #FF6B6B; }
+  .sy-ping { fill: none; stroke: #F5C542; stroke-width: 0.8; opacity: 0.5; transform-origin: center; transform-box: fill-box; }
+  .sy-ping.coral { stroke: #FF6B6B; }
 
-    /* Section head — editorial */
-    .section-head-clean{
-      display:flex;align-items:baseline;justify-content:space-between;
-      gap:16px;margin:48px 0 16px;padding:0 0 10px;
-      border-bottom:1px solid var(--border);
-    }
-    .section-head-clean h2{
-      margin:0 !important;border:0 !important;background:transparent !important;
-      padding:0 !important;
-      font-family:var(--font-label) !important;
-      font-size:.7rem !important;color:var(--gold) !important;
-      text-transform:uppercase;letter-spacing:.18em;font-weight:600 !important;
-    }
-    .section-head-clean h2::before{display:none !important}
-    .section-head-clean .section-meta{
-      font-family:var(--font-display);font-style:italic;
-      font-size:.82rem;color:var(--text-dim);
-      font-variation-settings:"opsz" 9;
-    }
+  /* ─── DEEP BG ─── */
+  .layer-bg::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 18% 20%, rgba(245,197,66,0.06) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 82% 70%, rgba(255,107,107,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse 100% 60% at 50% 100%, rgba(245,197,66,0.04) 0%, transparent 60%),
+      linear-gradient(180deg, var(--void-deep) 0%, var(--void) 50%, var(--void-deep) 100%);
+  }
+  .starfield { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.85; }
+  .star { fill: var(--pearl); opacity: 0.4; }
+  .star.bright { opacity: 0.95; fill: var(--gold); }
+  .star.coral  { fill: var(--coral-soft); opacity: 0.7; }
+  @keyframes twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.85; } }
+  .star.t1 { animation: twinkle 4s ease-in-out infinite; }
+  .star.t2 { animation: twinkle 6s ease-in-out infinite; animation-delay: 1.2s; }
+  .star.t3 { animation: twinkle 5s ease-in-out infinite; animation-delay: 2.4s; }
 
-    /* Track cards — editorial, with serif numerals */
-    .track-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0 0 32px}
-    .track-card{
-      padding:20px;background:var(--bg-elev);
-      border:1px solid var(--border);border-radius:var(--radius);
-      text-decoration:none;color:var(--text);
-      transition:transform .25s var(--ease-out),border-color .25s var(--ease-out),
-                 background .25s var(--ease-out),box-shadow .25s var(--ease-out);
-      display:block;position:relative;
-    }
-    .track-card:hover{transform:translateY(-2px);border-color:var(--border-hover);background:var(--bg-elev-2);box-shadow:0 10px 28px rgba(0,0,0,.35),0 0 0 1px var(--gold-glow)}
-    .track-card-tag{
-      display:inline-block;
-      font-family:var(--font-display);font-style:italic;
-      font-size:.78rem;font-weight:500;letter-spacing:.01em;
-      color:var(--gold);margin-bottom:6px;
-      font-variation-settings:"opsz" 9;
-    }
-    .track-card-title{
-      font-family:var(--font-display);font-weight:500;font-size:1.1rem;
-      color:var(--text);margin:0 0 6px;line-height:1.2;letter-spacing:-.015em;
-      font-variation-settings:"opsz" 48;
-    }
-    .track-card-desc{font-size:.86rem;color:var(--text-mid);line-height:1.55;margin:0}
-    @media(max-width:560px){.track-grid{grid-template-columns:1fr}}
+  .neural-flow { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .nf-path { fill: none; stroke: var(--gold); stroke-width: 0.9; opacity: 0.42; }
+  .nf-path.coral { stroke: var(--coral); opacity: 0.34; }
+  .nf-flow {
+    fill: none; stroke: var(--gold); stroke-width: 1.5;
+    stroke-dasharray: 8 220; stroke-dashoffset: 0; opacity: 0.95;
+    animation: flowAlong 12s linear infinite;
+  }
+  .nf-flow.delay-1 { animation-delay: -3s; stroke: var(--coral); opacity: 0.85; }
+  .nf-flow.delay-2 { animation-delay: -6s; }
+  .nf-flow.delay-3 { animation-delay: -9s; stroke: var(--coral); opacity: 0.82; }
+  .nf-flow.delay-4 { animation-delay: -1.5s; opacity: 0.88; }
+  .nf-flow.delay-5 { animation-delay: -7s;  stroke: var(--coral); opacity: 0.82; }
+  @keyframes flowAlong { to { stroke-dashoffset: -228; } }
 
-    .meta-line{
-      font-family:var(--font-display);font-style:italic;
-      font-size:.85rem;color:var(--text-dim);margin:32px 0 0;
-      padding:16px 0;border-top:1px solid var(--border);
-      display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
-      font-variation-settings:"opsz" 9;
+  @keyframes particleDrift { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.9; } }
+  .particle { fill: var(--gold); opacity: 0.4; animation: particleDrift 7s ease-in-out infinite; }
+  .particle.coral { fill: var(--coral); }
+  .particle.p2 { animation-delay: -1.5s; animation-duration: 8s; }
+  .particle.p3 { animation-delay: -3s; animation-duration: 9s; }
+  .particle.p4 { animation-delay: -4.5s; animation-duration: 7.5s; }
+  .particle.p5 { animation-delay: -2s; animation-duration: 8.5s; }
+  .particle.p6 { animation-delay: -5s; animation-duration: 10s; }
+
+  .layer-fog::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 50% 30% at 50% 0%, rgba(11,9,16,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 50% 100%, rgba(11,9,16,0.4) 0%, transparent 60%);
+    opacity: 0.5;
+  }
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 4;
+    opacity: 0.18; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  main { position: relative; z-index: 2; }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    padding: 22px 56px;
+    display: grid; grid-template-columns: 1fr auto 1fr;
+    align-items: center; gap: 32px;
+    border-bottom: 1px solid var(--rule);
+    backdrop-filter: blur(8px);
+    background: rgba(11,9,16,0.42);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .masthead .meta-left, .masthead .meta-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--pearl-faint);
+  }
+  .masthead .meta-left b, .masthead .meta-right b { color: var(--gold); font-weight: 500; }
+  .masthead .meta-right { text-align: right; }
+  .masthead .wordmark {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 360, "SOFT" 50, "WONK" 0;
+    font-size: 26px; letter-spacing: -0.02em; line-height: 1;
+    color: var(--pearl);
+    display: flex; align-items: baseline; gap: 8px;
+    white-space: nowrap;
+  }
+  .wordmark em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100, "WONK" 1;
+    color: var(--gold);
+  }
+  .wordmark .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--coral); box-shadow: 0 0 12px var(--coral);
+    transform: translateY(-4px);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 120px 56px 100px;
+    min-height: 90vh;
+    display: grid; grid-template-columns: 1.5fr 1fr;
+    gap: 80px; align-items: center; position: relative;
+  }
+  .hero .kicker {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 36px; font-weight: 500;
+  }
+  .hero .kicker::before { content: ""; width: 32px; height: 1px; background: var(--gold); }
+  .hero .kicker .pulse-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--coral); box-shadow: 0 0 10px var(--coral);
+    animation: dotPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 360, "SOFT" 30, "WONK" 0;
+    font-size: clamp(56px, 7vw, 124px);
+    line-height: 0.94; letter-spacing: -0.032em;
+    margin-bottom: 36px; color: var(--pearl);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100, "WONK" 1;
+    color: var(--gold);
+  }
+  .hero h1 .accent {
+    color: var(--coral); font-style: italic;
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100, "WONK" 1;
+  }
+  .hero h1 .line-mark { position: relative; display: inline-block; }
+  .hero h1 .line-mark::after {
+    content: ""; position: absolute;
+    left: -2%; right: -2%; bottom: 0.04em; height: 0.08em;
+    background: linear-gradient(90deg, transparent, var(--gold-soft) 20%, var(--gold-soft) 80%, transparent);
+    opacity: 0.55;
+  }
+  .hero .deck {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 36, "wght" 380, "SOFT" 30;
+    font-size: 22px; line-height: 1.42;
+    color: var(--pearl-dim); max-width: 44ch; margin-bottom: 48px;
+  }
+  .hero .deck em { font-style: italic; color: var(--gold); }
+  .hero .cta-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+
+  .btn {
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 16px 24px;
+    border: 1px solid var(--rule);
+    background: transparent; color: var(--pearl);
+    cursor: pointer; transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 12px;
+    position: relative; overflow: hidden;
+  }
+  .btn::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gold-faint), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+  .btn:hover::before { opacity: 1; }
+  .btn .arrow { transition: transform 0.3s; position: relative; z-index: 1; }
+  .btn:hover .arrow { transform: translateX(4px); }
+  .btn span:not(.arrow) { position: relative; z-index: 1; }
+  .btn.primary {
+    border-color: var(--gold); color: var(--void); background: var(--gold);
+  }
+  .btn.primary:hover {
+    background: var(--pearl); border-color: var(--pearl);
+    box-shadow: 0 0 32px rgba(245,197,66,0.32);
+  }
+  .btn.primary:hover { color: var(--void); }
+
+  /* Hero right: animated diagram */
+  .hero-diagram { position: relative; padding: 24px; }
+  .hero-diagram .frame {
+    border: 1px solid var(--rule); padding: 32px 28px 24px;
+    background: rgba(21,18,28,0.45); backdrop-filter: blur(6px);
+    position: relative;
+  }
+  .hero-diagram .frame::before, .hero-diagram .frame::after {
+    content: ""; position: absolute; width: 14px; height: 14px; border: 1px solid var(--gold);
+  }
+  .hero-diagram .frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .hero-diagram .frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+  .hero-diagram .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--pearl-faint);
+    margin-bottom: 6px; display: flex; justify-content: space-between;
+  }
+  .hero-diagram .label b { color: var(--gold); font-weight: 500; }
+  .hero-diagram .cap {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-variation-settings: "opsz" 36, "wght" 360, "SOFT" 80;
+    font-size: 14px; color: var(--pearl-dim); line-height: 1.45;
+    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule-soft);
+  }
+  .hero-diagram .cap em { font-style: normal; color: var(--coral); }
+  .hero-diagram svg { width: 100%; height: auto; display: block; }
+  .dgm-path { fill: none; stroke: var(--gold-soft); stroke-width: 0.8; }
+  .dgm-path-soft { fill: none; stroke: var(--pearl-faint); stroke-width: 0.5; stroke-dasharray: 3 4; }
+  .dgm-node { fill: var(--gold); filter: drop-shadow(0 0 6px rgba(245,197,66,0.55)); transform-origin: center; transform-box: fill-box; animation: nodeFire 6s ease-in-out infinite; }
+  .dgm-node.coral { fill: var(--coral); filter: drop-shadow(0 0 6px rgba(255,107,107,0.6)); }
+  .dgm-node.dim   { fill: var(--pearl-dim); filter: none; }
+  @keyframes nodeFire {
+    0%, 90%, 100% { transform: scale(1); opacity: 0.75; }
+    93%, 96%      { transform: scale(1.4); opacity: 1; }
+  }
+  .dgm-node.f2 { animation-delay: 1.5s; }
+  .dgm-node.f3 { animation-delay: 3s; }
+  .dgm-node.f4 { animation-delay: 4.5s; }
+  .dgm-pulse { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-dasharray: 6 200; animation: pulseAlong 4s linear infinite; }
+  .dgm-pulse.coral { stroke: var(--coral); animation-delay: 2s; }
+  @keyframes pulseAlong { to { stroke-dashoffset: -206; } }
+
+  /* ─── MARQUEE ─── */
+  .horizon {
+    position: relative; height: 100px; overflow: hidden;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(245,197,66,0.04) 50%, transparent 100%);
+  }
+  .horizon .marquee {
+    display: flex; gap: 64px; animation: marqueeSlow 50s linear infinite;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--pearl-faint); white-space: nowrap;
+    font-weight: 500;
+  }
+  .horizon .marquee b { color: var(--gold); font-weight: 500; }
+  .horizon .marquee em {
+    font-family: 'Fraunces', serif; font-style: italic;
+    color: var(--coral); text-transform: none;
+    letter-spacing: 0; font-size: 14px;
+  }
+  .horizon .marquee .star { color: var(--gold); }
+  @keyframes marqueeSlow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── SECTION RULE ─── */
+  .section-rule {
+    padding: 48px 56px 0;
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--pearl-faint);
+    font-weight: 500;
+  }
+  .section-rule .num { color: var(--gold); }
+  .section-rule .dash { height: 1px; background: var(--rule); }
+  .section-rule b { color: var(--pearl); font-weight: 500; }
+
+  /* ─── START HERE NUDGES ─── */
+  .nudges {
+    padding: 80px 56px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .nudge {
+    border: 1px solid var(--rule);
+    background: linear-gradient(160deg, var(--ink-card-2), var(--ink-card));
+    padding: 28px 28px 24px;
+    text-decoration: none;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), border-color 0.3s, box-shadow 0.5s;
+    position: relative; overflow: hidden;
+  }
+  .nudge:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-soft);
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.65), 0 0 0 1px var(--gold-faint), 0 0 60px -20px rgba(245,197,66,0.25);
+  }
+  .nudge .nudge-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--coral);
+    margin-bottom: 8px; font-weight: 500;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nudge .nudge-tag::before { content: ""; width: 18px; height: 1px; background: var(--coral); }
+  .nudge .nudge-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 96, "wght" 380, "SOFT" 30, "WONK" 1;
+    font-size: 26px; line-height: 1.1;
+    color: var(--pearl); margin-bottom: 8px;
+  }
+  .nudge .nudge-title em {
+    font-style: italic; color: var(--gold);
+    font-variation-settings: "opsz" 96, "wght" 320, "SOFT" 100, "WONK" 1;
+  }
+  .nudge .nudge-meta {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 20, "wght" 380;
+    font-size: 15px; line-height: 1.5; color: var(--pearl-dim);
+    margin-bottom: 14px;
+  }
+  .nudge .nudge-foot {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+    display: inline-flex; align-items: center; gap: 8px; font-weight: 600;
+  }
+  .nudge .nudge-foot .arrow { transition: transform 0.3s; }
+  .nudge:hover .nudge-foot .arrow { transform: translateX(4px); }
+
+  /* ─── CHAPTERS ─── */
+  .chapters { padding: 100px 56px; position: relative; }
+  .chapters .head-row {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 56px; padding-bottom: 22px;
+    border-bottom: 1px solid var(--rule); flex-wrap: wrap; gap: 20px;
+  }
+  .chapters h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 380, "SOFT" 50, "WONK" 1;
+    font-size: clamp(48px, 5.4vw, 92px);
+    line-height: 0.94; letter-spacing: -0.028em;
+    color: var(--pearl); max-width: 20ch;
+  }
+  .chapters h2 em {
+    font-style: italic; color: var(--gold);
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100, "WONK" 1;
+  }
+  .chapters .side-note {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-variation-settings: "opsz" 36, "wght" 340, "SOFT" 80;
+    font-size: 18px; color: var(--coral); line-height: 1.3;
+    text-align: right; max-width: 22ch;
+  }
+  .chapters .side-note b {
+    color: var(--gold); font-style: normal; font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; display: block; margin-bottom: 6px;
+  }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px 32px; }
+
+  .card {
+    background: linear-gradient(160deg, var(--ink-card-2), var(--ink-card));
+    border: 1px solid var(--rule);
+    padding: 32px 28px 26px;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.6s cubic-bezier(0.2,0.8,0.2,1), border-color 0.4s ease;
+    cursor: pointer;
+    min-height: 380px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    text-decoration: none; color: inherit;
+  }
+  .card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+    opacity: 0; transition: opacity 0.5s;
+  }
+  .card::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 100% at 100% 0%, var(--gold-faint), transparent 50%);
+    opacity: 0; transition: opacity 0.6s; pointer-events: none;
+  }
+  .card:nth-child(1) { transform: rotate(-0.2deg)  translateY(0); }
+  .card:nth-child(2) { transform: rotate(0.15deg)  translateY(8px); }
+  .card:nth-child(3) { transform: rotate(-0.1deg)  translateY(-4px); }
+  .card:nth-child(4) { transform: rotate(0.2deg)   translateY(6px); }
+  .card:nth-child(5) { transform: rotate(-0.15deg) translateY(-2px); }
+  .card:nth-child(6) { transform: rotate(0.1deg)   translateY(10px); }
+  .card:hover {
+    transform: rotate(0deg) translateY(-4px);
+    border-color: var(--gold-soft);
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px var(--gold-faint), 0 0 80px -20px rgba(245,197,66,0.25);
+  }
+  .card:hover::before { opacity: 1; }
+  .card:hover::after  { opacity: 1; }
+  .card .corner { position: absolute; width: 14px; height: 14px; border: 1px solid var(--gold-soft); opacity: 0.6; transition: opacity 0.4s, border-color 0.4s; }
+  .card .corner.tl { top: 10px; left: 10px;  border-right: none; border-bottom: none; }
+  .card .corner.br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+  .card:hover .corner { opacity: 1; border-color: var(--gold); }
+  .card .num {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100, "WONK" 1;
+    font-style: italic; font-size: 60px; line-height: 0.9;
+    color: var(--gold); margin-bottom: 8px;
+    letter-spacing: -0.02em; opacity: 0.92;
+  }
+  .card .num .of {
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 12px; letter-spacing: 0.12em;
+    color: var(--pearl-faint); text-transform: uppercase;
+    margin-left: 4px; vertical-align: 26px;
+  }
+  .card .tag {
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--coral); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .card .tag::before { content: ""; width: 18px; height: 1px; background: var(--coral); }
+  .card h3 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 96, "wght" 380, "SOFT" 30, "WONK" 1;
+    font-size: 26px; line-height: 1.08;
+    letter-spacing: -0.018em; color: var(--pearl); margin-bottom: 14px;
+  }
+  .card h3 em {
+    font-style: italic; color: var(--gold);
+    font-variation-settings: "opsz" 96, "wght" 320, "SOFT" 100, "WONK" 1;
+  }
+  .card p {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 20, "wght" 380;
+    font-size: 15.5px; line-height: 1.5;
+    color: var(--pearl-dim); margin-bottom: 22px; flex: 1;
+  }
+  .card .footer-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 16px; border-top: 1px solid var(--rule-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--pearl-faint);
+    gap: 8px; flex-wrap: wrap;
+  }
+  .card .footer-row b { color: var(--gold); font-weight: 500; }
+  .card .footer-row .energy { display: inline-flex; align-items: center; gap: 6px; }
+  .card .footer-row .energy i {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--rule); display: inline-block;
+  }
+  .card .footer-row .energy i.on { background: var(--gold); box-shadow: 0 0 6px var(--gold-soft); }
+
+  /* ─── LESSON GRID (all 11) ─── */
+  .lessons { padding: 80px 56px 100px; }
+  .lessons .head-row {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 32px; padding-bottom: 18px;
+    border-bottom: 1px solid var(--rule); flex-wrap: wrap; gap: 16px;
+  }
+  .lessons h2 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 96, "wght" 380, "SOFT" 50, "WONK" 1;
+    font-size: clamp(36px, 4vw, 56px); line-height: 1;
+    letter-spacing: -0.022em; color: var(--pearl);
+  }
+  .lessons h2 em {
+    font-style: italic; color: var(--gold);
+    font-variation-settings: "opsz" 96, "wght" 320, "SOFT" 100, "WONK" 1;
+  }
+  .lessons .head-row .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--pearl-faint);
+  }
+  .lessons .head-row .meta b { color: var(--gold); font-weight: 500; }
+  .lesson-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .lesson {
+    border: 1px solid var(--rule);
+    background: rgba(21,18,28,0.4);
+    backdrop-filter: blur(4px);
+    padding: 20px 22px 18px;
+    text-decoration: none; color: inherit;
+    transition: transform 0.3s, border-color 0.3s, background 0.3s;
+    display: block; position: relative;
+  }
+  .lesson:hover {
+    border-color: var(--gold-soft);
+    background: rgba(26,22,34,0.7);
+    transform: translateY(-2px);
+  }
+  .lesson .l-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 8px; font-weight: 600;
+  }
+  .lesson .l-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 48, "wght" 450, "SOFT" 30, "WONK" 0;
+    font-size: 19px; line-height: 1.22;
+    color: var(--pearl); margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .lesson .l-desc {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 16, "wght" 400;
+    font-size: 15px; line-height: 1.5; color: var(--pearl-dim);
+  }
+
+  /* ─── PULL QUOTE ─── */
+  .pull-quote {
+    padding: 120px 56px; position: relative; text-align: center;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(245,197,66,0.06), transparent 70%);
+  }
+  .pull-quote::before, .pull-quote::after {
+    content: ""; position: absolute; width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold-soft) 30%, var(--gold-soft) 70%, transparent);
+  }
+  .pull-quote::before { left: 56px;  top: 20%; bottom: 20%; }
+  .pull-quote::after  { right: 56px; top: 20%; bottom: 20%; }
+  .pull-quote .mark {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 360, "SOFT" 100, "WONK" 1;
+    font-style: italic; font-size: 96px; line-height: 0;
+    color: var(--gold); margin-bottom: 24px; opacity: 0.85;
+  }
+  .pull-quote blockquote {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 360, "SOFT" 50, "WONK" 1;
+    font-size: clamp(28px, 4vw, 58px); line-height: 1.1;
+    letter-spacing: -0.022em; color: var(--pearl);
+    max-width: 22ch; margin: 0 auto 32px;
+  }
+  .pull-quote blockquote em { font-style: italic; color: var(--gold); }
+  .pull-quote .attrib {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pearl-faint);
+  }
+  .pull-quote .attrib b { color: var(--coral); font-weight: 500; }
+
+  /* ─── BY THE NUMBERS ─── */
+  .numbers { padding: 90px 56px; position: relative; }
+  .numbers h2.head {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 380, "WONK" 1;
+    font-size: clamp(40px, 4.4vw, 68px); line-height: 1;
+    letter-spacing: -0.022em; margin-bottom: 48px; max-width: 22ch;
+    color: var(--pearl); font-weight: 400;
+  }
+  .numbers .head em {
+    font-style: italic; color: var(--gold);
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100, "WONK" 1;
+  }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  }
+  .stat { padding: 36px 28px; border-right: 1px solid var(--rule); position: relative; }
+  .stat:last-child { border-right: none; }
+  .stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pearl-faint);
+    margin-bottom: 14px; font-weight: 500;
+  }
+  .stat .value {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 50, "WONK" 1;
+    font-size: 76px; line-height: 0.92;
+    color: var(--gold); letter-spacing: -0.04em;
+    margin-bottom: 16px;
+  }
+  .stat:nth-child(2) .value { color: var(--coral); }
+  .stat:nth-child(4) .value { color: var(--coral); }
+  .stat .value em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "wght" 320, "SOFT" 100, "WONK" 1;
+  }
+  .stat .value .unit {
+    font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 12px; letter-spacing: 0.12em; color: var(--pearl-faint);
+    text-transform: uppercase; vertical-align: 26px; margin-left: 2px;
+  }
+  .stat .desc {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 15px; line-height: 1.45; color: var(--pearl-dim);
+  }
+
+  /* ─── FOOTER ─── */
+  footer.end {
+    padding: 32px 56px; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pearl-faint);
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer.end b { color: var(--gold); font-weight: 500; }
+  footer.end a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-faint); padding-bottom: 1px; }
+  footer.end a:hover { color: var(--pearl); }
+  footer.end .dot {
+    display: inline-block; width: 4px; height: 4px;
+    border-radius: 50%; background: var(--coral);
+    box-shadow: 0 0 6px var(--coral); margin: 0 10px; vertical-align: 2px;
+  }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-card { opacity: 0; transform: translateY(40px) rotate(0deg) scale(0.98); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .reveal-card.in { opacity: 1; }
+  .reveal-card.in:nth-child(1) { transform: rotate(-0.2deg)  translateY(0); }
+  .reveal-card.in:nth-child(2) { transform: rotate(0.15deg)  translateY(8px); }
+  .reveal-card.in:nth-child(3) { transform: rotate(-0.1deg)  translateY(-4px); }
+  .reveal-card.in:nth-child(4) { transform: rotate(0.2deg)   translateY(6px); }
+  .reveal-card.in:nth-child(5) { transform: rotate(-0.15deg) translateY(-2px); }
+  .reveal-card.in:nth-child(6) { transform: rotate(0.1deg)   translateY(10px); }
+
+  /* skip link */
+  .skip-link {
+    position: absolute; top: -40px; left: 8px;
+    background: var(--gold); color: var(--void); padding: 10px 16px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; z-index: 100; font-weight: 600;
+  }
+  .skip-link:focus { top: 8px; outline: 3px solid var(--pearl); outline-offset: 2px; }
+
+  /* Visible focus ring for every interactive element — ND/keyboard accessible.
+     Uses pearl ring so it shows up over both dark void and gold buttons. */
+  a:focus-visible, button:focus-visible, .card:focus-visible, .lesson:focus-visible,
+  .nudge:focus-visible, .btn:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  .btn.primary:focus-visible { outline-color: var(--pearl); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero { grid-template-columns: 1fr; gap: 56px; padding: 80px 28px; }
+    .hero-diagram { padding: 0; }
+    .masthead, .chapters, .pull-quote, .numbers, .nudges, .lessons, footer.end, .section-rule {
+      padding-left: 28px; padding-right: 28px;
     }
-    .meta-line a{color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-glow);padding-bottom:1px;transition:border-color .2s,color .2s}
-    .meta-line a:hover{color:var(--text);border-bottom-color:var(--gold)}
-  </style>
+    .masthead { grid-template-columns: 1fr; text-align: center; gap: 10px; }
+    .masthead .meta-right { text-align: center; }
+    .masthead .wordmark { justify-content: center; }
+    .cards { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+    .lesson-grid { grid-template-columns: 1fr 1fr; }
+    .nudges { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--rule); }
+    .pull-quote::before, .pull-quote::after { display: none; }
+  }
+  @media (max-width: 620px) {
+    .cards { grid-template-columns: 1fr; }
+    .lesson-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 1px solid var(--rule); }
+    .stat:last-child { border-bottom: none; }
+    .hero h1 { font-size: 52px; }
+    .pull-quote blockquote { font-size: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .parallax-layer { transform: none !important; }
+  }
+</style>
 </head>
 <body>
-<script src="js/spa-redirect.js"></script>
+
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
-<div class="particles" id="particles"></div>
-<div class="brain-header-sticky">
-  <div class="brain-header brain-header--hub" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
-    <div class="brain-header-overlay"></div>
-    <div class="brain-header-text" id="headerText">
-      <h1>Neurodiverse AI <em>MasterClass</em></h1>
-      <p class="tagline">Build an AI system your brain can actually use.</p>
-      <span class="pill">Your pace is the right pace</span>
-    </div>
-  </div>
+<!-- PARALLAX LAYER 1: deep background + starfield -->
+<div class="parallax-layer layer-bg" data-speed="0.15">
+  <svg class="starfield" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle class="star t1"     cx="120"  cy="80"   r="0.8"/>
+    <circle class="star bright" cx="220"  cy="180"  r="1.6"/>
+    <circle class="star"        cx="340"  cy="60"   r="0.6"/>
+    <circle class="star t2"     cx="450"  cy="240"  r="1"/>
+    <circle class="star"        cx="580"  cy="120"  r="0.7"/>
+    <circle class="star t3"     cx="720"  cy="320"  r="1.2"/>
+    <circle class="star coral"  cx="880"  cy="160"  r="1.4"/>
+    <circle class="star t1"     cx="1020" cy="280"  r="0.9"/>
+    <circle class="star"        cx="1180" cy="80"   r="0.6"/>
+    <circle class="star bright" cx="1340" cy="220"  r="1.5"/>
+    <circle class="star t2"     cx="1480" cy="140"  r="1"/>
+    <circle class="star"        cx="80"   cy="400"  r="0.7"/>
+    <circle class="star t3"     cx="240"  cy="480"  r="1.1"/>
+    <circle class="star bright" cx="520"  cy="540"  r="1.4"/>
+    <circle class="star coral"  cx="660"  cy="420"  r="1.2"/>
+    <circle class="star t1"     cx="800"  cy="580"  r="0.9"/>
+    <circle class="star"        cx="940"  cy="480"  r="0.7"/>
+    <circle class="star t2"     cx="1080" cy="640"  r="1.1"/>
+    <circle class="star bright" cx="1380" cy="600"  r="1.4"/>
+    <circle class="star coral"  cx="760"  cy="820"  r="1.3"/>
+    <circle class="star bright" cx="1460" cy="800"  r="1.4"/>
+    <circle class="star coral"  cx="500"  cy="1020" r="1.3"/>
+    <circle class="star bright" cx="800"  cy="1080" r="1.5"/>
+    <path class="nf-path"       d="M 0 200 Q 400 50, 800 220 T 1600 100" />
+    <path class="nf-path coral" d="M 0 450 Q 500 600, 1000 380 T 1600 520" />
+    <path class="nf-path"       d="M 0 800 Q 400 700, 900 880 T 1600 720" />
+    <path class="nf-path coral" d="M 0 1050 Q 600 950, 1200 1100 T 1600 980" />
+  </svg>
 </div>
 
-<main class="page home" id="main-content">
+<!-- BRAIN BACKGROUND (Lovart AURORA viz at ~7%) -->
+<div class="brain-bg-layer" id="brainBg" aria-hidden="true">
+  <img class="brain-img" src="assets/brain.png" alt="" />
+  <div class="brain-glow"></div>
+  <div class="brain-glow delay"></div>
+  <svg class="brain-particles" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle class="bp d1" cx="220"  cy="320"  r="2.6"/>
+    <circle class="bp d2 coral" cx="460"  cy="540"  r="2.2"/>
+    <circle class="bp d3" cx="780"  cy="280"  r="2.8"/>
+    <circle class="bp d4" cx="1060" cy="460"  r="2.4"/>
+    <circle class="bp d5 coral" cx="1320" cy="720"  r="2.2"/>
+    <circle class="bp d6" cx="380"  cy="820"  r="2.6"/>
+    <circle class="bp d7" cx="900"  cy="940"  r="2.8"/>
+    <circle class="bp d8" cx="1180" cy="980"  r="2.4"/>
+  </svg>
+</div>
 
-  <div id="resume" class="resume-card" role="region" aria-label="Resume onboarding">
-    <span class="resume-card-icon" aria-hidden="true">&#x1F9ED;</span>
-    <div class="resume-card-body">
-      <p class="resume-card-title">Pick up where you left off</p>
-      <p class="resume-card-meta" id="resume-meta">You were on step 1 of onboarding.</p>
+<!-- SCROLL-DRIVEN SYNAPSE OVERLAY -->
+<div class="synapse-layer" aria-hidden="true">
+  <svg class="synapse-overlay" id="synapseOverlay" viewBox="0 0 600 346" preserveAspectRatio="xMidYMid slice">
+    <g class="synapse-sparks">
+      <circle class="sy-spark" cx="180" cy="160" r="1.4"/>
+      <circle class="sy-spark" cx="220" cy="100" r="1.2"/>
+      <circle class="sy-spark coral" cx="310" cy="170" r="1.5"/>
+      <circle class="sy-spark" cx="380" cy="120" r="1.3"/>
+      <circle class="sy-spark" cx="420" cy="170" r="1.4"/>
+      <circle class="sy-spark coral" cx="450" cy="200" r="1.2"/>
+      <circle class="sy-spark" cx="270" cy="220" r="1.3"/>
+      <circle class="sy-spark" cx="240" cy="270" r="1.4"/>
+      <circle class="sy-spark coral" cx="340" cy="240" r="1.2"/>
+      <circle class="sy-spark" cx="400" cy="280" r="1.4"/>
+      <circle class="sy-spark" cx="155" cy="200" r="1.3"/>
+      <circle class="sy-spark" cx="500" cy="230" r="1.2"/>
+    </g>
+
+    <g class="synapse-group">
+      <path class="sy-path"       d="M 128 92  C 165 100, 205 118, 258 132"/>
+      <path class="sy-path"       d="M 258 132 C 320 110, 395 92,  478 88"/>
+      <path class="sy-path coral" d="M 128 92  C 230 60,  340 70,  478 88"/>
+      <path class="sy-path"       d="M 258 132 C 295 110, 340 100, 360 82"/>
+      <path class="sy-path"       d="M 478 88  C 510 120, 540 145, 555 175"/>
+      <path class="sy-path coral" d="M 360 82  C 410 95,  450 88,  478 88"/>
+      <path class="sy-path"       d="M 128 92  C 145 130, 180 145, 258 132"/>
+      <path class="sy-path coral" d="M 128 92  C 120 60,  140 40,  200 60"/>
+      <path class="sy-path"       d="M 258 132 C 220 140, 195 145, 175 150"/>
+
+      <path class="sy-pulse"            d="M 128 92  C 165 100, 205 118, 258 132"/>
+      <path class="sy-pulse"            d="M 258 132 C 320 110, 395 92,  478 88"/>
+      <path class="sy-pulse coral"      d="M 128 92  C 230 60,  340 70,  478 88"/>
+      <path class="sy-pulse"            d="M 258 132 C 295 110, 340 100, 360 82"/>
+      <path class="sy-pulse"            d="M 478 88  C 510 120, 540 145, 555 175"/>
+      <path class="sy-pulse coral"      d="M 360 82  C 410 95,  450 88,  478 88"/>
+      <path class="sy-pulse"            d="M 128 92  C 145 130, 180 145, 258 132"/>
+      <path class="sy-pulse coral"      d="M 128 92  C 120 60,  140 40,  200 60"/>
+
+      <circle class="sy-halo"          cx="128" cy="92"  r="8"/>
+      <circle class="sy-halo coral"    cx="258" cy="132" r="9.5"/>
+      <circle class="sy-halo"          cx="478" cy="88"  r="8"/>
+      <circle class="sy-halo"          cx="360" cy="82"  r="5"/>
+      <circle class="sy-dot"           cx="128" cy="92"  r="3.8"/>
+      <circle class="sy-dot coral"     cx="258" cy="132" r="4.8"/>
+      <circle class="sy-dot"           cx="478" cy="88"  r="4.0"/>
+      <circle class="sy-dot"           cx="360" cy="82"  r="2.8"/>
+      <circle class="sy-ping"          cx="258" cy="132" r="6"/>
+      <circle class="sy-ping coral"    cx="478" cy="88"  r="5"/>
+    </g>
+
+    <g class="synapse-group">
+      <path class="sy-path"       d="M 258 132 C 310 175, 380 215, 465 262"/>
+      <path class="sy-path coral" d="M 478 88  C 530 130, 555 200, 465 262"/>
+      <path class="sy-path"       d="M 258 132 C 340 165, 410 195, 465 262"/>
+      <path class="sy-path"       d="M 360 82  C 420 140, 445 200, 465 262"/>
+      <path class="sy-path"       d="M 555 175 C 560 200, 540 230, 465 262"/>
+      <path class="sy-path coral" d="M 258 132 C 350 200, 420 240, 465 262"/>
+      <path class="sy-path"       d="M 478 88  C 470 150, 470 200, 465 262"/>
+      <path class="sy-path coral" d="M 478 88  C 555 110, 575 160, 575 200"/>
+
+      <path class="sy-pulse"            d="M 258 132 C 310 175, 380 215, 465 262"/>
+      <path class="sy-pulse coral"      d="M 478 88  C 530 130, 555 200, 465 262"/>
+      <path class="sy-pulse"            d="M 258 132 C 340 165, 410 195, 465 262"/>
+      <path class="sy-pulse"            d="M 360 82  C 420 140, 445 200, 465 262"/>
+      <path class="sy-pulse coral"      d="M 555 175 C 560 200, 540 230, 465 262"/>
+      <path class="sy-pulse"            d="M 478 88  C 470 150, 470 200, 465 262"/>
+      <path class="sy-pulse coral"      d="M 478 88  C 555 110, 575 160, 575 200"/>
+
+      <circle class="sy-halo coral"    cx="465" cy="262" r="9.5"/>
+      <circle class="sy-halo"          cx="555" cy="175" r="5"/>
+      <circle class="sy-halo coral"    cx="478" cy="88"  r="6"/>
+      <circle class="sy-dot coral"     cx="465" cy="262" r="5.0"/>
+      <circle class="sy-dot"           cx="555" cy="175" r="3.0"/>
+      <circle class="sy-dot coral"     cx="478" cy="88"  r="3.6"/>
+      <circle class="sy-ping"          cx="465" cy="262" r="6"/>
+    </g>
+
+    <g class="synapse-group">
+      <path class="sy-path"       d="M 205 312 C 260 295, 340 280, 465 262"/>
+      <path class="sy-path coral" d="M 258 132 C 220 195, 195 255, 205 312"/>
+      <path class="sy-path"       d="M 465 262 C 380 290, 290 308, 205 312"/>
+      <path class="sy-path"       d="M 205 312 C 145 295, 90  265, 60  220"/>
+      <path class="sy-path coral" d="M 258 132 C 245 200, 280 270, 380 295"/>
+      <path class="sy-path"       d="M 205 312 C 215 260, 235 200, 258 132"/>
+      <path class="sy-path coral" d="M 380 295 C 410 285, 440 275, 465 262"/>
+
+      <path class="sy-pulse thick"      d="M 205 312 C 260 295, 340 280, 465 262"/>
+      <path class="sy-pulse coral"      d="M 258 132 C 220 195, 195 255, 205 312"/>
+      <path class="sy-pulse"            d="M 465 262 C 380 290, 290 308, 205 312"/>
+      <path class="sy-pulse"            d="M 205 312 C 145 295, 90  265, 60  220"/>
+      <path class="sy-pulse coral"      d="M 258 132 C 245 200, 280 270, 380 295"/>
+      <path class="sy-pulse"            d="M 205 312 C 215 260, 235 200, 258 132"/>
+      <path class="sy-pulse coral"      d="M 380 295 C 410 285, 440 275, 465 262"/>
+
+      <circle class="sy-halo"          cx="205" cy="312" r="8"/>
+      <circle class="sy-halo coral"    cx="465" cy="262" r="9"/>
+      <circle class="sy-halo"          cx="380" cy="295" r="5"/>
+      <circle class="sy-dot"           cx="205" cy="312" r="4.4"/>
+      <circle class="sy-dot coral"     cx="465" cy="262" r="4.8"/>
+      <circle class="sy-dot"           cx="380" cy="295" r="2.8"/>
+      <circle class="sy-ping"          cx="205" cy="312" r="6"/>
+    </g>
+  </svg>
+</div>
+
+<!-- PARALLAX LAYER 2: flowing neural pathways -->
+<div class="parallax-layer layer-mid" data-speed="0.45">
+  <svg class="neural-flow" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="nf-path"       d="M -100 300 C 200 150, 500 450, 800 300 S 1400 200, 1700 350" />
+    <path class="nf-path"       d="M -100 600 C 300 800, 700 500, 1000 700 S 1500 550, 1700 700" />
+    <path class="nf-path coral" d="M -100 900 C 200 750, 600 1000, 900 850 S 1400 1050, 1700 880" />
+    <path class="nf-path"       d="M 100 -100 C 250 200, 100 450, 350 600 S 500 1000, 250 1300" />
+    <path class="nf-path coral" d="M 1300 -100 C 1450 250, 1300 500, 1500 700 S 1400 1050, 1550 1300" />
+
+    <path class="nf-flow"         d="M -100 300 C 200 150, 500 450, 800 300 S 1400 200, 1700 350" pathLength="220"/>
+    <path class="nf-flow delay-1" d="M -100 600 C 300 800, 700 500, 1000 700 S 1500 550, 1700 700" pathLength="220"/>
+    <path class="nf-flow delay-2" d="M -100 900 C 200 750, 600 1000, 900 850 S 1400 1050, 1700 880" pathLength="220"/>
+    <path class="nf-flow delay-3" d="M 100 -100 C 250 200, 100 450, 350 600 S 500 1000, 250 1300"  pathLength="220"/>
+    <path class="nf-flow delay-4" d="M -100 150 C 300 250, 800 100, 1200 220 S 1700 180, 1700 180"  pathLength="220"/>
+
+    <circle cx="500"  cy="300" r="4"  fill="#F5C542" opacity="0.7"/>
+    <circle cx="500"  cy="300" r="14" fill="#F5C542" opacity="0.18"/>
+    <circle cx="900"  cy="680" r="4"  fill="#FF6B6B" opacity="0.7"/>
+    <circle cx="900"  cy="680" r="14" fill="#FF6B6B" opacity="0.18"/>
+    <circle cx="1200" cy="380" r="4"  fill="#F5C542" opacity="0.7"/>
+    <circle cx="1200" cy="380" r="14" fill="#F5C542" opacity="0.18"/>
+
+    <circle class="particle"        cx="280"  cy="240"  r="2.4"/>
+    <circle class="particle coral p2" cx="820"  cy="520"  r="2.2"/>
+    <circle class="particle p3"     cx="1280" cy="380"  r="2.4"/>
+    <circle class="particle p4"     cx="420"  cy="880"  r="2.4"/>
+    <circle class="particle coral p5" cx="1100" cy="980"  r="2.2"/>
+  </svg>
+</div>
+
+<main id="main-content">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="meta-left">
+      <b>vol. I</b> · 2026 Edition · <span style="color:var(--coral)">in session</span>
     </div>
-    <a href="onboarding-interview.html" class="resume-card-btn">Resume &rarr;</a>
-  </div>
+    <div class="wordmark">
+      Neurodiverse AI <em>MasterClass</em><span class="dot"></span>
+    </div>
+    <div class="meta-right">
+      Built for <b>neurodivergent</b> minds
+    </div>
+  </header>
 
-  <section class="home-lead">
-    <h2>Got a few minutes? Start with one of these.</h2>
-    <p>You don&rsquo;t have to do them in order. Pick whatever matches your energy right now.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="kicker">
+        <span class="pulse-dot"></span>
+        Your pace is the right pace
+      </div>
+      <h1>
+        A practice for minds<br/>
+        that don't run on
+        <span class="line-mark"><em>rails</em></span>.
+      </h1>
+      <p class="deck">
+        Eleven lessons. One workbench. Build an AI system your brain can actually <em>use</em> —
+        on terms that fit how you actually think, not how the spreadsheet says you should.
+      </p>
+      <div class="cta-row">
+        <a href="find-your-level.html" class="btn primary"><span>Find your level</span> <span class="arrow">→</span></a>
+        <a href="find-your-path.html" class="btn"><span>See the whole path</span> <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-diagram">
+      <div class="frame">
+        <div class="label">
+          <span>fig. 01 · the course map</span>
+          <span><b>● live</b></span>
+        </div>
+        <svg viewBox="0 0 360 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <defs>
+            <radialGradient id="haloGold" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#F5C542" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#F5C542" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="haloCoral" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#FF6B6B" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <path class="dgm-path-soft" d="M 60 80 L 180 50 L 300 90 L 280 180 L 180 230 L 80 200 L 60 80 Z"/>
+          <path class="dgm-path-soft" d="M 60 80 L 280 180"/>
+          <path class="dgm-path-soft" d="M 300 90 L 80 200"/>
+          <path class="dgm-path-soft" d="M 180 50 L 180 230"/>
+          <path class="dgm-path" d="M 60 80 Q 120 30, 180 50 T 300 90"/>
+          <path class="dgm-path" d="M 300 90 Q 320 140, 280 180 T 180 230"/>
+          <path class="dgm-path" d="M 180 230 Q 110 220, 80 200 T 60 80"/>
+          <path class="dgm-path" d="M 180 50 Q 230 100, 260 130 T 180 230"/>
+          <circle cx="60"  cy="80"  r="22" fill="url(#haloGold)"/>
+          <circle cx="180" cy="50"  r="20" fill="url(#haloCoral)"/>
+          <circle cx="300" cy="90"  r="22" fill="url(#haloGold)"/>
+          <circle cx="280" cy="180" r="18" fill="url(#haloGold)"/>
+          <circle cx="180" cy="230" r="22" fill="url(#haloCoral)"/>
+          <circle cx="80"  cy="200" r="18" fill="url(#haloGold)"/>
+          <path class="dgm-pulse" d="M 60 80 Q 120 30, 180 50 T 300 90 Q 320 140, 280 180 T 180 230 Q 110 220, 80 200 T 60 80" pathLength="200"/>
+          <path class="dgm-pulse coral" d="M 180 50 Q 230 100, 260 130 T 180 230" pathLength="200"/>
+          <circle class="dgm-node f1"       cx="60"  cy="80"  r="3.2"/>
+          <circle class="dgm-node coral f2" cx="180" cy="50"  r="3.4"/>
+          <circle class="dgm-node f3"       cx="300" cy="90"  r="3.2"/>
+          <circle class="dgm-node f4"       cx="280" cy="180" r="3"/>
+          <circle class="dgm-node coral f1" cx="180" cy="230" r="3.4"/>
+          <circle class="dgm-node f3"       cx="80"  cy="200" r="3"/>
+          <circle class="dgm-node dim" cx="120" cy="65"  r="1.8"/>
+          <circle class="dgm-node dim" cx="240" cy="70"  r="1.6"/>
+          <circle class="dgm-node dim" cx="295" cy="140" r="1.6"/>
+          <circle class="dgm-node dim" cx="230" cy="210" r="1.6"/>
+          <circle class="dgm-node dim" cx="130" cy="220" r="1.6"/>
+          <circle class="dgm-node dim" cx="70"  cy="140" r="1.6"/>
+          <text x="60"  y="74" text-anchor="middle" fill="#F5C542" style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em">01</text>
+          <text x="180" y="44" text-anchor="middle" fill="#FF6B6B" style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em">02</text>
+          <text x="300" y="84" text-anchor="middle" fill="#F5C542" style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em">03</text>
+          <text x="280" y="174" text-anchor="middle" fill="#F5C542" style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em">04</text>
+          <text x="180" y="224" text-anchor="middle" fill="#FF6B6B" style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em">05</text>
+          <text x="80"  y="194" text-anchor="middle" fill="#F5C542" style="font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.1em">06</text>
+        </svg>
+        <p class="cap">
+          Eleven lessons · six chapters · no required order. <em>Start where the door is open.</em>
+        </p>
+      </div>
+    </div>
   </section>
 
-  <div class="energy-grid">
-    <a href="playground.html" class="energy-card low">
-      <span class="energy-card-time">5 min &middot; low energy</span>
-      <h3 class="energy-card-title">Open the playground</h3>
-      <p class="energy-card-desc">Copy one prompt, paste it into Claude, see what comes back.</p>
-    </a>
-    <a href="onboarding-interview.html" class="energy-card mid">
-      <span class="energy-card-time">10&ndash;15 min &middot; any energy</span>
-      <h3 class="energy-card-title">Do the onboarding</h3>
-      <p class="energy-card-desc">7 short questions. The course adapts to what you tell it.</p>
-    </a>
-    <a href="setup-your-tools.html" class="energy-card high">
-      <span class="energy-card-time">30&ndash;45 min &middot; focus required</span>
-      <h3 class="energy-card-title">Set up your tools</h3>
-      <p class="energy-card-desc">Accounts, memory on, prompt basics. The proper start.</p>
-    </a>
+  <!-- HORIZON MARQUEE -->
+  <div class="horizon">
+    <div class="marquee">
+      <span><b>Made by a neurodivergent maker</b></span>
+      <span class="star">✦</span>
+      <span>Read <em>one lesson</em> · close the tab</span>
+      <span class="star">✦</span>
+      <span><b>No streaks</b> · no shame</span>
+      <span class="star">✦</span>
+      <span>The course is the <em>practice</em></span>
+      <span class="star">✦</span>
+      <span><b>Made by a neurodivergent maker</b></span>
+      <span class="star">✦</span>
+      <span>Read <em>one lesson</em> · close the tab</span>
+      <span class="star">✦</span>
+      <span><b>No streaks</b> · no shame</span>
+      <span class="star">✦</span>
+      <span>The course is the <em>practice</em></span>
+      <span class="star">✦</span>
+    </div>
   </div>
 
-  <div class="section-head-clean">
-    <h2>The course</h2>
-    <span class="section-meta">8 lessons &middot; do in any order</span>
-  </div>
-  <div class="track-grid">
-    <a href="first-ai-conversation.html" class="track-card">
-      <span class="track-card-tag">LESSON 01</span>
-      <p class="track-card-title">Your first AI conversation</p>
-      <p class="track-card-desc">Open Claude. Ask something with no right answer. Notice how it thinks.</p>
-    </a>
-    <a href="prompt-basics.html" class="track-card">
-      <span class="track-card-tag">LESSON 02</span>
-      <p class="track-card-title">Prompt basics that work</p>
-      <p class="track-card-desc">4-element framework. Build 3 prompts you&rsquo;ll use this week.</p>
-    </a>
-    <a href="setup-your-tools.html" class="track-card">
-      <span class="track-card-tag">LESSON 03</span>
-      <p class="track-card-title">Set up your tools</p>
-      <p class="track-card-desc">Accounts, memory, your primary AI. The setup that pays off.</p>
-    </a>
-    <a href="connect-ai.html" class="track-card">
-      <span class="track-card-tag">LESSON 04</span>
-      <p class="track-card-title">Connect AI to your template</p>
-      <p class="track-card-desc">Optional: let AI read and write to your Notion databases.</p>
-    </a>
-    <a href="onboarding-interview.html" class="track-card">
-      <span class="track-card-tag">LESSON 05</span>
-      <p class="track-card-title">Onboarding interview</p>
-      <p class="track-card-desc">7 phases. Maps how your brain works with AI.</p>
-    </a>
-    <a href="ai-profile.html" class="track-card">
-      <span class="track-card-tag">LESSON 06</span>
-      <p class="track-card-title">Your AI profile</p>
-      <p class="track-card-desc">A living manual. Starts empty, fills from your onboarding answers.</p>
-    </a>
-    <a href="writing-voice.html" class="track-card">
-      <span class="track-card-tag">LESSON 07</span>
-      <p class="track-card-title">Writing voice</p>
-      <p class="track-card-desc">Calibrate a voice card so AI writes like you, not like AI.</p>
-    </a>
-    <a href="emergency-toolkit.html" class="track-card">
-      <span class="track-card-tag">LESSON 08</span>
-      <p class="track-card-title">Emergency toolkit</p>
-      <p class="track-card-desc">Crisis prompts for days your brain is offline. Bookmark this.</p>
-    </a>
+  <!-- SECTION RULE -->
+  <div class="section-rule">
+    <span class="num">§ 01</span>
+    <span class="dash"></span>
+    <span><b>Got a few minutes?</b> · start with one of these</span>
   </div>
 
-  <div class="section-head-clean">
-    <h2>Pick by what you want to do</h2>
-    <span class="section-meta">5 use-case workshops &middot; 30&ndash;45 min each</span>
-  </div>
-  <div class="track-grid">
-    <a href="research-analysis.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Research &amp; analysis</p><p class="track-card-desc">Templates and workflows that don&rsquo;t make you re-read the source.</p></a>
-    <a href="work-productivity.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Work &amp; productivity</p><p class="track-card-desc">Email, meetings, reports. The drudge tasks AI handles cleanly.</p></a>
-    <a href="creative-projects.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Creative projects</p><p class="track-card-desc">Brainstorming and ideation. Where the playground earns its name.</p></a>
-    <a href="life-management.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Life management</p><p class="track-card-desc">Routines, decisions, household admin. The boring wins.</p></a>
-    <a href="writing-voice.html" class="track-card"><span class="track-card-tag">USE CASE</span><p class="track-card-title">Writing voice</p><p class="track-card-desc">Make AI write like you, not like a press release.</p></a>
+  <!-- START HERE NUDGES (replacing the data viz section with practical entry points) -->
+  <section class="nudges reveal">
+    <a href="playground.html" class="nudge">
+      <span class="nudge-tag">5 min · low energy</span>
+      <div class="nudge-title">Open the <em>playground</em></div>
+      <p class="nudge-meta">Copy one prompt. Paste it into Claude. See what comes back. That's the whole thing.</p>
+      <span class="nudge-foot">Try a prompt <span class="arrow">→</span></span>
+    </a>
+    <a href="onboarding-interview.html" class="nudge">
+      <span class="nudge-tag">10–15 min · any energy</span>
+      <div class="nudge-title">Do the <em>onboarding</em></div>
+      <p class="nudge-meta">Seven short questions. The course adapts to what you tell it. Skip any you want.</p>
+      <span class="nudge-foot">Start the interview <span class="arrow">→</span></span>
+    </a>
+  </section>
+
+  <!-- SECTION RULE -->
+  <div class="section-rule">
+    <span class="num">§ 02</span>
+    <span class="dash"></span>
+    <span><b>The six chapters</b> · self-paced · no required order</span>
   </div>
 
-  <div class="section-head-clean">
-    <h2>Advanced tracks</h2>
-    <span class="section-meta">Skip if you&rsquo;re still finding your footing</span>
-  </div>
-  <div class="track-grid">
-    <a href="track-multi-ai.html" class="track-card"><span class="track-card-tag">TRACK A</span><p class="track-card-title">Multi-AI mastery</p><p class="track-card-desc">Triple stack workflow. 21-task matrix. Voice routing for low-energy days.</p></a>
-    <a href="track-plugins.html" class="track-card"><span class="track-card-tag">TRACK B</span><p class="track-card-title">Plugins, MCP &amp; agents</p><p class="track-card-desc">Skills teach. MCP connects. Agents execute. 20 top servers + build patterns.</p></a>
-    <a href="track-rag.html" class="track-card"><span class="track-card-tag">TRACK C</span><p class="track-card-title">RAG &amp; knowledge</p><p class="track-card-desc">Make AI answer from your documents. Claude Projects, NotebookLM, Obsidian.</p></a>
-    <a href="track-councils.html" class="track-card"><span class="track-card-tag">TRACK D</span><p class="track-card-title">Councils &amp; multi-agent</p><p class="track-card-desc">When multi-agent helps. When it just costs more. 6 patterns + 6 anti-patterns.</p></a>
+  <!-- CHAPTERS GRID -->
+  <section class="chapters">
+    <div class="head-row">
+      <h2>Six <em>chapters</em>,<br/>read in any order.</h2>
+      <div class="side-note">
+        <b>★ start anywhere</b>
+        you have no homework — just the page that's open right now.
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <a href="onboarding-interview.html" class="card reveal-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <div class="num">01<span class="of">/ 06</span></div>
+        <div class="tag">The foundation</div>
+        <h3>Meeting <em>yourself</em> first.</h3>
+        <p>Before the model, the mirror. A guided self-portrait in seven questions you didn't know you owed yourself — and the model can't answer for you.</p>
+        <div class="footer-row">
+          <span>~ 15 min</span>
+          <span class="energy">energy <i class="on"></i><i></i><i></i></span>
+          <span><b>start here</b></span>
+        </div>
+      </a>
+
+      <a href="first-ai-conversation.html" class="card reveal-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <div class="num">02<span class="of">/ 06</span></div>
+        <div class="tag">The conversation</div>
+        <h3>Your first <em>honest</em> session.</h3>
+        <p>How to ask a real question of an AI without losing your own voice in the answer. One short read. One practice prompt. Bring your own notebook.</p>
+        <div class="footer-row">
+          <span>~ 20 min</span>
+          <span class="energy">energy <i class="on"></i><i class="on"></i><i></i></span>
+          <span>medium</span>
+        </div>
+      </a>
+
+      <a href="prompt-basics.html" class="card reveal-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <div class="num">03<span class="of">/ 06</span></div>
+        <div class="tag">The craft</div>
+        <h3>Prompting as a <em>language</em>.</h3>
+        <p>A four-element framework that changes what the model gives back. Read it as grammar — not as tricks, not as hacks. Tools for thinking out loud, in writing.</p>
+        <div class="footer-row">
+          <span>~ 25 min</span>
+          <span class="energy">energy <i class="on"></i><i class="on"></i><i></i></span>
+          <span>medium</span>
+        </div>
+      </a>
+
+      <a href="setup-your-tools.html" class="card reveal-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <div class="num">04<span class="of">/ 06</span></div>
+        <div class="tag">The studio</div>
+        <h3>Building your <em>workbench</em>.</h3>
+        <p>Accounts, memory, your primary AI, the connections that make the whole thing sing. Set up the studio once — use it for years.</p>
+        <div class="footer-row">
+          <span>~ 35 min</span>
+          <span class="energy">energy <i class="on"></i><i class="on"></i><i class="on"></i></span>
+          <span>high</span>
+        </div>
+      </a>
+
+      <a href="life-management.html" class="card reveal-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <div class="num">05<span class="of">/ 06</span></div>
+        <div class="tag">The life</div>
+        <h3>AI in the <em>ordinary</em> day.</h3>
+        <p>Templates for the parts of life nobody teaches: the email, the doctor's letter, the apology you've been writing in your head for a week, the to-do that won't move.</p>
+        <div class="footer-row">
+          <span>~ 30 min</span>
+          <span class="energy">energy <i class="on"></i><i class="on"></i><i></i></span>
+          <span>medium</span>
+        </div>
+      </a>
+
+      <a href="emergency-toolkit.html" class="card reveal-card">
+        <span class="corner tl"></span><span class="corner br"></span>
+        <div class="num">06<span class="of">/ 06</span></div>
+        <div class="tag">The recovery</div>
+        <h3>When you <em>crash</em>, gently.</h3>
+        <p>A field kit for the days the wheels come off. Read once now and bookmark it — save it for the hard week. You won't always need it. You will need it sometimes.</p>
+        <div class="footer-row">
+          <span>~ 12 min</span>
+          <span class="energy">energy <i class="on"></i><i></i><i></i></span>
+          <span><b>keep handy</b></span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="pull-quote reveal">
+    <div class="mark">"</div>
+    <blockquote>
+      This isn't a course. It's a <em>workbench</em> — and you brought your own tools.
+    </blockquote>
+    <div class="attrib">— from the foreword · <b>page IV</b></div>
+  </section>
+
+  <!-- SECTION RULE -->
+  <div class="section-rule">
+    <span class="num">§ 03</span>
+    <span class="dash"></span>
+    <span><b>All 11 lessons</b> · or jump straight to one</span>
   </div>
 
-  <div class="section-head-clean">
-    <h2>Resources</h2>
-    <span class="section-meta">Reach for when you need them</span>
-  </div>
-  <div class="track-grid">
-    <a href="reference-library.html" class="track-card"><span class="track-card-tag">REFERENCE</span><p class="track-card-title">Reference library</p><p class="track-card-desc">Glossary, cheat sheets, tool guides, skill files, sources.</p></a>
-    <a href="skills-catalog.html" class="track-card"><span class="track-card-tag">REFERENCE</span><p class="track-card-title">Skills catalog</p><p class="track-card-desc">Downloadable Claude Code skill files you can drop in.</p></a>
-    <a href="life-templates.html" class="track-card"><span class="track-card-tag">TOOLKIT</span><p class="track-card-title">Life templates</p><p class="track-card-desc">Dopamine Menu and meal planning, tuned for ND daily life.</p></a>
-    <a href="your-progress.html" class="track-card"><span class="track-card-tag">DATA</span><p class="track-card-title">Your progress</p><p class="track-card-desc">What you&rsquo;ve built. Saved automatically as you go.</p></a>
+  <!-- FULL LESSON GRID -->
+  <section class="lessons reveal">
+    <div class="head-row">
+      <h2>Every <em>lesson</em>, in plain order.</h2>
+      <div class="meta"><b>11 lessons</b> · pick any · no order required</div>
+    </div>
+    <div class="lesson-grid">
+      <a href="first-ai-conversation.html" class="lesson">
+        <div class="l-num">Lesson 01</div>
+        <div class="l-title">Your first AI conversation</div>
+        <div class="l-desc">Open Claude. Ask something with no right answer. Notice how it thinks.</div>
+      </a>
+      <a href="prompt-basics.html" class="lesson">
+        <div class="l-num">Lesson 02</div>
+        <div class="l-title">Prompt basics that work</div>
+        <div class="l-desc">A four-element framework. Build three prompts you'll use this week.</div>
+      </a>
+      <a href="setup-your-tools.html" class="lesson">
+        <div class="l-num">Lesson 03</div>
+        <div class="l-title">Set up your tools</div>
+        <div class="l-desc">Accounts, memory, your primary AI. The setup that pays off for years.</div>
+      </a>
+      <a href="connect-ai.html" class="lesson">
+        <div class="l-num">Lesson 04</div>
+        <div class="l-title">Connect AI to your template</div>
+        <div class="l-desc">Optional: let AI read and write to your Notion databases.</div>
+      </a>
+      <a href="onboarding-interview.html" class="lesson">
+        <div class="l-num">Lesson 05</div>
+        <div class="l-title">Onboarding interview</div>
+        <div class="l-desc">Seven phases. Maps how your brain works with AI.</div>
+      </a>
+      <a href="ai-profile.html" class="lesson">
+        <div class="l-num">Lesson 06</div>
+        <div class="l-title">Your AI profile</div>
+        <div class="l-desc">A living manual. Starts empty, fills from your onboarding answers.</div>
+      </a>
+      <a href="writing-voice.html" class="lesson">
+        <div class="l-num">Lesson 07</div>
+        <div class="l-title">Writing voice</div>
+        <div class="l-desc">Calibrate a voice card so AI writes like you, not like AI.</div>
+      </a>
+      <a href="emergency-toolkit.html" class="lesson">
+        <div class="l-num">Lesson 08</div>
+        <div class="l-title">Emergency toolkit</div>
+        <div class="l-desc">Crisis prompts for days your brain is offline. Bookmark this one.</div>
+      </a>
+      <a href="prompt-craft.html" class="lesson">
+        <div class="l-num">Lesson 09</div>
+        <div class="l-title">Advanced prompt craft</div>
+        <div class="l-desc">Few-shot, chain-of-thought, iteration. When four-element isn't enough.</div>
+      </a>
+      <a href="quality-check.html" class="lesson">
+        <div class="l-num">Lesson 10</div>
+        <div class="l-title">Evaluating AI output</div>
+        <div class="l-desc">Trust but verify. Seven red flags. How to spot confident nonsense.</div>
+      </a>
+      <a href="ai-safety.html" class="lesson">
+        <div class="l-num">Lesson 11</div>
+        <div class="l-title">AI safety at work</div>
+        <div class="l-desc">What never to paste. Build a personal AI policy in ten minutes.</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SECTION RULE -->
+  <div class="section-rule">
+    <span class="num">§ 04</span>
+    <span class="dash"></span>
+    <span><b>By the numbers</b> · what this is, in plain figures</span>
   </div>
 
-  <p class="meta-line">
-    <span>Built for neurodivergent brains. No streaks, no shame, no AI hype.</span>
-    <span><a href="reference-library.html">Sources &amp; research &rarr;</a></span>
-  </p>
+  <!-- BY THE NUMBERS -->
+  <section class="numbers reveal">
+    <h2 class="head">Built for <em>real</em><br/>weeks. Not perfect ones.</h2>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="label">Lessons</div>
+        <div class="value">11<span class="unit">slow</span></div>
+        <div class="desc">Read in any order. None is required.</div>
+      </div>
+      <div class="stat">
+        <div class="label">Total runtime</div>
+        <div class="value"><em>~4h</em><span class="unit">across weeks</span></div>
+        <div class="desc">Across whatever weeks you have.</div>
+      </div>
+      <div class="stat">
+        <div class="label">Streaks expected</div>
+        <div class="value">00<span class="unit">none</span></div>
+        <div class="desc">No shame timer. No app to defeat.</div>
+      </div>
+      <div class="stat">
+        <div class="label">Intended reader</div>
+        <div class="value"><em>01</em><span class="unit">you</span></div>
+        <div class="desc">This was written with one person in mind.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="end">
+    <div>Neurodiverse AI MasterClass · <b>made by Megan</b> · for ND minds</div>
+    <div>No streaks <span class="dot"></span> no shame <span class="dot"></span> <a href="reference-library.html">sources &amp; research →</a></div>
+  </footer>
 
 </main>
 
-<script src="js/brain-animation.js"></script>
-<script src="js/store.js"></script>
-<script src="js/motion-toggle.js"></script>
+<div class="grain"></div>
+<div class="parallax-layer layer-fog"></div>
+
 <script>
-/* Particles + reveal + resume card */
-(function () {
-  'use strict';
+  (function () {
+    'use strict';
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Particles — skip when reduced motion */
-  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var particlesContainer = document.querySelector('.particles');
-  if (particlesContainer && !reducedMotion) {
-    for (var i = 0; i < 25; i++) {
-      var particle = document.createElement('div');
-      particle.className = 'particle';
-      var duration = 10 + Math.random() * 15;
-      var delay = Math.random() * 5;
-      var opacity = 0.3 + Math.random() * 0.7;
-      var drift = 20 + Math.random() * 80;
-      particle.style.setProperty('--op', opacity);
-      particle.style.setProperty('--drift', drift + 'px');
-      particle.style.left = (Math.random() * 100) + '%';
-      particle.style.top = (Math.random() * 100) + '%';
-      particle.style.animationDuration = duration + 's';
-      particle.style.animationDelay = delay + 's';
-      particlesContainer.appendChild(particle);
-    }
-  }
+    /* Parallax */
+    var layers = Array.prototype.slice.call(document.querySelectorAll('.parallax-layer[data-speed]'));
+    var lastY = 0;
+    var ticking = false;
+    var docEl = document.documentElement;
+    var brainBg = document.getElementById('brainBg');
 
-  /* Resume card — read store, show if onboarding is partially complete */
-  var store = window.MasterClass && window.MasterClass.store;
-  if (store) {
-    var data = store.get('onboarding', null);
-    if (data && typeof data === 'object') {
-      var stepNames = ['How you learn','Priorities','Tools','Experience','Work','Life','Your path'];
-      var answered = ['learn','priorities','tools','level','work','life'].filter(function (k) {
-        var v = data[k];
-        if (!v || typeof v !== 'object') return false;
-        return Object.keys(v).some(function (qk) {
-          var val = v[qk];
-          if (val === undefined || val === null || val === '') return false;
-          if (Array.isArray(val)) return val.length > 0;
-          if (typeof val === 'object') return Object.keys(val).length > 0;
-          return true;
-        });
-      }).length;
-
-      var step = (typeof data._step === 'number') ? data._step : 0;
-      if (answered > 0 && answered < 6) {
-        var resume = document.getElementById('resume');
-        var meta = document.getElementById('resume-meta');
-        if (resume && meta) {
-          meta.textContent = 'Onboarding: ' + answered + ' of 6 steps answered. Last on ' + (stepNames[step] || 'step ' + (step + 1)) + '.';
-          resume.classList.add('shown');
-        }
+    function applyParallax(y) {
+      for (var i = 0; i < layers.length; i++) {
+        var el = layers[i];
+        var speed = parseFloat(el.getAttribute('data-speed')) || 0;
+        var offset = -y * speed;
+        el.style.transform = 'translate3d(0,' + offset.toFixed(2) + 'px, 0)';
+      }
+      if (brainBg) {
+        var vh = window.innerHeight || 800;
+        var max = (docEl.scrollHeight - vh) || 1;
+        var progress = Math.min(1, Math.max(0, y / Math.min(max, vh * 1.4)));
+        var op = 0.07 + (0.13 - 0.07) * progress;
+        brainBg.style.opacity = op.toFixed(3);
       }
     }
-  }
-})();
+
+    function onScroll() {
+      lastY = window.pageYOffset || document.documentElement.scrollTop;
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          applyParallax(lastY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    if (!prefersReduced) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+      applyParallax(0);
+    }
+
+    /* Reveal */
+    var revealEls = document.querySelectorAll('.reveal, .reveal-card');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+      revealEls.forEach(function (el) { io.observe(el); });
+      var cards = document.querySelectorAll('.reveal-card');
+      cards.forEach(function (el, i) { el.style.transitionDelay = (i * 90) + 'ms'; });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    /* Extra stars */
+    if (!prefersReduced) {
+      var starfield = document.querySelector('.starfield');
+      if (starfield) {
+        var extra = '';
+        for (var s = 0; s < 50; s++) {
+          var cx = Math.floor(Math.random() * 1600);
+          var cy = Math.floor(Math.random() * 1200);
+          var r = (Math.random() * 0.8 + 0.3).toFixed(2);
+          var cls = Math.random() > 0.85 ? 'star bright t1'
+                  : Math.random() > 0.7  ? 'star t2'
+                  : 'star';
+          extra += '<circle class="' + cls + '" cx="' + cx + '" cy="' + cy + '" r="' + r + '"/>';
+        }
+        starfield.insertAdjacentHTML('beforeend', extra);
+      }
+    }
+
+    /* Scroll-driven synapse pulses */
+    function initSynapseScrollDrive() {
+      if (window.__synapseDone) return;
+      window.__synapseDone = true;
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      if (prefersReduced) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      var pulses = document.querySelectorAll('.sy-pulse');
+      pulses.forEach(function (p) {
+        var len;
+        try { len = p.getTotalLength(); } catch (e) { return; }
+        if (!len) return;
+        var travel = (len + 14) * 2.5;
+        gsap.fromTo(p,
+          { strokeDashoffset: 0 },
+          {
+            strokeDashoffset: -travel,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: document.body,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 0.6
+            }
+          }
+        );
+      });
+
+      var nodes = document.querySelectorAll('.sy-dot, .sy-halo, .sy-ping');
+      var nodeArr = Array.prototype.slice.call(nodes);
+      nodeArr.sort(function (a, b) {
+        var ay = parseFloat(a.getAttribute('cy')) || 0;
+        var by = parseFloat(b.getAttribute('cy')) || 0;
+        return ay - by;
+      });
+
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: document.body,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.6
+        }
+      });
+
+      nodeArr.forEach(function (n, i) {
+        var at = (i / Math.max(1, nodeArr.length - 1)) * 0.95;
+        var isHalo = n.classList.contains('sy-halo');
+        var isPing = n.classList.contains('sy-ping');
+        var peakScale = isPing ? 3.0 : (isHalo ? 2.0 : 1.7);
+        tl.fromTo(n,
+          { scale: 1, transformOrigin: '50% 50%' },
+          { scale: peakScale, duration: 0.03, ease: 'power2.out' },
+          at
+        ).to(n,
+          { scale: 1, duration: 0.06, ease: 'power2.in' },
+          at + 0.03
+        );
+        if (isPing) {
+          tl.fromTo(n, { opacity: 0.85 }, { opacity: 0, duration: 0.06, ease: 'none' }, at)
+            .set(n, { opacity: 0.5 }, at + 0.06);
+        }
+      });
+
+      requestAnimationFrame(function () { ScrollTrigger.refresh(); });
+    }
+
+    if (document.readyState === 'complete') {
+      initSynapseScrollDrive();
+    } else {
+      window.addEventListener('load', initSynapseScrollDrive);
+    }
+  })();
 </script>
 </body>
 </html>

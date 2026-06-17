@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="css/design-system.css">
 <link rel="stylesheet" href="css/brain-header.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 .stack-card {
   background: var(--bg-card);
@@ -27,11 +28,11 @@
   display: inline-block; font-family: var(--font-mono);
   font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
   padding: 0.18rem 0.55rem; border-radius: 100px; margin-left: 0.4rem;
-  background: rgba(96,165,250,0.12); color: var(--blue-title);
-  border: 1px solid rgba(96,165,250,0.3); white-space: nowrap;
+  background: rgba(245,197,66,0.12); color: var(--blue-title);
+  border: 1px solid rgba(245,197,66,0.3); white-space: nowrap;
 }
-.cost-pill.cost-high { background: rgba(248,113,113,0.12); color: var(--red-title); border-color: rgba(248,113,113,0.3); }
-.cost-pill.cost-low  { background: rgba(52,211,153,0.12); color: var(--green-title); border-color: rgba(52,211,153,0.3); }
+.cost-pill.cost-high { background: rgba(255,107,107,0.12); color: var(--red-title); border-color: rgba(255,107,107,0.3); }
+.cost-pill.cost-low  { background: rgba(245,197,66,0.12); color: var(--green-title); border-color: rgba(245,197,66,0.3); }
 table.def-table th:first-child, table.def-table td:first-child { width: 22%; }
 @media (max-width: 600px) { table.def-table th:first-child, table.def-table td:first-child { width: auto; } }
 </style>
@@ -44,10 +45,9 @@ table.def-table th:first-child, table.def-table td:first-child { width: 22%; }
 <div class="particles" id="particles"></div>
 <div class="brain-header-sticky">
   <div class="brain-header" id="brainHeader">
-    <canvas id="brainCanvas"></canvas>
     <div class="brain-header-overlay"></div>
     <div class="brain-header-text" id="headerText">
-      <span class="pill" style="font-size:0.65rem;padding:0.25rem 0.75rem;margin-bottom:0.5rem;">TRACK D &middot; COUNCILS &amp; MULTI-AGENT</span>
+      <span class="pill">TRACK D &middot; COUNCILS &amp; MULTI-AGENT</span>
       <h1>Councils &amp; Multi-Agent</h1>
       <p class="tagline">When multiple agents help. When they hurt. Anthropic's answer: prefer simplicity first.</p>
     </div>
@@ -61,7 +61,7 @@ table.def-table th:first-child, table.def-table td:first-child { width: 22%; }
   </span>
 </nav>
 
-<div class="callout callout-blue" style="border-left-width:3px;font-size:0.88rem;">
+<div class="callout callout-blue">
   <div><strong>Prereqs:</strong> None — strongly recommend reading this before Patterns. <strong>Time:</strong> 10 min. <strong>Energy:</strong> Medium.</div>
 </div>
 
@@ -156,17 +156,17 @@ table.def-table th:first-child, table.def-table td:first-child { width: 22%; }
 <div class="cards">
   <div class="stack-card">
     <span class="strength">Deep Dive 1</span>
-    <h3><a href="track-councils-patterns.html" style="color:var(--text);">The 6 Patterns You Can Actually Use &rarr;</a></h3>
-    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Ordered simplest to most complex. Specialist Consultation, Devil's Advocate Solo, Pre-Mortem Council, Parallel Research, Review Board, Self-Debate. Each with a prompt template, cost indicator, and the specific ND value.</div>
+    <h3><a href="track-councils-patterns.html" class="u-text-strong">The 6 Patterns You Can Actually Use &rarr;</a></h3>
+    <div class="u-text-body-md">Ordered simplest to most complex. Specialist Consultation, Devil's Advocate Solo, Pre-Mortem Council, Parallel Research, Review Board, Self-Debate. Each with a prompt template, cost indicator, and the specific ND value.</div>
   </div>
   <div class="stack-card" style="border-left-color: var(--gold);">
-    <span class="strength" style="color:var(--gold);">Deep Dive 2</span>
-    <h3><a href="track-councils-antipatterns.html" style="color:var(--text);">Anti-Patterns + When Single-Agent Wins &rarr;</a></h3>
-    <div style="color:var(--text-mid);font-size:0.92rem;line-height:1.5;">Six concrete anti-patterns, five conditions where a single agent beats a council, and the ND-specific decision rule that keeps you from over-architecting tasks that don't need it.</div>
+    <span class="strength t-gold">Deep Dive 2</span>
+    <h3><a href="track-councils-antipatterns.html" class="u-text-strong">Anti-Patterns + When Single-Agent Wins &rarr;</a></h3>
+    <div class="u-text-body-md">Six concrete anti-patterns, five conditions where a single agent beats a council, and the ND-specific decision rule that keeps you from over-architecting tasks that don't need it.</div>
   </div>
 </div>
 
-<div class="callout callout-purple" style="border-left-width:3px;font-size:0.9rem;">
+<div class="callout callout-purple">
   <div><strong>One thing to remember:</strong> When tempted to spawn 5 agents, ask: is the task structurally parallel?</div>
 </div>
 
@@ -176,7 +176,6 @@ table.def-table th:first-child, table.def-table td:first-child { width: 22%; }
 </nav>
 </div>
 <script src="js/main.js"></script>
-<script src="js/brain-animation.js"></script>
     <script src="js/motion-toggle.js"></script>
 </body>
 </html>

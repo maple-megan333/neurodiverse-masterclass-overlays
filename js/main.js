@@ -49,15 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btn = document.createElement('button');
     btn.className = 'copy-btn';
+    btn.type = 'button';
     btn.textContent = 'Copy';
+    const codeLabel = pre.querySelector('.code-label');
+    const labelText = codeLabel ? codeLabel.textContent.trim() : 'code';
+    btn.setAttribute('aria-label', `Copy ${labelText} to clipboard`);
     btn.addEventListener('click', () => {
       const code = pre.querySelector('code') || pre;
       navigator.clipboard.writeText(code.textContent).then(() => {
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
+        btn.setAttribute('aria-label', `${labelText} copied to clipboard`);
         setTimeout(() => {
           btn.textContent = 'Copy';
           btn.classList.remove('copied');
+          btn.setAttribute('aria-label', `Copy ${labelText} to clipboard`);
         }, 2000);
       });
     });
