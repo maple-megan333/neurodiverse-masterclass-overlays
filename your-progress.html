@@ -38,6 +38,26 @@
 
 <div class="callout callout-yellow"><span class="callout-icon">👀</span><div class="callout-title">What you're seeing right now</div><div>The dashboard below shows the <strong>structure</strong> of your progress system. Once you <a href="connect-ai.html">connect your AI to Notion</a>, your real data populates here automatically — lessons completed, prompts saved, tools configured.</div></div>
 
+<div id="mc-local-progress" class="callout callout-gray" style="display:none"><span class="callout-icon">✨</span><div class="callout-title">On this device</div><div><span id="mc-local-count">0</span> steps checked off so far &mdash; a quiet, local reflection of your progress. <small>Connect Notion above for the full picture across devices.</small><div class="progress-dots" id="mc-local-dots" style="margin-top:.5rem"></div></div></div>
+<script>
+(function(){
+  try{
+    var done=0;
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k && k.indexOf('mc.v1.checkbox.')===0 && localStorage.getItem(k)==='true') done++;
+    }
+    if(done>0){
+      var countEl=document.getElementById('mc-local-count');
+      var dots=document.getElementById('mc-local-dots');
+      if(countEl) countEl.textContent=String(done);
+      if(dots){ for(var d=0; d<Math.min(done,12); d++){ var s=document.createElement('span'); s.className='progress-dot active'; dots.appendChild(s);} }
+      var box=document.getElementById('mc-local-progress');
+      if(box) box.style.display='';
+    }
+  }catch(e){}
+})();
+</script>
 <div data-notion-progress></div>
 <h2>Your 5 Databases</h2>
 <div class="columns columns-5">
