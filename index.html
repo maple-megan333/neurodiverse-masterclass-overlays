@@ -203,6 +203,70 @@
     transform: translateY(-4px);
   }
 
+  /* ─── MASTHEAD ACTIONS + SITE MENU ─── */
+  .masthead-actions { display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
+  .mast-connect {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+    text-decoration: none; color: var(--void); background: var(--gold);
+    border: 1px solid var(--gold); padding: 9px 16px;
+    display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+  .mast-connect:hover { background: var(--pearl); border-color: var(--pearl); box-shadow: 0 0 24px rgba(245,197,66,0.3); }
+  .mast-connect span { transition: transform 0.3s; }
+  .mast-connect:hover span { transform: translateX(3px); }
+  .mast-menu-toggle {
+    width: 44px; height: 44px; min-width: 44px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 1px solid var(--rule); color: var(--pearl);
+    font-size: 18px; line-height: 1; cursor: pointer; transition: all 0.25s ease;
+  }
+  .mast-menu-toggle:hover { border-color: var(--gold); color: var(--gold); }
+
+  .site-menu-overlay {
+    position: fixed; inset: 0; z-index: 60; background: rgba(6,4,9,0.6);
+    backdrop-filter: blur(2px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .site-menu-overlay.open { opacity: 1; pointer-events: auto; }
+  .site-menu {
+    position: fixed; top: 0; right: 0; z-index: 70;
+    height: 100vh; height: 100dvh; width: min(340px, 86vw);
+    background: linear-gradient(180deg, var(--ink-card-2), var(--void));
+    border-left: 1px solid var(--rule); padding: 80px 28px 32px;
+    display: flex; flex-direction: column; gap: 2px;
+    transform: translateX(100%);
+    transition: transform 0.34s cubic-bezier(0.2,0.8,0.2,1);
+    overflow-y: auto;
+  }
+  .site-menu.open { transform: translateX(0); }
+  /* Off-screen menu is removed from tab order via the [inert] attribute (toggled in JS) */
+  .site-menu .menu-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pearl-faint); margin: 14px 0 4px;
+  }
+  .site-menu a {
+    font-family: 'Fraunces', serif; font-variation-settings: "opsz" 48, "wght" 420, "SOFT" 30;
+    font-size: 19px; color: var(--pearl); text-decoration: none; padding: 11px 12px;
+    border-bottom: 1px solid var(--rule-soft);
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    transition: color 0.2s, background 0.2s, padding-left 0.2s;
+  }
+  .site-menu a:hover { color: var(--gold); background: rgba(245,197,66,0.05); padding-left: 18px; }
+  .site-menu a.menu-connect {
+    color: var(--void); background: var(--gold); border: 1px solid var(--gold);
+    margin: 8px 0 6px; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .site-menu a.menu-connect:hover { background: var(--pearl); border-color: var(--pearl); padding-left: 12px; }
+  .site-menu-close {
+    position: absolute; top: 22px; right: 24px; width: 40px; height: 40px;
+    background: transparent; border: 1px solid var(--rule); color: var(--pearl);
+    font-size: 18px; line-height: 1; cursor: pointer; transition: all 0.25s ease;
+  }
+  .site-menu-close:hover { border-color: var(--coral); color: var(--coral); }
+
   /* ─── HERO ─── */
   .hero {
     padding: 120px 56px 100px;
@@ -742,6 +806,7 @@
     }
     .masthead { grid-template-columns: 1fr; text-align: center; gap: 10px; }
     .masthead .meta-right { text-align: center; }
+    .masthead .masthead-actions { justify-content: center; }
     .masthead .wordmark { justify-content: center; }
     .cards { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
     .lesson-grid { grid-template-columns: 1fr 1fr; }
@@ -969,10 +1034,27 @@
     <div class="wordmark">
       Neurodiverse AI <em>MasterClass</em><span class="dot"></span>
     </div>
-    <div class="meta-right">
-      Built for <b>neurodivergent</b> minds
+    <div class="masthead-actions">
+      <a href="app.html#connect-ai" class="mast-connect">Connect Notion <span aria-hidden="true">→</span></a>
+      <button class="mast-menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteMenu">☰</button>
     </div>
   </header>
+
+  <!-- SITE MENU (homepage nav) -->
+  <div class="site-menu-overlay" id="siteMenuOverlay" aria-hidden="true"></div>
+  <nav class="site-menu" id="siteMenu" aria-label="Site menu" inert>
+    <button class="site-menu-close" id="siteMenuClose" type="button" aria-label="Close menu">✕</button>
+    <a class="menu-connect" href="app.html#connect-ai">Connect Notion to start →</a>
+    <div class="menu-label">Start</div>
+    <a href="find-your-level.html">Find your level <span aria-hidden="true">→</span></a>
+    <a href="find-your-path.html">See the whole path <span aria-hidden="true">→</span></a>
+    <a href="onboarding-interview.html">Onboarding interview <span aria-hidden="true">→</span></a>
+    <a href="playground.html">AI playground <span aria-hidden="true">→</span></a>
+    <div class="menu-label">Build</div>
+    <a href="setup-your-tools.html">Set up your tools <span aria-hidden="true">→</span></a>
+    <a href="connect-ai.html">Connect AI to template <span aria-hidden="true">→</span></a>
+    <a href="reference-library.html">Reference library <span aria-hidden="true">→</span></a>
+  </nav>
 
   <!-- HERO -->
   <section class="hero">
@@ -991,7 +1073,8 @@
         on terms that fit how you actually think, not how the spreadsheet says you should.
       </p>
       <div class="cta-row">
-        <a href="find-your-level.html" class="btn primary"><span>Find your level</span> <span class="arrow">→</span></a>
+        <a href="app.html#connect-ai" class="btn primary"><span>Connect Notion to start</span> <span class="arrow">→</span></a>
+        <a href="find-your-level.html" class="btn"><span>Find your level</span> <span class="arrow">→</span></a>
         <a href="find-your-path.html" class="btn"><span>See the whole path</span> <span class="arrow">→</span></a>
       </div>
     </div>
@@ -1482,6 +1565,34 @@
       initSynapseScrollDrive();
     } else {
       window.addEventListener('load', initSynapseScrollDrive);
+    }
+
+    /* Site menu (homepage nav) */
+    var menuToggle = document.getElementById('menuToggle');
+    var siteMenu = document.getElementById('siteMenu');
+    var menuOverlay = document.getElementById('siteMenuOverlay');
+    var menuClose = document.getElementById('siteMenuClose');
+    if (menuToggle && siteMenu && menuOverlay) {
+      var openMenu = function () {
+        siteMenu.classList.add('open');
+        siteMenu.removeAttribute('inert');
+        menuOverlay.classList.add('open');
+        menuToggle.setAttribute('aria-expanded', 'true');
+      };
+      var closeMenu = function () {
+        siteMenu.classList.remove('open');
+        siteMenu.setAttribute('inert', '');
+        menuOverlay.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      };
+      menuToggle.addEventListener('click', function () {
+        siteMenu.classList.contains('open') ? closeMenu() : openMenu();
+      });
+      menuOverlay.addEventListener('click', closeMenu);
+      if (menuClose) menuClose.addEventListener('click', closeMenu);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && siteMenu.classList.contains('open')) closeMenu();
+      });
     }
   })();
 </script>
