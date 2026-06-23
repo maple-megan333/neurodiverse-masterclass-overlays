@@ -98,6 +98,16 @@
     .ob-danger{font-size:.78rem;color:var(--text-dim);background:transparent;border:0;cursor:pointer;font-family:inherit;text-decoration:underline;padding:4px 8px;margin-top:8px}
     .ob-danger:hover{color:#FF6B6B}
 
+    /* Styled confirm modal (replaces native confirm) */
+    .ob-modal-overlay{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(11,9,16,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    .ob-modal-overlay.open{display:flex}
+    .ob-modal{max-width:400px;width:100%;background:var(--bg-elev,#14101C);border:1px solid rgba(245,234,220,.12);border-radius:14px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+    .ob-modal h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.2rem;color:var(--text-primary,#F5EADC);margin:0 0 8px}
+    .ob-modal p{font-size:.92rem;color:var(--text-mid);margin:0 0 20px;line-height:1.5}
+    .ob-modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+    .ob-btn-danger{background:#FF6B6B;color:#0B0910}
+    .ob-btn-danger:hover{background:#FF8585}
+
     @media(max-width:560px){
       .ob-radios{grid-template-columns:1fr 1fr}
       .ob-scale-row{flex-direction:column;align-items:flex-start;gap:6px}
@@ -142,6 +152,17 @@
     </div>
 
     <button class="ob-danger" id="ob-clear" type="button">Clear all my answers</button>
+  </div>
+
+  <div class="ob-modal-overlay" id="ob-clear-modal" role="dialog" aria-modal="true" aria-labelledby="ob-clear-title" aria-describedby="ob-clear-desc">
+    <div class="ob-modal">
+      <h3 id="ob-clear-title">Clear all your answers?</h3>
+      <p id="ob-clear-desc">This wipes every onboarding answer you've saved and starts you over at step 1. This can't be undone.</p>
+      <div class="ob-modal-actions">
+        <button class="ob-btn ob-btn-ghost" id="ob-clear-cancel" type="button">Keep my answers</button>
+        <button class="ob-btn ob-btn-danger" id="ob-clear-confirm" type="button">Clear everything</button>
+      </div>
+    </div>
   </div>
 </main>
 <script src="js/store.js"></script>
@@ -570,11 +591,30 @@
     goto(idx + 1);
   });
   skipBtn.addEventListener('click', function () { goto(idx + 1); });
+  var clearModal = document.getElementById('ob-clear-modal');
+  var clearConfirmBtn = document.getElementById('ob-clear-confirm');
+  var clearCancelBtn = document.getElementById('ob-clear-cancel');
+
+  function closeClearModal() {
+    clearModal.classList.remove('open');
+    clearBtn.focus();
+  }
   clearBtn.addEventListener('click', function () {
-    if (!confirm('Clear all your onboarding answers? This cannot be undone.')) return;
+    clearModal.classList.add('open');
+    clearConfirmBtn.focus();
+  });
+  clearCancelBtn.addEventListener('click', closeClearModal);
+  clearModal.addEventListener('click', function (e) {
+    if (e.target === clearModal) closeClearModal(); // click backdrop to dismiss
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && clearModal.classList.contains('open')) closeClearModal();
+  });
+  clearConfirmBtn.addEventListener('click', function () {
     data = {};
     idx = 0;
     store.remove('onboarding');
+    closeClearModal();
     renderStep();
   });
 

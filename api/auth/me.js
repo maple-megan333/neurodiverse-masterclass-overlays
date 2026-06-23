@@ -31,6 +31,9 @@ module.exports = async function handler(req, res) {
         email: user.person ? user.person.email : null,
       },
       workspace_id: cookies.notion_workspace || null,
+      workspace_name: cookies.notion_workspace_name || null,
+      // Present when the user accepted the optional template during OAuth.
+      duplicated_template_id: cookies.notion_duplicated_template || null,
     });
   } catch (err) {
     console.error('Auth check error:', err);

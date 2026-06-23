@@ -39,24 +39,26 @@ module.exports = async function handler(req, res) {
     }
 
     const tokenData = await tokenRes.json();
-    // tokenData contains: access_token, workspace_id, workspace_name, bot_id, etc.
+    // Per Notion's OAuth token response, tokenData contains: access_token,
+    // refresh_token, bot_id, workspace_id, workspace_name, workspace_icon,
+    // owner, and duplicated_template_id (the ID of the fresh page Notion
+    // created when the user accepted the optional template during consent;
+    // null if they connected an existing page instead).
+    const COOKIE_OPTS = {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+    };
 
-    // Set httpOnly cookie with access token (30 day expiry)
     const setCookies = [
-      cookie.serialize('notion_token', tokenData.access_token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
-        path: '/',
-        maxAge: 60 * 60 * 24 * 30, // 30 days
-      }),
-      cookie.serialize('notion_workspace', tokenData.workspace_id || '', {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
-        path: '/',
-        maxAge: 60 * 60 * 24 * 30,
-      }),
+      cookie.serialize('notion_token', tokenData.access_token, COOKIE_OPTS),
+      cookie.serialize('notion_workspace', tokenData.workspace_id || '', COOKIE_OPTS),
+      cookie.serialize('notion_workspace_name', tokenData.workspace_name || '', COOKIE_OPTS),
+      // The duplicated template page becomes the user's data root. Stored so the
+      // app can confirm "your copy is ready" and deep-link straight into it.
+      cookie.serialize('notion_duplicated_template', tokenData.duplicated_template_id || '', COOKIE_OPTS),
       // Clear the state cookie
       cookie.serialize('notion_oauth_state', '', {
         httpOnly: true,
@@ -84,8 +86,10 @@ module.exports = async function handler(req, res) {
       window.opener.postMessage({ type: 'notion-auth-complete' }, window.location.origin);
       setTimeout(function() { window.close(); }, 1500);
     } else {
-      // Fallback: redirect back to the app
-      window.location.href = '/#your-progress';
+      // Same-tab fallback (popup was blocked): land on the app dashboard.
+      // Must target the app shell (app.html), NOT the bare root — '/#your-progress'
+      // resolves to the marketing homepage, where that anchor doesn't exist.
+      window.location.href = '/app.html#your-progress';
     }
   </script>
 </body></html>`);

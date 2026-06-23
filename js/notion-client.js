@@ -115,15 +115,20 @@
   var NC = {
     isAuthenticated: false,
     user: null,
+    workspaceName: null,
+    duplicatedTemplateId: null,
     ready: false,
 
     init: function () {
       return cachedFetch('/api/auth/me').then(function (data) {
         NC.isAuthenticated = data.authenticated;
         NC.user = data.user || null;
+        NC.workspaceName = data.workspace_name || null;
+        NC.duplicatedTemplateId = data.duplicated_template_id || null;
         NC.ready = true;
         window.dispatchEvent(new CustomEvent('notion:auth-ready', { detail: data }));
         NC._renderAuthUI();
+        NC._renderConnectAiState();
         if (NC.isAuthenticated) NC._loadSidebarProgress();
         return data;
       }).catch(function () {
@@ -138,7 +143,10 @@
 
     login: function () {
       var popup = window.open('/api/auth/login', 'notion-auth', 'width=600,height=700');
-      if (!popup) {
+      // Popup-blocked detection: blockers return null, an undefined .closed,
+      // or a window that's already closed. In any of those cases fall back to a
+      // same-tab redirect so Connect always does something.
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
         window.location.href = '/api/auth/login';
         return;
       }
@@ -148,7 +156,12 @@
         if (e.data && e.data.type === 'notion-auth-complete') {
           window.removeEventListener('message', onMsg);
           cache = {};
-          NC.init();
+          NC.init().then(function () {
+            // Land the user on the dashboard success state once connected.
+            if (window.location.hash.replace('#', '') !== 'your-progress') {
+              window.location.hash = 'your-progress';
+            }
+          });
         }
       });
     },
@@ -215,6 +228,51 @@
       }
 
       sidebar.appendChild(area);
+    },
+
+    // Swap the Connect button on the connect-ai page for a success state once
+    // the user is connected. Safe to call anytime — no-ops if the button isn't
+    // present (e.g. on other pages) or if the user isn't authenticated yet.
+    _renderConnectAiState: function (root) {
+      var scope = root || document;
+      var btn = scope.querySelector('#connectStepBtn');
+      if (!btn || !NC.isAuthenticated || !NC.user) return;
+
+      var box = document.createElement('div');
+      box.className = 'hookup-connected-box';
+
+      var badge = document.createElement('div');
+      badge.className = 'hookup-connected';
+      badge.appendChild(textEl('span', '✓')); // checkmark
+      badge.appendChild(document.createTextNode(' Connected to '));
+      var nameEl = textEl('span', NC.workspaceName || (NC.user.name ? NC.user.name + "'s workspace" : 'your workspace'));
+      nameEl.className = 'hookup-name';
+      badge.appendChild(nameEl);
+      badge.appendChild(document.createTextNode(' — your copy is ready'));
+      box.appendChild(badge);
+
+      var actions = document.createElement('div');
+      actions.className = 'hookup-actions';
+
+      var dash = document.createElement('button');
+      dash.type = 'button';
+      dash.className = 'hookup-btn';
+      dash.textContent = '📊 Open your dashboard';
+      dash.addEventListener('click', function () { window.location.hash = 'your-progress'; });
+      actions.appendChild(dash);
+
+      if (NC.duplicatedTemplateId) {
+        var copyLink = document.createElement('a');
+        copyLink.className = 'hookup-btn hookup-btn-ghost';
+        copyLink.target = '_blank';
+        copyLink.rel = 'noopener';
+        copyLink.href = 'https://www.notion.so/' + String(NC.duplicatedTemplateId).replace(/-/g, '');
+        copyLink.textContent = '↗ Open your copy in Notion';
+        actions.appendChild(copyLink);
+      }
+
+      box.appendChild(actions);
+      btn.replaceWith(box);
     },
 
     _loadSidebarProgress: function () {
@@ -331,20 +389,8 @@
         }
       }).catch(function () {});
 
-      // Connect page — reflect connected state on the Step 2 button
-      if (pageName === 'connect-ai') {
-        var connectBtn = contentArea.querySelector('#connectStepBtn');
-        if (connectBtn && NC.user) {
-          var connected = document.createElement('span');
-          connected.className = 'hookup-connected';
-          connected.appendChild(textEl('span', '✓')); // checkmark
-          connected.appendChild(document.createTextNode(' Connected as '));
-          var nameEl = textEl('span', NC.user.name || 'your workspace');
-          nameEl.className = 'hookup-name';
-          connected.appendChild(nameEl);
-          connectBtn.replaceWith(connected);
-        }
-      }
+      // Connect page — reflect connected state on the Connect button
+      if (pageName === 'connect-ai') NC._renderConnectAiState(contentArea);
 
       // AI Profile — inject live data
       if (pageName === 'ai-profile') {
@@ -411,6 +457,13 @@
 
   // ── Initialize ──────────────────────────────────────────────────
   window.NotionClient = NC;
+
+  // Re-check auth state on SPA route changes so the sidebar badge stays
+  // consistent across pages without a hard reload. cachedFetch keeps this
+  // cheap (60s TTL) — most navigations hit the cache and just re-render.
+  window.addEventListener('hashchange', function () {
+    if (NC.ready) NC.init();
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () { NC.init(); });

@@ -58,7 +58,7 @@
 <hr>
 
 <style>
-  /* Scoped styles for the 3-step Notion hookup. Mirrors .nc-connect-btn (js/notion-client.js). */
+  /* Scoped styles for the Notion hookup. Mirrors .nc-connect-btn (js/notion-client.js). */
   .hookup { counter-reset: hookup-step; margin: var(--s-4, 1.5rem) 0; }
   .hookup-step {
     display: flex; gap: 16px; align-items: flex-start;
@@ -91,42 +91,42 @@
     transition: background .2s, border-color .2s;
   }
   .hookup-btn:hover { background: rgba(245,197,66,.25); border-color: #F5C542; color: #F5C542; }
+  .hookup-btn-ghost { background: transparent; border-color: rgba(245,234,220,.2); color: var(--text-mid, rgba(245,234,220,.72)); }
+  .hookup-btn-ghost:hover { background: rgba(245,234,220,.06); border-color: rgba(245,234,220,.4); color: var(--text-primary, #F5EADC); }
+  /* Success state injected by js/notion-client.js after connecting */
+  .hookup-connected-box {
+    padding: 16px 18px; border-radius: 10px;
+    background: rgba(245,197,66,.08); border: 1px solid rgba(245,197,66,.25);
+  }
   .hookup-connected {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 11px 18px; border-radius: 8px;
-    background: rgba(245,197,66,.1); border: 1px solid rgba(245,197,66,.25);
-    color: var(--text-mid, rgba(245,234,220,.72)); font-size: .9rem; font-weight: 600;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    color: var(--text-mid, rgba(245,234,220,.72)); font-size: .95rem; font-weight: 600;
+    margin-bottom: 12px;
   }
   .hookup-connected .hookup-name { color: #F5C542; }
+  .hookup-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 </style>
 
-<h2>Set Up the Template in 3 Steps</h2>
-<p>This is the fastest path: grab your own copy of the MasterClass template, connect it, and the app fills in your progress, profile, and saved prompts automatically. Takes about 5 minutes.</p>
+<h2>Set Up in 2 Steps</h2>
+<p>Connecting does the whole setup for you. When you authorize, Notion offers you a fresh copy of the MasterClass template to add to your workspace — accept it, and the app reads and writes straight into your own copy. Your progress, AI profile, and saved prompts sync automatically. About 2 minutes.</p>
 
 <div class="hookup">
   <div class="hookup-step">
     <div class="hookup-body">
-      <div class="hookup-title">Duplicate your template (2 min)</div>
-      <p>Opens the MasterClass template in Notion. Hit <strong>Duplicate</strong> (top-right) and it copies the whole thing — every database and property — into your own workspace.</p>
-      <a class="hookup-btn" target="_blank" rel="noopener" href="https://patch-psychology-63b.notion.site/Neurodiverse-AI-MasterClass-Template-share-copy-3831f6385b6b81569876e25995213152">⭐ Duplicate the template → opens Notion</a>
-    </div>
-  </div>
-  <div class="hookup-step">
-    <div class="hookup-body">
       <div class="hookup-title">Connect Notion (1 min)</div>
-      <p>Sign in and authorize the app. A popup opens — do this <em>after</em> you've duplicated the template above, so there's something to connect to.</p>
-      <button id="connectStepBtn" class="hookup-btn" type="button" onclick="window.NotionClient ? window.NotionClient.login() : window.open('/api/auth/login','notion-auth','width=600,height=700')">🔗 Connect Notion</button>
+      <p>Sign in and authorize the app. On the Notion screen, you'll be offered <strong>a copy of the template to add to your workspace</strong> — leave that selected so the app has your own copy to work with.</p>
+      <button id="connectStepBtn" class="hookup-btn" type="button" onclick="window.NotionClient ? window.NotionClient.login() : window.open('/api/auth/login','notion-auth','width=600,height=700')">🔗 Connect Notion — adds your template copy</button>
     </div>
   </div>
   <div class="hookup-step">
     <div class="hookup-body">
-      <div class="hookup-title">Pick your duplicated page</div>
-      <p>When Notion asks which pages to share, choose the <strong>Neurodiverse AI MasterClass</strong> page you just duplicated. That's it — your progress, AI profile, and saved prompts now sync into the app automatically.</p>
+      <div class="hookup-title">Confirm your copy</div>
+      <p>Notion adds the <strong>Neurodiverse AI MasterClass</strong> page to your workspace and grants the app access to it. You'll land on your dashboard with everything synced — no extra setup.</p>
     </div>
   </div>
 </div>
 
-<div class="callout callout-gray"><span class="callout-icon">💡</span><div class="callout-title">Prefer not to duplicate?</div><div>You don't have to. The options below cover every other way to connect — from zero-setup copy-paste to full desktop power mode.</div></div>
+<div class="callout callout-gray"><span class="callout-icon">💡</span><div class="callout-title">Didn't get offered a copy?</div><div>If you connected an existing page instead of accepting the template, you can <a href="https://patch-psychology-63b.notion.site/Neurodiverse-AI-MasterClass-Template-share-copy-3831f6385b6b81569876e25995213152" target="_blank" rel="noopener">add the template manually here</a>, then reconnect. Or use one of the other methods below.</div></div>
 
 <hr>
 
