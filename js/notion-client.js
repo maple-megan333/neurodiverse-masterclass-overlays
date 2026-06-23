@@ -331,6 +331,21 @@
         }
       }).catch(function () {});
 
+      // Connect page — reflect connected state on the Step 2 button
+      if (pageName === 'connect-ai') {
+        var connectBtn = contentArea.querySelector('#connectStepBtn');
+        if (connectBtn && NC.user) {
+          var connected = document.createElement('span');
+          connected.className = 'hookup-connected';
+          connected.appendChild(textEl('span', '✓')); // checkmark
+          connected.appendChild(document.createTextNode(' Connected as '));
+          var nameEl = textEl('span', NC.user.name || 'your workspace');
+          nameEl.className = 'hookup-name';
+          connected.appendChild(nameEl);
+          connectBtn.replaceWith(connected);
+        }
+      }
+
       // AI Profile — inject live data
       if (pageName === 'ai-profile') {
         NC.getProfile().then(function (data) {

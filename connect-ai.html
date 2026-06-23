@@ -57,6 +57,81 @@
 
 <hr>
 
+<style>
+  /* Scoped styles for the 3-step Notion hookup. Mirrors .nc-connect-btn (js/notion-client.js). */
+  .hookup { counter-reset: hookup-step; margin: var(--s-4, 1.5rem) 0; }
+  .hookup-step {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px 20px; margin-bottom: 14px;
+    background: var(--bg-elev, #14101C);
+    border: 1px solid var(--border, rgba(245,234,220,.1));
+    border-left: 2px solid var(--gold, #F5C542);
+    border-radius: var(--radius, 12px);
+  }
+  .hookup-step::before {
+    counter-increment: hookup-step; content: counter(hookup-step);
+    flex-shrink: 0; width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: rgba(245,197,66,.15);
+    border: 1px solid rgba(245,197,66,.4); color: #F5C542;
+    font-family: var(--font-label, 'Outfit', sans-serif); font-weight: 700; font-size: .95rem;
+  }
+  .hookup-body { flex: 1; min-width: 0; }
+  .hookup-body .hookup-title {
+    font-family: var(--font-display, 'Fraunces', serif); font-weight: 600;
+    font-size: 1.08rem; color: var(--text-primary, #F5EADC); margin: 2px 0 4px;
+  }
+  .hookup-body p { margin: 0 0 12px; color: var(--text-mid, rgba(245,234,220,.72)); }
+  .hookup-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 8px;
+    background: rgba(245,197,66,.15); border: 1px solid rgba(245,197,66,.3);
+    color: #F5C542; font-family: var(--font-label, 'Outfit', sans-serif);
+    font-size: .9rem; font-weight: 600; text-decoration: none; cursor: pointer;
+    transition: background .2s, border-color .2s;
+  }
+  .hookup-btn:hover { background: rgba(245,197,66,.25); border-color: #F5C542; color: #F5C542; }
+  .hookup-connected {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 8px;
+    background: rgba(245,197,66,.1); border: 1px solid rgba(245,197,66,.25);
+    color: var(--text-mid, rgba(245,234,220,.72)); font-size: .9rem; font-weight: 600;
+  }
+  .hookup-connected .hookup-name { color: #F5C542; }
+</style>
+
+<h2>Set Up the Template in 3 Steps</h2>
+<p>This is the fastest path: grab your own copy of the MasterClass template, connect it, and the app fills in your progress, profile, and saved prompts automatically. Takes about 5 minutes.</p>
+
+<div class="hookup">
+  <div class="hookup-step">
+    <div class="hookup-body">
+      <div class="hookup-title">Duplicate your template (2 min)</div>
+      <p>Opens the MasterClass template in Notion. Hit <strong>Duplicate</strong> (top-right) and it copies the whole thing — every database and property — into your own workspace.</p>
+      <a class="hookup-btn" target="_blank" rel="noopener" href="https://patch-psychology-63b.notion.site/Neurodiverse-AI-MasterClass-Template-share-copy-3831f6385b6b81569876e25995213152">⭐ Duplicate the template → opens Notion</a>
+    </div>
+  </div>
+  <div class="hookup-step">
+    <div class="hookup-body">
+      <div class="hookup-title">Connect Notion (1 min)</div>
+      <p>Sign in and authorize the app. A popup opens — do this <em>after</em> you've duplicated the template above, so there's something to connect to.</p>
+      <button id="connectStepBtn" class="hookup-btn" type="button" onclick="window.NotionClient ? window.NotionClient.login() : window.open('/api/auth/login','notion-auth','width=600,height=700')">🔗 Connect Notion</button>
+    </div>
+  </div>
+  <div class="hookup-step">
+    <div class="hookup-body">
+      <div class="hookup-title">Pick your duplicated page</div>
+      <p>When Notion asks which pages to share, choose the <strong>Neurodiverse AI MasterClass</strong> page you just duplicated. That's it — your progress, AI profile, and saved prompts now sync into the app automatically.</p>
+    </div>
+  </div>
+</div>
+
+<div class="callout callout-gray"><span class="callout-icon">💡</span><div class="callout-title">Prefer not to duplicate?</div><div>You don't have to. The options below cover every other way to connect — from zero-setup copy-paste to full desktop power mode.</div></div>
+
+<hr>
+
+<h2>Other Ways to Connect</h2>
+
 <details open><summary>📋 Option 1: Manual Copy-Paste (Zero Setup)</summary><div>
 <p>No setup. No accounts. No configuration needed.</p>
 
