@@ -260,7 +260,7 @@ h3 {
   line-height: 1.2;
   font-variation-settings: "opsz" 48;
 }
-p { margin-bottom: var(--s-4); max-width: 68ch; color: var(--text-mid); }
+p { margin-bottom: var(--s-4); max-width: 68ch; color: var(--text-mid); font-size: 1rem; line-height: 1.6; }
 strong { color: var(--text); font-weight: 600; }
 em { color: var(--text); font-style: italic; font-family: var(--font-display); font-weight: 400; }
 /* hr styled in Animated HR Divider section below */
@@ -1134,14 +1134,13 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 .phase-indicator.phase-deeper { background: rgba(245,197,66,0.12); border-color: rgba(245,197,66,0.35); color: var(--accent-gold); }
 .phase-indicator.phase-power { background: rgba(255,107,107,0.12); border-color: rgba(255,107,107,0.35); color: var(--accent-coral); }
 
-/* Pause-motion control — pill button anchored top-right with visible label.
-   Mirrors the hamburger sidebar-toggle at top-left for visual symmetry.
-   Top-right avoids the iOS Safari URL bar and the home-indicator zone.
+/* Pause-motion control — pill anchored bottom-right (out of CTA zone).
+   Previous top-right position overlapped the masthead "Connect Notion →" CTA.
    Minimum 44px touch target (WCAG 2.5.5). */
 .motion-toggle {
   position: fixed;
-  top: calc(8px + env(safe-area-inset-top, 0px));
-  right: calc(8px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  right: calc(16px + env(safe-area-inset-right, 0px));
   min-height: 44px;
   height: 44px;
   padding: 0 14px;
@@ -1167,6 +1166,12 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 .motion-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .motion-toggle-icon { font-size: 1rem; line-height: 1; }
 .motion-toggle-label { white-space: nowrap; }
+
+/* Mobile: collapse to icon-only to free top-bar real-estate. */
+@media (max-width: 640px) {
+  .motion-toggle { padding: 0; width: 44px; }
+  .motion-toggle .motion-toggle-label { display: none; }
+}
 body.motion-paused .particles,
 body.motion-paused .mesh-orb { display: none !important; }
 body.motion-paused hr { animation: none !important; background: var(--accent-glow) !important; }
