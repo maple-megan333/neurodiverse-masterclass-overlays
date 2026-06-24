@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="citations-freshness" content="2026-06-23">
+    <title>Resources &amp; Community &mdash; Neurodiverse AI MasterClass</title>
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/brain-header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      /* Page-local: source entries — title + why + tag pill row */
+      .src-list { display: grid; gap: 0.85rem; margin: var(--s-4) 0 var(--s-5); }
+      .src-entry {
+        background: rgba(10, 10, 20, 0.55);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: var(--radius);
+        padding: 0.85rem 1rem;
+        scroll-margin-top: 80px;
+      }
+      .src-entry:target {
+        border-left-color: var(--gold);
+        background: rgba(245, 197, 66, 0.04);
+      }
+      .src-num {
+        font-family: var(--font-mono);
+        font-size: 0.7rem; font-weight: 700;
+        letter-spacing: 0.06em;
+        color: var(--text-accent);
+        margin-right: 0.4rem;
+      }
+      .src-title {
+        font-family: var(--font-display);
+        font-size: 1rem; font-weight: 600;
+        color: var(--text);
+        line-height: 1.4;
+      }
+      .src-title a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--gold-glow); }
+      .src-title a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+      .src-why {
+        font-size: 0.88rem;
+        color: var(--text-mid);
+        line-height: 1.55;
+        margin: 0.4rem 0 0.5rem;
+      }
+      .src-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+      .src-tag {
+        font-size: 0.65rem; font-weight: 700;
+        letter-spacing: 0.04em; text-transform: uppercase;
+        padding: 0.15rem 0.55rem; border-radius: 100px;
+        background: rgba(245, 197, 66, 0.10);
+        border: 1px solid rgba(245, 197, 66, 0.25);
+        color: var(--text-accent);
+        white-space: nowrap;
+      }
+      .src-flag {
+        font-size: 0.6rem; font-weight: 700;
+        letter-spacing: 0.06em;
+        padding: 0.1rem 0.45rem; border-radius: 100px;
+        background: rgba(120, 184, 152, 0.15);
+        color: var(--green-title);
+        border: 1px solid rgba(120, 184, 152, 0.3);
+        margin-left: 0.35rem;
+      }
+      .src-flag.new { background: rgba(245, 197, 66, 0.15); color: var(--gold); border-color: var(--gold-glow); }
+      .src-flag.caution { background: rgba(255, 107, 107, 0.12); color: var(--red-title); border-color: rgba(255, 107, 107, 0.3); }
+    </style>
+</head>
+<body>
+<script src="js/spa-redirect.js"></script>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="mesh"><div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div></div>
+<div class="particles" id="particles"></div>
+<div class="brain-header-sticky">
+  <div class="brain-header" id="brainHeader">
+    <div class="brain-header-overlay"></div>
+    <div class="brain-header-text" id="headerText">
+      <span class="pill">RESOURCES</span>
+      <h1>Resources &amp; Community</h1>
+      <p class="tagline">The research, voices, and tools behind the curriculum.</p>
+    </div>
+  </div>
+</div>
+    <div class="page-wrapper" id="main-content">
+        <nav class="nav-bar" aria-label="Page navigation">
+            <div class="nav-breadcrumb"><a href="index.html">&larr; MasterClass Home</a></div>
+            <span class="phase-indicator" aria-label="Resources"><span class="phase-num">Resources</span></span>
+        </nav>
+
+<div class="callout callout-purple"><span class="callout-icon">📚</span><div class="callout-title">About this page</div><div>Everything cited in this MasterClass lives here — peer-reviewed research, ND creators and practitioners, official tool docs, and where to find community after the course ends. Each entry tells you <em>why</em> it earned a spot. The list is audited quarterly for freshness and accuracy (last verified <strong>2026-06-23</strong>; next audit <strong>~September 2026</strong>). Pages across the course link inline to specific entries below.</div></div>
+
+<hr>
+
+<!-- ==================== SECTION 1 ==================== -->
+<div class="section-head">
+  <h2>1. The Research Behind This Course <span class="badge">11 sources</span></h2>
+</div>
+<p class="section-desc">Academic and clinical papers that ground the AI + ND intersection. Cite these whenever the course makes an empirical claim about productivity gains, executive function support, or ND-specific AI use patterns.</p>
+
+<div class="src-list">
+
+  <div class="src-entry" id="ref-1">
+    <div><span class="src-num">[1]</span><span class="src-title"><a href="https://dl.acm.org/doi/10.1145/3701194" target="_blank" rel="noopener">Lyu et al., "Exploring Large Language Models Through a Neurodivergent Lens," ACM CSCW, Jan 2025</a></span></div>
+    <div class="src-why">Qualitative study of 61 neurodivergent Reddit communities. Identifies 20 LLM use cases across 5 themes — the framework that shapes the course's track structure.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#voice</span><span class="src-tag">#communication</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-2">
+    <div><span class="src-num">[2]</span><span class="src-title"><a href="https://asistdl.onlinelibrary.wiley.com/doi/10.1002/pra2.1331" target="_blank" rel="noopener">Liao, "The Potential of Generative AI in Supporting Neurodiversity in Higher Education," ASIS&amp;T, 2025</a></span></div>
+    <div class="src-why">Systematic review of 21 studies (2022–2025). The strongest single citation for "GenAI helps ND learners" claims — writing fluency, time management, engagement.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#executive-function</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-3">
+    <div><span class="src-num">[3]</span><span class="src-title"><a href="https://dl.acm.org/doi/10.1145/3772318.3791334" target="_blank" rel="noopener">Wang &amp; Rapp, "Navigating Neurodivergence with AI Chatbots," ACM CHI '26, April 2026</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">23 semi-structured interviews. Documents the tensions: participants found chatbot responses "robotic and inauthentic." A critical counterweight to AI-utopian framing.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#RSD</span><span class="src-tag">#communication</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-4">
+    <div><span class="src-num">[4]</span><span class="src-title"><a href="https://www.tandfonline.com/doi/full/10.1080/09687599.2026.2667528" target="_blank" rel="noopener">Morgan, "Reasonable Adjustments for Neurodivergent Students," Disability &amp; Society, 2026</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Reframes LLMs as accessibility tools that scaffold expression while preserving intellectual authorship. Grounds the "AI augments, doesn't replace" argument in UK equality law.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#accessibility</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-5">
+    <div><span class="src-num">[5]</span><span class="src-title"><a href="https://robinbrewer.com/papers/productivity.pdf" target="_blank" rel="noopener">Brewer et al., "Rethinking Productivity with GenAI: A Neurodivergent Students' Perspective," 2025</a></span></div>
+    <div class="src-why">Identifies four mechanisms by which GenAI mitigates ADHD programming challenges. Documents up to 55% productivity increases — the headline stat for task decomposition claims.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#executive-function</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-6">
+    <div><span class="src-num">[6]</span><span class="src-title"><a href="https://arxiv.org/html/2507.06864" target="_blank" rel="noopener">"Toward Neurodivergent-Aware Productivity: A Human-in-the-Loop Framework for ADHD Professionals," CHItaly '25 / arXiv, July 2025</a></span></div>
+    <div class="src-why">Argues most existing tools are "behavior-focused and lack real-time adaptation." Advocates lightweight, privacy-first AI — the basis for the course's privacy stance.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#productivity</span><span class="src-tag">#accessibility</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-7">
+    <div><span class="src-num">[7]</span><span class="src-title"><a href="https://preprints.jmir.org/preprint/95043" target="_blank" rel="noopener">"Multimodal Digital Therapeutics for ADHD: Network Meta-Analysis," JMIR Preprints, March 2026</a><span class="src-flag caution">PREPRINT</span></span></div>
+    <div class="src-why">First rigorous RCT-aggregated evidence that AI-integrated cognitive-motor dual-task interventions work for ADHD core symptoms. Cite with "preprint" qualifier — not yet peer-reviewed.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-8">
+    <div><span class="src-num">[8]</span><span class="src-title"><a href="https://mydigitalpublication.com/article/Artificial+intelligence+for+adults+with+ADHD/4969679/845086/article.html" target="_blank" rel="noopener">"AI for Adults with ADHD: Opportunities to Enhance Executive Functioning," Occupational Therapy Now, April 2025</a></span></div>
+    <div class="src-why">Positions AI as a "potent self-management resource" for executive functioning. Adds clinical credibility distinct from CS/HCI literature — places AI inside the existing OT toolkit.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-8b">
+    <div><span class="src-num">[8b]</span><span class="src-title"><a href="https://dl.acm.org/doi/10.1145/3715070.3747338" target="_blank" rel="noopener">"Designing Inclusive AI Interaction for Neurodiversity," ACM CSCW '25 Companion, 2025</a><span class="src-flag new">NEW 2025</span></span></div>
+    <div class="src-why">Identifies critical design opportunities for empowering ND social authorship. Useful when arguing ND-aware AI design isn't a niche concern — it's an active CSCW research thread.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#accessibility</span><span class="src-tag">#communication</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-8c">
+    <div><span class="src-num">[8c]</span><span class="src-title"><a href="https://dl.acm.org/doi/full/10.1145/3663547.3746361" target="_blank" rel="noopener">"Understanding Human-AI Misalignment in LLM-Based Job-Seeking Support for Neurodivergent Users," ACM ASSETS '25, 2025</a><span class="src-flag new">NEW 2025</span></span></div>
+    <div class="src-why">Studies job-seeking LLM use among ADHD, autistic, dyslexic users. Documents over-formalization and neurotypical assumptions — the basis for "push back on AI's defaults" lessons.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#communication</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-35b">
+    <div><span class="src-num">[35b]</span><span class="src-title"><a href="https://cdt.org/insights/new-cdt-research-will-explore-the-impacts-of-social-relationships-with-ai-chatbots-on-neurodivergent-young-adults/" target="_blank" rel="noopener">CDT, "Impacts of Social Relationships with AI Chatbots on Neurodivergent Young Adults," 2026</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Civil-liberties research initiative investigating ND young adults and AI chatbots. Signals that digital-rights orgs are taking AI+ND seriously — useful for parasocial-risk discussions.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#community</span><span class="src-tag">#RSD</span></div>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- ==================== SECTION 2 ==================== -->
+<div class="section-head">
+  <h2>2. ND Voices &amp; Creators <span class="badge">9 sources</span></h2>
+</div>
+<p class="section-desc">The people Megan's audience already trusts. All Substacks and podcasts verified active with publishing cadence under 30 days as of June 2026.</p>
+
+<div class="src-list">
+
+  <div class="src-entry" id="ref-9">
+    <div><span class="src-num">[9]</span><span class="src-title"><a href="https://neurodivergentinsights.substack.com/" target="_blank" rel="noopener">Dr. Megan Anna Neff, "Neurodivergent Insights" (Substack)</a></span></div>
+    <div class="src-why">16K+ subscribers, ranked #52 Rising in Health &amp; Wellness. Author of <em>Self-Care for Autistic People</em>. The single most-trusted voice in the AuDHD adult audience.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#community</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-10">
+    <div><span class="src-num">[10]</span><span class="src-title"><a href="https://www.divergentpod.com/" target="_blank" rel="noopener">Neff &amp; Casale, "Divergent Conversations" (podcast)</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Weekly, 144+ episodes. Two AuDHD therapists covering RSD, alexithymia, burnout. Strongest podcast cross-promotion partner — same audience as the MasterClass.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#community</span><span class="src-tag">#RSD</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-11">
+    <div><span class="src-num">[11]</span><span class="src-title"><a href="https://www.sluggish.xyz/" target="_blank" rel="noopener">Jesse Meadows, "Sluggish" (Substack)</a></span></div>
+    <div class="src-why">Critical ADHD studies and disability politics. Writes on ND experiences with AI specifically. Important counterbalance to mainstream ADHD-positivity discourse.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#community</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-12">
+    <div><span class="src-num">[12]</span><span class="src-title"><a href="https://howtoadhd.com/" target="_blank" rel="noopener">Jessica McCabe, "How To ADHD" (YouTube + book)</a></span></div>
+    <div class="src-why">1M+ subscribers. NYT Bestseller <em>How to ADHD</em>. Highest-trust mainstream ADHD educator. The MasterClass positions itself as complementary, not competitive.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#community</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-13">
+    <div><span class="src-num">[13]</span><span class="src-title"><a href="https://www.adhdrewired.com/podcast/" target="_blank" rel="noopener">Eric Tivers, "ADHD reWired" (podcast)</a><span class="src-flag">UPDATED</span></span></div>
+    <div class="src-why">579+ episodes. Ep 550 specifically features Dr. Shannan Palma on "Decide" — an AI-powered decision-support tool built by and for ND brains. Direct precedent for our thesis.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#community</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-14">
+    <div><span class="src-num">[14]</span><span class="src-title"><a href="https://artificialinquiry.substack.com/p/the-accidental-pioneers-how-neurodivergent" target="_blank" rel="noopener">Artificial Inquiry, "The Accidental Pioneers: How Neurodivergent Users Are Discovering AI's True Potential"</a></span></div>
+    <div class="src-why">Frames ND users as the unintentional vanguard of AI adoption. Articulates the course's central thesis ("ND users are AI power users by necessity") in quotable form.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-15">
+    <div><span class="src-num">[15]</span><span class="src-title"><a href="https://zackproser.com/blog/claude-external-brain-adhd-autistic" target="_blank" rel="noopener">Zack Proser, "Claude as My External Brain: Autistic, ADHD, and Finally Supported"</a></span></div>
+    <div class="src-why">First-person account of Claude as external brain. Covers context externalization, gentle guardrails, reduced shame cycles. Best embedded case study for "you're not alone in finding this transformative."</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-16">
+    <div><span class="src-num">[16]</span><span class="src-title"><a href="https://amgad.io/posts/building-ai-assistant-productivity-claude-obsidian/" target="_blank" rel="noopener">Mohamed Amgad Khater, "Vibe Coding My Way Out of ADHD"</a></span></div>
+    <div class="src-why">Built AI assistant with Claude Code + Obsidian for ADHD management. Bridges to the Advanced Track (skill files, MCP).</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-17">
+    <div><span class="src-num">[17]</span><span class="src-title"><a href="https://medium.com/@jstricak/ai-as-a-neurodivergent-scaffold-how-technology-can-reduce-stress-for-adhd-ocd-and-beyond-eb928ddffa10" target="_blank" rel="noopener">Jelena Stricak, "AI as a Neurodivergent Scaffold" (Medium)</a></span></div>
+    <div class="src-why">Covers ADHD, OCD, and beyond — broader ND umbrella than most. Useful for OCD/anxiety sections of the course.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#RSD</span></div>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- ==================== SECTION 3 ==================== -->
+<div class="section-head">
+  <h2>3. Academic &amp; Professional <span class="badge">8 sources</span></h2>
+</div>
+<p class="section-desc">Clinical, professional-body, and accessibility-standards sources. Cite these when the course needs institutional credibility (not just lived-experience credibility).</p>
+
+<div class="src-list">
+
+  <div class="src-entry" id="ref-18">
+    <div><span class="src-num">[18]</span><span class="src-title"><a href="https://chadd.org/attention-article/harnessing-artificial-intelligence-to-live-better-with-adhd/" target="_blank" rel="noopener">CHADD, "Harnessing Artificial Intelligence to Live Better with ADHD," Attention Magazine</a></span></div>
+    <div class="src-why">Reviews ChatGPT, Goblin Tools, Otter.ai, Claude, and wearable AI for ADHD. CHADD is the largest US ADHD advocacy org — strongest institutional credibility citation available.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#tool</span><span class="src-tag">#community</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-19">
+    <div><span class="src-num">[19]</span><span class="src-title"><a href="https://chadd.org/attention-article/can-ai-revolutionize-education-for-students-with-adhd/" target="_blank" rel="noopener">CHADD, "Can AI Revolutionize Education for Students with ADHD?"</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Notes AI is "a powerful tool to complement traditional teaching methods... not a substitute for good instruction." Useful guardrail for the "AI augments, doesn't replace" framing.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#accessibility</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-20">
+    <div><span class="src-num">[20]</span><span class="src-title"><a href="https://edgefoundation.org/beyond-productivity-hacks-ai-as-cognitive-support-for-adhd-adults/" target="_blank" rel="noopener">Edge Foundation, "Beyond Productivity Hacks: AI as Cognitive Support for ADHD Adults," 2026</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Reframes AI from productivity hack to executive function cognitive support — "stabilize thinking, reduce overwhelm, support action." The framing this course adopts.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-21">
+    <div><span class="src-num">[21]</span><span class="src-title"><a href="https://www.additudemag.com/chatgpt-ai-adhd-executive-function-support/" target="_blank" rel="noopener">ADDitude, "ChatGPT on ADHD: Using AI as an Executive Function Support"</a></span></div>
+    <div class="src-why">Mainstream ADHD audience's introduction to AI. ADDitude is the largest US ADHD consumer publication — cite as "the conversation your audience has already started."</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-22">
+    <div><span class="src-num">[22]</span><span class="src-title"><a href="https://www.additudemag.com/artificial-intelligence-diagnosis-adhd/" target="_blank" rel="noopener">ADDitude, "AI Can Accurately Flag Pediatric ADHD: New Study," May 2026</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Reports Nature Mental Health study: AI predicted childhood ADHD at age 5 with 92% accuracy. Cite cautiously — this is diagnostic AI, distinct from the assistive AI the course teaches.</div>
+    <div class="src-tags"><span class="src-tag">#research</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-23">
+    <div><span class="src-num">[23]</span><span class="src-title"><a href="https://www.w3.org/WAI/cognitive/" target="_blank" rel="noopener">W3C, "Cognitive Accessibility at W3C"</a></span></div>
+    <div class="src-why">Top-level W3C cognitive accessibility hub. The course's design system claims should be checked against this.</div>
+    <div class="src-tags"><span class="src-tag">#accessibility</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-24">
+    <div><span class="src-num">[24]</span><span class="src-title"><a href="https://www.w3.org/WAI/news/2026-03-03/wcag3/" target="_blank" rel="noopener">W3C, "WCAG 3 Working Draft — March 2026 Update"</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Latest WCAG 3.0 draft (Bronze/Silver/Gold conformance, expanded cognitive accessibility). Candidate Recommendation expected Q4 2027 — reference this, not older WCAG 2.x.</div>
+    <div class="src-tags"><span class="src-tag">#accessibility</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-25">
+    <div><span class="src-num">[25]</span><span class="src-title"><a href="https://w3c.github.io/coga/content-usable/" target="_blank" rel="noopener">W3C COGA, "Making Content Usable for People with Cognitive and Learning Disabilities"</a></span></div>
+    <div class="src-why">Practical design patterns for cognitive accessibility. The course's callouts, navigation, and "no shame language" rules all map to specific COGA patterns.</div>
+    <div class="src-tags"><span class="src-tag">#accessibility</span></div>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- ==================== SECTION 4 ==================== -->
+<div class="section-head">
+  <h2>4. Tools &amp; Integrations <span class="badge">7 sources</span></h2>
+</div>
+<p class="section-desc">Primary vendor documentation. We link to canonical product pages, not review aggregators.</p>
+
+<div class="src-list">
+
+  <div class="src-entry" id="ref-26">
+    <div><span class="src-num">[26]</span><span class="src-title"><a href="https://goblin.tools/About" target="_blank" rel="noopener">Goblin.tools (Bram De Buyser / Arcology), official site</a></span></div>
+    <div class="src-why">Magic ToDo (task breakdown with "spiciness" slider), Formalizer, Estimator, Judge, Compiler, and more. The single most important ND-specific AI tool. Free web, small one-time mobile fee.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-27">
+    <div><span class="src-num">[27]</span><span class="src-title"><a href="https://www.tiimoapp.com/" target="_blank" rel="noopener">Tiimo, official site</a></span></div>
+    <div class="src-why">Visual planner built by and for neurodivergent people. Apple iPhone App of the Year 2025. 1M+ users. 2026 updates: improved AI learning, multiple to-do lists, redesigned Co-Planner.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#executive-function</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-28">
+    <div><span class="src-num">[28]</span><span class="src-title"><a href="https://www.saner.ai/" target="_blank" rel="noopener">Saner.AI, official site + blog</a></span></div>
+    <div class="src-why">AI note organizer, voice capture, proactive day planner. 4.8/5 on Product Hunt. The Saner blog also publishes useful "best ADHD apps" roundups.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-29">
+    <div><span class="src-num">[29]</span><span class="src-title"><a href="https://winbuzzer.com/2026/04/04/anthropic-claude-desktop-control-windows-cowork-dispatch-xcxwbn/" target="_blank" rel="noopener">Anthropic, Claude Cowork — general availability announcement, April 2026</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">Cowork moved from research preview (Jan 2026) to GA across all paid plans (April 2026). Grants Claude access to user-specified folders for autonomous file edits and multi-step tasks. The biggest 2026 feature drop for non-developer ND users.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-30">
+    <div><span class="src-num">[30]</span><span class="src-title"><a href="https://claude.com/pricing" target="_blank" rel="noopener">Anthropic, Claude product pricing and feature matrix</a></span></div>
+    <div class="src-why">Canonical source for what's in Free vs Pro vs Max. Tier boundaries shifted in 2026 — Memory, Skills, Connectors, and visualizations all extended to Free tier (March 2026). Course recommendations reflect that students don't need Pro to access Projects anymore.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-31">
+    <div><span class="src-num">[31]</span><span class="src-title"><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity AI, official site + Comet / Deep Research docs</a><span class="src-flag">UPDATED</span></span></div>
+    <div class="src-why">2026 updates: Deep Research now runs on Claude Opus 4.5/4.6; Model Council (Feb 2026) for parallel multi-model queries; Computer command panel; Perplexity Health; Comet AI browser. A fundamentally different "search-first" pattern than Claude/ChatGPT.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#research</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-32">
+    <div><span class="src-num">[32]</span><span class="src-title"><a href="https://support.microsoft.com/en-us/topic/accessibility-tools-for-neurodiversity-6dbd8065-b543-4cf8-bdfb-7c84d9e8f74a" target="_blank" rel="noopener">Microsoft, "Accessibility tools for neurodiversity"</a></span></div>
+    <div class="src-why">Microsoft 365 accessibility features for ND users (Immersive Reader, Focus, Speaker Coach). Relevant for corporate ND users in the Work &amp; Productivity track.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#accessibility</span></div>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- ==================== SECTION 5 ==================== -->
+<div class="section-head">
+  <h2>5. Communities &amp; Support <span class="badge">2 sources</span></h2>
+</div>
+<p class="section-desc">Where to go AFTER finishing the course. Verified active June 2026.</p>
+
+<div class="src-list">
+
+  <div class="src-entry" id="ref-33">
+    <div><span class="src-num">[33]</span><span class="src-title"><a href="https://www.reddit.com/r/ADHD/" target="_blank" rel="noopener">Reddit r/ADHD (1.9M+ members), r/neurodiversity, r/ChatGPT_ADHD</a></span></div>
+    <div class="src-why">The largest peer-support spaces for ND adults. Documented in Lyu et al. [1] as the primary spaces where ND users share AI workarounds. r/ADHD_Programmers is also relevant for the Advanced Track.</div>
+    <div class="src-tags"><span class="src-tag">#community</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-34">
+    <div><span class="src-num">[34]</span><span class="src-title"><a href="https://chadd.org/" target="_blank" rel="noopener">CHADD National Resource Center + Forums</a></span></div>
+    <div class="src-why">Largest US ADHD organization. Forums, support groups, professional directory. Higher-trust complement to Reddit for students who want moderated, clinically-informed community.</div>
+    <div class="src-tags"><span class="src-tag">#community</span></div>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- ==================== SECTION 6 ==================== -->
+<div class="section-head">
+  <h2>6. Podcasts &amp; Video <span class="badge">2 sources</span></h2>
+</div>
+<p class="section-desc">Plus the podcasts in Section 2 (<a href="#ref-10">Divergent Conversations</a>, <a href="#ref-13">ADHD reWired</a>) and YouTube creator (<a href="#ref-12">How To ADHD</a>).</p>
+
+<div class="src-list">
+
+  <div class="src-entry" id="ref-35">
+    <div><span class="src-num">[35]</span><span class="src-title"><a href="https://goodsensorylearning.com/pages/episode-52-leveraging-claude-ai-for-executive-functioning-tips-strategies" target="_blank" rel="noopener">Good Sensory Learning, "Episode 52: Leveraging Claude AI for Executive Functioning"</a></span></div>
+    <div class="src-why">Direct precedent for the MasterClass thesis with educational-therapy focus. Pair with ADHD reWired Ep 550 [13] to show two independent ND-focused podcasts converging on the same AI thesis.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#executive-function</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-35b-podcast">
+    <div><span class="src-num">[35b]</span><span class="src-title">CDT research initiative <span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">See <a href="#ref-35b">[35b] in Section 1</a> — civil-liberties / digital-rights research on ND young adults and AI chatbots.</div>
+    <div class="src-tags"><span class="src-tag">#research</span><span class="src-tag">#community</span></div>
+  </div>
+
+</div>
+
+<hr>
+
+<!-- ==================== SECTION 7 ==================== -->
+<div class="section-head">
+  <h2>7. Further Reading <span class="badge">4 sources</span></h2>
+</div>
+<p class="section-desc">Substack and blog deep cuts for the student who finishes the course and asks "what now?"</p>
+
+<div class="src-list">
+
+  <div class="src-entry" id="ref-36">
+    <div><span class="src-num">[36]</span><span class="src-title"><a href="https://dev.to/chudi_nnorukam/adhd-devs-claude-code-workflows-1b5c" target="_blank" rel="noopener">DEV Community, "7 Claude Code Workflows That Actually Help ADHD Developers Ship"</a></span></div>
+    <div class="src-why">Practical Claude Code patterns for ADHD developers: verification gates, task breakdown, evidence over guesswork. Bridge from the Advanced Track to "ship something" mindset.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#productivity</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-37">
+    <div><span class="src-num">[37]</span><span class="src-title"><a href="https://www.weforum.org/stories/2025/07/how-neurodivergent-minds-can-humanize-ai-governance/" target="_blank" rel="noopener">World Economic Forum, "How neurodivergent minds can help humanize AI governance," July 2025</a></span></div>
+    <div class="src-why">Positions ND perspectives as valuable for AI development, not just AI consumers. Useful for the course's closing aspiration — students aren't just AI users, they're future AI shapers.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#research</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-38">
+    <div><span class="src-num">[38]</span><span class="src-title"><a href="https://exceptionalindividuals.com/about-us/blog/ai-as-a-reasonable-adjustment-for-neurodivergent-employees/" target="_blank" rel="noopener">Exceptional Individuals, "AI as a Reasonable Adjustment for Neurodivergent Employees"</a><span class="src-flag new">NEW 2026</span></span></div>
+    <div class="src-why">UK-focused practitioner write-up on AI as workplace accommodation. Pairs with Morgan [4] (academic) for both practitioner and academic angles on the legal-accommodation argument.</div>
+    <div class="src-tags"><span class="src-tag">#voice</span><span class="src-tag">#productivity</span><span class="src-tag">#accessibility</span></div>
+  </div>
+
+  <div class="src-entry" id="ref-39">
+    <div><span class="src-num">[39]</span><span class="src-title"><a href="https://news.northeastern.edu/2025/07/09/chrome-accessibility-extension-lumiread/" target="_blank" rel="noopener">Northeastern University News, "New Chrome extension makes web more accessible for neurodivergent users" (LumiRead), July 2025</a></span></div>
+    <div class="src-why">Chrome extension co-developed with ND user consultants. Best citation for the "participatory ND design" pattern the course endorses — build WITH ND users, not just FOR them.</div>
+    <div class="src-tags"><span class="src-tag">#tool</span><span class="src-tag">#accessibility</span><span class="src-tag">#voice</span></div>
+  </div>
+
+</div>
+
+<hr>
+
+<div class="callout callout-gray"><span class="callout-icon">🔄</span><div class="callout-title">Maintenance</div><div>This page is audited quarterly. Next freshness check: ~September 2026. Sections 1 (Research) and 4 (Tools) move fastest — new CHI/CSCW/ASSETS papers drop on conference cycles, vendor docs change monthly. Sections 2, 5, 6 are stable on a 6-month cadence. Section 3 (W3C COGA / WCAG) moves on multi-year cycles.</div></div>
+
+<div class="callout callout-blue"><span class="callout-icon">🧭</span><div class="callout-title">Honest limitations</div><div>This library is English-language and Western-skewed. Most cited research is adult-focused. The Voices section leans heavily on AuDHD creators — dyspraxia, dyscalculia, Tourette's, and OCD-only ND voices are under-represented. The library cites podcasts and Substack but only one YouTube creator; TikTok and Instagram ND creators are not represented (intentional — the course is text/screen-reader friendly first). We're expanding international and pediatric coverage in future audits.</div></div>
+
+        <nav class="nav-footer" aria-label="Workshop navigation">
+            <a href="reference-library.html" class="nav-link prev"><small>&larr; Previous</small>Reference Library</a>
+            <a href="your-progress.html" class="nav-link next"><small>Next &rarr;</small>Your Progress</a>
+        </nav>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="js/motion-toggle.js"></script>
+</body>
+</html>
